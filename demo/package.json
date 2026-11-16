@@ -13,6 +13,7 @@
     "dev": "pnpm --filter @repo/canvas dev",
     "db:hosted": "pnpm --filter @repo/graph db:hosted",
     "check:upstream": "pnpm --filter @repo/graph check:upstream",
+    "example": "pnpm --filter @repo/graph example",
     "format": "prettier --write \"**/*.{js,mjs,ts,tsx,md,mdx}\""
   },
   "devDependencies": {

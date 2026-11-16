@@ -1,6 +1,6 @@
 # TruSoma discourse graph
 
-TruSoma is a simulation of the human fetal body and its developing brain at 10 to 17 weeks of gestation, built from published biology. The rule of the project is that every number in the model is traced to a source or recorded as a choice. This repository holds the record that does the tracing, kept as a [Discourse Graphs](https://discoursegraphs.com) vault, and the software that reads it.
+TruSoma is a simulation of the human fetal body and its developing brain at 10 to 17 weeks of gestation, built from published biology. The rule of the project is that every number in the model is traced to a source or recorded as a choice. This repository holds the record that does the tracing, kept as a [Discourse Graphs](https://discoursegraphs.com) vault of 4,381 notes and 2,288 relations, and the software that lets people and AI assistants read and write it.
 
 **[Open the live canvas](https://kootru-repo.github.io/trusoma-discourse-graph/)** · [Project page](https://labs.kootru.com) · [Architecture](docs/architecture.md) · [Developer guide](demo/README.md)
 
@@ -37,9 +37,48 @@ pnpm install
 pnpm test     # unit tests on the real vault
 pnpm dev      # the canvas at http://localhost:4173
 pnpm start    # the MCP server over stdio
+pnpm run example   # what an assistant sees: one value traced, one write refused
 ```
 
-To connect an assistant: `claude mcp add trusoma-dg -- pnpm --dir /path/to/demo start`
+## Ask it through an assistant
+
+The MCP server gives an AI assistant the graph as tools. Two calls show what that means. The output below is from the real vault, shortened; `pnpm run example` prints it in full.
+
+**Trace a value to its sources.** One call returns the whole path: the value, the verbatim quote behind it, the paper, the hypothesis it informs, the experiment and the result.
+
+```
+> trace_value { "key": "NMDA_SHARE_E16" }
+{
+  "claim":    { "title": "CLM - phase1_substrate.NMDA_SHARE_E16", "value": 0.755, "status": "source-found-transfer" },
+  "evidence": [{
+    "quote":   "the remaining postsynaptic response (75.5%, +/- 0.7% SD) was blocked by AP5, indicating it was mediated by NMDA receptors ...",
+    "locator": "Results (E16 recordings); abstract gives 75%",
+    "sources": [{ "title": "@p-waite2000" }]
+  }],
+  "hypotheses": [{
+    "title": "HYP- S2 NMDA share and excitatory GABA-A",
+    "experiments": [{
+      "title":   "EXP - test rs3 s2 gaba and nmda share e4707cd",
+      "results": [{ "title": "RES - S2 recovers the bound share and the GABA-A sign", "reading": "pass" }]
+    }]
+  }],
+  "supported": true
+}
+```
+
+**Refuse a write that misquotes its record.** An assistant can add notes, but only ones that fit the grammar and quote their record file word for word. This quote is not in the file, so nothing is written:
+
+```
+> add_note { "kind": "Result", "record": "companion/TRUSOMA_PROBES.md",
+             "quote": "the learner formed a perfect body map on every seed", ... }
+{
+  "accepted": false,
+  "title": "RES - example of a refused write",
+  "message": ["Result example of a refused write: its quote is not found verbatim in companion/TRUSOMA_PROBES.md"]
+}
+```
+
+The server has 11 tools in all: nine for reading (search, neighbourhood, trace, gaps and the grammar), one that runs the vault's check, and `add_note`. To connect one: `claude mcp add trusoma-dg -- pnpm --dir /path/to/demo start`
 
 ## The vault is the only source
 
