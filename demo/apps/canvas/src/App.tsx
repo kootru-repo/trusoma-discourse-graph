@@ -575,8 +575,10 @@ export const App = (): JSX.Element => {
     const words = within.toLowerCase().split(/\s+/).filter(Boolean);
     const found = words.length
       ? answers.filter((n) => {
-          const title = n.title.toLowerCase();
-          return words.every((w) => title.includes(w));
+          // the title, and for a value its key and number, since a short title says little on its own
+          const text =
+            `${n.title} ${n.props.key ?? ""} ${n.props.value ?? ""}`.toLowerCase();
+          return words.every((w) => text.includes(w));
         })
       : answers;
     return {
@@ -752,8 +754,8 @@ export const App = (): JSX.Element => {
           {mode === "ask" && results.answers > FILTER_FROM ? (
             <input
               className="border-line -mt-1.5 mr-1 h-[34px] flex-none rounded-lg border border-solid bg-white px-[11px] hover:border-[#cbd5e1]"
-              aria-label="Filter the results by title"
-              placeholder={`Filter ${results.answers.toLocaleString()} results by title`}
+              aria-label="Filter the results"
+              placeholder={`Filter ${results.answers.toLocaleString()} results`}
               value={within}
               onChange={(e) => {
                 setWithin(e.target.value);

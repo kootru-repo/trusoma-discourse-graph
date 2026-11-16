@@ -2,7 +2,7 @@
  * Questions over the graph: preset ones, and one the reader builds from the grammar ("find notes of a type that have, or lack, a relation to or from a type").
  * Every question is a Query run by packages/graph/src/query.ts; the active preset states in one sentence exactly what it asks, and the builder's controls read as that sentence.
  */
-import type { ReactNode } from "react";
+import { useState, type ReactNode } from "react";
 import {
   describeQuery,
   PRESETS,
@@ -45,7 +45,7 @@ const Question = ({
   children?: ReactNode;
 }): JSX.Element => (
   <li
-    className={`rounded-lg ${active ? "bg-[#eef2f6] [box-shadow:inset_3px_0_0_#0f172a]" : "hover:bg-[#f8fafc]"}`}
+    className={`rounded-lg ${active ? "border border-solid border-[#cbd5e1] bg-white" : "border border-solid border-transparent hover:bg-[#f8fafc]"}`}
   >
     <button
       className={`grid w-full grid-cols-[minmax(0,1fr)_auto] items-baseline gap-x-2.5 rounded-lg border-0 bg-transparent px-2.5 py-[7px] text-left text-[13.5px] leading-[1.35] ${active ? "font-semibold" : "font-medium"}`}
@@ -61,29 +61,35 @@ const Question = ({
   </li>
 );
 
+/** One control of the builder: name is the word shown beside it, label the fuller name a screen reader hears. */
 const Pick = ({
+  name,
   label,
   value,
   options,
   onChange,
 }: {
+  name: string;
   label: string;
   value: string;
   options: { value: string; text: string }[];
   onChange: (value: string) => void;
 }): JSX.Element => (
-  <select
-    className={`${TW_SELECT} bg-white`}
-    aria-label={label}
-    value={value}
-    onChange={(e) => onChange(e.target.value)}
-  >
-    {options.map((o) => (
-      <option key={o.value} value={o.value}>
-        {o.text}
-      </option>
-    ))}
-  </select>
+  <label className="grid grid-cols-[4.25rem_minmax(0,1fr)] items-center gap-2">
+    <span className="text-[12px] font-semibold text-[#56637a]">{name}</span>
+    <select
+      className={`${TW_SELECT} bg-white`}
+      aria-label={label}
+      value={value}
+      onChange={(e) => onChange(e.target.value)}
+    >
+      {options.map((o) => (
+        <option key={o.value} value={o.value}>
+          {o.text}
+        </option>
+      ))}
+    </select>
+  </label>
 );
 
 export const Ask = ({
@@ -99,6 +105,10 @@ export const Ask = ({
   relationLabels: string[];
   onAsk: (asked: Asked) => void;
 }): JSX.Element => {
+  // a linked question opens folded to itself, so its answers are in view at once
+  const [open, setOpen] = useState(
+    () => !window.location.hash.startsWith("#ask="),
+  );
   const building = asked.id === CUSTOM;
   const custom = building ? asked.query : DEFAULT_CUSTOM;
   const condition = custom.where[0] ?? FIRST;
@@ -116,30 +126,31 @@ export const Ask = ({
   const picks = (
     <div className="grid gap-1.5" data-testid="builder">
       <Pick
+        name="Find"
         label="Find notes of type"
         value={custom.type}
-        options={nodeTypes.map((t) => ({ value: t, text: `Find ${t} notes` }))}
+        options={nodeTypes.map((t) => ({ value: t, text: `${t} notes` }))}
         onChange={(type) => build({ type })}
       />
       <Pick
+        name="Which"
         label="With or without"
         value={condition.has ? "has" : "has no"}
         options={[
-          { value: "has", text: "that have a relation" },
-          { value: "has no", text: "that have no relation" },
+          { value: "has", text: "have a relation" },
+          { value: "has no", text: "have no relation" },
         ]}
         onChange={(v) => build({ condition: { has: v === "has" } })}
       />
       <Pick
+        name="Relation"
         label="Relation"
         value={condition.relation}
-        options={relationLabels.map((l) => ({
-          value: l,
-          text: `labelled "${l}"`,
-        }))}
+        options={relationLabels.map((l) => ({ value: l, text: l }))}
         onChange={(relation) => build({ condition: { relation } })}
       />
       <Pick
+        name="Direction"
         label="Direction and type of the other note"
         value={`${condition.direction}|${condition.type}`}
         options={(["to", "from"] as const).flatMap((d) =>
@@ -184,27 +195,42 @@ export const Ask = ({
         picks
       ) : (
         <ul className="-mx-2.5 my-0 grid list-none gap-0.5 p-0">
-          {PRESETS.map((preset) => (
-            <Question
-              key={preset.id}
-              label={preset.question}
-              aside={(counts[preset.id] ?? 0).toLocaleString()}
-              active={asked.id === preset.id}
-              onPick={() => onAsk({ id: preset.id, query: preset.query })}
-            >
-              <p className="m-0 text-[12.5px] leading-normal text-[#3d4a5f]">
-                {preset.plain}
-              </p>
-              <details className="mt-1">
-                <summary className="cursor-pointer text-[12px] font-semibold text-[#56637a]">
-                  Exact query
-                </summary>
-                <p className={TW_EXACT} data-testid="asked">
-                  {describeQuery(preset.query)}
+          {PRESETS.filter((preset) => open || preset.id === asked.id).map(
+            (preset) => (
+              <Question
+                key={preset.id}
+                label={preset.question}
+                aside={(counts[preset.id] ?? 0).toLocaleString()}
+                active={asked.id === preset.id}
+                onPick={() => {
+                  setOpen(false);
+                  onAsk({ id: preset.id, query: preset.query });
+                }}
+              >
+                <p className="m-0 text-[12.5px] leading-normal text-[#3d4a5f]">
+                  {preset.plain}
                 </p>
-              </details>
-            </Question>
-          ))}
+                <details className="mt-1">
+                  <summary className="cursor-pointer text-[12px] font-semibold text-[#56637a]">
+                    Exact query
+                  </summary>
+                  <p className={TW_EXACT} data-testid="asked">
+                    {describeQuery(preset.query)}
+                  </p>
+                </details>
+              </Question>
+            ),
+          )}
+          {open ? null : (
+            <li>
+              <button
+                className="text-accent cursor-pointer border-0 bg-transparent px-2.5 py-1.5 text-[12.5px] font-semibold hover:underline"
+                onClick={() => setOpen(true)}
+              >
+                Change question
+              </button>
+            </li>
+          )}
         </ul>
       )}
     </div>
