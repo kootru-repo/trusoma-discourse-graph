@@ -1,0 +1,356 @@
+match_on,match,source_kind,ga_lo_wk,ga_hi_wk,note,species,age_stage
+species_age,10 adult human cadaver upper limbs,human_postnatal,,,,human,adult
+species_age,"12 typically developing children, 11.1 +- 2.8 y, lower limb",human_postnatal,,,,human,child
+species_age,"61 healthy adults, active cervical ROM",human_postnatal,,,,human,adult
+species_age,"Adult cat visual cortex, in vivo, layer VI/III/V reconstructed neurons (point-conductance model fitted to a detailed bio",animal_postnatal,,,,cat,adult
+species_age,"Delpy: mouse embryo (animal fetal), spinal cord. Sedmak: human fetal post-mortem brain, no brainstem data",animal_prenatal,,,mixed: mouse embryo and human fetal brain,mouse; human,prenatal
+species_age,"Healthy human children (age range not in the abstract), passive goniometry; adult typical 0/145",human_postnatal,,,,human,child
+species_age,"Human preterm infants born 23-33 wk, tested serially to term; GA = age at test (postmenstrual, no mapping needed)",human_postnatal,23,33,"born preterm, tested to term",human,neonatal
+species_age,Mouse embryo spinal cord (E15.5) and human fetal cortex/thalamus (10-25 PCW),animal_prenatal,,,mixed: mouse E15.5 and human fetal 10-25 PCW,mouse; human,prenatal
+species_age,"Neonatal rat medullary slice (age in days not in abstract), whole-cell, one cell type (motoneuron)",animal_postnatal,,,,rat,neonatal
+species_age,"Rat pups P2-P21 (model plus reviewed experimental LC data); mapping by Semple (white matter, brain weight)",animal_postnatal,,,,rat,neonatal
+species_age,"Zen: human term newborns, casts at 24-72 h; Matthew: human fetus in utero 29-36 wk (MRI), charts 19-38 wk",human_postnatal,,,mixed: term newborn casts and fetal MRI 29-36 wk; the further source decides,human,neonatal
+species_age,adult anaesthetised squirrel monkey (1983) and adult rat (1980); not fetal,animal_postnatal,,,,squirrel monkey; rat,adult
+species_age,adult cat parietal cortex model; in vitro dynamic clamp (adult),animal_postnatal,,,,cat,adult
+species_age,"adult cat, 121 identified cervical motoneurons, intracellular",animal_postnatal,,,,cat,adult
+species_age,"adult cat, 9 hamstring spindle primary (presumed Ia) afferents, chronic DRG recordings, freely moving overground locomot",animal_postnatal,,,,cat,adult
+species_age,"adult cat, medial gastrocnemius spindle group II afferents onto triceps surae motoneurons, spike-triggered averaging",animal_postnatal,,,,cat,adult
+species_age,adult decerebrate cat (IPSP); adult rat 8-16 wk (tone latency),animal_postnatal,,,,cat; rat,adult
+species_age,adult halothane-anaesthetised rat,animal_postnatal,,,,rat,adult
+species_age,"adult human (21 +/- 2 y), medial gastrocnemius",human_postnatal,,,,human,adult
+species_age,adult human (36-87 y),human_postnatal,,,,human,adult
+species_age,adult human (whole-body innervation estimate),human_postnatal,,,,human,adult
+species_age,"adult human (young adults), estimates from DRG fibre counts and skin areas",human_postnatal,,,,human,adult
+species_age,adult human cadaver arms (n=10),human_postnatal,,,,human,adult
+species_age,"adult human dorsal tongue, microneurography, 22 superficial units",human_postnatal,,,,human,adult
+species_age,"adult human finger skin, in vivo",human_postnatal,,,,human,adult
+species_age,adult human fingerpad in vivo,human_postnatal,,,,human,adult
+species_age,"adult human glabrous hand, microneurography, 128 units",human_postnatal,,,,human,adult
+species_age,"adult human resting skeletal muscle, in vivo",human_postnatal,,,,human,adult
+species_age,"adult human, 19 normal subjects",human_postnatal,,,,human,adult
+species_age,"adult human, microneurography (median and ulnar nerves), glabrous hand skin, 39 RA units",human_postnatal,,,,human,adult
+species_age,"adult human, pretibial muscle spindle afferents, microneurography",human_postnatal,,,,human,adult
+species_age,"adult humans aged 20-27 (Egyptian and Saudi), hand anthropometry",human_postnatal,,,,human,adult
+species_age,"adult male human model, modelling choice taken from literature",model_parameter,,,value from an adult biomechanical model,human,adult
+species_age,adult mouse atlas (Ero 2018); GABA fraction cat; REM-on/off fractions mouse,animal_postnatal,,,,mouse; cat,adult
+species_age,adult mouse atlas; 0.84 rat,animal_postnatal,,,,mouse; rat,adult
+species_age,"adult rat, in vivo, electrical stimulation vlPAG -> rostral ventromedial medulla (not the SLD/vlPAG REM pair; age not st",animal_postnatal,,,,rat,adult
+species_age,"adults 18-60 y, goniometry",human_postnatal,,,,human,adult
+species_age,"chick embryo E9-11 isolated spinal cord, 26-28 C; Q10 from neonatal mouse (P2-4) spinal cord",animal_prenatal,,,with a temperature factor from neonatal mouse,chicken; mouse,prenatal
+species_age,"fetal rat in vitro (E16, E18) and newborn rat (P0-P1); rat gestation ~21 d",animal_prenatal,,,"E16, E18 and P0-P1",rat,prenatal
+species_age,"fetal sheep 90-140 d (term ~147 d), in vivo under anaesthesia; human fetus 15.4 wk (myofibrils, in vitro)",animal_prenatal,,,mixed: fetal sheep and human fetus at 15.4 wk,sheep; human,prenatal
+species_age,"human adult, 4 neurological controls (~88 y); older study 28-60 y (6 brains)",human_postnatal,,,,human,adult
+species_age,"human adults (10 brains, 42-88 y), immunohistochemistry on parallel series with Nissl reference",human_postnatal,,,,human,adult
+species_age,"human adults (5 healthy controls), in vivo MRE",human_postnatal,,,,human,adult
+species_age,"human adults (7 controls, 9 OSA), in vivo MRE",human_postnatal,,,,human,adult
+species_age,"human adults 21-37 y (n 40), psychophysics",human_postnatal,,,,human,adult
+species_age,"human adults with OSA under hypoglossal nerve stimulation (n 18), in vivo ultrasound SWE",human_postnatal,,,,human,adult
+species_age,"human adults, fingerpad, in vivo",human_postnatal,,,,human,adult
+species_age,"human adults, index fingertip, MRI",human_postnatal,,,,human,adult
+species_age,"human children 5-17 y, passive goniometry, Thomas test",human_postnatal,,,,human,child
+species_age,"human children, 6 years (75 boys, 75 girls); younger group 1-2 years: opening 38.4 mm (lateral not given in abstract)",human_postnatal,,,,human,child
+species_age,human elderly adults without cognitive impairment (ages not in the abstract),human_postnatal,,,,human,adult
+species_age,"human embryo and fetal specimens (histology, micro-CT, phase-contrast X-ray CT / MRI), CS17-23 and 9-11 wk PC; GA = PC +",human_fetal,,,staged; see key rows,human,prenatal
+species_age,human embryo specimens (Carnegie collection),human_fetal,,,"Carnegie stages, not weeks",human,prenatal
+species_age,human embryo specimens CS13-23 (histology),human_fetal,,,"Carnegie stages, not weeks",human,prenatal
+species_age,"human embryo specimens, CS13-23, histology",human_fetal,,,"Carnegie stages, not weeks",human,prenatal
+species_age,human embryo/fetal specimens,human_fetal,,,no range in the record,human,prenatal
+species_age,"human embryos CS19-23 and fetuses CRL 37-225 mm, ex vivo MRI (Kyoto Collection)",human_fetal,,,"range in crown-rump length, not weeks",human,prenatal
+species_age,"human embryos/fetuses of the Carnegie Collection (701 specimens, mainly from abortions, many formalin-fixed), menstrual ",human_fetal,,,record is cut short before its age range,human,prenatal
+species_age,"human fetal cadavers 13-40 wk (83 fetuses, 166 feet), digital caliper",human_fetal,13,40,,human,prenatal
+species_age,human fetal cultured neurons (age unknown); rat neonatal neocortex ~P14; human fetal slices 16-22 gw (R_in only),animal_postnatal,,,"mixed: human fetal culture, rat P14 and human fetal slices; the further source decides",rat; human,neonatal
+species_age,human fetus (primary source: Corte-Real 2016 fetal ultrasound),human_fetal,,,no range in the record,human,prenatal
+species_age,"human fetus in utero 24-41 wk GA, fetal magnetocardiography (state from heart-rate variability and movement), n=55 (18/1",human_fetal,24,41,,human,prenatal
+species_age,"human fetus in utero, 12 to 20+6 wk (n=300 in Table 1; 8538 high-risk fetuses screened)",human_fetal,12,20.86,,human,prenatal
+species_age,"human fetus in utero, 12+0 to 14+6 wk, n=1489 (Hong Kong Chinese)",human_fetal,12,14.86,,human,prenatal
+species_age,"human fetus in utero, 13 to 40 wk, 50th centile (n=23 at 13 wk)",human_fetal,13,40,,human,prenatal
+species_age,"human fetus in utero, 13-40 wk, 2D ultrasound, n = 1077 (Chinese cohort)",human_fetal,13,40,,human,prenatal
+species_age,"human fetus in utero, 14-40 wk",human_fetal,14,40,,human,prenatal
+species_age,"human fetus in utero, 14-40 wk GA (serial ultrasound, 8 countries, low-risk; INTERGROWTH-21st FGLS)",human_fetal,14,40,,human,prenatal
+species_age,"human fetus in utero, 14-40 wk, 2D ultrasound, n = 302",human_fetal,14,40,,human,prenatal
+species_age,"human fetus in utero, 14-40 wk, axial 2D ultrasound",human_fetal,14,40,,human,prenatal
+species_age,"human fetus in utero, 15-41 wk GA, cross-sectional ultrasound, 602 singleton non-anomalous pregnancies with early-ultras",human_fetal,15,41,,human,prenatal
+species_age,"human fetus in utero, 15-41 wk, n=602",human_fetal,15,41,,human,prenatal
+species_age,"human fetus in utero, 16-39 wk, n=240",human_fetal,16,39,,human,prenatal
+species_age,"human fetus in utero, 20-38 wk, 3D ultrasound (Japanese population)",human_fetal,20,38,,human,prenatal
+species_age,"human fetus in utero, 20-40 wk, 3D ultrasound (Voluson E10), Japanese cohort, n = 453 volume pairs",human_fetal,20,40,,human,prenatal
+species_age,"human fetus in utero, 3D T2w MRI (SVR), controls 29-36 wk for Table G; growth charts 19-38 wk",human_fetal,29,36,Table G controls 29-36 wk; growth charts 19-38 wk,human,prenatal
+species_age,"human fetus in utero, 3D ultrasound, GA 16 wk",human_fetal,16,16,,human,prenatal
+species_age,"human fetus in utero, 6-12 wk GA, 3D transvaginal ultrasound (Odeh: 142 patients; Gadelha: 25 fetuses longitudinal 8-11 ",human_fetal,6,12,,human,prenatal
+species_age,"human fetus in utero, 8+0 to 12+0 wk",human_fetal,8,12,,human,prenatal
+species_age,"human fetus in utero, 8+0 to 12+0 wk GA (LMP, or IUI/embryo-transfer date corrected), transvaginal 3D ultrasound, Rotter",human_fetal,8,12,,human,prenatal
+species_age,"human fetus in utero, 8-13 wk GA (3D US, Rotterdam periconception cohort, 112 pregnancies)",human_fetal,8,13,,human,prenatal
+species_age,"human fetus in utero, 9+0 to 13+6 wk GA (CRL 15-95 mm), INTERGROWTH-21st, 8 countries",human_fetal,9,13.86,,human,prenatal
+species_age,"human fetus in utero, 9+0 to 13+6 wk, INTERGROWTH-21st (8 countries)",human_fetal,9,13.86,,human,prenatal
+species_age,"human fetus in utero, coronal ultrasound at the level of nostrils and lips, 20-41 wk (n=200 normally grown of 234)",human_fetal,20,41,,human,prenatal
+species_age,"human fetus in utero, first trimester",human_fetal,,,first trimester; see key rows,human,prenatal
+species_age,"human fetus in utero, first-trimester ultrasound (Norway); GA = 283 d minus predicted remaining days",human_fetal,,,first trimester; see key rows,human,prenatal
+species_age,"human fetus in utero, term 37-42 wk (BA estimated by Youssef's formula), n=90",human_fetal,37,42,,human,prenatal
+species_age,"human fetus in utero, ultrasound (GA range not quoted from the abstract)",human_fetal,,,the record says the range was not quoted,human,prenatal
+species_age,"human fetus in utero, ultrasound, 14-40 weeks, 8 countries",human_fetal,14,40,,human,prenatal
+species_age,"human fetus, 12-42 exact weeks gestation (ultrasound, ~663 fetuses, W. European 75% / Afro-Caribbean 25%)",human_fetal,12,42,,human,prenatal
+species_age,"human fetus, 14 low-risk, longitudinal ultrasound + CTG, 32-40 wk",human_fetal,32,40,,human,prenatal
+species_age,"human fetus, late pregnancy (abstract: second half of pregnancy); whole-body mean = birth weight / MRI volume",human_fetal,,,"second half of pregnancy, no weeks",human,prenatal
+species_age,"human fetuses 12-36 wk GA (ultrasound-confirmed), induced abortions (MTP), fresh specimens measured with thread and rule",human_fetal,12,36,,human,prenatal
+species_age,"human fetuses 53-74 d PC (Danescu, histology); 9-11 wk PC micro-CT (Mulder)",human_fetal,9.6,13,"53-74 d and 9-11 wk post-conception, taken as post-conception + 2 wk",human,prenatal
+species_age,"human fetuses exteriorised at hysterotomy (Hooker series) and histology, 8-14 wk menstrual age",human_fetal,8,14,menstrual age,human,prenatal
+species_age,human full-term infants (n = 40),human_postnatal,,,,human,neonatal
+species_age,"human infants 0-23 months, healthy controls, measured postnatally without passive pressure",human_postnatal,,,,human,neonatal
+species_age,"human newborns 25-43 wk GA, measured 24-72 h after birth",human_postnatal,25,43,measured after birth,human,neonatal
+species_age,"human newborns 25-43 wk GA, measured 24-72 h after birth (pooled over GA)",human_postnatal,25,43,measured after birth,human,neonatal
+species_age,"human pregnancies in utero, 8-43 wk; 705 published volumes from normal pregnancies (dye-dilution / direct measurements p",human_fetal,8,43,,human,prenatal
+species_age,"human preterm (26-36 wk EGA) and term (37-41 wk) infants, measured after birth with a caliper",human_postnatal,26,41,measured after birth,human,neonatal
+species_age,"human preterm/term newborns tested after birth, 34-41 wk GA; ulnar MOTOR nerve (not Ia afferent), eutrophic and hypotrop",human_postnatal,34,41,measured after birth,human,neonatal
+species_age,"human term newborns, measured after birth",human_postnatal,,,,human,neonatal
+species_age,"human, elderly adults (mean age at death 89.2 y, n=45), optical fractionator, one hemisphere per brain",human_postnatal,,,,human,adult
+species_age,"mouse (CD1/C57), calyx of Held auditory brainstem slices, P7 (P3-18 studied); recorded at 20-22C (page: kept at room tem",animal_postnatal,,,,mouse,neonatal
+species_age,"mouse P3-4 (animal neonatal), in vivo",animal_postnatal,,,,mouse,neonatal
+species_age,"mouse spinal motoneurons P2-3 .. P14-21, slices, room temperature. Age mapping rodent->human gestational week NOT establ",animal_postnatal,,,,mouse,neonatal
+species_age,"neonatal kitten (cat), in situ; no GA mapping to humans",animal_postnatal,,,,cat,neonatal
+species_age,"neonatal mouse P7, isolated cord, 22-25 C; Q10 from neonatal mouse cord (time constants) and rat visual-cortex slices (l",animal_postnatal,,,,mouse; rat,neonatal
+species_age,"rat (Wistar) dentate gyrus granule cells, P0-P14, 36C. Age mapping rodent->human gestational week NOT established from a",animal_postnatal,,,,rat,neonatal
+species_age,rat horizontal hypothalamic slice (age not stated in the abstract),animal_postnatal,,,"age not stated; treated as postnatal, the further case",rat,unknown
+species_age,rat/human adult,animal_postnatal,,,mixed adult rat and human,rat; human,adult
+species_age,young adult human (estimates from fibre counts and skin areas),human_postnatal,,,,human,adult
+species_age,young adult human (estimates),human_postnatal,,,,human,adult
+key,body7.r_finger,human_fetal,26,41,transfer text: the source covers 26-41 wk only,human,prenatal
+key,body7.neck_pivot.n2,human_fetal,19,38,transfer text: earlier weeks extrapolated as a constant ratio,human,prenatal
+key,growth7.streeter_foot.n3,human_fetal,12,13,table row: end of week 12,human,prenatal
+key,growth7.streeter_foot.n4,human_fetal,12,13,table row: end of week 13,human,prenatal
+key,growth7.bpd_12,human_fetal,12,12.86,quote: 12+0 to 12+6 wk,human,prenatal
+key,growth7.head_share.lit.n2.n1.lo,human_fetal,12,12.86,quote: 12+0 to 12+6 wk,human,prenatal
+key,growth7.head_share.lit.n3.n1.hi,human_fetal,12,12.86,quote: 12+0 to 12+6 wk,human,prenatal
+key,tongue7.fusion_ga,human_fetal,11,13,"9-11 wk post-conception, taken as post-conception + 2 wk",human,prenatal
+key,tongue7.max_strain,human_postnatal,,,"Europe PMC abstract (PMID 10050946): human tongue, NMR tagging, subjects doing protrusion and curl; ages not stated, postnatal",human,unknown
+key,predictive_net.K_IN,animal_postnatal,,,"mouse visual cortex, reported second hand",mouse,unknown
+key,predictive_net.N_E,model_parameter,,,"computational model parameter, as logged in its transfer text",none (computational model),model
+key,predictive_net.N_I,model_parameter,,,"computational model parameter, as logged in its transfer text",none (computational model),model
+key,predictive_net.P_CONNECT,model_parameter,,,"computational model parameter, as logged in its transfer text",none (computational model),model
+key,predictive_net.DT,model_parameter,,,"computational model parameter, as logged in its transfer text",none (computational model),model
+key,predictive_net.TAU,model_parameter,,,"computational model parameter, as logged in its transfer text",none (computational model),model
+key,predictive_net.TAU_S,model_parameter,,,"computational model parameter, as logged in its transfer text",none (computational model),model
+key,predictive_net.X0,model_parameter,,,"computational model parameter, as logged in its transfer text",none (computational model),model
+key,predictive_net.RATE_MAX,model_parameter,,,"computational model parameter, as logged in its transfer text",none (computational model),model
+key,predictive_net.TAU_H_S,model_parameter,,,"computational model parameter, as logged in its transfer text",none (computational model),model
+key,predictive_net.GAIN,model_parameter,,,"computational model parameter, as logged in its transfer text",none (computational model),model
+key,predictive_net.BETA,model_parameter,,,"computational model parameter, as logged in its transfer text",none (computational model),model
+key,predictive_net.THETA,model_parameter,,,"computational model parameter, as logged in its transfer text",none (computational model),model
+key,predictive_net.EPS,model_parameter,,,"computational model parameter, as logged in its transfer text",none (computational model),model
+key,predictive_net.W_FACTOR_ONTO_E,model_parameter,,,"computational model parameter, as logged in its transfer text",none (computational model),model
+key,predictive_net.W_IN_SPREAD,model_parameter,,,"computational model parameter, as logged in its transfer text",none (computational model),model
+species_age,"human fetus, midbrain and pons glutamatergic neurons in slices at 28 C, 10-17 gestational weeks",human_fetal,10,17,Stated range includes 12.5 weeks; dating method not stated,human,prenatal
+species_age,"171 adults 18-80 y, no wrist pathology, goniometer",human_postnatal,,,,human,adult
+species_age,"352 healthy adults 18-79 y, goniometer",human_postnatal,,,,human,adult
+species_age,"human adult hand, compiled joint limits",human_postnatal,,,,human,adult
+species_age,"rodent, reviewed; adult",animal_postnatal,,,,rodent (rat and mouse; the review does not separate them),adult
+species_age,"human adults, compiled moment arm datasets",human_postnatal,,,,human,adult
+species_age,"15 adult male hands, CT",human_postnatal,,,,human,adult
+species_age,"human, 2-69 y, passive goniometry, 674 healthy subjects",human_postnatal,,,,human,mixed_adult
+species_age,"human fetal head, 13 weeks as printed, one specimen, PTA microCT at 25 um (Kaiser 2024, BioStudies S-BSST1227)",human_fetal,13,13,one specimen; my reading by eye,human,prenatal
+species_age,"human embryos CS18-CS23 and fetuses CRL 38.7-225 mm, fixed specimens, phase-contrast CT / MRI",human_fetal,,,"range in crown-rump length, not weeks",human,prenatal
+species_age,"human fetal specimens CRL 62 mm, Kyoto Collection, MRI",human_fetal,12,13,range in crown-rump length,human,prenatal
+species_age,"human fetal, ultrasound, held below 20 weeks",human_fetal,,,held from 20 weeks,human,prenatal
+species_age,"human fetal, ultrasound, held below 16 weeks",human_fetal,,,held from 16 weeks,human,prenatal
+species_age,"human fetal specimens CRL 14-103 mm, Kyoto Collection",human_fetal,,,range in crown-rump length,human,prenatal
+species_age,"human fetal specimens CRL 11.9-75 mm, Kyoto Collection",human_fetal,,,range in crown-rump length,human,prenatal
+species_age,"human adult hand, CT, n = 15",human_postnatal,,,,human,adult
+species_age,"human fetal midbrain and pons, 8 neurons per region",human_fetal,10,17,gestational weeks as printed,human,prenatal
+species_age,"human fetal, ultrasound",human_fetal,9,9,,human,prenatal
+species_age,"human fetal, weeks of gestation (menstrual by obstetric convention), review citing Humphrey 1964",human_fetal,7,20,review statement; weeks of gestation,human,prenatal
+species_age,"human embryos and fetuses, Kyoto Collection, phase-contrast CT and MRI (Kumano 2022)",human_fetal,,,embryonic and early fetal group means; 12.5 weeks interpolated between them,human,prenatal
+species_age,"adult normative range of motion, disability-rating guideline (Park 2009)",human_postnatal,,,adult guideline,human,adult
+species_age,"healthy children aged 2-8 years, CDC Joint Range of Motion study (Soucie 2011)",human_postnatal,,,children 2-8 years,human,child
+species_age,"61 healthy adults, active cervical range of motion, Zebris ultrasonic 3-D (Wolan-Nieroda 2025)",human_postnatal,,,adults,human,adult
+species_age,"pregnant women, 2-D transabdominal ultrasound of the uterus, 8-34 weeks, n = 30 (Louwagie 2021)",human_fetal,8,34,maternal uterus at the matched gestational age (weeks),human,prenatal
+species_age,"human fetal specimens CRL 38-103 mm, Kyoto Collection, phase-contrast CT and MRI (Tanaka 2020)",human_fetal,,,"range in crown-rump length, not weeks",human,prenatal
+species_age,"human embryos CS19-CS23, Kyoto Collection, phase-contrast CT (Takakuwa 2023)",human_fetal,,,"Carnegie stages, not weeks; the CS23 value held at 12.5 weeks",human,prenatal
+species_age,"adult patients after oral cancer surgery, non-operated contralateral side (Vaira 2017, n 2-57 per site), surgical-staple two-point discrimination",human_postnatal,,,"adult psychophysics, declared transfer",human,adult
+species_age,"adult Indian population, goniometer (Baba 2024)",human_postnatal,,,"adult normative range of motion, declared transfer",human,adult
+species_age,"one human fetus at 14 weeks of gestation, 4D ultrasound, apparent (projected) elbow angle sampled at 2 Hz over 9 minutes (Ohmura 2017 Fig 3B)",human_fetal,14,14,"one fetus, 2D projection of a 3D angle",human,prenatal
+species_age,10 uncomplicated pregnancies followed with real-time ultrasound from 12 weeks (Ververs 1998),human_fetal,12,38,categorical posture (flexed or extended),human,prenatal
+species_age,"human fetuses at 12 weeks, ultrasound: the arm posture series (Ververs 1998) and a case report contrasting adducted thumbs with thumbs seen extended",human_fetal,12,14,categorical posture,human,prenatal
+species_age,"human fetuses 11-14 weeks, transabdominal ultrasound (Cheng 2010, n 430)",human_fetal,11,14,Cheng 2010 spine biometry,human,prenatal
+species_age,"adult human cadaveric cervical spines, 1009 motion segments (Farber 2025)",human_postnatal,,,Farber 2025 cervical segmental ROM,human,adult
+species_age,"human foetuses 9-21 weeks, histology and CT (Skorzewska 2013, n 27)",human_fetal,9,21,Skorzewska 2013 vertebral ossification,human,prenatal
+species_age,"Tabak 2010 mean-field model of developing excitatory networks (built on the chick embryo cord), Table 2 parameter",model_parameter,,,a published model's slope; no species of its own,none (computational model of the chick embryo cord),model
+species_age,"fetal rat E16.5-E18.5, isolated lumbar cord, 25 C (Kudo & Yamada 1987); Q10 2.0-2.77 to 37 C",animal_prenatal,,,fetal rat; temperature corrected,rat,prenatal
+species_age,"adult mouse, chemogenetic activation (transmitter identity of a wake-promoting population)",animal_postnatal,,,transmitter identity only,mouse,adult
+species_age,"human fetal nucleus basalis, 12 weeks (two fetuses), cells in culture (Morelli 2017)",human_fetal,12,12,cultured cells from 12 week fetuses,human,prenatal
+species_age,"chick embryo E19 statoacoustic ganglion, single units (Jones & Jones 2000)",animal_prenatal,,,"E19, near hatching; rates rise after hatching",chicken,prenatal
+species_age,"human hypothalamus scRNA-seq, adult SCN clusters annotated, prenatal GW6-25 lineages (Herb 2023)",human_postnatal,,,identity called on adult clusters; prenatal cells joined by lineage,human,mixed_adult
+species_age,"human fetuses at the first-trimester NT exam, ultrasound CRL images (Tan 2024, n 2186 + 1193)",human_fetal,11,14,first-trimester NT exams,human,prenatal
+species_age,"human fetal head, 14 weeks as printed, one specimen, PTA microCT at 25 um (Kaiser 2024, BioStudies S-BSST1227), mouth slightly open",human_fetal,14,14,one specimen; mouth open,human,prenatal
+species_age,"human fetuses, first trimester (4-12 weeks), microdissected CNS regions and TH / 5-HT immunohistochemistry (Sundstrom 1993)",human_fetal,4,12,transmitter identity only,human,prenatal
+species_age,"human infants aged 2, 4, 6 and 10 months, passive cervical range of motion (Ohman & Beckung 2008, n 38)",human_postnatal,,,"infant; interim until a fetal source (USER 2026-11-06 order: human fetal, animal prenatal, then preterm or neonatal)",human,neonatal
+species_age,"healthy Japanese newborns (and children to 10 y), passive goniometry, JOA 1974 method (Okabe 1978, n 403); newborn group read from the graphs",human_postnatal,,,"newborn means read from the graphs, about +-2 deg; interim",human,neonatal
+species_age,"human infants with congenital muscular torticollis, unaffected-side sternocleidomastoid, ARFI shear-wave elastography (Park 2018)",human_postnatal,,,infant resting skeletal muscle; interim,human,neonatal
+species_age,"human embryos and fetuses 5-14 pcw (7-16 weeks GA), single-cell RNA-seq, cluster metadata Table S2 (Braun 2023)",human_fetal,7,16,region-level transmitter class (CommonestRegion x AutoAnnotation NT tag),human,prenatal
+species_age,"mouse fetus E17.5 (about human 13.5-14 weeks GA by Workman 2013; E15 = 12.5 weeks), isolated spinal cord, motoneurons, 30 C",animal_prenatal,,,"spinal motoneurons transferred to brainstem populations; 30 C, uncorrected",mouse,prenatal
+species_age,"human fetus brainstem lengths (Dovjak 2021 MRI, extrapolated 1.5 weeks to 12.5; Takakuwa 2021 midbrain check) with embryonic rat axon conduction velocity at 36 C (Radivojevic 2023)",animal_prenatal,12.5,12.5,lengths human fetal; velocity embryonic rat; geometry declared,human; rat,prenatal
+species_age,"human fetus, midbrain and pons glutamatergic neurons in slices at 28 C, 10-17 gestational weeks (Wu 2026); ventral horn neurons 10-18 WG at 32 C (Tadros 2015)",human_fetal,10,18,human fetal slices (Wu 2026; Tadros 2015),human,prenatal
+species_age,"human fetus 8-12 weeks after conception, vestibular end organs (immunohistochemistry and EM), n = 24",human_fetal,10,14,"Johnson Chacko 2016, weeks after conception (GA = PCW + 2)",human,prenatal
+species_age,human fetal vertebral levels (Tanaka 2020 Kyoto CRL 38-103 mm; Kaiser 2024 13-week scan) and brainstem lengths (Dovjak 2021) with embryonic rat axon conduction velocity at 36 C (Radivojevic 2023),animal_prenatal,12.5,12.5,geometry human fetal; velocity embryonic rat,human; rat,prenatal
+species_age,"human fetus 12-13 weeks GA, aborted fetuses, caliper (Malas 2006 Table 2a; n = 9 and 11)",human_fetal,12,13,"Malas 2006, weeks of gestation",human,prenatal
+species_age,"fetal rat E17-E20 (E17 = human 12.5 weeks GA by Workman 2013), L4/L5 DRG single units in vivo, hind-limb skin, von Frey hairs",animal_prenatal,12.5,15.5,Fitzgerald 1987 Nature; rat E17-E20 mapped by Workman 2013,rat,prenatal
+species_age,"human embryo and fetus 56-163 d EGA, palmar epidermis, CK20 epidermal sheets (Kim & Holbrook 1995), n = 32",human_fetal,10,25,"Kim 1995, 56-163 d EGA",human,prenatal
+species_age,"human fetus, CRL 60-75 mm (Malas 2006 rows labelled 9-10 weeks), caliper, n = 4 and 3",human_fetal,12,13.5,"Malas 2006, CRL-matched (CRL 60-75 mm = about 12.4-13.6 weeks standard)",human,prenatal
+species_age,"pregnant women, 3-D ultrasound of the gestational sac at 11 to 13+6 weeks, n = 417 chromosomally normal (Falcon 2005)",human_fetal,11,13.86,gestational sac at the matched gestational age (weeks),human,prenatal
+species_age,"human embryos and fetuses, cleared and double-stained, crown-rump length 38-116 mm, n = 58, total bone length with the cartilaginous ends (Bareggi 1994)",human_fetal,10,16,"developmental age 8-14 weeks, crown-rump length 38-116 mm",human,prenatal
+species_age,physical constant (not biological),model_parameter,,,"physical constant, not a biological measurement",none (physics),model
+species_age,sphere in a Newtonian fluid (physics),model_parameter,,,"fluid mechanics of a sphere, applied to the whole fetus by its equal-volume sphere (join J-FB1)",none (physics),model
+species_age,sphere in an ideal fluid (physics),model_parameter,,,"fluid mechanics of a sphere, applied to the whole fetus by its equal-volume sphere (join J-FB1)",none (physics),model
+key,phase1_substrate.RMP_BARRELETTE_MV,animal_postnatal,,,"measured value, declared transfer to the fetal relay learner (J-RL8)",rat,neonatal
+key,phase1_substrate.RMP_INTERBARRELETTE_MV,animal_postnatal,,,"measured value, declared transfer to the fetal relay learner (J-RL8)",rat,neonatal
+key,phase1_substrate.RIN_BARRELETTE_MOHM,animal_postnatal,,,"measured value, declared transfer to the fetal relay learner (J-RL8)",rat,neonatal
+key,phase1_substrate.RIN_INTERBARRELETTE_MOHM,animal_postnatal,,,"measured value, declared transfer to the fetal relay learner (J-RL8)",rat,neonatal
+key,phase1_substrate.CM_BURST_PF,animal_postnatal,,,"measured value, declared transfer to the fetal relay learner (J-RL8)",rat,neonatal
+key,phase1_substrate.CM_NONBURST_PF,animal_postnatal,,,"measured value, declared transfer to the fetal relay learner (J-RL8)",rat,neonatal
+key,phase1_substrate.VTHR_BURST_MV,animal_postnatal,,,"measured value, declared transfer to the fetal relay learner (J-RL8)",rat,neonatal
+key,phase1_substrate.INAP_PEAK_PA,animal_postnatal,,,"measured value, declared transfer to the fetal relay learner (J-RL8)",rat,neonatal
+key,phase1_substrate.INAP_PEAK_MV,animal_postnatal,,,"measured value, declared transfer to the fetal relay learner (J-RL8)",rat,neonatal
+key,phase1_substrate.INAP_ONSET_MV,animal_postnatal,,,"measured value, declared transfer to the fetal relay learner (J-RL8)",rat,neonatal
+key,phase1_substrate.ICAN_EREV_MV,animal_postnatal,,,"measured value, declared transfer to the fetal relay learner (J-RL8)",rat,neonatal
+key,phase1_substrate.EGABA_MV,animal_prenatal,,,"measured value, declared transfer to the fetal relay learner (J-RL8)",rat,prenatal
+key,phase1_substrate.IH_VHALF_MV,animal_postnatal,,,"measured value, declared transfer to the fetal relay learner (J-RL8)",mouse,neonatal
+key,phase1_substrate.IH_SLOPE_MV,animal_postnatal,,,"measured value, declared transfer to the fetal relay learner (J-RL8)",mouse,neonatal
+key,phase1_substrate.PPR_MEAN_PCT,animal_postnatal,,,"measured value, declared transfer to the fetal relay learner (J-RL8)",rat,neonatal
+key,phase1_substrate.PPR_SD_PCT,animal_postnatal,,,"measured value, declared transfer to the fetal relay learner (J-RL8)",rat,neonatal
+key,phase1_substrate.BURST_OVERLAP_PCT,animal_postnatal,,,"measured value, declared transfer to the fetal relay learner (J-RL8)",rat,neonatal
+key,phase1_substrate.BURST_NONOVERLAP_PCT,animal_postnatal,,,"measured value, declared transfer to the fetal relay learner (J-RL8)",rat,neonatal
+species_age,"fetal rat trigeminal ganglion cells, E15-E20, unanesthetized decerebrate fetuses, n = 282",animal_prenatal,,,"rat fetal E15-E20, about 10-17 weeks on the project scale by the stage map",rat,prenatal
+key,phase1_substrate.CHEV_GNAP_NS,model_parameter,,,"computational model parameter (Chevalier 2016 Table 1), as logged in its transfer text",none (computational model),model
+key,phase1_substrate.CHEV_NAP_VH_MV,model_parameter,,,"computational model parameter (Chevalier 2016 Table 1), as logged in its transfer text",none (computational model),model
+key,phase1_substrate.CHEV_NAP_SH_MV,model_parameter,,,"computational model parameter (Chevalier 2016 Table 1), as logged in its transfer text",none (computational model),model
+key,phase1_substrate.CHEV_NAP_TAUH_MS,model_parameter,,,"computational model parameter (Chevalier 2016 Table 1), as logged in its transfer text",none (computational model),model
+key,phase1_substrate.CHEV_ENA_NAP_MV,model_parameter,,,"computational model parameter (Chevalier 2016 Table 1), as logged in its transfer text",none (computational model),model
+key,phase1_substrate.CHEV_GNA_NS,model_parameter,,,"computational model parameter (Chevalier 2016 Table 1), as logged in its transfer text",none (computational model),model
+key,phase1_substrate.CHEV_ENA_MV,model_parameter,,,"computational model parameter (Chevalier 2016 Table 1), as logged in its transfer text",none (computational model),model
+key,phase1_substrate.CHEV_NA_VM_MV,model_parameter,,,"computational model parameter (Chevalier 2016 Table 1), as logged in its transfer text",none (computational model),model
+key,phase1_substrate.CHEV_NA_SM_MV,model_parameter,,,"computational model parameter (Chevalier 2016 Table 1), as logged in its transfer text",none (computational model),model
+key,phase1_substrate.CHEV_TAUN_MS,model_parameter,,,"computational model parameter (Chevalier 2016 Table 1), as logged in its transfer text",none (computational model),model
+key,phase1_substrate.CHEV_GCAN_NS,model_parameter,,,"computational model parameter (Chevalier 2016 Table 1), as logged in its transfer text",none (computational model),model
+key,phase1_substrate.CHEV_KCAN_UM,model_parameter,,,"computational model parameter (Chevalier 2016 Table 1), as logged in its transfer text",none (computational model),model
+key,phase1_substrate.CHEV_GK_NS,model_parameter,,,"computational model parameter (Chevalier 2016 Table 1), as logged in its transfer text",none (computational model),model
+key,phase1_substrate.CHEV_EK_MV,model_parameter,,,"computational model parameter (Chevalier 2016 Table 1), as logged in its transfer text",none (computational model),model
+key,phase1_substrate.CHEV_GL_NS,model_parameter,,,"computational model parameter (Chevalier 2016 Table 1), as logged in its transfer text",none (computational model),model
+key,phase1_substrate.CHEV_EL_MV,model_parameter,,,"computational model parameter (Chevalier 2016 Table 1), as logged in its transfer text",none (computational model),model
+key,phase1_substrate.CHEV_GCA_NS,model_parameter,,,"computational model parameter (Chevalier 2016 Table 1), as logged in its transfer text",none (computational model),model
+key,phase1_substrate.CHEV_ECA_MV,model_parameter,,,"computational model parameter (Chevalier 2016 Table 1), as logged in its transfer text",none (computational model),model
+key,phase1_substrate.CHEV_ALPHA,model_parameter,,,"computational model parameter (Chevalier 2016 Table 1), as logged in its transfer text",none (computational model),model
+key,phase1_substrate.CHEV_VPMCA,model_parameter,,,"computational model parameter (Chevalier 2016 Table 1), as logged in its transfer text",none (computational model),model
+key,phase1_substrate.CHEV_KPMCA,model_parameter,,,"computational model parameter (Chevalier 2016 Table 1), as logged in its transfer text",none (computational model),model
+key,phase1_substrate.CHEV_LAMBDA_ER,model_parameter,,,"computational model parameter (Chevalier 2016 Table 1), as logged in its transfer text",none (computational model),model
+key,phase1_substrate.CHEV_FI,model_parameter,,,"computational model parameter (Chevalier 2016 Table 1), as logged in its transfer text",none (computational model),model
+key,phase1_substrate.CHEV_IP3_UM,model_parameter,,,"computational model parameter (Chevalier 2016 Table 1), as logged in its transfer text",none (computational model),model
+key,phase1_substrate.CHEV_VI_UM,model_parameter,,,"computational model parameter (Chevalier 2016 Table 1), as logged in its transfer text",none (computational model),model
+key,phase1_substrate.CHEV_A,model_parameter,,,"computational model parameter (Chevalier 2016 Table 1), as logged in its transfer text",none (computational model),model
+key,phase1_substrate.CHEV_VSERCA_AMOL_S,model_parameter,,,"computational model parameter (Chevalier 2016 Table 1), as logged in its transfer text",none (computational model),model
+key,phase1_substrate.CHEV_KSERCA,model_parameter,,,"computational model parameter (Chevalier 2016 Table 1), as logged in its transfer text",none (computational model),model
+key,phase1_substrate.CHEV_SIGMA,model_parameter,,,"computational model parameter (Chevalier 2016 Table 1), as logged in its transfer text",none (computational model),model
+key,phase1_substrate.CHEV_LIP3R_PL_S,model_parameter,,,"computational model parameter (Chevalier 2016 Table 1), as logged in its transfer text",none (computational model),model
+key,phase1_substrate.CHEV_PIP3R_PL_S,model_parameter,,,"computational model parameter (Chevalier 2016 Table 1), as logged in its transfer text",none (computational model),model
+key,phase1_substrate.CHEV_KI_UM,model_parameter,,,"computational model parameter (Chevalier 2016 Table 1), as logged in its transfer text",none (computational model),model
+key,phase1_substrate.CHEV_KD_UM,model_parameter,,,"computational model parameter (Chevalier 2016 Table 1), as logged in its transfer text",none (computational model),model
+key,phase1_substrate.CHEV_KA_UM,model_parameter,,,"computational model parameter (Chevalier 2016 Table 1), as logged in its transfer text",none (computational model),model
+key,phase1_substrate.CHEV_CM_PF,model_parameter,,,"computational model parameter (Chevalier 2016 Table 1), as logged in its transfer text",none (computational model),model
+key,phase1_reflex.ETA,model_parameter,,,"computational model parameter (Petersson 2003 supplementary programme), as logged in its transfer text",none (computational model),model
+key,phase1_reflex.TWITCH_P,model_parameter,,,"computational model parameter (Petersson 2003 supplementary programme), as logged in its transfer text",none (computational model),model
+key,phase1_reflex.W_INIT_AMP,model_parameter,,,"computational model parameter (Petersson 2003 supplementary programme), as logged in its transfer text",none (computational model),model
+key,phase1_reflex.SENSORY_NOISE,model_parameter,,,"computational model parameter (Petersson 2003 supplementary programme), as logged in its transfer text",none (computational model),model
+key,phase1_reflex.AB_BASAL,model_parameter,,,"computational model parameter (Petersson 2003 supplementary programme), as logged in its transfer text",none (computational model),model
+key,phase1_reflex.SG_BASAL,model_parameter,,,"computational model parameter (Petersson 2003 supplementary programme), as logged in its transfer text",none (computational model),model
+key,phase1_reflex.AB_SG_RATIO,model_parameter,,,"computational model parameter (Petersson 2003 supplementary programme), as logged in its transfer text",none (computational model),model
+key,phase1_reflex.PSI_OFFSET,model_parameter,,,"computational model parameter (Petersson 2003 supplementary programme), as logged in its transfer text",none (computational model),model
+key,phase1_reflex.PSI_FLOOR,model_parameter,,,"computational model parameter (Petersson 2003 supplementary programme), as logged in its transfer text",none (computational model),model
+key,phase1_reflex.EPOCHS,model_parameter,,,"computational model parameter (Petersson 2003 supplementary programme), as logged in its transfer text",none (computational model),model
+key,phase1_reflex.NULL_THRESHOLD,model_parameter,,,"computational model parameter (Petersson 2003 supplementary programme), as logged in its transfer text",none (computational model),model
+key,phase1_trophic.KA_PER_M_S,model_parameter,,,"computational model parameter (van Ooyen 1999), as logged in its transfer text",none (computational model),model
+key,phase1_trophic.KD_PER_S,model_parameter,,,"computational model parameter (van Ooyen 1999), as logged in its transfer text",none (computational model),model
+key,phase1_trophic.GAMMA_RECEPTOR_PER_S,model_parameter,,,"computational model parameter (van Ooyen 1999), as logged in its transfer text",none (computational model),model
+key,phase1_trophic.RHO_COMPLEX_PER_S,model_parameter,,,"computational model parameter (van Ooyen 1999), as logged in its transfer text",none (computational model),model
+key,phase1_trophic.DELTA_PER_S,model_parameter,,,"computational model parameter (van Ooyen 1999), as logged in its transfer text",none (computational model),model
+key,phase1_trophic.SIGMA_M_PER_S,model_parameter,,,"computational model parameter (van Ooyen 1999), as logged in its transfer text",none (computational model),model
+key,phase1_trophic.TAU_GROWTH_H,model_parameter,,,"computational model parameter (van Ooyen 1999), as logged in its transfer text",none (computational model),model
+key,phase1_trophic.VOLUME_L,model_parameter,,,"computational model parameter (van Ooyen 1999), as logged in its transfer text",none (computational model),model
+key,phase1_trophic.PHI0_PER_H,model_parameter,,,"computational model parameter (van Ooyen 1999), as logged in its transfer text",none (computational model),model
+key,phase1_trophic.ALPHA_PER_H,model_parameter,,,"computational model parameter (van Ooyen 1999), as logged in its transfer text",none (computational model),model
+key,phase1_trophic.K_HALF,model_parameter,,,"computational model parameter (van Ooyen 1999), as logged in its transfer text",none (computational model),model
+key,phase1_trophic.M_HILL,model_parameter,,,"computational model parameter (van Ooyen 1999), as logged in its transfer text",none (computational model),model
+key,phase1_trophic.AVOGADRO_PER_MOL,model_parameter,,,"physical constant, not a biological measurement",none (physics),model
+key,phase1_substrate.TB_VM_MV,model_parameter,,,"computational model parameter (Toporikova and Butera 2011), as logged in its transfer text",none (computational model),model
+key,phase1_substrate.TB_SM_MV,model_parameter,,,"computational model parameter (Toporikova and Butera 2011), as logged in its transfer text",none (computational model),model
+key,phase1_substrate.TB_VN_MV,model_parameter,,,"computational model parameter (Toporikova and Butera 2011), as logged in its transfer text",none (computational model),model
+key,phase1_substrate.TB_SN_MV,model_parameter,,,"computational model parameter (Toporikova and Butera 2011), as logged in its transfer text",none (computational model),model
+key,phase1_substrate.TB_VP_MV,model_parameter,,,"computational model parameter (Toporikova and Butera 2011), as logged in its transfer text",none (computational model),model
+key,phase1_substrate.TB_SP_MV,model_parameter,,,"computational model parameter (Toporikova and Butera 2011), as logged in its transfer text",none (computational model),model
+key,phase1_substrate.TB_VH_MV,model_parameter,,,"computational model parameter (Toporikova and Butera 2011), as logged in its transfer text",none (computational model),model
+key,phase1_substrate.TB_SH_MV,model_parameter,,,"computational model parameter (Toporikova and Butera 2011), as logged in its transfer text",none (computational model),model
+key,phase1_substrate.TB_TAUN_MS,model_parameter,,,"computational model parameter (Toporikova and Butera 2011), as logged in its transfer text",none (computational model),model
+key,phase1_substrate.TB_TAUH_MS,model_parameter,,,"computational model parameter (Toporikova and Butera 2011), as logged in its transfer text",none (computational model),model
+key,phase1_substrate.TB_GK_NS,model_parameter,,,"computational model parameter (Toporikova and Butera 2011), as logged in its transfer text",none (computational model),model
+key,phase1_substrate.TB_GNA_NS,model_parameter,,,"computational model parameter (Toporikova and Butera 2011), as logged in its transfer text",none (computational model),model
+key,phase1_substrate.TB_GNAP_SOMATIC_NS,model_parameter,,,"computational model parameter (Toporikova and Butera 2011), as logged in its transfer text",none (computational model),model
+key,phase1_substrate.TB_GNAP_DENDRITIC_NS,model_parameter,,,"computational model parameter (Toporikova and Butera 2011), as logged in its transfer text",none (computational model),model
+key,phase1_substrate.TB_GCAN_NS,model_parameter,,,"computational model parameter (Toporikova and Butera 2011), as logged in its transfer text",none (computational model),model
+key,phase1_substrate.TB_FI,model_parameter,,,"computational model parameter (Toporikova and Butera 2011), as logged in its transfer text",none (computational model),model
+key,phase1_substrate.TB_A,model_parameter,,,"computational model parameter (Toporikova and Butera 2011), as logged in its transfer text",none (computational model),model
+key,phase1_substrate.TB_KD_UM,model_parameter,,,"computational model parameter (Toporikova and Butera 2011), as logged in its transfer text",none (computational model),model
+key,phase1_substrate.TB_PIP3R,model_parameter,,,"computational model parameter (Toporikova and Butera 2011), as logged in its transfer text",none (computational model),model
+key,phase1_substrate.TB_LIP3R,model_parameter,,,"computational model parameter (Toporikova and Butera 2011), as logged in its transfer text",none (computational model),model
+key,phase1_substrate.TB_IP3_UM,model_parameter,,,"computational model parameter (Toporikova and Butera 2011), as logged in its transfer text",none (computational model),model
+key,phase1_substrate.TB_IP3_LOW_UM,model_parameter,,,"computational model parameter (Toporikova and Butera 2011), as logged in its transfer text",none (computational model),model
+key,phase1_substrate.TB_KI_UM,model_parameter,,,"computational model parameter (Toporikova and Butera 2011), as logged in its transfer text",none (computational model),model
+key,phase1_substrate.TB_KA_UM,model_parameter,,,"computational model parameter (Toporikova and Butera 2011), as logged in its transfer text",none (computational model),model
+key,phase1_substrate.TB_VSERCA,model_parameter,,,"computational model parameter (Toporikova and Butera 2011), as logged in its transfer text",none (computational model),model
+key,phase1_substrate.TB_KSERCA,model_parameter,,,"computational model parameter (Toporikova and Butera 2011), as logged in its transfer text",none (computational model),model
+key,phase1_substrate.TB_CATOT_UM,model_parameter,,,"computational model parameter (Toporikova and Butera 2011), as logged in its transfer text",none (computational model),model
+key,phase1_substrate.TB_SIGMA,model_parameter,,,"computational model parameter (Toporikova and Butera 2011), as logged in its transfer text",none (computational model),model
+key,phase1_substrate.TB_KCAN_UM,model_parameter,,,"computational model parameter (Toporikova and Butera 2011), as logged in its transfer text",none (computational model),model
+key,phase1_substrate.TB_NC,model_parameter,,,"computational model parameter (Toporikova and Butera 2011), as logged in its transfer text",none (computational model),model
+key,phase1_substrate.TB_K_AREA,model_parameter,,,"computational model parameter (Toporikova and Butera 2011), as logged in its transfer text",none (computational model),model
+key,phase1_substrate.TB_ENA_MV,model_parameter,,,"computational model parameter (Toporikova and Butera 2011), as logged in its transfer text",none (computational model),model
+key,phase1_substrate.TB_EK_MV,model_parameter,,,"computational model parameter (Toporikova and Butera 2011), as logged in its transfer text",none (computational model),model
+key,phase1_substrate.TB_EL_MV,model_parameter,,,"computational model parameter (Toporikova and Butera 2011), as logged in its transfer text",none (computational model),model
+key,phase1_substrate.TB_CMS_PF,model_parameter,,,"computational model parameter (Toporikova and Butera 2011), as logged in its transfer text",none (computational model),model
+key,phase1_substrate.TB_CMD_PF,model_parameter,,,"computational model parameter (Toporikova and Butera 2011), as logged in its transfer text",none (computational model),model
+key,phase1_substrate.TB_GL_NS,model_parameter,,,"computational model parameter (Toporikova and Butera 2011), as logged in its transfer text",none (computational model),model
+key,phase1_substrate.TB_GC_NS,model_parameter,,,"computational model parameter (Toporikova and Butera 2011), as logged in its transfer text",none (computational model),model
+key,phase1_substrate.TB_DT_MS,model_parameter,,,"computational model parameter (Toporikova and Butera 2011), as logged in its transfer text",none (computational model),model
+key,phase1_substrate.TB_NA_M_EXP,model_parameter,,,"computational model parameter (Toporikova and Butera 2011), as logged in its transfer text",none (computational model),model
+key,phase1_substrate.TB_K_N_EXP,model_parameter,,,"computational model parameter (Toporikova and Butera 2011), as logged in its transfer text",none (computational model),model
+key,phase1_substrate.TB_IP3R_EXP,model_parameter,,,"computational model parameter (Toporikova and Butera 2011), as logged in its transfer text",none (computational model),model
+key,phase1_substrate.STP_TAU_FAST_MS,animal_postnatal,,,"measured value, declared transfer to the fetal relay learner (J-RL8)",mouse,neonatal
+key,phase1_substrate.STP_TAU_SLOW_MS,animal_postnatal,,,"measured value, declared transfer to the fetal relay learner (J-RL8)",mouse,neonatal
+key,phase1_substrate.STP_P_FAST,animal_postnatal,,,"measured value, declared transfer to the fetal relay learner (J-RL8)",mouse,neonatal
+key,phase1_substrate.STP_P_SLOW,animal_postnatal,,,"measured value, declared transfer to the fetal relay learner (J-RL8)",mouse,neonatal
+key,phase1_substrate.PPR_ISI_MS,animal_postnatal,,,"measured value, declared transfer to the fetal relay learner (J-RL8)",rat,neonatal
+key,phase1_substrate.PPR_MIN_PCT,animal_postnatal,,,"measured value, declared transfer to the fetal relay learner (J-RL8)",rat,neonatal
+key,phase1_substrate.PPR_MAX_PCT,animal_postnatal,,,"measured value, declared transfer to the fetal relay learner (J-RL8)",rat,neonatal
+key,phase1_dual.DC_M_EXP,model_parameter,,,"computational model parameter (van Ooyen and Willshaw 1999 J Theor Biol), as logged in its transfer text",none (computational model),model
+key,phase1_dual.DC_G,model_parameter,,,"computational model parameter (van Ooyen and Willshaw 1999 J Theor Biol), as logged in its transfer text",none (computational model),model
+key,phase1_dual.DC_K,model_parameter,,,"computational model parameter (van Ooyen and Willshaw 1999 J Theor Biol), as logged in its transfer text",none (computational model),model
+key,phase1_dual.DC_A0,model_parameter,,,"computational model parameter (van Ooyen and Willshaw 1999 J Theor Biol), as logged in its transfer text",none (computational model),model
+key,phase1_dual.DC_K_HIGH,model_parameter,,,"computational model parameter (van Ooyen and Willshaw 1999 J Theor Biol), as logged in its transfer text",none (computational model),model
+key,phase1_dual.DC_G_3N,model_parameter,,,"computational model parameter (van Ooyen and Willshaw 1999 J Theor Biol), as logged in its transfer text",none (computational model),model
+key,phase1_dual.DC_A0_3N,model_parameter,,,"computational model parameter (van Ooyen and Willshaw 1999 J Theor Biol), as logged in its transfer text",none (computational model),model
+key,phase1_substrate.STP_TAU_FACIL_MS,animal_postnatal,,,"measured value, declared transfer to the fetal relay learner (J-RL7b)",rat,neonatal
+key,phase1_substrate.IH_E_MV,animal_postnatal,,,"measured value, declared transfer to the fetal relay learner (J-RL8c)",rat,neonatal
+key,phase1_substrate.IH_G_CHORD_NS,animal_postnatal,,,"measured value, declared transfer to the fetal relay learner (J-RL8c)",rat,neonatal
+key,phase1_substrate.IH_V_CHORD_MV,animal_postnatal,,,"measured value, declared transfer to the fetal relay learner (J-RL8c)",rat,neonatal
+key,phase1_substrate.IH_VH_MV,animal_postnatal,,,"measured value, declared transfer to the fetal relay learner (J-RL8c)",rat,neonatal
+key,phase1_substrate.IH_K_MV,animal_postnatal,,,"measured value, declared transfer to the fetal relay learner (J-RL8c)",rat,neonatal
+key,phase1_substrate.IH_TAU_MS,animal_postnatal,,,"measured value, declared transfer to the fetal relay learner (J-RL8c)",rat,neonatal
+key,phase1_reflex.TWITCH_MS,animal_postnatal,,,"measured value, declared transfer to the fetal body (J-RL9)",rat,neonatal
+key,phase1_reflex.TWITCH_REST_MS,animal_postnatal,,,"experimental criterion, declared transfer to the fetal body (J-RL9c)",rat,neonatal
+key,phase1_substrate.NMDA_SHARE_E16,animal_prenatal,,,"measured value, declared transfer to the fetal relay learner (J-RL8, J-RL13)",rat,prenatal
+key,phase1_substrate.TT_M_VHALF_MV,animal_postnatal,,,"measured value, declared transfer to the fetal relay learner (J-RL8, J-RL14)",rat,neonatal
+key,phase1_substrate.TT_M_K_MV,animal_postnatal,,,"measured value, declared transfer to the fetal relay learner (J-RL8, J-RL14)",rat,neonatal
+key,phase1_substrate.TT_H_VHALF_MV,animal_postnatal,,,"measured value, declared transfer to the fetal relay learner (J-RL8, J-RL14)",rat,neonatal
+key,phase1_substrate.TT_H_K_MV,animal_postnatal,,,"measured value, declared transfer to the fetal relay learner (J-RL8, J-RL14)",rat,neonatal
+key,phase1_substrate.TT_M_EXP,animal_postnatal,,,"measured value, declared transfer to the fetal relay learner (J-RL8, J-RL14)",rat,neonatal
+key,phase1_substrate.TT_TAU_V1_MV,animal_postnatal,,,"measured value, declared transfer to the fetal relay learner (J-RL8, J-RL14)",rat,neonatal
+key,phase1_substrate.TT_TAU_V2_MV,animal_postnatal,,,"measured value, declared transfer to the fetal relay learner (J-RL8, J-RL14)",rat,neonatal
+key,phase1_substrate.TT_TAUM_V1_MS,animal_postnatal,,,"measured value, declared transfer to the fetal relay learner (J-RL8, J-RL14)",rat,neonatal
+key,phase1_substrate.TT_TAUM_V2_MS,animal_postnatal,,,"measured value, declared transfer to the fetal relay learner (J-RL8, J-RL14)",rat,neonatal
+key,phase1_substrate.TT_TAUH_V1_MS,animal_postnatal,,,"measured value, declared transfer to the fetal relay learner (J-RL8, J-RL14)",rat,neonatal
+key,phase1_substrate.TT_TAUH_V2_MS,animal_postnatal,,,"measured value, declared transfer to the fetal relay learner (J-RL8, J-RL14)",rat,neonatal

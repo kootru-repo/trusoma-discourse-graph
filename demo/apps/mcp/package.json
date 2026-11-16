@@ -1,0 +1,28 @@
+{
+  "name": "@repo/mcp",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "description": "MCP server over the TruSoma Discourse Graphs vault (stdio). The one package that uses the MCP SDK, which the Discourse Graphs repository does not have.",
+  "scripts": {
+    "start": "tsx src/server.ts",
+    "test": "pnpm test:unit",
+    "test:unit": "vitest run",
+    "check-types": "tsc --noEmit",
+    "lint": "eslint ."
+  },
+  "dependencies": {
+    "@modelcontextprotocol/sdk": "^1.12.0",
+    "yaml": "^2.8.1",
+    "zod": "^3.24.1",
+    "@repo/graph": "workspace:*"
+  },
+  "devDependencies": {
+    "@types/node": "^22",
+    "tsx": "^4.19.2",
+    "typescript": "5.5.4",
+    "vitest": "^4.0.0",
+    "eslint": "^9.39.5",
+    "@repo/eslint-config": "workspace:*"
+  }
+}

@@ -1,0 +1,18 @@
+---
+nodeTypeId: "node_xQmEzWQFHdHy2swhrugrF"
+nodeInstanceId: "54300d42-07fd-7f99-a00b-e87b42b1171a"
+dg_type: "Evidence"
+claim: "[[CLM - predictive_net.BETA]]"
+source: "[[@p-pmid40497329]]"
+paper_id: "p-pmid40497329"
+locator: "Table 2"
+quote: "Parameters for sigmoid 5, 1"
+saved_text: "papers/jepa_sources/AsabukiClopath2024.txt"
+transfer: "computational model parameter, not a fetal measurement; declared in K15"
+class: "model_parameter"
+species: "none (computational model)"
+stage: "model"
+ga_lo_wk: ""
+ga_hi_wk: ""
+basis_note: "computational model parameter, as logged in its transfer text"
+---

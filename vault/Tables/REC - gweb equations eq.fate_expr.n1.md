@@ -1,0 +1,12 @@
+---
+nodeTypeId: "trusoma-record"
+nodeInstanceId: "0e4894b0-874e-7b1b-9af3-c589d8edd3ba"
+dg_type: "Record"
+record_file: "companion/source_audit/growth_web_12p5.json"
+code: "gweb"
+order: 349
+group: "equations"
+shape: "dictmap"
+label: "eq.fate_expr.n1"
+data: {"edge": "fate_expr", "kind": "equation", "form": "dP/dt = −μ_m M(t) + α_m G(P(t−τ)) + sqrt(μ_m M(t) + α_m G(P(t−τ))) ξ_m(t), dP/dt = −μ_p P(t) + α_p M(t) + sqrt(μ_p P(t) + α_p M(t)) ξ_p(t), G(P(t−τ)) = 1/(1 + (P(t−τ)/P_0)^n). Note: the first left side is printed dP/dt in the saved TeX, left as printed.", "symbols": {"M(t)": "mRNA molecules in one cell", "P(t)": "HES5 protein molecules", "τ": "transcriptional delay", "μ_m, μ_p": "mRNA and protein degradation rates", "α_m": "basal transcription rate without protein", "α_p": "protein translation rate", "P_0": "repression threshold", "n": "Hill coefficient", "ξ_m, ξ_p": "Gaussian white noise"}, "parameters": [{"name": "mRNA half-life", "value": "about 30", "unit": "min", "kind": "measured"}, {"name": "protein half-life", "value": "about 80-90, 90 used", "unit": "min", "kind": "measured"}, {"name": "α_m prior", "value": "0.1-60", "unit": "transcripts/min", "kind": "fitted"}, {"name": "P_0 prior", "value": "0-120000", "unit": "molecules", "kind": "fitted"}, {"name": "τ prior", "value": "5-40", "unit": "min", "kind": "fitted"}, {"name": "n prior", "value": "2-6", "unit": "-", "kind": "fitted"}, {"name": "α_p prior", "value": "log-uniform, bound not read", "unit": "per min", "kind": "fitted"}], "system": "Mouse embryonic spinal cord, E10.5, Venus::HES5 progenitors; ABC inference. Priors listed; posterior values not read.", "paper_id": "p-pmid31249377", "locator": "Methods, Stochastic model of HES5 expression dynamics", "quote": "We modelled protein expression dynamics emerging from transcriptional autorepression and delay using an established mathematical model", "maps_to_edge": "HES feedback on its own expression gives the edge's negative sign and oscillation.", "transfer_assumes": "Assumes autorepression stands for neighbour feedback, though Notch input is not a term here, and mouse spinal kinetics hold in human.", "transcription": "clean", "read_depth": "Europe PMC XML with TeX; model and prior sections of Methods read; Supplementary Table 2 and posterior values not read; 2026-11-04 printed text rechecked, first left side is printed dP/dt, by content the mRNA equation", "record": "m.eq.fate_expr.n1"}
+---

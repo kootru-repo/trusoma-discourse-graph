@@ -1,0 +1,125 @@
+key,group,value,probe_verdict,range_tested,largest_reading,note
+body7.body7.init.c,Rest posture,0.7,MATTERS (refused at x 1.25),x 0.75 and x 1.25,x 1.25 cannot build: the limbs collide at rest,Sculpt reading; compared with Kumano 2022 and Takakuwa 2023 in RESULT.md
+body7.cord_dir.n1,Cord and uterus,0.7,MINOR,x 0.75 and x 1.25,below the rule,Declared
+body7.cord_dir.n2,Cord and uterus,-0.7,MINOR,x 0.75 and x 1.25,below the rule,Declared
+body7.face_frac.n2.n2.hi,Face proportions,0.08,MINOR,x 0.75 and x 1.25,"where 0.12, not on both seeds",Ellipsoid terms with no anatomical definition. Declared
+body7.face_frac.n2.n2.lo,Face proportions,0.25,MINOR,x 0.75 and x 1.25,"where 0.12, not on both seeds",Ellipsoid terms with no anatomical definition. Declared
+body7.face_frac.n3.n2.hi,Face proportions,0.08,MINOR,x 0.75 and x 1.25,"where 0.12, not on both seeds",Ellipsoid terms with no anatomical definition. Declared
+body7.flat_profile.n0#2,Face proportions,0.6,MINOR,x 0.75 and x 1.25,"where 0.12, not on both seeds",Ellipsoid terms with no anatomical definition. Declared
+body7.limits_deg.sh_abd#1,Joint limits,-45,MATTERS,-15 and +15 deg,pattern 0.43 at +15; -15 small,No fetal range found in anything open. Declared
+body7.limits_deg.spine_flex.hi,Joint limits,70,MATTERS,-15 and +15 deg,pattern 0.43 at +15; -15 small,No fetal range found in anything open. Declared
+body7.moment_frac.fingers,Muscle moment arms,0.05,MINOR,x 0.75 and x 1.25,below the rule,"Knee source reads about 3 times the model, beyond the range tested. Correct at the chart rewrite"
+body7.moment_frac.neck_yaw,Muscle moment arms,0.3,MINOR,x 0.75 and x 1.25,below the rule,"Knee source reads about 3 times the model, beyond the range tested. Correct at the chart rewrite"
+body7.moment_frac.pron,Muscle moment arms,0.04,MINOR,x 0.75 and x 1.25,below the rule,"Knee source reads about 3 times the model, beyond the range tested. Correct at the chart rewrite"
+body7.moment_frac.sh_abd,Muscle moment arms,0.3,MINOR,x 0.75 and x 1.25,below the rule,"Knee source reads about 3 times the model, beyond the range tested. Correct at the chart rewrite"
+body7.moment_frac.sh_flex,Muscle moment arms,0.3,MINOR,x 0.75 and x 1.25,below the rule,"Knee source reads about 3 times the model, beyond the range tested. Correct at the chart rewrite"
+body7.moment_frac.sh_rot,Muscle moment arms,0.15,MINOR,x 0.75 and x 1.25,below the rule,"Knee source reads about 3 times the model, beyond the range tested. Correct at the chart rewrite"
+body7.moment_frac.spine_flex,Muscle moment arms,0.3,MINOR,x 0.75 and x 1.25,below the rule,"Knee source reads about 3 times the model, beyond the range tested. Correct at the chart rewrite"
+body7.moment_frac.thumb,Muscle moment arms,0.3,MINOR,x 0.75 and x 1.25,below the rule,"Knee source reads about 3 times the model, beyond the range tested. Correct at the chart rewrite"
+body7.rest_fit_rad.l_fingers,Rest posture,0.271185,MATTERS (refused at x 1.25),x 0.75 and x 1.25,x 1.25 cannot build: the limbs collide at rest,Sculpt reading; compared with Kumano 2022 and Takakuwa 2023 in RESULT.md
+body7.rest_fit_rad.l_pron,Rest posture,1.944491,MATTERS (refused at x 1.25),x 0.75 and x 1.25,x 1.25 cannot build: the limbs collide at rest,Sculpt reading; compared with Kumano 2022 and Takakuwa 2023 in RESULT.md
+body7.rest_fit_rad.r_fingers,Rest posture,0.450191,MATTERS (refused at x 1.25),x 0.75 and x 1.25,x 1.25 cannot build: the limbs collide at rest,Sculpt reading; compared with Kumano 2022 and Takakuwa 2023 in RESULT.md
+body7.rest_fit_rad.r_pron,Rest posture,2.792527,MATTERS (refused at x 1.25),x 0.75 and x 1.25,x 1.25 cannot build: the limbs collide at rest,Sculpt reading; compared with Kumano 2022 and Takakuwa 2023 in RESULT.md
+brainstem_net7.pops.b1b_wake.lo,Sleep and wake,52517,"MINOR, low power","x 0.75 and x 1.25, signs flipped","firing 0.41, about twice the floor","Sleep scope, deferred by the USER"
+brainstem_net7.pops.b1b_wake_gaba.lo,Sleep and wake,52517,"MINOR, low power","x 0.75 and x 1.25, signs flipped","firing 0.41, about twice the floor","Sleep scope, deferred by the USER"
+brainstem_net7.pops.b1c_mia.lo,Sleep and wake,50000,"MINOR, low power","x 0.75 and x 1.25, signs flipped","firing 0.41, about twice the floor","Sleep scope, deferred by the USER"
+brainstem_net7.pops.b1d_scn.lo,Sleep and wake,50000,"MINOR, low power","x 0.75 and x 1.25, signs flipped","firing 0.41, about twice the floor","Sleep scope, deferred by the USER"
+oral7.buccal_back,Mouth proportions,1.15,MATTERS,x 0.75 and x 1.25,"pattern 0.52, where 0.33",Mostly modelling terms; only the tongue ratio could be read directly. Declared
+oral7.buccal_bulge,Mouth proportions,0.05,MATTERS,x 0.75 and x 1.25,"pattern 0.52, where 0.33",Mostly modelling terms; only the tongue ratio could be read directly. Declared
+oral7.buccal_front,Mouth proportions,0.14,MATTERS,x 0.75 and x 1.25,"pattern 0.52, where 0.33",Mostly modelling terms; only the tongue ratio could be read directly. Declared
+oral7.floor_y.n1,Mouth proportions,1.15,MATTERS,x 0.75 and x 1.25,"pattern 0.52, where 0.33",Mostly modelling terms; only the tongue ratio could be read directly. Declared
+setting.body7.CORD_DIR.0,Cord and uterus,0.0,MINOR,x 0.75 and x 1.25,below the rule,Declared
+setting.body7.LIMITS_DEG.spine_flex_0,Joint limits,0,MATTERS,-15 and +15 deg,pattern 0.43 at +15; -15 small,No fetal range found in anything open. Declared
+setting.brainstem_s2.CORD_FRAC,Nerve paths,0.5,"MINOR, low power",x 0.75 and x 1.25,inside the chaos floor,Declared
+setting.brainstem_s2.TH_DEP,Brainstem depression and timing,0.5,"MINOR, low power",x 0.75 and x 1.25,inside the chaos floor,Declared
+setting.popnet.PopNet.__init__.D_mat,Brainstem receptors and GABA,2.0,"MINOR, low power",x 0.75 and x 1.25,inside the chaos floor,"Wu 2026 disagrees on two, M-073. GABA sign cannot go negative, M-071. Correct in that block"
+skin_world.f_sat,Skin receptors,5.0,MINOR,x 0.75 and x 1.25,"below the rule; noise was off, so the noise term was not tested",Onset week has a source that disagrees. Declared
+skin_world.receptor_noise_sd,Skin receptors,0.05,MINOR,x 0.75 and x 1.25,"below the rule; noise was off, so the noise term was not tested",Onset week has a source that disagrees. Declared
+tongue7.tissue.bio.fetal,Tissue,0.65,MINOR,x 0.75 and x 1.25,near zero,Declared
+tongue7.tissue.init.e_palate,Tissue,3000.0,MINOR,x 0.75 and x 1.25,near zero,Declared
+tongue7.tissue.init.pulp_g.n0,Tissue,0.15,MINOR,x 0.75 and x 1.25,near zero,Declared
+tongue7.tissue.init.pulp_g.n1,Tissue,0.15,MINOR,x 0.75 and x 1.25,near zero,Declared
+body7.body7.fk.tb,Adult-sourced (not usable),0.11,not probed,,,"adult source: human adult hand, CT, n = 15"
+body7.body7.init.k,Adult-sourced (not usable),5e-05,not probed,,,"adult source: adult human, 19 normal subjects"
+body7.curl.n1,Adult-sourced (not usable),1.2,not probed,,,"adult source: human adult hand, compiled joint limits"
+body7.curl.n2,Adult-sourced (not usable),0.9,not probed,,,"adult source: human adult hand, compiled joint limits"
+body7.emd_ms,Adult-sourced (not usable),12.0,not probed,,,"adult source: adult human (21 +/- 2 y), medial gastrocnemius"
+body7.limits_deg.fingers.hi,Adult-sourced (not usable),90,not probed,,,"adult source: adults 18-60 y, goniometry"
+body7.limits_deg.neck_flex#1,Adult-sourced (not usable),-71.7,not probed,,,"adult source: 61 healthy adults, active cervical range of motion, Zebris ultrasonic 3-D (Wolan-Nieroda 2025)"
+body7.limits_deg.neck_flex#2,Adult-sourced (not usable),61.7,not probed,,,"adult source: 61 healthy adults, active cervical range of motion, Zebris ultrasonic 3-D (Wolan-Nieroda 2025)"
+body7.moment_frac.elbow,Adult-sourced (not usable),0.155,not probed,,,adult source: adult human cadaver arms (n=10)
+body7.moment_frac.hip,Adult-sourced (not usable),0.08,not probed,,,"adult source: human adults, compiled moment arm datasets"
+body7.moment_frac.wrist,Adult-sourced (not usable),0.08,not probed,,,adult source: 10 adult human cadaver upper limbs
+body7.neck_atlas_share,Adult-sourced (not usable),0.24,not probed,,,"adult source: adult human cadaveric cervical spines, 1009 motion segments (Farber 2025)"
+body7.phalanx.n0,Adult-sourced (not usable),0.24,not probed,,,"adult source: 15 adult male hands, CT"
+body7.phalanx.n1,Adult-sourced (not usable),0.131,not probed,,,"adult source: human adult hand, CT, n = 15"
+body7.thumb_dir.n0,Adult-sourced (not usable),0.652,not probed,,,"adult source: human adult hand, CT, n = 15"
+body7.thumb_dir.n1,Adult-sourced (not usable),-0.185,not probed,,,"adult source: human adult hand, CT, n = 15"
+body7.thumb_dir.n2,Adult-sourced (not usable),-0.735,not probed,,,"adult source: human adult hand, CT, n = 15"
+body7.thumb_target.n2,Adult-sourced (not usable),-0.6493,not probed,,,"adult source: human adult hand, CT, n = 15"
+brainstem_net7.pops.b1a_off.lo,Adult-sourced (not usable),181607,not probed,,,adult source: adult mouse atlas (Ero 2018); GABA fraction cat; REM-on/off fractions mouse
+brainstem_net7.pops.b1a_on_gaba.lo,Adult-sourced (not usable),65754,not probed,,,adult source: adult mouse atlas (Ero 2018); GABA fraction cat; REM-on/off fractions mouse
+brainstem_net7.pops.b1a_on_glu.lo,Adult-sourced (not usable),52517,not probed,,,adult source: rat/human adult
+brainstem_net7.pops.b1b_sleep.lo,Adult-sourced (not usable),10440,not probed,,,"adult source: human, elderly adults (mean age at death 89.2 y, n=45), optical fractionator, one hemisphere per brain"
+brainstem_net7.pops.b2_bf.lo,Adult-sourced (not usable),420000,not probed,,,adult source: human elderly adults without cognitive impairment (ages not in the abstract)
+brainstem_net7.pops.b2_chol.lo,Adult-sourced (not usable),71684,not probed,,,"adult source: human adult, 4 neurological controls (~88 y); older study 28-60 y (6 brains)"
+brainstem_net7.pops.b2_dr.lo,Adult-sourced (not usable),165000,not probed,,,"adult source: human adults (10 brains, 42-88 y), immunohistochemistry on parallel series with Nissl reference"
+brainstem_net7.pops.b2_lc.lo,Adult-sourced (not usable),94986,not probed,,,adult source: adult human (36-87 y)
+brainstem_net7.proj.n0.n3,Adult-sourced (not usable),3,not probed,,,"adult source: adult rat, in vivo, electrical stimulation vlPAG -> rostral ventromedial medulla (not the SLD/vlPAG REM pair; age not st"
+brainstem_net7.proj.n1.n3,Adult-sourced (not usable),3,not probed,,,"adult source: adult rat, in vivo, electrical stimulation vlPAG -> rostral ventromedial medulla (not the SLD/vlPAG REM pair; age not st"
+brainstem_net7.proj.n10.n3,Adult-sourced (not usable),4,not probed,,,"adult source: adult rat, in vivo, electrical stimulation vlPAG -> rostral ventromedial medulla (not the SLD/vlPAG REM pair; age not st"
+brainstem_net7.proj.n11.n3,Adult-sourced (not usable),4,not probed,,,"adult source: adult rat, in vivo, electrical stimulation vlPAG -> rostral ventromedial medulla (not the SLD/vlPAG REM pair; age not st"
+brainstem_net7.proj.n12.n3,Adult-sourced (not usable),4,not probed,,,"adult source: adult rat, in vivo, electrical stimulation vlPAG -> rostral ventromedial medulla (not the SLD/vlPAG REM pair; age not st"
+brainstem_net7.proj.n13.n3,Adult-sourced (not usable),4,not probed,,,"adult source: adult rat, in vivo, electrical stimulation vlPAG -> rostral ventromedial medulla (not the SLD/vlPAG REM pair; age not st"
+brainstem_net7.proj.n14.n3,Adult-sourced (not usable),4,not probed,,,"adult source: adult rat, in vivo, electrical stimulation vlPAG -> rostral ventromedial medulla (not the SLD/vlPAG REM pair; age not st"
+brainstem_net7.proj.n15.n3,Adult-sourced (not usable),4,not probed,,,"adult source: adult rat, in vivo, electrical stimulation vlPAG -> rostral ventromedial medulla (not the SLD/vlPAG REM pair; age not st"
+brainstem_net7.proj.n16.n3,Adult-sourced (not usable),4,not probed,,,"adult source: adult rat, in vivo, electrical stimulation vlPAG -> rostral ventromedial medulla (not the SLD/vlPAG REM pair; age not st"
+brainstem_net7.proj.n17.n3,Adult-sourced (not usable),4,not probed,,,"adult source: adult rat, in vivo, electrical stimulation vlPAG -> rostral ventromedial medulla (not the SLD/vlPAG REM pair; age not st"
+brainstem_net7.proj.n18.n3,Adult-sourced (not usable),5,not probed,,,adult source: adult anaesthetised squirrel monkey (1983) and adult rat (1980); not fetal
+brainstem_net7.proj.n2.n3,Adult-sourced (not usable),3,not probed,,,"adult source: adult rat, in vivo, electrical stimulation vlPAG -> rostral ventromedial medulla (not the SLD/vlPAG REM pair; age not st"
+brainstem_net7.proj.n3.n3,Adult-sourced (not usable),3,not probed,,,"adult source: adult rat, in vivo, electrical stimulation vlPAG -> rostral ventromedial medulla (not the SLD/vlPAG REM pair; age not st"
+brainstem_net7.proj.n4.n3,Adult-sourced (not usable),3,not probed,,,"adult source: adult rat, in vivo, electrical stimulation vlPAG -> rostral ventromedial medulla (not the SLD/vlPAG REM pair; age not st"
+brainstem_net7.proj.n5.n3,Adult-sourced (not usable),3,not probed,,,"adult source: adult rat, in vivo, electrical stimulation vlPAG -> rostral ventromedial medulla (not the SLD/vlPAG REM pair; age not st"
+brainstem_net7.proj.n6.n3,Adult-sourced (not usable),3,not probed,,,"adult source: adult rat, in vivo, electrical stimulation vlPAG -> rostral ventromedial medulla (not the SLD/vlPAG REM pair; age not st"
+brainstem_net7.proj.n7.n3,Adult-sourced (not usable),4,not probed,,,"adult source: adult rat, in vivo, electrical stimulation vlPAG -> rostral ventromedial medulla (not the SLD/vlPAG REM pair; age not st"
+brainstem_net7.proj.n8.n3,Adult-sourced (not usable),4,not probed,,,"adult source: adult rat, in vivo, electrical stimulation vlPAG -> rostral ventromedial medulla (not the SLD/vlPAG REM pair; age not st"
+brainstem_net7.proj.n9.n3,Adult-sourced (not usable),4,not probed,,,"adult source: adult rat, in vivo, electrical stimulation vlPAG -> rostral ventromedial medulla (not the SLD/vlPAG REM pair; age not st"
+brainstem_s2.v_exp,Adult-sourced (not usable),0.6,not probed,,,"adult source: adult cat, 9 hamstring spindle primary (presumed Ia) afferents, chronic DRG recordings, freely moving overground locomot"
+brainstem_s2.w_ii_mn,Adult-sourced (not usable),0.3,not probed,,,"adult source: adult cat, medial gastrocnemius spindle group II afferents onto triceps surae motoneurons, spike-triggered averaging"
+popnet.popnet.init.ou_ge0,Adult-sourced (not usable),0.05,not probed,,,"adult source: Adult cat visual cortex, in vivo, layer VI/III/V reconstructed neurons (point-conductance model fitted to a detailed bio"
+popnet.popnet.init.ou_gi0,Adult-sourced (not usable),0.1,not probed,,,"adult source: Adult cat visual cortex, in vivo, layer VI/III/V reconstructed neurons (point-conductance model fitted to a detailed bio"
+popnet.popnet.init.ou_sde,Adult-sourced (not usable),0.02,not probed,,,"adult source: Adult cat visual cortex, in vivo, layer VI/III/V reconstructed neurons (point-conductance model fitted to a detailed bio"
+popnet.popnet.init.ou_sdi,Adult-sourced (not usable),0.04,not probed,,,"adult source: Adult cat visual cortex, in vivo, layer VI/III/V reconstructed neurons (point-conductance model fitted to a detailed bio"
+popnet.popnet.init.ou_tau_e_ms,Adult-sourced (not usable),3.0,not probed,,,adult source: adult cat parietal cortex model; in vitro dynamic clamp (adult)
+setting.body7.LIMITS_DEG.elbow_0,Adult-sourced (not usable),0,not probed,,,"adult source: 352 healthy adults 18-79 y, goniometer"
+setting.body7.LIMITS_DEG.fingers_0,Adult-sourced (not usable),-24.8,not probed,,,"adult source: adult Indian population, goniometer (Baba 2024)"
+setting.body7.LIMITS_DEG.thumb_0,Adult-sourced (not usable),-15,not probed,,,"adult source: human adult hand, compiled joint limits"
+setting.body7.LIMITS_DEG.thumb_1,Adult-sourced (not usable),60,not probed,,,"adult source: human adult hand, compiled joint limits"
+setting.body7.THUMB_TARGET.0,Adult-sourced (not usable),-0.7419,not probed,,,"adult source: human adult hand, CT, n = 15"
+setting.body7.THUMB_TARGET.1,Adult-sourced (not usable),-0.1674,not probed,,,"adult source: human adult hand, CT, n = 15"
+skin7.oral_new.buccal.n4,Adult-sourced (not usable),84.0,not probed,,,adult source: young adult human (estimates)
+skin7.oral_new.lip_lower.n4,Adult-sourced (not usable),167.0,not probed,,,"adult source: human adults 21-37 y (n 40), psychophysics"
+skin7.oral_new.lip_upper.n4,Adult-sourced (not usable),167.0,not probed,,,"adult source: human adults 21-37 y (n 40), psychophysics"
+skin7.oral_new.ridge_lower.n4,Adult-sourced (not usable),180.7,not probed,,,"adult source: adult patients after oral cancer surgery, non-operated contralateral side (Vaira 2017, n 2-57 per site), surgical-staple"
+skin7.oral_new.ridge_upper.n4,Adult-sourced (not usable),87.9,not probed,,,"adult source: adult patients after oral cancer surgery, non-operated contralateral side (Vaira 2017, n 2-57 per site), surgical-staple"
+skin7.surfaces7.face.n4,Adult-sourced (not usable),75.0,not probed,,,adult source: young adult human (estimates from fibre counts and skin areas)
+skin7.surfaces7.fingers.n4,Adult-sourced (not usable),241.0,not probed,,,adult source: young adult human (estimates from fibre counts and skin areas)
+skin7.surfaces7.forearm.n4,Adult-sourced (not usable),12.76,not probed,,,adult source: adult human (whole-body innervation estimate)
+skin7.surfaces7.leg.n4,Adult-sourced (not usable),9.0,not probed,,,"adult source: adult human (young adults), estimates from DRG fibre counts and skin areas"
+skin7.surfaces7.palate.n4,Adult-sourced (not usable),87.9,not probed,,,"adult source: adult patients after oral cancer surgery, non-operated contralateral side (Vaira 2017, n 2-57 per site), surgical-staple"
+skin7.surfaces7.rest_head.n4,Adult-sourced (not usable),55.0,not probed,,,adult source: young adult human (estimates)
+skin7.surfaces7.sole.n4,Adult-sourced (not usable),25.0,not probed,,,"adult source: adult human (young adults), estimates from DRG fibre counts and skin areas"
+skin7.surfaces7.thumb.n4,Adult-sourced (not usable),241.0,not probed,,,adult source: young adult human (estimates from fibre counts and skin areas)
+skin7.surfaces7.tongue.n4,Adult-sourced (not usable),279.0,not probed,,,"adult source: human adults 21-37 y (n 40), psychophysics"
+skin7.surfaces7.trunk.n4,Adult-sourced (not usable),9.0,not probed,,,"adult source: adult human (young adults), estimates from DRG fibre counts and skin areas"
+skin_world.fa_ramp,Adult-sourced (not usable),20.0,not probed,,,"adult source: adult human, microneurography (median and ulnar nerves), glabrous hand skin, 39 RA units"
+tongue7.tissue.bio.pulp_frac,Adult-sourced (not usable),0.75,not probed,,,"adult source: human adults, index fingertip, MRI"
+tongue7.tissue.init.act_ratio,Adult-sourced (not usable),3.3,not probed,,,"adult source: human adults with OSA under hypoglossal nerve stimulation (n 18), in vivo ultrasound SWE"
+tongue7.tissue.init.e_pulp,Adult-sourced (not usable),45.0,not probed,,,"adult source: adult human finger skin, in vivo"
+tongue7.tissue.init.eta,Adult-sourced (not usable),80.0,not probed,,,"adult source: human adults (7 controls, 9 OSA), in vivo MRE"
+tongue7.tissue.init.nu,Adult-sourced (not usable),0.499,not probed,,,"adult source: adult male human model, modelling choice taken from literature"
+tongue7.tissue.init.pulp_tau.n0,Adult-sourced (not usable),0.07,not probed,,,adult source: adult human fingerpad in vivo
+tongue7.tissue.init.pulp_tau.n1,Adult-sourced (not usable),1.4,not probed,,,"adult source: human adults, fingerpad, in vivo"
+tongue7.tissue.init.tongue_tan_delta,Adult-sourced (not usable),0.35,not probed,,,"adult source: human adults (5 healthy controls), in vivo MRE"
+transduction.moment_arm,Adult-sourced (not usable),0.3,not probed,,,adult source: 10 adult human cadaver upper limbs
+transduction.receptor_noise_sd,Adult-sourced (not usable),0.05,not probed,,,"adult source: adult human, pretibial muscle spindle afferents, microneurography"

@@ -1,0 +1,32 @@
+{
+  "name": "@repo/canvas",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "export": "pnpm --filter @repo/graph export",
+    "dev": "pnpm run export && tsx scripts/build.ts --serve",
+    "build": "pnpm run export && pnpm run check-types && tsx scripts/build.ts",
+    "preview": "tsx scripts/build.ts --serve",
+    "check-types": "tsc --noEmit",
+    "lint": "eslint ."
+  },
+  "dependencies": {
+    "react": "18.2.0",
+    "react-dom": "18.2.0",
+    "tldraw": "3.14.2"
+  },
+  "devDependencies": {
+    "@types/react": "^18.3.12",
+    "@types/react-dom": "^18.3.1",
+    "tsx": "^4.19.2",
+    "typescript": "5.5.4",
+    "esbuild": "0.17.3",
+    "tailwindcss": "^3.4.17",
+    "postcss": "^8.5.3",
+    "autoprefixer": "^10.4.21",
+    "eslint": "^9.39.5",
+    "@types/node": "^22",
+    "@repo/eslint-config": "workspace:*"
+  }
+}

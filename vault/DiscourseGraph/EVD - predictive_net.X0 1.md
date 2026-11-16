@@ -1,0 +1,18 @@
+---
+nodeTypeId: "node_xQmEzWQFHdHy2swhrugrF"
+nodeInstanceId: "f1c35450-e536-79b8-8e05-1b0097dae9d1"
+dg_type: "Evidence"
+claim: "[[CLM - predictive_net.X0]]"
+source: "[[@p-pmid40497329]]"
+paper_id: "p-pmid40497329"
+locator: "Table 2"
+quote: "Scaling factor of synaptic current 25"
+saved_text: "papers/jepa_sources/AsabukiClopath2024.txt"
+transfer: "computational model parameter, not a fetal measurement; declared in K15"
+class: "model_parameter"
+species: "none (computational model)"
+stage: "model"
+ga_lo_wk: ""
+ga_hi_wk: ""
+basis_note: "computational model parameter, as logged in its transfer text"
+---

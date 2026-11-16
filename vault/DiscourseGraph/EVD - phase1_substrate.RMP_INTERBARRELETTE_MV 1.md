@@ -1,0 +1,17 @@
+---
+nodeTypeId: "node_xQmEzWQFHdHy2swhrugrF"
+nodeInstanceId: "75e5d279-4305-7696-8c09-c45a7ee13915"
+dg_type: "Evidence"
+claim: "[[CLM - phase1_substrate.RMP_INTERBARRELETTE_MV]]"
+source: "[[@p-lo1999]]"
+paper_id: "p-lo1999"
+locator: "Results, Fig. 4A"
+quote: "The resting membrane potential of interbarrelette cells was -60.4 +- 0.7 mV (n = 23)"
+transfer: "rat postnatal day 4-12, PrV slice (animal_postnatal), declared transfer to the 10-17 week human relay learner (J-RL8)"
+class: "animal_postnatal"
+species: "rat"
+stage: "neonatal"
+ga_lo_wk: ""
+ga_hi_wk: ""
+basis_note: "measured value, declared transfer to the fetal relay learner (J-RL8)"
+---

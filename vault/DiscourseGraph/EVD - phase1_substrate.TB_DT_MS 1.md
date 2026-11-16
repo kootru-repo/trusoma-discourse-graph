@@ -1,0 +1,17 @@
+---
+nodeTypeId: "node_xQmEzWQFHdHy2swhrugrF"
+nodeInstanceId: "5f8389cd-c439-7337-aace-a4e1bc64de6e"
+dg_type: "Evidence"
+claim: "[[CLM - phase1_substrate.TB_DT_MS]]"
+source: "[[@p-toporikova2011]]"
+paper_id: "p-toporikova2011"
+locator: "Section 2.1 (author manuscript pages 2-4)"
+quote: "4th order Runge-Kutta with a time step 0.1 ms"
+transfer: "computational model parameter (Toporikova and Butera 2011 inspiratory pre-Botzinger neuron, parent model of Chevalier 2016); declared transfer to the learner's relay neurons (J-RL8)"
+class: "model_parameter"
+species: "none (computational model)"
+stage: "model"
+ga_lo_wk: ""
+ga_hi_wk: ""
+basis_note: "computational model parameter (Toporikova and Butera 2011), as logged in its transfer text"
+---

@@ -1,0 +1,1 @@
+{"ok":true,"rows":6711,"expected":6711,"errors":0,"role":"space member (their create-space function, signed in as the space account)","edgeFunctions":{"create-space":"made the space","create-group":"401 Unauthorized anonymous access"},"at":"2026-11-16T01:20:18.401Z"}

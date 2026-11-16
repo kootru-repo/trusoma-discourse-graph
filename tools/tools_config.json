@@ -1,0 +1,980 @@
+{
+ "tools/viewer/body7_export.py": {
+  "GAS.0": 9.0,
+  "GAS.1": 10.0,
+  "GAS.2": 12.5,
+  "GAS.3": 14.0,
+  "GAS.4": 18.0,
+  "GAS.5": 22.0,
+  "GAS.6": 28.0,
+  "GAS.7": 34.5,
+  "PART_BYTES": 400,
+  "PART_BYTES.k2": 1024,
+  "prim_names.names": 3,
+  "oral.lit.stomion_mm": 3
+ },
+ "tools/viewer/body7_mesh.py": {
+  "face_details.lit.1_1": -0.14,
+  "face_details.e.2": -0.2,
+  "face_details.arc": -1.2,
+  "face_details.out.1_2_1": -0.55,
+  "face_details.lit.2_1": -0.08,
+  "face_details.lit.2_2": -0.3,
+  "BLEND": 0.08,
+  "export.res": 0.045,
+  "sdf_full.kd": 0.25,
+  "surface_nets.lit": 3,
+  "export.eps": 0.25,
+  "face_details.L": 1.3,
+  "face_details.y0": 0.1,
+  "surface_nets.verts.1": 3,
+  "export.hi": 0.3,
+  "export.lo": 1.2,
+  "export.pts.0": 400000,
+  "export.pts.1": 3,
+  "export.near": 0.01,
+  "sdf_capsule.t": 1e-18,
+  "face_details.lit.0_1": 0.1,
+  "surface_nets.lit.k2": 8,
+  "surface_nets.lit.k3": 8,
+  "export.lo.k2": 3,
+  "export.hi.k2": 1.2,
+  "export.g": 3,
+  "face_details.e.1": 0.8,
+  "face_details.arc.k2": 1.2,
+  "face_details.arc.k3": 7,
+  "surface_nets.lit.k4": 3,
+  "export.lo.0": 0.6,
+  "export.lo.1": 0.6,
+  "export.lo.2": 0.6,
+  "export.f": 3,
+  "export.Nn": 3,
+  "export.out.vertices": 3,
+  "export.out.normals": 5,
+  "primitives.lit.1_2": 0.12,
+  "face_details.e.0": 0.3,
+  "face_details.out.0_2_0": 0.17,
+  "face_details.out.0_2_1": 0.1,
+  "face_details.out.0_2_2": 0.018,
+  "face_details.out.1_2_0": 0.62,
+  "face_details.out.1_2_1.k2": 0.62,
+  "face_details.out.1_2_2": 0.24,
+  "face_details.lit.2_0": 0.46,
+  "face_details.lit.2_2.k2": 0.13,
+  "face_details.lit.2_2.k3": 0.035,
+  "face_details.lit.2_0.k2": 0.4,
+  "face_details.lit.2_1.k2": 0.2,
+  "face_details.lit.2_2.k4": 0.03,
+  "face_details.arc.0": 0.45,
+  "face_details.out.0_2_1.k2": 0.04,
+  "face_details.out.1_2_2.k2": 0.02,
+  "face_details.lit.2_0.k3": 0.13,
+  "face_details.lit.2_1.k3": 0.07,
+  "face_details.lit.2_2.k5": 0.075,
+  "face_details.lit.2_0.k4": 0.115,
+  "face_details.lit.2_1.k4": 0.045,
+  "face_details.lit.2_2.k6": 0.06,
+  "face_details.lit.2_0.k5": 0.06,
+  "face_details.lit.2_1.k5": 0.17,
+  "face_details.lit.2_2.k7": 0.27,
+  "face_details.lit.2_2.k8": 0.12,
+  "face_details.lit.2_2.k9": 0.22,
+  "face_details.lit.2_1.k6": 0.2,
+  "face_details.lit.2_2.k10": 0.2,
+  "face_details.arc.1": 0.02,
+  "face_details.arc.1.k2": 0.45,
+  "face_details.lit.2": 0.035,
+  "face_details.lit.2_1.k7": 0.1,
+  "face_details.lit.2_2.k11": 0.01,
+  "face_details.lit.2_1.k8": 0.07,
+  "face_details.lit.2_0.k6": 0.97
+ },
+ "tools/viewer/body_geom.py": {
+  "geometry.lit.shoulder_drop_head_r": 1.2
+ },
+ "tools/viewer/telemetry.py": {
+  "FORMAT": 1,
+  "S_META": 65526,
+  "TICK_MS": 33.0,
+  "TICK_STEPS": 33,
+  "REC_TICKS": 30,
+  "TAX_EVERY": 3,
+  "W_EVERY_TICKS": 303,
+  "HB_S": 5.0,
+  "MAX_POPS": 64,
+  "MAX_PAYLOAD": 4,
+  "MAX_PAYLOAD.k2": 20,
+  "S_SESSION": 65520,
+  "S_HEARTBEAT": 65521,
+  "S_CLOSE": 65522,
+  "S_FAIL": 65523,
+  "S_TRUNCATED": 65524,
+  "S_DECIMATE": 65525,
+  "CAP_BYTES": 1024,
+  "FREE_MIN": 5,
+  "OVERHEAD_MAX": 0.03,
+  "OVERHEAD_WIN_S": 60.0,
+  "CAP_BYTES.k2": 1500,
+  "CAP_BYTES.k3": 1024,
+  "FREE_MIN.k2": 1024,
+  "FREE_MIN.k3": 3,
+  "valid_run_id.lit": 96,
+  "encode_record.head": 4294967295,
+  "Recorder._attach.n": 48,
+  "Recorder._attach.pose": 6,
+  "Recorder._attach.pose.k2": 13,
+  "Recorder._flush_all.lit": 4,
+  "Recorder._weights.lit": 3,
+  "Recorder._tap.lit": 6,
+  "Recorder._tap.lit.k2": 3,
+  "stream_spec.lit": 65520,
+  "PartWriter._commit.line.wall": 3,
+  "PartWriter._commit.line.self": 6,
+  "Recorder._attach.streams": 101,
+  "Recorder._flush_all.lit.k2": 101,
+  "Recorder._flush_all.lit.k3": 4,
+  "Recorder._tick_end.lit": 4,
+  "Recorder._tick_end.lit.k2": 4,
+  "Recorder._tap.r": 6,
+  "Recorder._tap.lit.k3": 6,
+  "Recorder._tap.r.k2": 5,
+  "Recorder._tap.ev": 3,
+  "Recorder._tap.lit.k4": 7,
+  "encode_record.lit": 4294967295,
+  "Recorder._attach.S.2": 4,
+  "Recorder._attach.lit": 7,
+  "Recorder._attach.lit.k2": 3,
+  "Recorder._attach.lit.k3": 5,
+  "Recorder._attach.lit.k4": 3,
+  "Recorder._attach.lit.1": 5,
+  "Recorder._attach.lit.2": 6,
+  "Recorder._attach.A.0": 101,
+  "Recorder._attach.A.0.k2": 9,
+  "Recorder._tap.lit.k5": 5,
+  "Recorder._hb.lit.wall": 3,
+  "PartWriter.close.wall": 3,
+  "Recorder._attach.dofs": 10,
+  "Recorder._attach.S.1": 3,
+  "Recorder._attach.S.1.k2": 3,
+  "Recorder._attach.S.3": 4,
+  "Recorder._attach.rows_a.0_1": 9,
+  "Recorder._tick_end.lit.wall": 3,
+  "Recorder._tap.lit.k6": 101,
+  "Recorder.open_part.lit": 1024,
+  "Recorder.open_part.lit.k2": 3,
+  "Recorder._attach.S.2.k2": 4,
+  "Recorder._attach.lit.k5": 7,
+  "Recorder._flush.every.1": 5,
+  "Recorder._close.lit.self_s": 6
+ },
+ "tools/viewer/trusoma_mesh.py": {
+  "GA": 12.5,
+  "FLAG_MM": 2.0,
+  "JawSkinnedFace.BAND_R": 0.45,
+  "JawSkinnedFace.GEO_R": 0.9,
+  "JawSkinnedFace.SEED_R": 0.08,
+  "JawSkinnedFace._head_geodesic.lit": 3,
+  "JawSkinnedFace._head_geodesic.vn": 1e-18,
+  "FaceSurface.volume.lit": 6.0,
+  "FaceSurface.inside.d.0": 0.5773,
+  "FaceSurface.inside.d.1": 0.5774,
+  "FaceSurface.inside.d.2": 0.5772,
+  "JawSkinnedFace.__init__.lit": 3,
+  "JawSkinnedFace._head_geodesic.gn": 1e-18,
+  "JawSkinnedFace._head_geodesic.lit.k2": 10.0,
+  "Layer.__init__.V": 3,
+  "Layer.__init__.F": 3,
+  "JawSkinnedFace._head_geodesic.limit": 1.01,
+  "JawSkinnedFace.__init__.V": 1e-18,
+  "JawSkinnedFace.pose.wq": 256.0,
+  "JawSkinnedFace.pose.Rj": 256.0,
+  "JawSkinnedFace.pose.Rj.k2": 256.0,
+  "taxel_points_physics.lit": 3,
+  "JawSkinnedFace.__init__.S": 3.0,
+  "taxel_points_physics.lit.k2": 3,
+  "Layer.__init__.V.k2": 3,
+  "Layer.__init__.F.k2": 3,
+  "taxel_points_physics.p.1": 0.9,
+  "FaceSurface.inside.lit": 1e-18,
+  "taxel_points_physics.p.1.k2": 1.5,
+  "taxel_points_physics.p.1.k3": 4.5,
+  "taxel_points_physics.p.1.k4": 0.4,
+  "taxel_points_physics.p.1.k5": 1.5
+ },
+ "tools/viewer/viewer_export.py": {
+  "layout3.B": -0.5,
+  "N": 48,
+  "EDGE_THRESHOLD_W": 0.03,
+  "EDGE_THRESHOLD_DELTA": 0.01,
+  "SESSION_SIM_MIN": 20.0,
+  "GA_WEEKS": 34.5,
+  "MAX_TOTAL_BYTES": 1024,
+  "lit.2": 3,
+  "BLOCKS.0_1": 0,
+  "BLOCKS.0_2": 16,
+  "BLOCKS.1_1": 16,
+  "BLOCKS.1_2": 32,
+  "BLOCKS.2_1": 32,
+  "BLOCKS.2_2": 48,
+  "MAX_TOTAL_BYTES.k2": 200,
+  "MAX_TOTAL_BYTES.k3": 1024,
+  "guard_output.lit": 4,
+  "sha256_file.bufsize": 20,
+  "write_bin.pad": 8,
+  "read_bin.base": 4,
+  "write_bin.pad.k2": 4,
+  "read_bin.n": 4,
+  "export.lit": 20,
+  "export.g.layout": 5,
+  "export.g.layout_ref": 5
+ },
+ "tools/viewer/viewer_routes.py": {
+  "STALL_S": 60.0,
+  "FORMAT": 1,
+  "MAX_RESP": 512,
+  "MAX_RESP.k2": 1024,
+  "HLEN": 4,
+  "MAX_PAYLOAD": 4,
+  "MAX_PAYLOAD.k2": 20,
+  "SPECIAL": 65520,
+  "SPECIAL.k2": 65521,
+  "SPECIAL.k3": 65522,
+  "SPECIAL.k4": 65523,
+  "SPECIAL.k5": 65524,
+  "SPECIAL.k6": 65525,
+  "DT_SIZE._f2": 2,
+  "DT_SIZE._f4": 4,
+  "DT_SIZE._f8": 8,
+  "DT_SIZE._u1": 1,
+  "DT_SIZE._u2": 2,
+  "DT_SIZE._u4": 4,
+  "DT_SIZE._i4": 4,
+  "send.lit": 405,
+  "refuse_method.lit": 405,
+  "_file.lit": 200,
+  "_json.lit": 200,
+  "_api.lit": 404,
+  "read_header.b": 10,
+  "read_header.lit": 10,
+  "read_header.lit.1": 10,
+  "_hdr_ok.lit": 4294967295,
+  "encode_record.head": 4294967295,
+  "_emit.lit": 65520,
+  "seek.lit": 65520,
+  "_file.lit.k2": 200,
+  "_file.lit.k3": 413,
+  "_file.lit.k4": 413,
+  "_json.lit.k2": 413,
+  "handle.lit": 404,
+  "_api.lit.k2": 3,
+  "_api.lit.k3": 404,
+  "_api.lit.k4": 404,
+  "_api.dec": 64,
+  "_api.lit.k5": 200,
+  "read_header.lit.k2": 20,
+  "parse_records.lit": 4294967295,
+  "scan.lit": 65520,
+  "run_summary.lit.0": 65522,
+  "run_summary.lit.1": 65523,
+  "run_summary.lit.2": 65524,
+  "_file.gz": 9,
+  "handle.lit.k2": 403,
+  "handle.lit.k3": 404,
+  "handle.lit.k4": 301,
+  "handle.lit.k5": 404,
+  "handle.lit.k6": 301,
+  "handle.lit.k7": 3,
+  "handle.lit.k8": 400,
+  "handle.lit.k9": 409,
+  "_api.lit.k6": 404,
+  "_api.lit.k7": 404,
+  "_api.lit.k8": 404,
+  "_api.off": 40,
+  "_api.lit.k9": 404,
+  "encode_record.lit": 4294967295,
+  "_emit.lit.k2": 255,
+  "_emit.lit.k3": 8,
+  "part_ranges.e": 65520,
+  "handle.lit.k10": 404,
+  "handle.lit.k11": 404,
+  "handle.lit.k12": 404,
+  "_api.lit.k10": 4096,
+  "_api.lit.k11": 64,
+  "_emit.lit.k4": 255,
+  "scan.lit.k2": 65520,
+  "run_summary.t_written": 65520,
+  "parts_of.lit.1": 3
+ },
+ "tools/viewer/viewer_server.py": {
+  "PORT": 8790,
+  "H._send.lit": 405,
+  "H._serve.lit": 200,
+  "H._no.lit": 405,
+  "H._serve.lit.k2": 403,
+  "H._serve.lit.k3": 404
+ },
+ "companion/audit_log/verification/trusoma_cortex/probe5_noise.py": {
+  "DRAWS": 20,
+  "SEEDS.0": 0,
+  "SEEDS.1": 1,
+  "SEEDS.2": 2,
+  "DRAWS.k2": 2,
+  "rng": 20000
+ },
+ "companion/audit_log/verification/trusoma_cortex/stage1_eval.py": {
+  "K": 500,
+  "GROUP": 100,
+  "N_GROUPS": 5,
+  "ON_MS": 100,
+  "OFF_MS": 100,
+  "RATE_ON": 50.0,
+  "RATE_BG": 2.0,
+  "EVAL_S": 60.0,
+  "rng": 9000,
+  "lit": 7000,
+  "lit.k2": 7000
+ },
+ "companion/audit_log/verification/trusoma_cortex/stage1_selectivity.py": {
+  "max_wall": 3300.0,
+  "learn_s": 1000.0,
+  "K": 500,
+  "GROUP": 100,
+  "N_GROUPS": 5,
+  "ON_MS": 100,
+  "OFF_MS": 100,
+  "RATE_ON": 50.0,
+  "RATE_BG": 2.0,
+  "EVAL_S": 20.0,
+  "CHUNK_S": 10.0,
+  "done": 0.0,
+  "max_wall.k2": 4,
+  "learn_s.k2": 5,
+  "stim_rng": 1000,
+  "saved": 0,
+  "sparse": 6,
+  "lit": 10,
+  "lit.k2": 5000
+ },
+ "companion/audit_log/verification/trusoma_cortex/stage2_baseline.py": {
+  "lit.0": 16,
+  "lit.1": 32,
+  "lit.2": 64,
+  "lit.3": 128,
+  "lit.4": 256,
+  "lit.0.k2": 200,
+  "lit.1.k2": 500,
+  "y": 320,
+  "win.0": 320,
+  "win.1": 3,
+  "lit": 32,
+  "x.0": 320,
+  "w": 50,
+  "z": 500,
+  "w.k2": 350,
+  "lit.k2": 64,
+  "lit.k3": 64
+ },
+ "companion/audit_log/verification/trusoma_cortex/stage2_decode.py": {
+  "N_ORI": 32,
+  "STEP": 180.0
+ },
+ "companion/audit_log/verification/trusoma_cortex/stage2_edges.py": {
+  "LENGTH": 8.0,
+  "WIDTH": 1.6,
+  "DEPTH": 1.0,
+  "DUR": 0.4,
+  "RAMP": 0.05,
+  "POS_SD": 0.5,
+  "N_ORI": 32,
+  "N_REP": 10,
+  "BLOCK": 32,
+  "N_TRAIN": 2000,
+  "lit": 20261102,
+  "centre": 0,
+  "offset": 1000000,
+  "offset.k2": 0,
+  "ANGLES": 180.0,
+  "lit.0_0": 5,
+  "lit.0_1": 33.75,
+  "lit.1_0": 6,
+  "lit.1_1": 118.125,
+  "labels": 1,
+  "ids": 1
+ },
+ "companion/audit_log/verification/trusoma_cortex/stage2_eval.py": {
+  "index": -1,
+  "STIM_MS": 400,
+  "GAP_MS": 100,
+  "N_TRIALS": 320,
+  "rng": 9000,
+  "spikes": 1,
+  "draws": 5,
+  "respond.order": 7000,
+  "draws.k2": 100,
+  "draws.k3": 1
+ },
+ "companion/audit_log/verification/trusoma_cortex/stage2_harness_check.py": {
+  "seed": 0,
+  "N": 320,
+  "span": 500,
+  "rng": 0,
+  "groups": 32,
+  "rates": 50.0,
+  "x": 0,
+  "axis": 0,
+  "F.lit": 31,
+  "F.lit.k2": 288,
+  "lit": 64,
+  "order": 7000,
+  "F.B": 32,
+  "F.W": 32,
+  "lit.1": 64,
+  "lit.0": 500,
+  "lit.1.k2": 500,
+  "lit.1.k3": 7
+ },
+ "companion/audit_log/verification/trusoma_cortex/stage2_touch.py": {
+  "index": -1,
+  "max_wall": 3300.0,
+  "learn_s": 1000.0,
+  "STIM_MS": 400,
+  "GAP_MS": 100,
+  "CHUNK": 20,
+  "done": 0,
+  "max_wall.k2": 4,
+  "learn_s.k2": 5,
+  "saved": 0,
+  "target": 1000,
+  "order": 1000,
+  "sparse": 6,
+  "lit": 10
+ },
+ "companion/audit_log/verification/trusoma_cortex/stage3_remap.py": {
+  "index": -1,
+  "max_wall": 3300.0,
+  "STIM_MS": 400,
+  "GAP_MS": 100,
+  "CHUNK": 20,
+  "N_TRIALS": 320,
+  "pair_rng": 20261102,
+  "done": 0,
+  "last": 0,
+  "max_wall.k2": 5,
+  "MARKS.0": 0,
+  "MARKS.1": 200,
+  "MARKS.2": 500,
+  "MARKS.3": 1000,
+  "saved": 0,
+  "order": 3000,
+  "respond.ids": 7000
+ },
+ "companion/audit_log/verification/trusoma_cortex/stage3_score.py": {
+  "DIMS": 64,
+  "FIT_REPS": 5,
+  "N_REP": 10,
+  "SEEDS.0": 0,
+  "SEEDS.1": 1,
+  "SEEDS.2": 2,
+  "raw_counts.rng": 20261102,
+  "verdict": 3,
+  "verdict.k2": 3,
+  "verdict.k3": 3,
+  "curve.1": 200,
+  "curve.2": 500
+ },
+ "companion/audit_log/verification/trusoma_cortex/stage4_eval.py": {
+  "index": -1,
+  "STIM_MS": 400,
+  "GAP_MS": 100,
+  "rng": 9000,
+  "spikes": 1,
+  "draws": 5,
+  "respond.order": 7000,
+  "draws.k2": 100,
+  "draws.k3": 1
+ },
+ "companion/audit_log/verification/trusoma_cortex/stage4_points.py": {
+  "R": 1.92,
+  "DEPTH": 1.0,
+  "DUR": 0.4,
+  "RAMP": 0.05,
+  "BLOCK": 32,
+  "N_TRAIN": 2000,
+  "N_REP": 5,
+  "GRID": 2.0,
+  "NEAR": 1.0,
+  "lit": 20261103,
+  "rng": 20261103,
+  "cand.0": 4,
+  "ids": 1
+ },
+ "companion/audit_log/verification/trusoma_cortex/stage5_map.py": {
+  "SEEDS.0": 0,
+  "SEEDS.1": 1,
+  "SEEDS.2": 2,
+  "rng": 0,
+  "axis": 2,
+  "r_null": 9000,
+  "nan": 0.0
+ },
+ "companion/audit_log/verification/trusoma_cortex/touchsim_cache.py": {
+  "fast_distance.margin": 10
+ },
+ "companion/audit_log/verification/trusoma_cortex/growth_probe.py": {
+  "default_wall_s": 3000,
+  "chunk": 10,
+  "symmetric_share": 0.2,
+  "rounds": 2,
+  "grow_at_share": [
+   0.25,
+   0.5
+  ],
+  "null_seed": 7000,
+  "null_draws": 20
+ },
+ "companion/audit_log/verification/research_grade_2026-11-09/b0_oracle.py": {
+  "SEEDS": [
+   0,
+   1,
+   2
+  ],
+  "DRAWS": 3,
+  "TOPK": 10,
+  "axis": 2,
+  "axis_min": 1,
+  "eps": 1e-12,
+  "N_E": 500,
+  "K_IN": 80,
+  "K_LIST": [
+   80,
+   160,
+   320,
+   952
+  ],
+  "NE_LIST": [
+   500,
+   2000,
+   8000
+  ],
+  "SIGMA_MULT": [
+   1,
+   2,
+   4,
+   8,
+   16
+  ],
+  "rng": 30000,
+  "rng_c": 31000,
+  "NULL_DRAWS": 20,
+  "rng_d": 32000
+ },
+ "companion/audit_log/verification/research_grade_2026-11-09/b1_driver.py": {
+  "SECONDS": 60.0,
+  "SEEDS": [
+   7,
+   8,
+   9
+  ],
+  "SAMPLE_MS": 5,
+  "CHUNK_MS": 60000,
+  "PAR": 3,
+  "DEADLINE_S": 3300,
+  "RAM_MAX": 90,
+  "RAM_WAIT_S": 30,
+  "argc": 2
+ },
+ "companion/audit_log/verification/research_grade_2026-11-09/aff_vs_source.py": {
+  "WINDOW_MS": 150,
+  "QUIET_MS": 200,
+  "CURRENT_EDGES": [
+   0.01,
+   0.1,
+   1.0,
+   10.0
+  ],
+  "channels": 2,
+  "MS_PER_S": 1000
+ },
+ "companion/audit_log/verification/research_grade_2026-11-09/gm_netonly.py": {
+  "MS_PER_S": 1000,
+  "S_PER_H": 3600,
+  "BURN_S": 60,
+  "OPEN": 0.5,
+  "CLEAR_S": 2,
+  "MERGE_S": 1,
+  "CLASSES": {
+   "arm": [
+    "sh_flex",
+    "sh_abd",
+    "sh_rot",
+    "elbow",
+    "pron",
+    "wrist"
+   ],
+   "hand": [
+    "thumb",
+    "fingers"
+   ],
+   "leg": [
+    "hip",
+    "knee"
+   ],
+   "head": [
+    "neck"
+   ],
+   "trunk": [
+    "spine"
+   ]
+  }
+ },
+ "companion/audit_log/verification/research_grade_2026-11-09/gm_score.py": {
+  "SPEED_DEG_S": 5.0,
+  "SMOOTH_MS": 100,
+  "MERGE_MS": 1000,
+  "AMP_DEG": 5.0,
+  "GM_PARTS": 3,
+  "BURN_S": 60,
+  "ALONE": 0.8,
+  "GAP_OPEN_MM": 1.0,
+  "MS_PER_S": 1000,
+  "S_PER_H": 3600,
+  "MM_PER_M": 1000,
+  "PARTS": {
+   "arm": [
+    "sh_flex",
+    "sh_abd",
+    "sh_rot",
+    "elbow",
+    "wrist"
+   ],
+   "leg": [
+    "hip",
+    "knee"
+   ],
+   "head": [
+    "neck_flex",
+    "neck_yaw"
+   ],
+   "trunk": [
+    "spine_flex"
+   ]
+  },
+  "TARGET": {
+   "gm_pct": [
+    11.5,
+    12.5,
+    6,
+    18
+   ],
+   "arm_h": [
+    48,
+    51.5,
+    6,
+    104
+   ],
+   "leg_h": [
+    3,
+    4,
+    0,
+    26
+   ],
+   "head_h": [
+    24,
+    45,
+    2,
+    139
+   ],
+   "hand_face_h": [
+    23.5,
+    21,
+    0,
+    78
+   ],
+   "head_retroflexion_h": [
+    20,
+    41,
+    2,
+    76
+   ],
+   "head_rotation_h": [
+    3,
+    3,
+    0,
+    95
+   ],
+   "head_anteflexion_h": [
+    1,
+    1,
+    0,
+    13
+   ],
+   "arm_motion_pct": [
+    13.7,
+    14.8,
+    6.3,
+    23.5
+   ],
+   "hand_move_s": [
+    1.64,
+    1.89,
+    null,
+    null
+   ],
+   "hand_mouth_h_14wk_min": [
+    10.5,
+    null,
+    null,
+    null
+   ]
+  },
+  "TARGET_NOTES": {
+   "_why": "USER 2026-11-11: nothing in the body or the learner sets how often the fetus attempts a movement; in the fetus it is set by how excitable the spontaneous generators are at that age, so the rate is constrained by sourced counts at the generator, and contact is never fitted. Format of TARGET rows: [median at 12 weeks, median at 13 weeks, lowest fetus, highest fetus].",
+   "gm_pct": {
+    "role": "FIT",
+    "constrains": "the common generator bias",
+    "source": "de Vries, Visser and Prechtl 1985, Early Hum Dev 12:99-120, doi:10.1016/0378-3782(85)90174-4, scatter figures read into companion/sources/deVries1985_extract.md; median at 12 weeks, at 13 weeks, lowest and highest fetus over both (Fig. 2)"
+   },
+   "arm_h": {
+    "role": "FIT",
+    "constrains": "the per-joint generator bias; every arm movement outside a general movement counts, not only large ones",
+    "source": "de Vries, Visser and Prechtl 1985, Early Hum Dev 12:99-120, doi:10.1016/0378-3782(85)90174-4, scatter figures read into companion/sources/deVries1985_extract.md; median at 12 weeks, at 13 weeks, lowest and highest fetus over both (Fig. 11)"
+   },
+   "leg_h": {
+    "role": "FIT",
+    "constrains": "the per-joint generator bias",
+    "source": "de Vries, Visser and Prechtl 1985, Early Hum Dev 12:99-120, doi:10.1016/0378-3782(85)90174-4, scatter figures read into companion/sources/deVries1985_extract.md; median at 12 weeks, at 13 weeks, lowest and highest fetus over both (Fig. 12)"
+   },
+   "head_h": {
+    "role": "FIT",
+    "constrains": "the per-joint generator bias; the sum of retroflexion, rotation and anteflexion, also given separately",
+    "source": "de Vries, Visser and Prechtl 1985, Early Hum Dev 12:99-120, doi:10.1016/0378-3782(85)90174-4, scatter figures read into companion/sources/deVries1985_extract.md; median at 12 weeks, at 13 weeks, lowest and highest fetus over both (Figs. 15-17)"
+   },
+   "arm_motion_pct": {
+    "role": "FIT (derived)",
+    "constrains": "how busy the generators are between counted movements",
+    "source": "derived: general movement share plus isolated arm movements per hour x their duration (1.64 to 1.89 s): 11.5 + 48 x 1.64 / 36 = 13.7 at 12 weeks, 12.5 + 51.5 x 1.64 / 36 = 14.8 at 13 weeks; lowest 6 + 6 x 1.64 / 36 = 6.3, highest 18 + 104 x 1.89 / 36 = 23.5. de Vries, Visser and Prechtl 1985, Early Hum Dev 12:99-120, doi:10.1016/0378-3782(85)90174-4, scatter figures read into companion/sources/deVries1985_extract.md; median at 12 weeks, at 13 weeks, lowest and highest fetus over both; Zoia et al. 2013, PLoS One 8:e80876, doi:10.1371/journal.pone.0080876, full text read; 14 weeks, wrist tracked at 4 Hz"
+   },
+   "hand_move_s": {
+    "role": "FIT",
+    "constrains": "passive joint stiffness and damping, or the generator time constants, whichever sets the duration",
+    "source": "Zoia et al. 2013, PLoS One 8:e80876, doi:10.1371/journal.pone.0080876, full text read; 14 weeks, wrist tracked at 4 Hz: movement time 1640 +- 74 ms to the mouth and 1893 +- 60 ms to the eye, pooled over ages; the 14 week values are in its Figure 4 (not read)"
+   },
+   "hand_face_h": {
+    "role": "HELD OUT",
+    "constrains": "nothing: validation only, never fitted",
+    "source": "de Vries, Visser and Prechtl 1985, Early Hum Dev 12:99-120, doi:10.1016/0378-3782(85)90174-4, scatter figures read into companion/sources/deVries1985_extract.md; median at 12 weeks, at 13 weeks, lowest and highest fetus over both (Fig. 14); the count is called approximate in the source"
+   },
+   "hand_mouth_h_14wk_min": {
+    "role": "HELD OUT",
+    "constrains": "nothing: validation only; a lower bound at 14 weeks, not a 12.5 week value",
+    "source": "Zoia et al. 2013, PLoS One 8:e80876, doi:10.1371/journal.pone.0080876, full text read; 14 weeks, wrist tracked at 4 Hz: 28 analysed hand-to-mouth movements in 8 fetuses x 20 minutes"
+   }
+  }
+ },
+ "companion/audit_log/verification/research_grade_2026-11-09/gm_driver.py": {
+  "first": 1,
+  "i_out": 0,
+  "i_seconds": 1,
+  "i_tag": 2,
+  "i_s2b": 3,
+  "i_patch": 4,
+  "i_seeds": 5,
+  "SEEDS": [
+   4,
+   5,
+   6
+  ],
+  "SAMPLE_MS": 10,
+  "PAR": 3,
+  "DEADLINE_S": 3300
+ },
+ "companion/audit_log/verification/research_grade_2026-11-09/b2_score.py": {
+  "SEEDS": [
+   20,
+   21,
+   22,
+   23,
+   24,
+   25,
+   26,
+   27,
+   28,
+   29
+  ],
+  "TOPK": 10,
+  "NULL_DRAWS": 20,
+  "channels": 2,
+  "REC_SECONDS": 420,
+  "rng": 52000,
+  "rng_boot": 53000,
+  "BOOT": 10000,
+  "K_MIN": 9,
+  "K_PARTNER": 3,
+  "eps": 1e-12,
+  "DRY_SHARED": 0.3,
+  "DRY_GAINS": [
+   0.0,
+   0.05,
+   0.1,
+   0.2,
+   0.5,
+   1.0
+  ]
+ },
+ "companion/audit_log/verification/research_grade_2026-11-09/b2_skin7.py": {
+  "max_wall": 3300.0,
+  "learn_s": 60.0,
+  "max_wall.k": 5,
+  "learn_s.k": 6,
+  "saved": 0,
+  "done": 0,
+  "CHUNK_MS": 600000
+ },
+ "companion/audit_log/verification/research_grade_2026-11-09/b2_raw.py": {
+  "BIN_MS": 50,
+  "NULL_DRAWS": 20,
+  "rng": 41000,
+  "eps": 1e-12,
+  "channels": 2
+ },
+ "companion/audit_log/verification/research_grade_2026-11-09/b1_score.py": {
+  "MIN_UNITS": 8,
+  "BIN_MS": 50,
+  "NULL_DRAWS": 20,
+  "rng": 40000,
+  "eps": 1e-12,
+  "MIN_ACTIVE": 5
+ },
+ "companion/audit_log/verification/research_grade_2026-11-09/field_score.py": {
+  "SEEDS": [
+   10,
+   11,
+   12,
+   13,
+   14,
+   15,
+   16,
+   17,
+   18,
+   19
+  ],
+  "TOPK": 10,
+  "NULL_DRAWS": 20,
+  "axis": 2,
+  "eps": 1e-12,
+  "rng": 50000,
+  "rng_boot": 51000,
+  "BOOT": 10000,
+  "K_MIN": 9,
+  "CEILING": 0.11,
+  "ORACLE": 0.317
+ },
+ "companion/audit_log/verification/research_grade_2026-11-09/homology_score.py": {
+  "BIN_MS": 50,
+  "NULL_DRAWS": 20,
+  "rng": 56000,
+  "channels": 2,
+  "MOVE_DEG_S": 5.0,
+  "REST_GUARD_MS": 500,
+  "MIN_SHIFT_S": 5.0,
+  "TOUCH_PARTS": {
+   "head": [
+    "face",
+    "rest_head"
+   ],
+   "mouth": [
+    "lip_upper",
+    "lip_lower",
+    "tongue",
+    "palate",
+    "soft_palate",
+    "ridge_upper",
+    "ridge_lower",
+    "buccal_L",
+    "buccal_R"
+   ],
+   "arm_L": [
+    "thumb_L",
+    "palm_L",
+    "fingers_L",
+    "forearm_L"
+   ],
+   "arm_R": [
+    "thumb_R",
+    "palm_R",
+    "fingers_R",
+    "forearm_R"
+   ],
+   "trunk": [
+    "trunk"
+   ],
+   "leg_L": [
+    "sole_L",
+    "leg_L"
+   ],
+   "leg_R": [
+    "sole_R",
+    "leg_R"
+   ]
+  },
+  "MOTOR_PARTS": {
+   "head": [
+    "neck_flex",
+    "neck_yaw"
+   ],
+   "mouth": [
+    "jaw_open",
+    "jaw_lat"
+   ],
+   "arm_L": [
+    "L_sh_flex",
+    "L_sh_abd",
+    "L_sh_rot",
+    "L_elbow",
+    "L_pron",
+    "L_wrist",
+    "L_thumb",
+    "L_fingers"
+   ],
+   "arm_R": [
+    "R_sh_flex",
+    "R_sh_abd",
+    "R_sh_rot",
+    "R_elbow",
+    "R_pron",
+    "R_wrist",
+    "R_thumb",
+    "R_fingers"
+   ],
+   "trunk": [
+    "spine_flex"
+   ],
+   "leg_L": [
+    "L_hip",
+    "L_knee"
+   ],
+   "leg_R": [
+    "R_hip",
+    "R_knee"
+   ]
+  }
+ },
+ "companion/audit_log/verification/research_grade_2026-11-09/yoke_test.py": {
+  "_source": "Robinson 2008 Infancy doi:10.1080/15250000802004288 (PMC2829984) and Robinson 2015 Dev Psychobiol doi:10.1002/dev.21277 (PMC4412770), full text; scoring after Robinson 2005 doi:10.1002/dev.20103",
+  "BASELINE_S": 300,
+  "TRAIN_S": 1800,
+  "TEST_S": 1800,
+  "BIN_S": 300,
+  "SECOND_TRAIN_S": 1800,
+  "YOKE_LENGTH": "the body's own mean rest distance between the two ankles (protocol: tubing cut to the mean resting ankle distance)",
+  "LIMBS": [
+   "L_leg",
+   "R_leg"
+  ],
+  "CLM_ONSET_S": 0.1,
+  "CLM_RULE": "both limbs start within CLM_ONSET_S and move on parallel trajectories; a limb dragged along the yoke line by the other is not counted; whole-body movements not counted",
+  "PCT_CLM": "2 x CLM / total hindlimb movements",
+  "UNYOKED_CONTROL": "yoke attached and cut at the start of training",
+  "EXPECT": "E20 rat: CLM rises during training (about 7-fold over the first training bin, peak %CLM about 49%), stays raised for 10-20 min after removal, test CLM 62% of training; savings on second training (R08, R15)"
+ }
+}

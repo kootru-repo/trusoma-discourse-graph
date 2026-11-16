@@ -1,0 +1,29 @@
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --sans: Inter, system-ui, -apple-system, "Segoe UI", sans-serif;
+  --mono: "JetBrains Mono", ui-monospace, "Cascadia Mono", Consolas, monospace;
+  --ink: #0f172a; --ink-2: #334155; --muted: #64748b; --faint: #94a3b8;
+  --line: #e2e8f0; --line-2: #eef2f6; --bg: #f8fafc; --panel: #ffffff; --accent: #2563eb; --accent-soft: #eff4ff;
+  font-family: var(--sans);
+}
+* { box-sizing: border-box; }
+html, body, #root { height: 100%; margin: 0; }
+body { color: var(--ink); background: var(--bg); font-size: 14px; line-height: 1.45; -webkit-font-smoothing: antialiased; }
+button, input, select { font: inherit; color: inherit; }
+button { cursor: pointer; }
+:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+h1, h2, h3, p { margin: 0; }
+
+/* tldraw: fill the window, dotted ground */
+.dg-canvas .tl-container { position: absolute; inset: 0; }
+.dg-canvas .tl-background { background-color: var(--bg); background-image: radial-gradient(#dde3ec 1px, transparent 1px); background-size: 22px 22px; }
+
+/* what utilities cannot say: scrollbar parts, and the arrow of the select */
+.dg-scroll { scrollbar-width: thin; scrollbar-color: transparent transparent; }
+.dg-scroll:hover { scrollbar-color: #cbd5e1 transparent; }
+.dg-scroll::-webkit-scrollbar { width: 6px; }
+.dg-scroll::-webkit-scrollbar-thumb { background: transparent; border-radius: 6px; }
+.dg-scroll:hover::-webkit-scrollbar-thumb { background: #cbd5e1; }
+.dg-select { -webkit-appearance: none; background: #fff url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20' fill='none' stroke='%2364748b' stroke-width='1.8' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='m6 8 4 4 4-4'/%3E%3C/svg%3E") no-repeat right 8px center / 16px;; }

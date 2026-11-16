@@ -1,0 +1,10 @@
+---
+nodeTypeId: "trusoma-record"
+nodeInstanceId: "e26cb579-113a-7ff7-a029-ef2f2548eeaa"
+dg_type: "Record"
+record_file: "companion/source_audit/batch_2026-11-04_equations/equations.jsonl"
+code: "eq"
+order: 24
+fmt: "default"
+data: {"edge": "expr_fate", "equation": "dN_i/dt = β_N − γN_i − N_i<D_j>_i/k_t (7); dD_i/dt = β_D 1/(1 + R_i^m) − γD_i − D_i<N_j>_i/k_t (8); dR_i/dt = β_R (N_i<D_j>_i)^n/(k_RS + (N_i<D_j>_i)^n) − γ_R R_i (9). LIMI adds −N_iD_i/k_c to Eqs. 7 and 8, as (10)-(12)", "symbols": {"N_i, D_i, R_i": "Notch, DSL and Reporter in cell i", "β_N, β_D, β_R": "production rates", "k_c^-1, k_t^-1": "strengths of the cis and trans interactions", "γ, γ_R": "degradation rates", "k_RS, n": "affinity and Hill coefficient of Reporter induction", "m": "not defined in the passage read", "<D_j>_i": "average DSL in the neighbours of cell i"}, "parameters": [{"name": "all rates and affinities", "value": "not read (Table S1)", "unit": "not read", "kind": "assumed"}], "system": "Generic lateral inhibition model on a cell lattice; values in Table S1 are not stated as measured in the passage read.", "paper_id": "p-pmid21695234", "citation": "Sprinzak D, Lakhanpal A, LeBon L, Garcia-Ojalvo J, Elowitz MB. Mutual inactivation of Notch receptors and ligands facilitates developmental patterning. PLoS Comput Biol 2011;7:e1002069.", "doi": "10.1371/journal.pcbi.1002069", "pmid": "21695234", "local_file": "C:\\Projects\\trusoma-archive\\montyjepa-engine\\papers\\growth_sources\\pdf\\p-pmid21695234.pdf", "locator": "Methods p 9, Eqs. 7-12, page image", "quote": "Lateral Inhibition (LI):", "maps_to_edge": "Neighbour signalling amplifies small differences toward distinct fates.", "transfer_assumes": "Assumes a generic Notch-DSL form applies to brainstem progenitors; nothing links random bursting to the starting difference, and no measured rates exist (prior pass).", "transcription_confidence": "clean", "how_far_read": "publisher PDF; Methods page 9 read as page image; Table S1 (parameter values) and Text S1 not read", "found": true}
+---

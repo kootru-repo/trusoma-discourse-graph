@@ -1,0 +1,45 @@
+key,model_value,measured_frame,measured_own,difference_frame,unit,method,label_dependent,note
+body7.face_frac.n0.n2.lo,0.45,0.432,0.576,-0.018,semi-axis / R,half of the 2-98 percentile range of label midface,1,
+body7.face_frac.n0.n1.hi,0.8,0.882,0.739,0.082,centre / R or A,median of label midface,1,
+body7.face_frac.n0.n2.hi,0.25,0.131,0.174,-0.119,semi-axis / R,half of the 2-98 percentile range of label midface,1,
+body7.face_frac.n0.n1.n2,-0.55,-0.591,-0.608,-0.041,centre / R or A,median of label midface,1,
+body7.face_frac.n0.n2.n2,0.3,0.238,0.317,-0.062,semi-axis / R,half of the 2-98 percentile range of label midface,1,
+body7.face_frac.n1.n2.hi,0.1,0.056,0.074,-0.044,semi-axis / R,half of the 2-98 percentile range of label nose,1,
+body7.face_frac.n1.n1.n2,-0.19,-0.306,-0.228,-0.116,centre / R or A,median of label nose,1,
+body7.face_frac.n1.n2.n2,0.14,0.132,0.176,-0.008,semi-axis / R,half of the 2-98 percentile range of label nose,1,
+body7.face_frac.n2.n2.lo,0.25,0.208,0.277,-0.042,semi-axis / R,half of the 2-98 percentile range of label upper_lip,1,
+body7.face_frac.n2.n1.hi,0.95,0.999,0.87,0.049,centre / R or A,median of label upper_lip,1,
+body7.face_frac.n2.n2.hi,0.08,0.067,0.089,-0.013,semi-axis / R,half of the 2-98 percentile range of label upper_lip,1,
+body7.face_frac.n3.n1.hi,0.92,1.003,0.874,0.083,centre / R or A,median of label lower_lip,1,"right hand lies against this region, so its label takes hand vertices"
+body7.face_frac.n3.n2.hi,0.08,0.116,0.155,0.036,semi-axis / R,half of the 2-98 percentile range of label lower_lip,1,"right hand lies against this region, so its label takes hand vertices"
+body7.face_frac.n3.n1.n2,-0.74,-0.912,-1.035,-0.172,centre / R or A,median of label lower_lip,1,"right hand lies against this region, so its label takes hand vertices"
+body7.face_frac.n4.n1.hi,0.8,0.813,0.662,0.013,centre / R or A,median of label chin,1,"right hand lies against this region, so its label takes hand vertices"
+body7.face_frac.n4.n2.hi,0.14,0.228,0.304,0.088,semi-axis / R,half of the 2-98 percentile range of label chin,1,"right hand lies against this region, so its label takes hand vertices"
+body7.face_frac.n4.n1.n2,-0.92,-0.97,-1.113,-0.05,centre / R or A,median of label chin,1,"right hand lies against this region, so its label takes hand vertices"
+body7.face_frac.n5.n1.lo,0.4,0.38,0.528,-0.02,centre / R or A,median of label cheek_L,1,
+body7.face_frac.n5.n1.hi,0.7,0.829,0.68,0.129,centre / R or A,median of label cheek_L,1,
+body7.face_frac.n5.n2.hi,0.18,0.149,0.199,-0.031,semi-axis / R,half of the 2-98 percentile range of label cheek_L,1,
+body7.face_frac.n5.n1.n2,-0.55,-0.668,-0.71,-0.118,centre / R or A,median of label cheek_L,1,
+body7.face_frac.n5.n2.n2,0.2,0.193,0.257,-0.007,semi-axis / R,half of the 2-98 percentile range of label cheek_L,1,
+body7.face_frac.n6.n1.lo,-0.4,-0.391,-0.5,0.009,centre / R or A,median of label cheek_R,1,
+body7.face_frac.n6.n1.hi,0.7,0.83,0.681,0.13,centre / R or A,median of label cheek_R,1,
+body7.face_frac.n6.n2.hi,0.18,0.143,0.191,-0.037,semi-axis / R,half of the 2-98 percentile range of label cheek_R,1,
+body7.face_frac.n6.n1.n2,-0.55,-0.671,-0.714,-0.121,centre / R or A,median of label cheek_R,1,
+body7.face_frac.n6.n2.n2,0.2,0.217,0.289,0.017,semi-axis / R,half of the 2-98 percentile range of label cheek_R,1,
+body7.neck.n0.n2,-1.1,-1.06,-1.233,0.04,centre z / R,narrowest lateral width of the head and trunk labels below the chin,1,"half-width there 0.78 R; a weak reading, since the sculpt shows little neck narrowing"
+body7.neck.n1.n2,0.2,0.065,0.087,-0.135,semi-height / R,half the height from the top of the upper arms to the chin,1,"the chin nearly reaches the shoulder tops in this curled pose, so this is a lower bound on neck height, not a reading of it"
+body7.shoulder_drop,1.2,1.193,1.41,-0.007,head radii below the head centre,top of the upper arm labels,1,"read in the head frame, in the sculpt's curled posture, so neck flexion shortens it"
+body7.r_thumb,0.08,0.078,,-0.002,radius / hand length,"left thumb label, two smaller principal half-sizes; sourced hand length",1,"left hand only: the right hand's labels hold 2,252 thumb vertices against 538"
+body7.finger_gap,0.06,0.11,,0.05,spacing / hand length,left finger label: largest principal size over four fingers; sourced hand length,1,"rough: curled and welded fingers, and the largest axis may not run across the fingers"
+setting.body7.HIP_FRAC,0.5,,0.465,,offset / trunk half-width,"thigh centres from slices along the trunk axis, without thigh labels",0,"own-size reading only; 0.40 cm over 0.87 cm; thighs are flexed in this pose, so this is where they leave the trunk"
+body7.body7.fk.tb,0.15,,,,,not measurable,0,"thumb base position along the palm: the digits are curled and welded on this mesh, and the hand labels cannot isolate it"
+body7.flat_profile.n0#2,0.6,,,,,not measurable,0,"applies at an earlier age, and the sculpt exists only at 12.5 weeks"
+body7.girdle_h,0.25,,,,,not measurable,0,"shoulder girdle height: internal structure, with no landmark on the skin"
+body7.girdle_z,0.15,,,,,not measurable,0,"shoulder girdle depth: internal structure, with no landmark on the skin"
+body7.neck_pivot.n1,-0.1,,,,,not measurable,0,"joint centre inside the neck, with no landmark on the skin"
+body7.phalanx.n0,0.24,,,,,not measurable,0,"the fingers are curled and welded, so no phalanx can be isolated; use anatomy papers"
+body7.phalanx.n1,0.165,,,,,not measurable,0,"the fingers are curled and welded, so no phalanx can be isolated; use anatomy papers"
+body7.thumb_target.n2,-0.866,,,,,not measurable,0,"a movement direction, which a still mesh cannot show"
+setting.body7.THUMB_TARGET.1,0.5,,,,,not measurable,0,"a movement direction, which a still mesh cannot show"
+setting.brainstem_s2.CORD_FRAC,0.5,,,,,not measurable,0,"a nerve path inside the body, not on the skin"
+setting.brainstem_s2.FACE_PATH_HEADS,1.0,,,,,not measurable,0,"a nerve path inside the head, not on the skin"

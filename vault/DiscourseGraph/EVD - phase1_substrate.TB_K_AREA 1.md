@@ -1,0 +1,17 @@
+---
+nodeTypeId: "node_xQmEzWQFHdHy2swhrugrF"
+nodeInstanceId: "6ced7a22-15f8-71a4-8dc3-67157d4c058c"
+dg_type: "Evidence"
+claim: "[[CLM - phase1_substrate.TB_K_AREA]]"
+source: "[[@p-toporikova2011]]"
+paper_id: "p-toporikova2011"
+locator: "Section 2.1 (author manuscript pages 2-4)"
+quote: "the ratio of somatic to total area, k = 0.3"
+transfer: "computational model parameter (Toporikova and Butera 2011 inspiratory pre-Botzinger neuron, parent model of Chevalier 2016); declared transfer to the learner's relay neurons (J-RL8)"
+class: "model_parameter"
+species: "none (computational model)"
+stage: "model"
+ga_lo_wk: ""
+ga_hi_wk: ""
+basis_note: "computational model parameter (Toporikova and Butera 2011), as logged in its transfer text"
+---

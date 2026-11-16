@@ -1,0 +1,18 @@
+---
+nodeTypeId: "node_xQmEzWQFHdHy2swhrugrF"
+nodeInstanceId: "01edf2fe-7e4f-7083-917e-08fe8179a397"
+dg_type: "Evidence"
+claim: "[[CLM - predictive_net.W_FACTOR_ONTO_E]]"
+source: "[[@local-asabuki-code]]"
+paper_id: "local-asabuki-code"
+locator: "training.py"
+quote: "W_E[0:N_E,0:N_E]*=0.1"
+saved_text: "papers/jepa_sources/stochastic/training.py"
+transfer: "computational model parameter, not a fetal measurement; declared in K15"
+class: "model_parameter"
+species: "none (computational model)"
+stage: "model"
+ga_lo_wk: ""
+ga_hi_wk: ""
+basis_note: "computational model parameter, as logged in its transfer text"
+---

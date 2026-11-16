@@ -1,0 +1,9 @@
+---
+nodeTypeId: "node_2unblKFUVJkOdOnT8MstZ"
+nodeInstanceId: "54afecb9-f291-7b2b-a17a-453c87b5e2c9"
+dg_type: "Issue"
+record_file: "companion/audit_log/nonbrain_audit_log.csv"
+code: "audit"
+order: 225
+data: {"id": "M-101", "category": "M", "priority": "P1", "ref": "", "item": "Body solver goes non-finite when a hand is pressed on the face for long: with the bound rest pose and generator bursts lengthened toward the source's 1.6 s (fast time constant 1600 ms) 2 of 3 seeds stop within 11 s (also 1 of 3 at half stiffness and with damping x3). Probe (nonfinite_probe.py, seed 7, stops at 8.77 s): in the last 60 ms the right forearm pronation turns at 1471 deg/s, wrist 1068, elbow 816, neck yaw 936, neck flexion 604, with the right forearm, palm and thumb on the midface and the lower lip on the forearm; 200 ms earlier only fingers on the upper lip and forearm on the midface. A hand-face-neck contact loop the solver does not hold. Blocks the fit of burst length (M-100) and any long hand-on-face contact", "why": "", "resolve": "", "status": "in-progress", "evidence": "2026-11-11 CAUSE FOUND AND REPAIRED: not the solver. The scanned face grid had its interior overwritten with '5 mm outside' at the cuts (5,595 steps, up to 14 mm) and the lookup answered 'far' outside the grid box although the solid reaches the box faces (face and chin grids). A hand sphere crossing was at once deep inside with zero gradient; a forced row there gave a 0/0 normal. Repair: face_sdf_repair.py (both grids closed, no new value), body7.face_sdf_eval continuous outside the box, direction-less row skipped. All four known failing runs complete (15 s x3, 240 s x1) plus two more 240 s runs on bound values (nonfinite_trace.py; RESULT_PATH_STEPS_1_2.md section 14). Kept in progress: one penetration of 0.77 radii in one run and one failed optimality check in two; touch not yet re-recorded", "touched": "2026-11-11", "note": ""}
+---

@@ -1,0 +1,32 @@
+{
+  "name": "@repo/graph",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "description": "The TruSoma Discourse Graphs vault in TypeScript: read, validate and write notes, database rows, conformance check. The MCP server is its own package in mcp/.",
+  "scripts": {
+    "db:hosted": "tsx scripts/load-hosted.ts",
+    "check:upstream": "tsx scripts/check-upstream.ts",
+    "export": "tsx scripts/export-graph.ts",
+    "lint": "eslint .",
+    "check-types": "tsc --noEmit",
+    "test": "pnpm test:unit",
+    "test:unit": "vitest run"
+  },
+  "dependencies": {
+    "@supabase/supabase-js": "2.118.0",
+    "yaml": "^2.8.1",
+    "zod": "^3.24.1"
+  },
+  "devDependencies": {
+    "@types/node": "^22",
+    "tsx": "^4.19.2",
+    "typescript": "5.5.4",
+    "vitest": "^4.0.0",
+    "eslint": "^9.39.5",
+    "@repo/eslint-config": "workspace:*"
+  },
+  "exports": {
+    "./*": "./src/*.ts"
+  }
+}

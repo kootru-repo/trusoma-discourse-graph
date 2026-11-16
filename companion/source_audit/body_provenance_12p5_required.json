@@ -1,0 +1,794 @@
+{
+ "ga": 12.5,
+ "body_package": {
+  "description": "the GA 12.5 body these targets are checked against: the ORIGINAL wk8 sculpt scaled x3.7154, skin unchanged, TruSoma physics at its own sourced sizes with only the joint posture fitted; tongue scaled x1.21 (the one sculpt change)",
+  "handoff": "body/body_world_12p5/MONTYJEPA_HANDOFF.md",
+  "blend": "body/body_world_12p5/blend\\stage_12.5_sourced_mouth.blend",
+  "meshes": "body/body_world_12p5/ga12p5_meshes.npz",
+  "meta": "body/body_world_12p5/ga12p5_meta.json",
+  "taxels": "body/body_world_12p5/ga12p5_taxels.json",
+  "viewer_export": "body/body_world_12p5/viewer_out\\manifest.json",
+  "fitted_posture": "body/body_world_12p5/data\\fitted_q.json",
+  "posed_primitives": "body/body_world_12p5/data\\posed_prims.json",
+  "sculpt_vs_source_audit": "body/body_world_12p5/source_audit.json",
+  "sculpt_vs_source_table": "body/body_world_12p5/SOURCE_AUDIT_FULL.md",
+  "proposed_growth7_changes": "body/body_world_12p5/PROPOSED_GROWTH7_CHANGES.md",
+  "verify": "body/body_world_12p5/verify_package.py"
+ },
+ "scope": "ONLY the values TruSoma reads at GA 12.5 (body7 / oral7 / tongue7); see body_provenance.json for the display-only features",
+ "status_values": {
+  "sourced_direct": "published data at 12.5 wk",
+  "sourced_interpolated": "at or between published anchors within 0.5 wk",
+  "derived": "computed from sourced values by a stated rule",
+  "extrapolated": "outside the source's data range (see gap_weeks)",
+  "undefined_in_source_model": "growth7 has no value",
+  "unsourced": "no scientific source (sculpt feature)",
+  "generated": "model-generated geometry"
+ },
+ "check_values": {
+  "paper_read_full": "paper tables read in full",
+  "open_access_page_read": "open page read",
+  "abstract_read_coefficients_verified": "abstract only; coefficients match growth7",
+  "abstract_read_no_values": "abstract has no numbers",
+  "computed_from_published_equation": "equation from a secondary page, computed",
+  "abstract_read_values_verified": "abstract read (Europe PMC / PubMed) and the numbers match; full text not read",
+  "search_summary_only": "values seen only in a web-search summary of the paper; paper not read",
+  "code_citation_only": "cited in trusoma code; paper not read here",
+  "trusoma_blind_verified": "trusoma companion/source_audit: a second reader re-opened the source and recorded quote and value (abstract or table level); NOT re-read in this project",
+  "table_in_papers_folder_starts_at_14wk": "table is in the papers folder and read; it starts at 14 wk",
+  "not_a_scientific_source": "-"
+ },
+ "summary": {
+  "sourced_direct": 3,
+  "sourced_interpolated": 4,
+  "derived": 5,
+  "extrapolated": 4
+ },
+ "taxel_surfaces_live_at_12_5": [
+  "face",
+  "lips",
+  "tongue",
+  "palate",
+  "soft_palate",
+  "thumb_L",
+  "thumb_R",
+  "palm_L",
+  "palm_R",
+  "fingers_L",
+  "fingers_R",
+  "sole_L",
+  "sole_R"
+ ],
+ "features": [
+  {
+   "id": "crl",
+   "name": "Crown-rump length",
+   "spread": "SD 6.40 mm at 87.5 days (10.4%), from the standard's own equation SD = -2.21626 + 0.0984894 x GA in days; Papageorghiou 2014, open-access copy read 2026-11-10; its mean equation gives 61.65 mm",
+   "regions": [],
+   "unit": "mm",
+   "target_12_5": 61.65,
+   "status": "sourced_direct",
+   "source_ids": [
+    "S01"
+   ],
+   "data_range_weeks": [
+    9,
+    14
+   ],
+   "gap_weeks": 0,
+   "trusoma_ref": "growth7.crl",
+   "sculpt": {
+    "measured": false,
+    "why": "curled pose"
+   },
+   "required_at_12_5": true,
+   "used_by_trusoma": "body7 schedule crl"
+  },
+  {
+   "id": "bpd",
+   "name": "Biparietal diameter",
+   "regions": [
+    "cranium"
+   ],
+   "unit": "mm",
+   "target_12_5": 21.88,
+   "status": "sourced_interpolated",
+   "source_ids": [
+    "S02"
+   ],
+   "data_range_weeks": [
+    12,
+    12.86
+   ],
+   "gap_weeks": 0,
+   "independent_check": {
+    "gjessing_linear_between_12+0_and_12+6_mm": 21.54,
+    "growth7_pct_diff": 1.6
+   },
+   "method": "12+0 wk anchor blended to INTERGROWTH at 14 wk; Gjessing gives 19.5 mm at 12+0 and 23.0 mm at 12+6, so 12.5 wk lies between two published points",
+   "trusoma_ref": "growth7.bpd",
+   "sculpt": {
+    "measured": true,
+    "value": 18.52,
+    "deviation_pct": -15.4,
+    "method": "skin vertices within 0.5 R of the sourced head ellipsoid (skin adds 1-2 mm)"
+   },
+   "required_at_12_5": true,
+   "used_by_trusoma": "body7.Template R = bpd/2"
+  },
+  {
+   "id": "ofd",
+   "name": "Occipitofrontal diameter",
+   "regions": [
+    "cranium",
+    "C_face"
+   ],
+   "unit": "mm",
+   "target_12_5": 24.95,
+   "status": "sourced_direct",
+   "source_ids": [
+    "S03"
+   ],
+   "data_range_weeks": [
+    12,
+    42
+   ],
+   "gap_weeks": 0,
+   "independent_check": {
+    "chitty_1994_mm": 25.39,
+    "growth7_pct_diff": -1.7
+   },
+   "trusoma_ref": "growth7.ofd",
+   "note": "growth7 itself holds the 14-wk cephalic index below 14 wk; Chitty covers 12.5 directly",
+   "sculpt": {
+    "measured": true,
+    "value": 23.06,
+    "deviation_pct": -7.6,
+    "method": "as BPD"
+   },
+   "required_at_12_5": true,
+   "used_by_trusoma": "body7.Template A = ofd/2"
+  },
+  {
+   "id": "trunk_length",
+   "name": "Trunk length (shoulder-rump)",
+   "regions": [
+    "trunk0",
+    "trunk1",
+    "trunk2",
+    "trunk3",
+    "trunk4",
+    "trunk5",
+    "trunk6",
+    "trunk7",
+    "trunk8",
+    "trunk9",
+    "trunk10",
+    "trunk11"
+   ],
+   "unit": "mm",
+   "target_12_5": 39.77,
+   "status": "derived",
+   "source_ids": [
+    "S01",
+    "S02"
+   ],
+   "method": "CRL minus BPD",
+   "trusoma_ref": "growth7.trunk_length",
+   "sculpt": {
+    "measured": true,
+    "region_dev_mm": {
+     "trunk0": {
+      "n": 60510,
+      "mean_abs_mm": 1.78,
+      "signed_mm": 0.34,
+      "mean_abs_R": 0.162,
+      "verdict": "within 0.25 R of sourced"
+     },
+     "trunk1": {
+      "n": 3682,
+      "mean_abs_mm": 1.44,
+      "signed_mm": 0.91,
+      "mean_abs_R": 0.131,
+      "verdict": "within 0.25 R of sourced"
+     },
+     "trunk2": {
+      "n": 16916,
+      "mean_abs_mm": 0.97,
+      "signed_mm": 0.2,
+      "mean_abs_R": 0.089,
+      "verdict": "within 0.25 R of sourced"
+     },
+     "trunk3": {
+      "n": 20772,
+      "mean_abs_mm": 2.42,
+      "signed_mm": 0.33,
+      "mean_abs_R": 0.221,
+      "verdict": "within 0.25 R of sourced"
+     }
+    }
+   },
+   "required_at_12_5": true,
+   "used_by_trusoma": "body7.Template trunk_len"
+  },
+  {
+   "id": "ac",
+   "name": "Abdominal circumference",
+   "regions": [
+    "trunk2",
+    "trunk3"
+   ],
+   "unit": "mm",
+   "target_12_5": 61.63,
+   "status": "extrapolated",
+   "source_ids": [
+    "S12"
+   ],
+   "data_range_weeks": [
+    14,
+    40
+   ],
+   "gap_weeks": 1.5,
+   "method": "14-wk value scaled by the CRL ratio",
+   "trusoma_ref": "growth7.ac",
+   "sculpt": {
+    "measured": false
+   },
+   "required_at_12_5": true,
+   "used_by_trusoma": "body7.Template trunk radius = ac/2/pi"
+  },
+  {
+   "id": "neck",
+   "name": "Neck circumference",
+   "spread": "SD 6.5 mm at 12.5 wk (19%), from the nomogram's own equation SD (cm) = 3.15 - 0.3823 GA + 0.01733 GA^2 - 0.0002179 GA^3, extrapolated 1.5 wk below its data (14-40 wk); Sherer 2007 (J Ultrasound Med 26:1529-37, PMID 17957047), abstract read 2026-11-10; its mean equation gives 34.86 mm",
+   "regions": [],
+   "unit": "mm",
+   "target_12_5": 34.86,
+   "status": "extrapolated",
+   "source_ids": [
+    "S11"
+   ],
+   "data_range_weeks": [
+    14,
+    40
+   ],
+   "gap_weeks": 1.5,
+   "method": "14-wk ratio to the head held",
+   "trusoma_ref": "growth7.neck_circ",
+   "sculpt": {
+    "measured": false
+   },
+   "required_at_12_5": true,
+   "used_by_trusoma": "body7.neck_xy (growth7.neck_circ, 14-wk ratio held)"
+  },
+  {
+   "id": "humerus",
+   "name": "Humerus length",
+   "spread": "four specimens at crown-rump length 61-63 mm: 12.9-14.1 mm, mean 13.43; residual SD 1.2 mm about a line through 15 specimens of 50-71 mm (Bareggi 1994 Table 1)",
+   "regions": [
+    "L_upper_arm",
+    "R_upper_arm"
+   ],
+   "unit": "mm",
+   "target_12_5": 14.37,
+   "status": "sourced_interpolated",
+   "source_ids": [
+    "S04"
+   ],
+   "data_range_weeks": [
+    9,
+    13.5
+   ],
+   "gap_weeks": 0,
+   "trusoma_ref": "growth7.limbs / HUMERUS_ANCH",
+   "sculpt": {
+    "measured": true,
+    "region_dev_mm": {
+     "L_upper_arm": {
+      "n": 1739,
+      "mean_abs_mm": 0.65,
+      "signed_mm": 0.18,
+      "mean_abs_R": 0.059,
+      "verdict": "within 0.25 R of sourced"
+     },
+     "R_upper_arm": {
+      "n": 2230,
+      "mean_abs_mm": 0.89,
+      "signed_mm": 0.25,
+      "mean_abs_R": 0.081,
+      "verdict": "within 0.25 R of sourced"
+     }
+    }
+   },
+   "required_at_12_5": true,
+   "used_by_trusoma": "body7 segment length",
+   "method": "whole humerus, linear between the class means at crown-rump length 53 and 64 mm (Bareggi 1994 Table 2)",
+   "note": "2026-11-11: target changed from the ultrasound shaft length to the whole bone the physics body has used since 2026-11-05 (audit item M-068); the sculpt figures below were taken against the shaft target",
+   "shaft_ultrasound_mm": 9.63
+  },
+  {
+   "id": "femur",
+   "name": "Femur length",
+   "spread": "not recorded for the whole bone; the ultrasound shaft at 12+0 to 12+6 wk is 9.15 +- 1.44 mm (Chen 2007), a different quantity",
+   "regions": [
+    "L_thigh",
+    "R_thigh"
+   ],
+   "unit": "mm",
+   "target_12_5": 14.19,
+   "status": "sourced_direct",
+   "source_ids": [
+    "S04"
+   ],
+   "data_range_weeks": [
+    9,
+    13.5
+   ],
+   "gap_weeks": 0,
+   "trusoma_ref": "growth7.limbs / FEMUR_ANCH",
+   "sculpt": {
+    "measured": true,
+    "region_dev_mm": {}
+   },
+   "required_at_12_5": true,
+   "used_by_trusoma": "body7 segment length",
+   "method": "whole femur at crown-rump length 62 mm: 14.19 mm (Ishikawa 2026 Table 1; Takakuwa 2023 fit; Suzuki 2019 gives 14.46)",
+   "note": "2026-11-11: target changed from the ultrasound shaft length to the whole bone the physics body has used since 2026-11-05 (audit item M-068); the sculpt figures below were taken against the shaft target",
+   "shaft_ultrasound_mm": 9.15
+  },
+  {
+   "id": "ulna",
+   "name": "Ulna length",
+   "regions": [
+    "L_forearm",
+    "R_forearm"
+   ],
+   "unit": "mm",
+   "target_12_5": 10.11,
+   "status": "sourced_interpolated",
+   "source_ids": [
+    "S05",
+    "S04"
+   ],
+   "method": "whole ulna, linear between the class means at crown-rump length 53 and 64 mm (Bareggi 1994 Table 2)",
+   "gap_weeks": 0,
+   "trusoma_ref": "growth7.limbs",
+   "sculpt": {
+    "measured": false
+   },
+   "required_at_12_5": true,
+   "used_by_trusoma": "body7 segment length",
+   "note": "2026-11-11: target changed from the ultrasound shaft length to the whole bone the physics body has used since 2026-11-05 (audit item M-068); the sculpt figures below were taken against the shaft target",
+   "spread": "four specimens at 61-63 mm: 8.0-12.0 mm, mean 9.52 (Bareggi 1994 Table 1)"
+  },
+  {
+   "id": "tibia",
+   "name": "Tibia length",
+   "regions": [
+    "L_leg",
+    "R_leg"
+   ],
+   "unit": "mm",
+   "target_12_5": 11.49,
+   "status": "derived",
+   "source_ids": [
+    "S05",
+    "S04"
+   ],
+   "method": "14-wk tibia/femur ratio x the whole femur 14.19 mm",
+   "gap_weeks": 1.5,
+   "trusoma_ref": "growth7.limbs",
+   "sculpt": {
+    "measured": true,
+    "region_dev_mm": {
+     "L_leg": {
+      "n": 1599,
+      "mean_abs_mm": 2.85,
+      "signed_mm": 2.85,
+      "mean_abs_R": 0.261,
+      "verdict": "sculpt larger than sourced"
+     },
+     "R_leg": {
+      "n": 2139,
+      "mean_abs_mm": 2.58,
+      "signed_mm": 2.58,
+      "mean_abs_R": 0.236,
+      "verdict": "within 0.25 R of sourced"
+     }
+    }
+   },
+   "required_at_12_5": true,
+   "used_by_trusoma": "body7 segment length",
+   "note": "2026-11-11: target changed from the ultrasound shaft length to the whole bone the physics body has used since 2026-11-05 (audit item M-068); the sculpt figures below were taken against the shaft target"
+  },
+  {
+   "id": "foot",
+   "name": "Foot length",
+   "regions": [
+    "L_foot",
+    "R_foot"
+   ],
+   "unit": "mm",
+   "target_12_5": 9.16,
+   "status": "sourced_interpolated",
+   "source_ids": [
+    "S06"
+   ],
+   "data_range_weeks": [
+    8,
+    12
+   ],
+   "gap_weeks": 0,
+   "method": "Streeter sitting-height rows dated by INTERGROWTH, log-interpolated",
+   "trusoma_ref": "growth7._foot_early",
+   "note": "1920 cadaver series",
+   "sculpt": {
+    "measured": true,
+    "region_dev_mm": {
+     "L_foot": {
+      "n": 5752,
+      "mean_abs_mm": 2.17,
+      "signed_mm": 2.17,
+      "mean_abs_R": 0.198,
+      "verdict": "within 0.25 R of sourced"
+     },
+     "R_foot": {
+      "n": 5031,
+      "mean_abs_mm": 1.85,
+      "signed_mm": 1.84,
+      "mean_abs_R": 0.169,
+      "verdict": "within 0.25 R of sourced"
+     }
+    }
+   },
+   "required_at_12_5": true,
+   "used_by_trusoma": "body7 segment length"
+  },
+  {
+   "id": "hand",
+   "name": "Hand length",
+   "regions": [
+    "L_palm",
+    "R_palm",
+    "L_fingers",
+    "R_fingers",
+    "L_thumb",
+    "R_thumb"
+   ],
+   "unit": "mm",
+   "target_12_5": 7.42,
+   "status": "derived",
+   "source_ids": [
+    "S06",
+    "S20"
+   ],
+   "method": "0.81 x foot (newborn hand/foot ratio)",
+   "trusoma_ref": "growth7.HAND_OVER_FOOT",
+   "sculpt": {
+    "measured": true,
+    "region_dev_mm": {
+     "L_palm": {
+      "n": 3374,
+      "mean_abs_mm": 0.96,
+      "signed_mm": 0.92,
+      "mean_abs_R": 0.088,
+      "verdict": "within 0.25 R of sourced"
+     },
+     "R_palm": {
+      "n": 3447,
+      "mean_abs_mm": 2.62,
+      "signed_mm": 2.5,
+      "mean_abs_R": 0.239,
+      "verdict": "within 0.25 R of sourced"
+     },
+     "L_fingers": {
+      "n": 8877,
+      "mean_abs_mm": 0.23,
+      "signed_mm": 0.2,
+      "mean_abs_R": 0.021,
+      "verdict": "within 0.25 R of sourced"
+     },
+     "R_fingers": {
+      "n": 8710,
+      "mean_abs_mm": 2.42,
+      "signed_mm": 2.42,
+      "mean_abs_R": 0.221,
+      "verdict": "within 0.25 R of sourced"
+     },
+     "L_thumb": {
+      "n": 538,
+      "mean_abs_mm": 0.31,
+      "signed_mm": 0.25,
+      "mean_abs_R": 0.029,
+      "verdict": "within 0.25 R of sourced"
+     },
+     "R_thumb": {
+      "n": 2252,
+      "mean_abs_mm": 2.93,
+      "signed_mm": 2.93,
+      "mean_abs_R": 0.268,
+      "verdict": "sculpt larger than sourced"
+     }
+    }
+   },
+   "required_at_12_5": true,
+   "used_by_trusoma": "body7 segment length"
+  },
+  {
+   "id": "tongue_length",
+   "name": "Tongue length",
+   "spread": "13 wk, n 23: median 8.0 mm, 5th-95th centile 6.9-9.0 (SD 0.64 mm, 8%); Koren 2023 Table 4, read 2026-11-10",
+   "regions": [
+    "tongue"
+   ],
+   "unit": "mm",
+   "target_12_5": 7.19,
+   "status": "extrapolated",
+   "source_ids": [
+    "S07"
+   ],
+   "data_range_weeks": [
+    13,
+    40
+   ],
+   "gap_weeks": 0.5,
+   "method": "growth7 holds the Koren 2023 13-wk median (Tables 4 and 5: 8.0 x 6.5 mm) at its OFD ratio below 13 wk, linear to the 14-wk row between",
+   "real_data_available": {
+    "koren_13wk_median": 8.0,
+    "koren_14wk_median": 9.2
+   },
+   "trusoma_ref": "growth7.tongue (KOREN13_*)",
+   "sculpt": {
+    "measured": true,
+    "value": 6.69,
+    "deviation_pct": -1.6,
+    "method": "PCA extent of the tongue mesh after the x1.21 scale (original 5.53)"
+   },
+   "required_at_12_5": true,
+   "used_by_trusoma": "tongue7 G7.tongue",
+   "applied_in_growth7": "c1m 1ea717d (2026-10-29)"
+  },
+  {
+   "id": "tongue_width",
+   "name": "Tongue width",
+   "spread": "13 wk, n 23: median 6.5 mm, 5th-95th centile 5.4-7.6 (SD 0.67 mm, 10%); Koren 2023 Table 5, read 2026-11-10",
+   "regions": [
+    "tongue"
+   ],
+   "unit": "mm",
+   "target_12_5": 5.84,
+   "status": "extrapolated",
+   "source_ids": [
+    "S07"
+   ],
+   "data_range_weeks": [
+    13,
+    40
+   ],
+   "gap_weeks": 0.5,
+   "method": "growth7 holds the Koren 2023 13-wk median (Tables 4 and 5: 8.0 x 6.5 mm) at its OFD ratio below 13 wk, linear to the 14-wk row between",
+   "real_data_available": {
+    "koren_13wk_median": 6.5,
+    "koren_14wk_median": 7.8
+   },
+   "trusoma_ref": "growth7.tongue (KOREN13_*)",
+   "sculpt": {
+    "measured": true,
+    "value": 5.25,
+    "deviation_pct": -9.0,
+    "method": "as above (original 4.87)"
+   },
+   "required_at_12_5": true,
+   "used_by_trusoma": "oral7.tw and tongue7",
+   "applied_in_growth7": "c1m 1ea717d (2026-10-29)"
+  },
+  {
+   "id": "palate_length",
+   "name": "Hard palate length",
+   "spread": "12 wk: 6.38 +- 0.39 mm; 13 wk: 7.35 +- 0.50 mm (SD 6-7%), measured as the premaxilla-to-posterior distance; Liao 2025 Table 1, read 2026-11-10",
+   "regions": [
+    "palate_hard",
+    "palate_soft"
+   ],
+   "unit": "mm",
+   "target_12_5": 5.12,
+   "status": "derived",
+   "source_ids": [
+    "S10",
+    "S08"
+   ],
+   "data_range_weeks": [
+    12,
+    20.9
+   ],
+   "gap_weeks": 0,
+   "method": "Sherer 2004 15-wk value scaled by the Liao 2025 PMD regression ratio (1.16 w - 7.86) from 12.5 wk; below 12.5 wk the 12.5 wk value is held at its OFD ratio",
+   "real_data_available": {
+    "liao_PMD_12.5": 6.64,
+    "bridged_to_sherer_convention": 5.09
+   },
+   "trusoma_ref": "growth7.palate_length (wrapper) + body7 LIAO_PMD_A/B",
+   "note": "applied in c1m growth7 (1ea717d). Liao and Sherer measure the palate from different landmarks; the ratio is stable for length (about 1.30 over 15-20 wk)",
+   "sculpt": {
+    "measured": true,
+    "region_dev_mm": {
+     "palate_hard": {
+      "n": 5815,
+      "mean_abs_mm": 2.32,
+      "signed_mm": -2.32,
+      "mean_abs_R": 0.212,
+      "verdict": "within 0.25 R of sourced"
+     },
+     "palate_soft": {
+      "n": 444,
+      "mean_abs_mm": 1.3,
+      "signed_mm": -1.3,
+      "mean_abs_R": 0.119,
+      "verdict": "within 0.25 R of sourced"
+     }
+    }
+   },
+   "required_at_12_5": true,
+   "used_by_trusoma": "oral7.pl",
+   "applied_in_growth7": "c1m 1ea717d (2026-10-29)"
+  },
+  {
+   "id": "palate_width",
+   "name": "Hard palate width",
+   "spread": "12 wk: 7.46 +- 0.41 mm; 13 wk: 8.44 +- 0.47 mm (SD 5.5%); Liao 2025 Table 1, read 2026-11-10",
+   "regions": [
+    "palate_hard"
+   ],
+   "unit": "mm",
+   "target_12_5": 6.37,
+   "status": "derived",
+   "source_ids": [
+    "S10",
+    "S08"
+   ],
+   "data_range_weeks": [
+    12,
+    20.9
+   ],
+   "gap_weeks": 0,
+   "method": "Sherer 2004 15-wk value scaled by the Liao 2025 transverse regression ratio (0.71 w - 1.04) from 12.5 wk; below 12.5 wk the 12.5 wk value is held at its OFD ratio",
+   "real_data_available": {
+    "liao_transverse_12.5": 7.84,
+    "bridged_to_sherer_convention": 6.8,
+    "bridge_range": [
+     6.4,
+     7.2
+    ]
+   },
+   "trusoma_ref": "growth7.palate_width (wrapper) + body7 LIAO_TR_A/B",
+   "sculpt": {
+    "measured": false
+   },
+   "required_at_12_5": true,
+   "used_by_trusoma": "oral7.pw",
+   "note": "applied in c1m growth7 (1ea717d). CAVEAT: the landmark offset between Liao and Sherer drifts for width (ratio 1.23 down to 1.09 over 15-20 wk), so the 12.5 wk width carries more uncertainty than the length",
+   "applied_in_growth7": "c1m 1ea717d (2026-10-29)"
+  }
+ ],
+ "sources": {
+  "S01": {
+   "cite": "Papageorghiou AT et al. INTERGROWTH-21st fetal growth standards: CRL. Ultrasound Obstet Gynecol 2014;44:641",
+   "data_weeks": [
+    9,
+    14
+   ],
+   "check": "trusoma_blind_verified",
+   "note": "equation in growth7.crl; growth7 also applies it below 9 wk",
+   "trusoma_audit": "batch_2026-10-18e\res_promote_body.json; batch_2026-10-18b\res_growth.json",
+   "note_audit": "INTERGROWTH CRL equation re-opened by a second reader; data 9+0 to 13+6 wk, CRL 15-95 mm (covers 12.5 wk)"
+  },
+  "S02": {
+   "cite": "Gjessing HK et al. 2024 Ultrasound Obstet Gynecol (BPD 19.5 mm at 12+0 wk)",
+   "data_weeks": [
+    12,
+    12
+   ],
+   "check": "trusoma_blind_verified",
+   "trusoma_audit": "batch_2026-10-18b\res_growth.json",
+   "note_audit": "Gjessing 2024: BPD 19.5 mm at 12+0 wk and 23.0 mm at 12+6 wk (outer-to-outer)"
+  },
+  "S03": {
+   "cite": "Chitty LS et al. 1994 fetal head biometry (OFD = -41.58 + 5.50*GA - 0.0009141*GA^3, valid 12-42 wk)",
+   "data_weeks": [
+    12,
+    42
+   ],
+   "check": "computed_from_published_equation",
+   "url": "https://loinc.org/33179-3/"
+  },
+  "S04": {
+   "cite": "Wozniak 2006 CS20-23; Wozniak & Bruska 1999 femur; Chen 2007 first-trimester fetal limb biometry, 12+0 to 14+6 wk, n=1489 (FL 11.45 mm at 13+0-13+6); trusoma audit batch_2026-10-18e res_promote_body.json",
+   "data_weeks": [
+    9,
+    13.5
+   ],
+   "check": "code_citation_only",
+   "note": "the local Wozniak PDF covers embryo stages 18-23 (CRL up to about 30 mm, under 10 wk); the 12.5 wk anchor comes from Chen 2007, which is not in the papers folder",
+   "local": "./papers\\src_audit_e\\wozniak_bruska_2006_humerus.pdf"
+  },
+  "S05": {
+   "cite": "Chitty LS, Altman DG 2002 fetal long bone and foot nomograms (via body_size)",
+   "data_weeks": [
+    14,
+    40
+   ],
+   "check": "code_citation_only"
+  },
+  "S06": {
+   "cite": "Streeter GL 1920 (foot length by sitting height; cadaver series)",
+   "data_weeks": [
+    8,
+    12
+   ],
+   "check": "trusoma_blind_verified",
+   "trusoma_audit": "batch_2026-10-18b\res_growth.json",
+   "note_audit": "Streeter 1920 rows (sitting height, foot length) re-opened by a second reader"
+  },
+  "S07": {
+   "cite": "Koren N et al. Fetal micro and macroglossia: defining normal fetal tongue size. J Ultrasound Med 2023;42:59-70",
+   "doi": "10.1002/jum.15983",
+   "data_weeks": [
+    13,
+    40
+   ],
+   "check": "paper_read_full",
+   "local": "C:\\Projects\\Kootru-Labs\\docs\\J of Ultrasound Medicine - 2022 - Koren - Fetal Micro and Macroglossia.pdf",
+   "note": "Tables 4-5 read here: 13-wk median 8.0 x 6.5 mm, 14-wk 9.2 x 7.8. trusoma audit lists the KOREN rows as unresearched (paywalled), so this read upgrades them"
+  },
+  "S08": {
+   "cite": "Liao R et al. Ultrasound detection of fetal palate development in the early second trimester. Cleft Palate Craniofac J 2025;62:21-27",
+   "doi": "10.1177/10556656231199645",
+   "data_weeks": [
+    12,
+    20.9
+   ],
+   "check": "paper_read_full",
+   "local": "C:\\Projects\\Kootru-Labs\\docs\\liao-et-al-2023-ultrasound-detection-of-fetal-palate-development-in-the-early-stages-of-the-second-trimester-and-its.pdf",
+   "note": "Table 1 and regressions read; single-centre Chinese cohort; landmarks include the alveolar bone"
+  },
+  "S10": {
+   "cite": "Sherer DM et al. Nomograms of fetal hard palate width, length and area. Ultrasound Obstet Gynecol 2004;24:35-41",
+   "pmid": "15229914",
+   "data_weeks": [
+    15,
+    41
+   ],
+   "check": "abstract_read_coefficients_verified",
+   "note": "landmarks and scan plane NOT verified (full text unavailable)"
+  },
+  "S11": {
+   "cite": "Sherer DM et al. Fetal neck circumference. J Ultrasound Med 2007;26:1529",
+   "pmid": "17957047",
+   "data_weeks": [
+    14,
+    40
+   ],
+   "check": "code_citation_only"
+  },
+  "S12": {
+   "cite": "INTERGROWTH-21st abdominal circumference (Papageorghiou 2014)",
+   "data_weeks": [
+    14,
+    40
+   ],
+   "check": "table_in_papers_folder_starts_at_14wk",
+   "note": "the local table starts at 14 wk (50th centile 80.6 mm), confirming AC at 12.5 wk is extrapolated",
+   "local": "./papers\\src_audit_e\\ig21_ac_table.pdf"
+  },
+  "S20": {
+   "cite": "Modi K, Chaturvedi A, Ahmad A, Bhadoria P. Morphometry of fetal liver from human fetuses between 12-36 wk (hand/foot ratio from the group means: 0.81 at 12-16 wk)",
+   "data_weeks": [
+    12,
+    36
+   ],
+   "check": "trusoma_blind_verified",
+   "note": "supports growth7.HAND_OVER_FOOT = 0.81 at 12-16 wk; trusoma audit batch_2026-10-18b res_growth.json"
+  }
+ },
+ "refreshed": "2026-10-29: palate and tongue targets read from the live c1m growth7 after the Liao 2025 / Koren 2023 change; other records as received from Kootru-Labs; 2026-11-11: the four long bones set to the whole-bone lengths the physics body uses (growth7.limbs at 12.5 weeks), humerus marked as assumed; 2026-11-11: whole humerus and ulna from Bareggi 1994"
+}

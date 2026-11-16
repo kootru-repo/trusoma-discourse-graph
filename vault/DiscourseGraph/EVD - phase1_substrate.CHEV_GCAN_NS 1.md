@@ -1,0 +1,17 @@
+---
+nodeTypeId: "node_xQmEzWQFHdHy2swhrugrF"
+nodeInstanceId: "5094418d-52b7-7cf3-bf82-942a77649ced"
+dg_type: "Evidence"
+claim: "[[CLM - phase1_substrate.CHEV_GCAN_NS]]"
+source: "[[@p-chevalier2016]]"
+paper_id: "p-chevalier2016"
+locator: "Table 1 (model inspiratory neuron, after Toporikova et al. 2015)"
+quote: "g CAN = 2.5 nS (plateau bursting; range 0 to 4.5 nS)"
+transfer: "computational model parameter (model of a mouse E16.5-E18.5 pre-Botzinger neuron), not a measurement; declared in K16"
+class: "model_parameter"
+species: "none (computational model)"
+stage: "model"
+ga_lo_wk: ""
+ga_hi_wk: ""
+basis_note: "computational model parameter (Chevalier 2016 Table 1), as logged in its transfer text"
+---

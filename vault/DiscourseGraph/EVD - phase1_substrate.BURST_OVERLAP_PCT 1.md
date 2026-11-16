@@ -1,0 +1,17 @@
+---
+nodeTypeId: "node_xQmEzWQFHdHy2swhrugrF"
+nodeInstanceId: "bdbb227b-f529-7b3c-b2af-0990936c74a3"
+dg_type: "Evidence"
+claim: "[[CLM - phase1_substrate.BURST_OVERLAP_PCT]]"
+source: "[[@p-butts2007]]"
+paper_id: "p-butts2007"
+locator: "Results"
+quote: "the average magnitude of synaptic enhancement that we measured was 21.3 +- 5.1% (n = 7)"
+transfer: "rat postnatal day 7-11, LGN slice (animal_postnatal), declared transfer to the 10-17 week human relay learner (J-RL8)"
+class: "animal_postnatal"
+species: "rat"
+stage: "neonatal"
+ga_lo_wk: ""
+ga_hi_wk: ""
+basis_note: "measured value, declared transfer to the fetal relay learner (J-RL8)"
+---

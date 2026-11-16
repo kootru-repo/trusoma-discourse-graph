@@ -1,0 +1,15 @@
+---
+nodeTypeId: "node_LwROzkVH_Zck7ZxDgN91E"
+nodeInstanceId: "65dd4669-6ed3-7ea0-bec6-207882e14491"
+dg_type: "Claim"
+kind: "value"
+key: "body7.palm_u.n1"
+target: "global"
+order: 257
+value: 0.15
+text: "0.15"
+entries: ["Q12"]
+db: "body7.palm_u.n1"
+state: "current, changes the 12.5 run"
+status: "model-choice"
+---

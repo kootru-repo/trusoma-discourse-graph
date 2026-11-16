@@ -1,0 +1,17 @@
+---
+nodeTypeId: "node_xQmEzWQFHdHy2swhrugrF"
+nodeInstanceId: "0db1c901-a7d1-7e90-88ba-2bd95ecf47ac"
+dg_type: "Evidence"
+claim: "[[CLM - phase1_substrate.TT_M_K_MV]]"
+source: "[[@p-coulter1989]]"
+paper_id: "p-coulter1989"
+locator: "Fig. 6C legend, page 597"
+quote: "For activation the best fit (m3, dotted line) was obtained with V1/2 = -63 mV and k = 7.8 [Fig. 6 legend, page 597, read on the page image]"
+transfer: "rat thalamic relay neurones (ventrobasal), 2- to 25-day-old Wistar rats, acutely isolated, whole-cell, 23 C (animal_postnatal), declared transfer to the 10-17 week human trigeminal relay learner (J-RL8, J-RL14)"
+class: "animal_postnatal"
+species: "rat"
+stage: "neonatal"
+ga_lo_wk: ""
+ga_hi_wk: ""
+basis_note: "measured value, declared transfer to the fetal relay learner (J-RL8, J-RL14)"
+---

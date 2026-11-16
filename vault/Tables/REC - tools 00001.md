@@ -1,0 +1,11 @@
+---
+nodeTypeId: "trusoma-record"
+nodeInstanceId: "4ae1429b-7c74-718c-a6e9-6732b9cdcae4"
+dg_type: "Record"
+record_file: "tools/tools_config.json"
+code: "tools"
+order: 1
+group: "tools/viewer/body7_mesh.py"
+shape: "misc"
+data: {"face_details.lit.1_1": -0.14, "face_details.e.2": -0.2, "face_details.arc": -1.2, "face_details.out.1_2_1": -0.55, "face_details.lit.2_1": -0.08, "face_details.lit.2_2": -0.3, "BLEND": 0.08, "export.res": 0.045, "sdf_full.kd": 0.25, "surface_nets.lit": 3, "export.eps": 0.25, "face_details.L": 1.3, "face_details.y0": 0.1, "surface_nets.verts.1": 3, "export.hi": 0.3, "export.lo": 1.2, "export.pts.0": 400000, "export.pts.1": 3, "export.near": 0.01, "sdf_capsule.t": 1e-18, "face_details.lit.0_1": 0.1, "surface_nets.lit.k2": 8, "surface_nets.lit.k3": 8, "export.lo.k2": 3, "export.hi.k2": 1.2, "export.g": 3, "face_details.e.1": 0.8, "face_details.arc.k2": 1.2, "face_details.arc.k3": 7, "surface_nets.lit.k4": 3, "export.lo.0": 0.6, "export.lo.1": 0.6, "export.lo.2": 0.6, "export.f": 3, "export.Nn": 3, "export.out.vertices": 3, "export.out.normals": 5, "primitives.lit.1_2": 0.12, "face_details.e.0": 0.3, "face_details.out.0_2_0": 0.17, "face_details.out.0_2_1": 0.1, "face_details.out.0_2_2": 0.018, "face_details.out.1_2_0": 0.62, "face_details.out.1_2_1.k2": 0.62, "face_details.out.1_2_2": 0.24, "face_details.lit.2_0": 0.46, "face_details.lit.2_2.k2": 0.13, "face_details.lit.2_2.k3": 0.035, "face_details.lit.2_0.k2": 0.4, "face_details.lit.2_1.k2": 0.2, "face_details.lit.2_2.k4": 0.03, "face_details.arc.0": 0.45, "face_details.out.0_2_1.k2": 0.04, "face_details.out.1_2_2.k2": 0.02, "face_details.lit.2_0.k3": 0.13, "face_details.lit.2_1.k3": 0.07, "face_details.lit.2_2.k5": 0.075, "face_details.lit.2_0.k4": 0.115, "face_details.lit.2_1.k4": 0.045, "face_details.lit.2_2.k6": 0.06, "face_details.lit.2_0.k5": 0.06, "face_details.lit.2_1.k5": 0.17, "face_details.lit.2_2.k7": 0.27, "face_details.lit.2_2.k8": 0.12, "face_details.lit.2_2.k9": 0.22, "face_details.lit.2_1.k6": 0.2, "face_details.lit.2_2.k10": 0.2, "face_details.arc.1": 0.02, "face_details.arc.1.k2": 0.45, "face_details.lit.2": 0.035, "face_details.lit.2_1.k7": 0.1, "face_details.lit.2_2.k11": 0.01, "face_details.lit.2_1.k8": 0.07, "face_details.lit.2_0.k6": 0.97}
+---

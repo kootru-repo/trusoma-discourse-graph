@@ -1,0 +1,15 @@
+---
+nodeTypeId: "node_LwROzkVH_Zck7ZxDgN91E"
+nodeInstanceId: "43739d27-091a-7a91-b840-5f29f16e1bdc"
+dg_type: "Claim"
+kind: "value"
+key: "body7.arm_range_ends.n8.n3"
+target: "other"
+order: 102
+value: -10.0
+text: "-10.0"
+entries: ["Q12"]
+db: "body7.arm_range_ends.n8.n3"
+state: "not used by the 12.5 body, brainstem or learner"
+status: "model-choice"
+---

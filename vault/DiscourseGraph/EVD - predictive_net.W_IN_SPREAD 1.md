@@ -1,0 +1,18 @@
+---
+nodeTypeId: "node_xQmEzWQFHdHy2swhrugrF"
+nodeInstanceId: "2c2e3ad9-352f-71a9-8820-efbcc1f11a9e"
+dg_type: "Evidence"
+claim: "[[CLM - predictive_net.W_IN_SPREAD]]"
+source: "[[@p-pmid40522720]]"
+paper_id: "p-pmid40522720"
+locator: "prior_net_code.py"
+quote: "w_input = np.random.randn(N, n_input) / np.sqrt(n_input) * 0.1"
+saved_text: "papers/jepa_sources/priornet/prior_net_code.py"
+transfer: "computational model parameter, not a fetal measurement; declared in K15"
+class: "model_parameter"
+species: "none (computational model)"
+stage: "model"
+ga_lo_wk: ""
+ga_hi_wk: ""
+basis_note: "computational model parameter, as logged in its transfer text"
+---

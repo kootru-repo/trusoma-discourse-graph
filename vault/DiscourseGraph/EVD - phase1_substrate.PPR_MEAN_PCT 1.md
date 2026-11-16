@@ -1,0 +1,17 @@
+---
+nodeTypeId: "node_xQmEzWQFHdHy2swhrugrF"
+nodeInstanceId: "ca9215ff-5b7b-7a90-8b35-5ea02017c7e8"
+dg_type: "Evidence"
+claim: "[[CLM - phase1_substrate.PPR_MEAN_PCT]]"
+source: "[[@p-lo2011pr]]"
+paper_id: "p-lo2011pr"
+locator: "Results (paired-pulse ratio distribution)"
+quote: "PPRs ... from 0 to 200% with a mean 102.9 +- 3.1%"
+transfer: "rat postnatal, PrV (animal_postnatal), declared transfer to the 10-17 week human relay learner (J-RL8)"
+class: "animal_postnatal"
+species: "rat"
+stage: "neonatal"
+ga_lo_wk: ""
+ga_hi_wk: ""
+basis_note: "measured value, declared transfer to the fetal relay learner (J-RL8)"
+---

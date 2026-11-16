@@ -1,0 +1,17 @@
+---
+nodeTypeId: "node_xQmEzWQFHdHy2swhrugrF"
+nodeInstanceId: "bb075ec1-fc1d-708a-a212-6e9ae6a72814"
+dg_type: "Evidence"
+claim: "[[CLM - phase1_dual.DC_M_EXP]]"
+source: "[[@p-vanooyen1999jtb]]"
+paper_id: "p-vanooyen1999jtb"
+locator: "section 4, Fig 2-12; equations (8)-(12)"
+quote: "We choose m = 1."
+transfer: "computational model parameter (van Ooyen and Willshaw 1999 analysis of the Bennett and Robinson 1989 dual-constraint model of neuromuscular innervation); declared transfer to afferent branches on relay neurons (join J-RL11)"
+class: "model_parameter"
+species: "none (computational model)"
+stage: "model"
+ga_lo_wk: ""
+ga_hi_wk: ""
+basis_note: "computational model parameter (van Ooyen and Willshaw 1999 J Theor Biol), as logged in its transfer text"
+---

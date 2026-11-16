@@ -1,0 +1,10 @@
+---
+nodeTypeId: "trusoma-record"
+nodeInstanceId: "e8267c0c-80b2-7c4e-b2a1-86e87843e504"
+dg_type: "Record"
+record_file: "companion/source_audit/batch_2026-11-04_equations/equations.jsonl"
+code: "eq"
+order: 5
+fmt: "default"
+data: {"edge": "load_muscle", "equation": "ϑ̇ = k(ϑ) φ(λ^e), (9); k = (1/τ) [(ϑ^max − ϑ)/(ϑ^max − 1)]^γ. (10); φ = <λ^e − λ^crit> = <λ/ϑ − λ^crit>. (11)", "symbols": {"ϑ": "serial sarcomere number", "λ": "total muscle fibre stretch", "λ^e": "elastic fibre stretch", "λ^crit": "critical stretch threshold", "<>": "Macaulay brackets", "τ": "sarcomere deposition time (adaptation speed)", "γ": "deposition nonlinearity (shape)", "ϑ^max": "maximum serial sarcomere number"}, "parameters": [{"name": "τ", "value": "5.000", "unit": "days", "kind": "fitted"}, {"name": "γ", "value": "0.250", "unit": "-", "kind": "fitted"}, {"name": "ϑ^max", "value": "2.000", "unit": "-", "kind": "assumed"}, {"name": "λ^crit", "value": "1.000", "unit": "-", "kind": "assumed"}, {"name": "L, G (elastic part)", "value": "0.714, 0.179", "unit": "N/mm2", "kind": "assumed"}], "system": "Adult rabbit extensor digitorum lateralis under chronic lengthening; τ and γ calibrated to data cited as [8].", "paper_id": "p-pmid23049683", "citation": "Zollner AM, Abilez OJ, Bol M, Kuhl E. Stretching skeletal muscle: chronic muscle lengthening through sarcomerogenesis. PLoS One 2012;7:e45661.", "doi": "10.1371/journal.pone.0045661", "pmid": "23049683", "local_file": "C:\\Projects\\trusoma-archive\\montyjepa-engine\\papers\\growth_sources\\pdf\\p-pmid23049683.pdf", "locator": "Eqs. 9-11 p 3; Table 1 p 4; page images", "quote": "We model longitudinal muscle growth as a strain-driven process", "maps_to_edge": "Stretch beyond a threshold adds serial sarcomeres, a form for load to muscle growth.", "transfer_assumes": "Assumes adult rabbit calibration and imposed stretch apply to fetal muscle; covers serial number only, not the paralysed rat fetus growth deficit.", "transcription_confidence": "clean", "how_far_read": "publisher PDF; pages 3-4 read as page images; rest by keyword", "found": true}
+---

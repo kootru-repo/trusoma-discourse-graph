@@ -1,0 +1,17 @@
+---
+nodeTypeId: "node_xQmEzWQFHdHy2swhrugrF"
+nodeInstanceId: "86a164c5-6697-70cd-8685-e5880539ee3e"
+dg_type: "Evidence"
+claim: "[[CLM - phase1_trophic.KD_PER_S]]"
+source: "[[@p-vanooyen1999]]"
+paper_id: "p-vanooyen1999"
+locator: "Section 3 'Units and parameter values' (page 884); equations (1)-(5) section 2"
+quote: "k_d = 1.0 x 10^-3 s^-1 (Sutter et al. 1979)"
+transfer: "computational model parameter (van Ooyen 1999, NGF data) used for generic trophic competition at the fetal relay (J-RL1); not a fetal measurement"
+class: "model_parameter"
+species: "none (computational model)"
+stage: "model"
+ga_lo_wk: ""
+ga_hi_wk: ""
+basis_note: "computational model parameter (van Ooyen 1999), as logged in its transfer text"
+---

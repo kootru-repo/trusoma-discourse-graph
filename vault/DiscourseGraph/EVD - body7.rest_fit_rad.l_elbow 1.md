@@ -1,0 +1,18 @@
+---
+nodeTypeId: "node_xQmEzWQFHdHy2swhrugrF"
+nodeInstanceId: "fbe6ffda-e9cc-714c-9014-945fee0325bc"
+dg_type: "Evidence"
+evidence_kind: "link"
+link_cid: "body7.rest_fit_rad.l_elbow"
+link_order: 648
+status: "source-found-fetal"
+paper_id: "p-ohmura2017"
+locator: "Fig 3B (foetus at 14 weeks), digitized from the published figure (papers/src_2026_11_06/scirep2017/fig3.jpg, 529 columns)"
+locator_basis: "quote"
+quote: "The elbow angle was calculated using two lines: a line from the elbow position to the shoulder position and another line from the elbow position to the wrist position."
+value_in_source: "apparent elbow angle over 9 min: median 1.54 rad (IQR 1.09-2.22); outside arm-hanging periods 1.31, inside 2.63; flexion = pi - 1.54 = 1.60 rad (91.8 deg)"
+species_age: "one human fetus at 14 weeks of gestation, 4D ultrasound, apparent (projected) elbow angle sampled at 2 Hz over 9 minutes (Ohmura 2017 Fig 3B)"
+transfer: "the time median of one 14 week fetus taken as the 12.5 week rest flexion, both sides; the angle is a 2D projection (declared)"
+source: "[[@p-ohmura2017]]"
+claim: "[[CLM - body7.rest_fit_rad.l_elbow]]"
+---

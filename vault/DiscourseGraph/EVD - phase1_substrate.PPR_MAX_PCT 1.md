@@ -1,0 +1,17 @@
+---
+nodeTypeId: "node_xQmEzWQFHdHy2swhrugrF"
+nodeInstanceId: "8b99c266-8074-7b2d-b53b-af7ff6a9a67c"
+dg_type: "Evidence"
+claim: "[[CLM - phase1_substrate.PPR_MAX_PCT]]"
+source: "[[@p-lo2011pr]]"
+paper_id: "p-lo2011pr"
+locator: "Abstract"
+quote: "ranging from 40% (paired-pulse depression) to 175% (paired-pulse facilitation)"
+transfer: "rat P0-P14 PrV; the measured range of the ratio, used to bound the draw (J-RL7)"
+class: "animal_postnatal"
+species: "rat"
+stage: "neonatal"
+ga_lo_wk: ""
+ga_hi_wk: ""
+basis_note: "measured value, declared transfer to the fetal relay learner (J-RL8)"
+---

@@ -1,0 +1,98 @@
+{
+ "schema": 1,
+ "purpose": "Values for the Phase 1 learning window, 10 to 17 weeks from the last menstrual period (USER 2026-11-14). Separate from global_config.json, which stays the only source of 12.5 week values for every constant it holds. Each value is a set of age points: {\"ages\": {\"<weeks>\": {\"value\": ..., \"status\": ...}}}. Built into local/db/trusoma_window_10_17.sqlite by companion/source_audit/build_window_db.py. No code reads this file yet.",
+ "values": {
+  "growth7.crl_window": {
+   "unit": "mm",
+   "part": "body",
+   "meaning": "crown-rump length past the INTERGROWTH-21st CRL range (above growth7.ga_ig), Hadlock 1992 dating formula inverted; joined to the master crl(ga_ig) at 14 weeks by the reader",
+   "ages": {
+    "15.5": {
+     "value": 96.5,
+     "status": "source-found-fetal"
+    },
+    "17.0": {
+     "value": 111.0,
+     "status": "source-found-fetal"
+    }
+   }
+  },
+  "body7.arm_rest_window": {
+   "unit": "deg",
+   "part": "body",
+   "meaning": "arm rest posture (shoulder flexion, abduction, internal rotation, elbow), both arms, from the age's table row by rest_pose_fit.py (12.5 week method); each row holds from its age to the next",
+   "ages": {
+    "14.0": {
+     "value": {
+      "sh_flex": 54.4,
+      "sh_abd": 11.7,
+      "sh_rot": 40.0,
+      "elbow": 82.2
+     },
+     "status": "model-choice"
+    },
+    "15.5": {
+     "value": {
+      "sh_flex": 54.8,
+      "sh_abd": 17.3,
+      "sh_rot": 40.0,
+      "elbow": 81.1
+     },
+     "status": "model-choice"
+    },
+    "17.0": {
+     "value": {
+      "sh_flex": 50.1,
+      "sh_abd": 22.3,
+      "sh_rot": 40.0,
+      "elbow": 85.3
+     },
+     "status": "model-choice"
+    }
+   }
+  },
+  "brainstem_s2.w_int_window": {
+   "unit": "",
+   "part": "brainstem",
+   "meaning": "head integrator W_INT at ages without a solve: linear between the frozen solves at 15.0 (1.11) and 34.5 weeks (1.145) (other_config registry s2bh_wint_frozen); a re-solve on the current tree replaces it",
+   "ages": {
+    "15.5": {
+     "value": 1.1109,
+     "status": "model-choice"
+    },
+    "17.0": {
+     "value": 1.1136,
+     "status": "model-choice"
+    }
+   }
+  },
+  "brainstem_s2.s2b_bias_window": {
+   "unit": "",
+   "part": "brainstem",
+   "meaning": "general-movement generator biases at 14-17 weeks: carried from the 12.5 week fit (not refitted; the 12.5 fit targets de Vries 1985 at 12-13 weeks); a refit against de Vries 1985's 14-17 week counts replaces it",
+   "ages": {
+    "14.0": {
+     "value": {
+      "ib_b4e": -0.24,
+      "ib_b4com": -1.36
+     },
+     "status": "model-choice"
+    },
+    "15.5": {
+     "value": {
+      "ib_b4e": -0.24,
+      "ib_b4com": -1.36
+     },
+     "status": "model-choice"
+    },
+    "17.0": {
+     "value": {
+      "ib_b4e": -0.24,
+      "ib_b4com": -1.36
+     },
+     "status": "model-choice"
+    }
+   }
+  }
+ }
+}

@@ -1,0 +1,18 @@
+---
+nodeTypeId: "node_xQmEzWQFHdHy2swhrugrF"
+nodeInstanceId: "001d59bb-8083-76de-8954-4b65aa7d9fc7"
+dg_type: "Evidence"
+claim: "[[CLM - predictive_net.K_IN]]"
+source: "[[@p-ringach2021]]"
+paper_id: "p-ringach2021"
+locator: "Summary and Discussion"
+quote: "Discussion At first sight the result appears in conflict with a more direct estimate of 80 ± 10 thalamic inputs into layer 4 neurons [ 7 ]."
+saved_text: "papers/touch_sources/convergence/ringach2021.txt"
+transfer: "mouse visual cortex thalamic inputs, as Ringach reports Lien & Scanziani 2018 (not itself read); not touch and not fetal"
+class: "animal_postnatal"
+species: "mouse"
+stage: "unknown"
+ga_lo_wk: ""
+ga_hi_wk: ""
+basis_note: "mouse visual cortex, reported second hand"
+---

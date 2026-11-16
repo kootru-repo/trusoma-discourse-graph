@@ -1,0 +1,17 @@
+---
+nodeTypeId: "node_xQmEzWQFHdHy2swhrugrF"
+nodeInstanceId: "68847097-d79a-78f1-bb45-68a76ec2aede"
+dg_type: "Evidence"
+claim: "[[CLM - phase1_substrate.TB_ENA_MV]]"
+source: "[[@p-toporikova2011]]"
+paper_id: "p-toporikova2011"
+locator: "Section 2.1 (author manuscript pages 2-4)"
+quote: "VNa = 50 mV"
+transfer: "computational model parameter (Toporikova and Butera 2011 inspiratory pre-Botzinger neuron, parent model of Chevalier 2016); declared transfer to the learner's relay neurons (J-RL8)"
+class: "model_parameter"
+species: "none (computational model)"
+stage: "model"
+ga_lo_wk: ""
+ga_hi_wk: ""
+basis_note: "computational model parameter (Toporikova and Butera 2011), as logged in its transfer text"
+---

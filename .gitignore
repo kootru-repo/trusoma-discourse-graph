@@ -1,0 +1,8 @@
+node_modules/
+dist/
+.turbo/
+__pycache__/
+*.pyc
+/local/
+vault/.obsidian/
+demo/apps/canvas/public/graph.json

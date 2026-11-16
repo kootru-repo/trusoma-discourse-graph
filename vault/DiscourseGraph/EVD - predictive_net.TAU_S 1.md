@@ -1,0 +1,18 @@
+---
+nodeTypeId: "node_xQmEzWQFHdHy2swhrugrF"
+nodeInstanceId: "1db87053-f528-7fa3-91e9-6e86eb245cfa"
+dg_type: "Evidence"
+claim: "[[CLM - predictive_net.TAU_S]]"
+source: "[[@p-pmid40497329]]"
+paper_id: "p-pmid40497329"
+locator: "Table 2"
+quote: "Synaptic time constant 5 ms"
+saved_text: "papers/jepa_sources/AsabukiClopath2024.txt"
+transfer: "computational model parameter, not a fetal measurement; declared in K15"
+class: "model_parameter"
+species: "none (computational model)"
+stage: "model"
+ga_lo_wk: ""
+ga_hi_wk: ""
+basis_note: "computational model parameter, as logged in its transfer text"
+---

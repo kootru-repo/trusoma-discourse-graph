@@ -1,0 +1,5 @@
+companion/SPEEDUP_EXEMPT_LOG.md merge=union
+companion/UNGATED_COMMITS.md merge=union
+companion/DECISIONS_PENDING.md merge=union
+companion/APPROVALS_QUEUE.md merge=union
+companion/source_audit/constant_sources.jsonl text eol=lf merge=union

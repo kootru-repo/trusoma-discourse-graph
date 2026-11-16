@@ -1,0 +1,17 @@
+---
+nodeTypeId: "node_xQmEzWQFHdHy2swhrugrF"
+nodeInstanceId: "0a8d4330-02de-7b9b-a9e1-9dac38979e1b"
+dg_type: "Evidence"
+claim: "[[CLM - phase1_substrate.TB_SP_MV]]"
+source: "[[@p-toporikova2011]]"
+paper_id: "p-toporikova2011"
+locator: "Section 2.1 (author manuscript pages 2-4)"
+quote: "sp = -6 mV"
+transfer: "computational model parameter (Toporikova and Butera 2011 inspiratory pre-Botzinger neuron, parent model of Chevalier 2016); declared transfer to the learner's relay neurons (J-RL8)"
+class: "model_parameter"
+species: "none (computational model)"
+stage: "model"
+ga_lo_wk: ""
+ga_hi_wk: ""
+basis_note: "computational model parameter (Toporikova and Butera 2011), as logged in its transfer text"
+---

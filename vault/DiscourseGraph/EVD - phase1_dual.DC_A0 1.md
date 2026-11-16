@@ -1,0 +1,17 @@
+---
+nodeTypeId: "node_xQmEzWQFHdHy2swhrugrF"
+nodeInstanceId: "07e2721c-3c22-73ab-b4cd-b0eb55bf0b24"
+dg_type: "Evidence"
+claim: "[[CLM - phase1_dual.DC_A0]]"
+source: "[[@p-vanooyen1999jtb]]"
+paper_id: "p-vanooyen1999jtb"
+locator: "section 4, Fig 12 legend; equations (8)-(12)"
+quote: "In all figures except (d), g = 17, a0 = 0.8, k = 2"
+transfer: "computational model parameter (van Ooyen and Willshaw 1999 analysis of the Bennett and Robinson 1989 dual-constraint model of neuromuscular innervation); declared transfer to afferent branches on relay neurons (join J-RL11)"
+class: "model_parameter"
+species: "none (computational model)"
+stage: "model"
+ga_lo_wk: ""
+ga_hi_wk: ""
+basis_note: "computational model parameter (van Ooyen and Willshaw 1999 J Theor Biol), as logged in its transfer text"
+---

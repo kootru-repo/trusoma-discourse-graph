@@ -1,0 +1,12 @@
+---
+nodeTypeId: "node_LwROzkVH_Zck7ZxDgN91E"
+nodeInstanceId: "dd7607b4-3466-7c87-a0b1-2c1471b85b79"
+dg_type: "Claim"
+record_file: "companion/source_audit/sourcing_records.jsonl"
+code: "records"
+order: 376
+fmt: "compact"
+data: {"kind": "value", "id": "m.body.oral7_low_arch_dy", "part": "body", "quantity": "lower dental arch behind the upper / palate length (the lower ridge drawn on the upper arch shifted back)", "value": {"oral7.low_arch_dy": 0.0912}, "unit": "", "paper_id": "p-kaiser2024", "locator": "companion/source_audit/batch_2026-11-05_values/ARCH.md", "species": "human fetal head, 13 weeks as printed, one specimen, PTA microCT at 25 um (Kaiser 2024, BioStudies S-BSST1227)", "limit": "one specimen at 13 weeks in the face grid head frame, scaled per axis to the model head; germ centres read by eye, about 0.2-0.3 mm", "state": "measured by the lead"}
+kind: "value"
+source: "[[@p-kaiser2024]]"
+---
