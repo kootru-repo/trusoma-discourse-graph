@@ -10,7 +10,7 @@ TruSoma is a simulation of the human fetal body and its developing brain at 10 t
 
 ## Why a discourse graph
 
-A model of development is only as good as the numbers in it, and a number with no source is a guess. In TruSoma each value is a claim note, linked to the verbatim quote it came from, the paper that quote is in, the hypothesis it informs and the result that tested it. Every value has a recorded status, and every result is entered whatever its outcome, so the record can be questioned as well as read.
+The project's rule needs a record that shows where each number came from. In TruSoma each value is a claim note, linked to the verbatim quote it came from, the paper that quote is in, the hypothesis it informs and the result that tested it. Every value has a recorded status, and every result is entered whatever its outcome.
 
 ## What is here
 
@@ -18,7 +18,7 @@ A model of development is only as good as the numbers in it, and a number with n
 | --- | --- | --- |
 | Vault | 4,381 discourse notes and 2,288 relations: sources, verbatim quotes, claims, hypotheses, experiments and results | [`vault/`](vault) |
 | Canvas | Draws any note's neighbourhood as cards and labelled relations | [`demo/apps/canvas`](demo/apps/canvas) |
-| Ask | Runs questions over the graph as data ("which hypotheses have no experiment linked?"), with six presets, a question builder and a link per question, for example [`#ask=untested-hypotheses`](https://kootru-repo.github.io/trusoma-discourse-graph/#ask=untested-hypotheses) | [`demo/packages/graph/src/query.ts`](demo/packages/graph/src/query.ts) |
+| Ask | Runs questions over the graph as data ("which hypotheses have no experiment linked?"), with six presets, a question builder and a link per question, for example [`#ask=untested-hypotheses`](https://kootru-repo.github.io/trusoma-discourse-graph/#ask=untested-hypotheses), the 18 hypotheses with no experiment note linked | [`demo/packages/graph/src/query.ts`](demo/packages/graph/src/query.ts) |
 | MCP server | An assistant searches the graph, traces a value to its sources, lists gaps, and writes notes that a validator can refuse | [`demo/apps/mcp`](demo/apps/mcp) |
 | Obsidian round trip | "Save canvas" writes a canvas file that the Discourse Graphs Obsidian plugin opens, with every card linked back to its note | [`demo/docs`](demo/docs) |
 | Database load | The vault as rows for the Discourse Graphs Supabase schema | [`demo/packages/graph`](demo/packages/graph) |
@@ -27,7 +27,7 @@ A model of development is only as good as the numbers in it, and a number with n
 
 ## Try it
 
-Nothing needs installing: open the [live page](https://kootru-repo.github.io/trusoma-discourse-graph/), search for a note, and widen its neighbourhood from 1 to 4 hops. The Ask tab answers questions such as which model values are backed by a quoted source.
+Open the [live page](https://kootru-repo.github.io/trusoma-discourse-graph/) (nothing to install), search for a note, and widen its neighbourhood from 1 to 4 hops. The Ask tab answers questions such as which model values are backed by a quoted source.
 
 To run everything locally (Node 22, pnpm 10.15.1, Python 3.11 or later):
 
@@ -42,7 +42,7 @@ pnpm run example   # what an assistant sees: one value traced, one write refused
 
 ## Ask it through an assistant
 
-The MCP server gives an AI assistant the graph as tools. Two calls show what that means. The output below is from the real vault, shortened; `pnpm run example` prints it in full.
+The MCP server gives an AI assistant the graph as tools. Two calls are shown here. The output below is from the real vault, shortened; `pnpm run example` prints it in full.
 
 **Trace a value to its sources.** One call returns the whole path: the value, the verbatim quote behind it, the paper, the hypothesis it informs, the experiment and the result.
 
@@ -93,7 +93,7 @@ The vault holds 1,943 value notes. 731 are linked to a verbatim quote from a pap
 
 ## Works with the Discourse Graphs plugin
 
-The vault is written and read in Obsidian with the open-source [Discourse Graphs plugin](https://github.com/DiscourseGraphs/discourse-graph), so the software here writes that plugin's formats and adds none of its own.
+The vault opens in Obsidian with the open-source [Discourse Graphs plugin](https://github.com/DiscourseGraphs/discourse-graph), which shows each note's type and relations. The software here writes that plugin's formats and adds none of its own.
 
 - **Canvas files.** A saved canvas uses the plugin's card, relation and binding records, so it opens in Obsidian as drawn.
 - **Database rows.** The load produces the rows the plugin's own conversion produces and sends them through the schema's `upsert_concepts` function as a signed-in member, under row-level security.
@@ -105,5 +105,5 @@ The MCP server uses the MCP SDK, and the vault's authoring tools are Python.
 ## Scope
 
 - The hosted database is not open to visitors: by the schema's policies, a client that is not signed in reads no rows. The load is recorded in [`demo/docs/hosted-load.json`](demo/docs/hosted-load.json).
-- The canvas is a reading view: a drawing is saved as a canvas file for Obsidian, and notes are written through the MCP server or in Obsidian.
+- The canvas is a reading view: a drawing is saved as a canvas file for Obsidian, and notes are written through the MCP server or in Obsidian. A drawing shows up to four notes around any one note, and the side panel lists every relation.
 - This repository is the record and its software; the simulation itself is developed separately.

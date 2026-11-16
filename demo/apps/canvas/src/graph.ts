@@ -92,16 +92,21 @@ export type Placed = {
   offset: number;
 };
 
+/** The most notes drawn around any one note: a hypothesis with 17 evidence notes would otherwise shrink every card past reading. */
+const FAN = 4;
+
 export const neighbourhood = ({
   index,
   startUid,
   depth,
   limit = 48,
+  fan = FAN,
 }: {
   index: Index;
   startUid: string;
   depth: number;
   limit?: number;
+  fan?: number;
 }): { placed: Placed[]; relations: GRelation[]; truncated: boolean } => {
   const start = index.byUid.get(startUid);
   if (!start) return { placed: [], relations: [], truncated: false };
@@ -111,13 +116,15 @@ export const neighbourhood = ({
   for (let hop = 1; hop <= depth; hop++) {
     const next: string[] = [];
     for (const uid of frontier) {
+      let drawn = 0;
       for (const r of index.touching.get(uid) ?? []) {
         const other = r.source === uid ? r.destination : r.source;
         if (hops.has(other)) continue;
-        if (hops.size >= limit) {
+        if (hops.size >= limit || drawn >= fan) {
           truncated = true;
           continue;
         }
+        drawn++;
         hops.set(other, hop);
         next.push(other);
       }
@@ -611,12 +618,27 @@ const text = (v: unknown): string =>
     : typeof v === "number" || typeof v === "boolean"
       ? String(v)
       : "";
-const lastPart = (key: string): string =>
-  key.slice(key.lastIndexOf(".") + 1).replace(/_/g, " ");
+/**
+ * The readable end of a value's key. Many keys end in an index or a bound ("body7.arm_rest_tab.n4.hi"),
+ * which says nothing alone, so the name before it is kept: "arm rest tab n4 hi".
+ */
+const lastPart = (key: string): string => {
+  const parts = key.split(".");
+  const named = (part: string): boolean =>
+    part.length > 3 && !/^n\d+(#\d+)?$/.test(part);
+  let from = parts.length - 1;
+  while (from > 1 && !named(parts[from]!)) from--;
+  return parts.slice(from).join(" ").replace(/_/g, " ");
+};
+/** "gweb tests body_curves" is the growth web's test of its body curves. */
+const hypothesisName = (name: string): string =>
+  name.startsWith("gweb tests ")
+    ? `Growth web: ${name.slice("gweb tests ".length).replace(/_/g, " ")}`
+    : name;
 
 /**
  * What a card and a list row show for a note: a headline a reader can take in, and a quieter second line.
- * Nothing is invented: each is one of the note's own properties (a value's key and number, an evidence note's quote, a paper's citation).
+ * Each is one of the note's own properties (a value's key and number, an evidence note's quote, a paper's citation); the one rewording is hypothesisName.
  */
 const sentence = (s: string): string =>
   s ? s.charAt(0).toUpperCase() + s.slice(1) : s;
@@ -655,10 +677,19 @@ const show = (
       sub: [text(p.paper_id), text(p.locator)].filter(Boolean).join(" · "),
       code: false,
     };
+  // an evidence note that points into a source without quoting it: where in the source it points
+  if (n.type === "Evidence" && p.locator)
+    return {
+      head: text(p.locator),
+      sub: [text(p.paper_id), n.name].filter(Boolean).join(" · "),
+      code: false,
+    };
   if (n.type === "Claim" && p.key) {
     const value = text(p.value);
+    // a meaning is a phrase, so it starts with a letter; anything else falls back to the key
+    const meaning = /^[A-Za-z]/.test(text(p.meaning)) ? text(p.meaning) : "";
     return {
-      head: text(p.meaning) || lastPart(text(p.key)),
+      head: meaning || lastPart(text(p.key)),
       sub: text(p.key),
       code: true,
       value: value.length <= 12 ? value : "",
@@ -678,7 +709,13 @@ const show = (
     };
   if (n.type === "Experiment")
     return { head: n.name, sub: text(p.date), code: false };
-  if (n.type === "Hypothesis" || n.type === "Result")
+  if (n.type === "Hypothesis")
+    return {
+      head: hypothesisName(n.name),
+      sub: text(p.statement) || text(p.quote),
+      code: false,
+    };
+  if (n.type === "Result")
     return { head: n.name, sub: text(p.quote), code: false };
   const head =
     text(p.statement) ||

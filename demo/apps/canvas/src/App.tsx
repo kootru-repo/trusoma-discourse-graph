@@ -47,6 +47,7 @@ import {
   paths,
   search,
   type GNode,
+  type GRelation,
   type GraphData,
   type Index,
 } from "./graph";
@@ -104,7 +105,7 @@ const LABEL: Record<string, string> = {
   species: "Species",
   stage: "Stage",
 };
-const CODE = new Set(["key", "record", "paper_id", "doi"]);
+const CODE = new Set(["key", "record", "paper_id"]);
 const FIRST = [
   "value",
   "reading",
@@ -144,8 +145,18 @@ const DD: Record<string, string> = {
   note: "rounded-md border border-solid border-line-2 bg-canvas px-2.5 py-2 text-[12.5px] !text-ink-2",
 };
 
+/** Plain words for the statuses a reader meets most; the others read well enough with their hyphens removed. */
+const STATUS: Record<string, string> = {
+  "source-found-fetal": "Sourced from fetal data",
+  "source-found-transfer": "Sourced from another setting",
+};
 const pretty = (s: string): string =>
-  s.charAt(0).toUpperCase() + s.slice(1).replace(/-/g, " ");
+  STATUS[s] ?? s.charAt(0).toUpperCase() + s.slice(1).replace(/-/g, " ");
+/** A property as text for a reader: the constant tags the model's code carries ("{cid: K16} [K16]") are left out. */
+const shownText = (v: unknown): string =>
+  String(v)
+    .replace(/\{cid:[^}]*\}\s*/g, "")
+    .replace(/^\[[A-Z]+\d+\]\s*/, "");
 const ordered = (props: Record<string, unknown>): [string, unknown][] => {
   const keys = Object.keys(props).filter((k) => k !== "key"); // the key is the line under the headline
   return [
@@ -239,7 +250,7 @@ const fit = (editor: Editor): void => {
     bounds.minX - left,
     bounds.minY - 60,
     bounds.w + left + right,
-    bounds.h + 84,
+    bounds.h + 150, // 60 above, and 90 below so the zoom buttons cover no card
   );
   const view = editor.getViewportScreenBounds();
   const wide = view.w > 900;
@@ -422,6 +433,24 @@ const Row = ({
 const LISTED = 60;
 /** An answer list longer than this gets a filter box. */
 const FILTER_FROM = 15;
+/** A value whose note says in plain words what it is, which reads better at the top of a list than a bare key or a note that cites the project's own audit items (A17, F7, U6). */
+const described = (n: GNode): number => {
+  const meaning = String(n.props.meaning ?? "");
+  return /^[A-Za-z]/.test(meaning) && !/\b[AFU]\d+\b/.test(meaning) ? 0 : 1;
+};
+/** The answers to a question: values described in words first, then by what the list shows for each, so a reader can find one. */
+const answersTo = (
+  data: { nodes: GNode[]; relations: GRelation[] },
+  query: Query,
+): GNode[] =>
+  [...runQuery({ ...data, query })].sort(
+    (a, b) =>
+      described(a) - described(b) ||
+      display(a).head.localeCompare(display(b).head, "en", {
+        sensitivity: "base",
+        numeric: true,
+      }),
+  );
 const FIRST_QUESTION: Asked = {
   id: PRESETS[0]!.id,
   query: PRESETS[0]!.query,
@@ -473,9 +502,7 @@ export const App = (): JSX.Element => {
         setIndex(buildIndex(data));
         // a link to a question opens on its first answer; otherwise on the start note
         const linked = askedFromHash();
-        const answer = linked
-          ? runQuery({ ...data, query: linked.query })[0]
-          : undefined;
+        const answer = linked ? answersTo(data, linked.query)[0] : undefined;
         setFocus(
           answer ??
             data.nodes.find((n) => n.name === START) ??
@@ -525,7 +552,7 @@ export const App = (): JSX.Element => {
   const drawFirst = useCallback(
     (asking: Query): void => {
       if (!index) return;
-      const first = runQuery({ ...index.data, query: asking })[0];
+      const first = answersTo(index.data, asking)[0];
       if (first) setFocus(first);
     },
     [index],
@@ -571,7 +598,7 @@ export const App = (): JSX.Element => {
       return { ...found, answers: found.total };
     }
     const { nodes, relations } = index.data;
-    const answers = runQuery({ nodes, relations, query: asked.query });
+    const answers = answersTo({ nodes, relations }, asked.query);
     const words = within.toLowerCase().split(/\s+/).filter(Boolean);
     const found = words.length
       ? answers.filter((n) => {
@@ -587,18 +614,6 @@ export const App = (): JSX.Element => {
       hits: found.slice(0, listed),
     };
   }, [index, mode, query, type, asked, listed, within]);
-  const gaps = useMemo(
-    () =>
-      index
-        ? index.data.nodes.filter(
-            (n) =>
-              n.type === "Claim" &&
-              "key" in n.props &&
-              !index.touching.has(n.uid),
-          ).length
-        : 0,
-    [index],
-  );
   const links = useMemo(() => {
     if (!index || !selected) return [];
     return (index.touching.get(selected.uid) ?? []).map((r) => {
@@ -618,6 +633,12 @@ export const App = (): JSX.Element => {
     );
   if (!index) return <div className="text-muted p-6">Loading the graph…</div>;
   const head = selected ? display(selected) : null;
+  // the headline and the line under it are not repeated among the properties
+  const facts = selected
+    ? ordered(selected.props).filter(
+        ([, v]) => v !== head?.head && v !== head?.sub,
+      )
+    : [];
   return (
     <div className="relative block h-full max-[900px]:grid max-[900px]:grid-cols-[308px_minmax(0,1fr)_332px] max-[900px]:grid-rows-[auto_70vh_auto]">
       <aside
@@ -647,8 +668,11 @@ export const App = (): JSX.Element => {
           <b className={TW_COUNT}>
             {index.data.relations.length.toLocaleString()}
           </b>{" "}
-          relations · <b className={TW_COUNT}>{gaps.toLocaleString()}</b> claims
-          still need evidence
+          relations ·{" "}
+          <b className={TW_COUNT}>
+            {(counts["sourced-values"] ?? 0).toLocaleString()}
+          </b>{" "}
+          values with a quoted source
         </p>
         <div
           className="border-line mr-1 grid h-[34px] flex-none grid-cols-2 overflow-hidden rounded-lg border border-solid bg-white"
@@ -799,7 +823,7 @@ export const App = (): JSX.Element => {
             onMount={onMount}
           />
           <div
-            className="border-line text-muted absolute left-[328px] top-3.5 z-[300] max-w-[calc(100%-32px)] truncate rounded-full border border-solid bg-[rgba(255,255,255,0.82)] px-3.5 py-[7px] text-[12.5px] [backdrop-filter:blur(8px)] [box-shadow:0_1px_2px_rgba(15,23,42,0.05)] max-[900px]:left-4"
+            className="border-line text-muted absolute left-[328px] top-3.5 z-[300] max-w-[calc(100%-688px)] truncate rounded-full border border-solid bg-[rgba(255,255,255,0.82)] px-3.5 py-[7px] text-[12.5px] [backdrop-filter:blur(8px)] [box-shadow:0_1px_2px_rgba(15,23,42,0.05)] max-[900px]:left-4 max-[900px]:max-w-[calc(100%-32px)]"
             data-testid="status"
           >
             <span>
@@ -809,7 +833,9 @@ export const App = (): JSX.Element => {
               {shown.relations === 1 ? "relation" : "relations"} within {depth}{" "}
               {depth === 1 ? "hop" : "hops"} of{" "}
               <em className={TW_STRONG}>{focus ? display(focus).head : ""}</em>
-              {shown.truncated ? " (more exist: lower the hops)" : ""}
+              {shown.truncated
+                ? " (drawn in part; the panel lists the rest)"
+                : ""}
             </span>
           </div>
           <div
@@ -912,9 +938,9 @@ export const App = (): JSX.Element => {
                 Centre the canvas here
               </button>
             ) : null}
-            <h3 className={TW_SECTION}>Properties</h3>
+            {facts.length ? <h3 className={TW_SECTION}>Properties</h3> : null}
             <dl className="m-0 grid grid-cols-[max-content_minmax(0,1fr)] items-baseline gap-x-5 gap-y-3">
-              {ordered(selected.props).map(([k, v]) => (
+              {facts.map(([k, v]) => (
                 <div key={k} className="contents">
                   <dt
                     className={`text-[13px] text-[#56637a] ${LONG.has(k) ? "col-span-full mt-1.5" : ""}`}
@@ -936,8 +962,17 @@ export const App = (): JSX.Element => {
                       ) : (
                         "No"
                       )
+                    ) : k === "doi" ? (
+                      <a
+                        className="text-accent [overflow-wrap:anywhere]"
+                        href={`https://doi.org/${String(v)}`}
+                        target="_blank"
+                        rel="noreferrer"
+                      >
+                        {String(v)}
+                      </a>
                     ) : (
-                      String(v)
+                      shownText(v)
                     )}
                   </dd>
                 </div>
