@@ -16,6 +16,7 @@ TruSoma is a simulation of human fetal development at 10 to 17 weeks, built only
 | --- | --- | --- |
 | Vault | 4,381 discourse notes and 2,288 relations in the Discourse Graphs grammar: sources, verbatim quotes, claims, hypotheses, experiments and results, failed ones included | [`vault/`](vault) |
 | Canvas | Draws any note's neighbourhood as cards and labelled relations, using the Discourse Graphs Obsidian plugin's own canvas records | [`demo/apps/canvas`](demo/apps/canvas) |
+| Ask | Runs questions over the graph as data ("which hypotheses have no experiment linked?"), with five presets, a question builder and a link per question, for example [`#ask=untested-hypotheses`](https://kootru-repo.github.io/trusoma-discourse-graph/#ask=untested-hypotheses) | [`demo/packages/graph/src/query.ts`](demo/packages/graph/src/query.ts) |
 | Obsidian round trip | "Save canvas" writes the plugin's canvas file; the plugin opens it and every card links back to its note | [`demo/docs`](demo/docs) |
 | MCP server | An assistant searches the graph, traces a value to its sources, lists gaps, and writes notes that a validator can refuse | [`demo/apps/mcp`](demo/apps/mcp) |
 | Database load | The vault as rows for the Discourse Graphs Supabase schema, loaded through its `upsert_concepts` function as a signed-in space member | [`demo/packages/graph`](demo/packages/graph) |

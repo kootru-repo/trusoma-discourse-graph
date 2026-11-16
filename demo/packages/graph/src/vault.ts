@@ -1,6 +1,6 @@
 /**
  * Read the Discourse Graphs vault into one typed graph.
- * The vault is the only authored source (local/dg_demo/TRUSOMA_DG_DEMO_PLAN_2026-11-15.md, section 1): this module only reads.
+ * The vault is the only authored source: this module only reads.
  * A note's frontmatter is one `name: <JSON>` per line; a note last saved by Obsidian's property editor is YAML, read with the yaml package.
  */
 import { existsSync, readdirSync, readFileSync } from "node:fs";

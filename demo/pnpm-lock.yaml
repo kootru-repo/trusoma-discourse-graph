@@ -20,6 +20,9 @@ importers:
 
   apps/canvas:
     dependencies:
+      '@repo/graph':
+        specifier: workspace:*
+        version: link:../../packages/graph
       react:
         specifier: 18.2.0
         version: 18.2.0

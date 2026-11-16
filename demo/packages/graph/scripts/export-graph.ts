@@ -1,6 +1,6 @@
 /**
- * Export the vault's discourse graph as one static JSON file for the canvas (demo/web/public/graph.json).
- * A generated file: never edited, rebuilt from the vault by `npm run export`, ignored by git.
+ * Export the vault's discourse graph as one static JSON file for the canvas (demo/apps/canvas/public/graph.json).
+ * A generated file: never edited, rebuilt from the vault by `pnpm run export`, ignored by git.
  */
 import { mkdirSync, writeFileSync } from "node:fs";
 import { dirname, resolve } from "node:path";

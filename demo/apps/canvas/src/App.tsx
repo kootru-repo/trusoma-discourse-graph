@@ -50,6 +50,9 @@ import {
   type GraphData,
   type Index,
 } from "./graph";
+import { PRESETS, runQuery, type Query } from "@repo/graph/query";
+import { Ask, CUSTOM, DEFAULT_CUSTOM, type Asked } from "./Ask";
+import { TW_LABEL } from "./tw";
 
 const shapeUtils = [DiscourseNodeUtil, DiscourseRelationUtil];
 const bindingUtils = [DiscourseRelationBindingUtil];
@@ -123,8 +126,6 @@ const LONG = new Set([
   "meaning",
 ]);
 /** Class strings used in more than one place (Tailwind utilities; the tokens are in tailwind.config.ts). */
-const TW_LABEL =
-  "text-[11.5px] font-semibold uppercase tracking-[0.06em] text-[#56637a]";
 const TW_PANEL =
   "absolute z-[400] min-h-0 rounded-[14px] border border-solid border-[rgba(15,23,42,0.08)] bg-white [box-shadow:0_1px_2px_rgba(15,23,42,0.05),0_8px_24px_rgba(15,23,42,0.07)] max-[900px]:static max-[900px]:max-h-none max-[900px]:w-auto max-[900px]:rounded-none max-[900px]:[box-shadow:none]";
 const TW_DOT = "h-2 w-2 flex-none rounded-full";
@@ -390,6 +391,12 @@ const Row = ({
     <li>
       <button
         className={`${TW_ROW_BUTTON} grid-cols-[8px_minmax(0,1fr)] items-start gap-2.5 px-2.5 py-[11px] ${active ? "bg-[#eef2f6]" : "bg-transparent hover:bg-[#f8fafc]"}`}
+        style={
+          active
+            ? { boxShadow: `inset 3px 0 0 ${TYPE_COLOUR[node.type]}` }
+            : undefined
+        }
+        aria-current={active}
         onClick={() => onPick(node)}
       >
         <span
@@ -412,11 +419,39 @@ const Row = ({
   );
 };
 
+const LISTED = 60;
+/** An answer list longer than this gets a filter box. */
+const FILTER_FROM = 15;
+const FIRST_QUESTION: Asked = {
+  id: PRESETS[0]!.id,
+  query: PRESETS[0]!.query,
+};
+/** A link can open a preset question: #ask=<preset id>. */
+const askedFromHash = (): Asked | null => {
+  const id = new URLSearchParams(window.location.hash.slice(1)).get("ask");
+  const preset = PRESETS.find((p) => p.id === id);
+  return preset ? { id: preset.id, query: preset.query } : null;
+};
+const setHash = (hash: string): void =>
+  window.history.replaceState(
+    null,
+    "",
+    window.location.pathname + window.location.search + hash,
+  );
+
 export const App = (): JSX.Element => {
   const [index, setIndex] = useState<Index | null>(null);
   const [error, setError] = useState("");
   const [query, setQuery] = useState("NMDA");
   const [type, setType] = useState("");
+  const [mode, setMode] = useState<"search" | "ask">(() =>
+    askedFromHash() ? "ask" : "search",
+  );
+  const [asked, setAsked] = useState<Asked>(
+    () => askedFromHash() ?? FIRST_QUESTION,
+  );
+  const [listed, setListed] = useState(LISTED);
+  const [within, setWithin] = useState("");
   const [depth, setDepth] = useState(1);
   const [focus, setFocus] = useState<GNode | null>(null);
   const [selected, setSelected] = useState<GNode | null>(null);
@@ -436,8 +471,16 @@ export const App = (): JSX.Element => {
       )
       .then((data) => {
         setIndex(buildIndex(data));
+        // a link to a question opens on its first answer; otherwise on the start note
+        const linked = askedFromHash();
+        const answer = linked
+          ? runQuery({ ...data, query: linked.query })[0]
+          : undefined;
         setFocus(
-          data.nodes.find((n) => n.name === START) ?? data.nodes[0] ?? null,
+          answer ??
+            data.nodes.find((n) => n.name === START) ??
+            data.nodes[0] ??
+            null,
         );
       })
       .catch((e: unknown) =>
@@ -478,10 +521,70 @@ export const App = (): JSX.Element => {
     [index, redraw],
   );
 
-  const results = useMemo(
-    () => (index ? search({ index, query, type }) : { total: 0, hits: [] }),
-    [index, query, type],
+  /** Asking draws the first answer, so the canvas responds to the question and not only the list. */
+  const drawFirst = useCallback(
+    (asking: Query): void => {
+      if (!index) return;
+      const first = runQuery({ ...index.data, query: asking })[0];
+      if (first) setFocus(first);
+    },
+    [index],
   );
+  const ask = useCallback(
+    (next: Asked): void => {
+      setAsked(next);
+      setListed(LISTED);
+      setWithin("");
+      setHash(next.id === CUSTOM ? "" : `#ask=${next.id}`);
+      drawFirst(next.query);
+    },
+    [drawFirst],
+  );
+  const switchMode = useCallback(
+    (next: "search" | "ask"): void => {
+      setMode(next);
+      setListed(LISTED);
+      setHash(next === "ask" && asked.id !== CUSTOM ? `#ask=${asked.id}` : "");
+      if (next === "ask") drawFirst(asked.query);
+    },
+    [asked, drawFirst],
+  );
+  const counts = useMemo((): Record<string, number> => {
+    if (!index) return {};
+    const { nodes, relations } = index.data;
+    const custom = asked.id === CUSTOM ? asked.query : DEFAULT_CUSTOM;
+    return Object.fromEntries(
+      [...PRESETS, { id: CUSTOM, query: custom }].map((q) => [
+        q.id,
+        runQuery({ nodes, relations, query: q.query }).length,
+      ]),
+    );
+  }, [index, asked]);
+  const results = useMemo((): {
+    total: number;
+    answers: number;
+    hits: GNode[];
+  } => {
+    if (!index) return { total: 0, answers: 0, hits: [] };
+    if (mode === "search") {
+      const found = search({ index, query, type, limit: listed });
+      return { ...found, answers: found.total };
+    }
+    const { nodes, relations } = index.data;
+    const answers = runQuery({ nodes, relations, query: asked.query });
+    const words = within.toLowerCase().split(/\s+/).filter(Boolean);
+    const found = words.length
+      ? answers.filter((n) => {
+          const title = n.title.toLowerCase();
+          return words.every((w) => title.includes(w));
+        })
+      : answers;
+    return {
+      total: found.length,
+      answers: answers.length,
+      hits: found.slice(0, listed),
+    };
+  }, [index, mode, query, type, asked, listed, within]);
   const gaps = useMemo(
     () =>
       index
@@ -545,79 +648,144 @@ export const App = (): JSX.Element => {
           relations · <b className={TW_COUNT}>{gaps.toLocaleString()}</b> claims
           still need evidence
         </p>
-        <div className="relative mr-1">
-          <svg
-            className="stroke-faint absolute left-[11px] top-2.5 h-4 w-4 fill-none [stroke-linecap:round] [stroke-width:1.8]"
-            viewBox="0 0 20 20"
-            aria-hidden="true"
-          >
-            <circle cx="9" cy="9" r="5.5" />
-            <path d="M13.5 13.5 17 17" />
-          </svg>
-          <input
-            className="border-line h-[38px] w-full rounded-lg border border-solid bg-white pl-[34px] pr-3 hover:border-[#cbd5e1]"
-            aria-label="Search notes"
-            placeholder="Search notes"
-            value={query}
-            onChange={(e) => setQuery(e.target.value)}
-          />
-        </div>
-        <div className="mr-1 grid grid-cols-[1fr_auto] gap-3">
-          <label className="grid gap-1.5">
-            <span className={TW_LABEL}>Type</span>
-            <select
-              className="dg-select border-line h-[34px] w-full appearance-none rounded-lg border border-solid pl-[11px] pr-[30px] hover:border-[#cbd5e1]"
-              aria-label="Node type"
-              value={type}
-              onChange={(e) => setType(e.target.value)}
-            >
-              <option value="">All types</option>
-              {COLUMNS.map((c) => (
-                <option key={c} value={c}>
-                  {c}
-                </option>
-              ))}
-            </select>
-          </label>
-          <div className="grid gap-1.5">
-            <span className={TW_LABEL}>Hops</span>
-            <div
-              className="border-line flex h-[34px] overflow-hidden rounded-lg border border-solid bg-white"
-              role="group"
-              aria-label="Hops"
-            >
-              {[1, 2, 3, 4].map((d) => (
-                <button
-                  key={d}
-                  className={`border-line w-[34px] border-0 border-solid font-medium ${d > 1 ? "border-l" : ""} ${d === depth ? "bg-ink text-white" : "text-muted hover:bg-canvas bg-transparent"}`}
-                  aria-pressed={d === depth}
-                  onClick={() => setDepth(d)}
-                >
-                  {d}
-                </button>
-              ))}
-            </div>
-          </div>
-        </div>
-        <div className={`${TW_LABEL} pt-0.5`}>
-          {results.total.toLocaleString()} results
-          {results.total > results.hits.length
-            ? `, first ${results.hits.length} shown`
-            : ""}
-        </div>
-        <ul
-          className="dg-scroll -ml-2.5 -mt-1.5 mb-0 mr-0 grid min-h-0 flex-1 list-none content-start gap-0.5 overflow-y-auto pb-4 pl-0 pr-1.5 pt-0 max-[900px]:max-h-60"
-          data-testid="results"
+        <div
+          className="border-line mr-1 grid h-[34px] flex-none grid-cols-2 overflow-hidden rounded-lg border border-solid bg-white"
+          role="group"
+          aria-label="Mode"
         >
-          {results.hits.map((n) => (
-            <Row
-              key={n.uid}
-              node={n}
-              active={focus?.uid === n.uid}
-              onPick={setFocus}
-            />
+          {(["search", "ask"] as const).map((m) => (
+            <button
+              key={m}
+              className={`border-line border-0 border-solid font-medium ${m === "ask" ? "border-l" : ""} ${m === mode ? "bg-ink text-white" : "text-muted hover:bg-canvas bg-transparent"}`}
+              aria-pressed={m === mode}
+              onClick={() => switchMode(m)}
+            >
+              {m === "search" ? "Search" : "Ask"}
+            </button>
           ))}
-        </ul>
+        </div>
+        <div
+          className="flex min-h-0 flex-1 flex-col gap-4"
+          data-testid="column"
+        >
+          {mode === "search" ? (
+            <>
+              <div className="relative mr-1">
+                <svg
+                  className="stroke-faint absolute left-[11px] top-2.5 h-4 w-4 fill-none [stroke-linecap:round] [stroke-width:1.8]"
+                  viewBox="0 0 20 20"
+                  aria-hidden="true"
+                >
+                  <circle cx="9" cy="9" r="5.5" />
+                  <path d="M13.5 13.5 17 17" />
+                </svg>
+                <input
+                  className="border-line h-[38px] w-full rounded-lg border border-solid bg-white pl-[34px] pr-3 hover:border-[#cbd5e1]"
+                  aria-label="Search notes"
+                  placeholder="Search notes"
+                  value={query}
+                  onChange={(e) => {
+                    setQuery(e.target.value);
+                    setListed(LISTED);
+                  }}
+                />
+              </div>
+              <div className="mr-1 grid grid-cols-[1fr_auto] gap-3">
+                <label className="grid gap-1.5">
+                  <span className={TW_LABEL}>Type</span>
+                  <select
+                    className="dg-select border-line h-[34px] w-full appearance-none rounded-lg border border-solid pl-[11px] pr-[30px] hover:border-[#cbd5e1]"
+                    aria-label="Node type"
+                    value={type}
+                    onChange={(e) => {
+                      setType(e.target.value);
+                      setListed(LISTED);
+                    }}
+                  >
+                    <option value="">All types</option>
+                    {COLUMNS.map((c) => (
+                      <option key={c} value={c}>
+                        {c}
+                      </option>
+                    ))}
+                  </select>
+                </label>
+                <div className="grid gap-1.5">
+                  <span className={TW_LABEL}>Hops</span>
+                  <div
+                    className="border-line flex h-[34px] overflow-hidden rounded-lg border border-solid bg-white"
+                    role="group"
+                    aria-label="Hops"
+                  >
+                    {[1, 2, 3, 4].map((d) => (
+                      <button
+                        key={d}
+                        className={`border-line w-[34px] border-0 border-solid font-medium ${d > 1 ? "border-l" : ""} ${d === depth ? "bg-ink text-white" : "text-muted hover:bg-canvas bg-transparent"}`}
+                        aria-pressed={d === depth}
+                        onClick={() => setDepth(d)}
+                      >
+                        {d}
+                      </button>
+                    ))}
+                  </div>
+                </div>
+              </div>
+            </>
+          ) : (
+            <Ask
+              asked={asked}
+              counts={counts}
+              nodeTypes={index.data.nodeTypes.map((t) => t.name)}
+              relationLabels={index.data.relationTypes.map((t) => t.label)}
+              onAsk={ask}
+            />
+          )}
+          <div
+            className={`${TW_LABEL} border-line-2 mr-1.5 flex-none border-0 border-t border-solid pt-3.5`}
+          >
+            {results.total.toLocaleString()}
+            {results.total < results.answers
+              ? ` of ${results.answers.toLocaleString()}`
+              : ""}{" "}
+            {results.answers === 1 ? "result" : "results"}
+          </div>
+          {mode === "ask" && results.answers > FILTER_FROM ? (
+            <input
+              className="border-line -mt-1.5 mr-1 h-[34px] flex-none rounded-lg border border-solid bg-white px-[11px] hover:border-[#cbd5e1]"
+              aria-label="Filter the results by title"
+              placeholder={`Filter ${results.answers.toLocaleString()} results by title`}
+              value={within}
+              onChange={(e) => {
+                setWithin(e.target.value);
+                setListed(LISTED);
+              }}
+            />
+          ) : null}
+          <ul
+            className="dg-scroll -ml-2.5 -mt-1.5 mb-0 mr-0 grid min-h-0 flex-1 list-none content-start gap-0.5 overflow-y-auto pb-4 pl-0 pr-2.5 pt-0 max-[900px]:max-h-60"
+            data-testid="results"
+          >
+            {results.hits.map((n) => (
+              <Row
+                key={n.uid}
+                node={n}
+                active={focus?.uid === n.uid}
+                onPick={setFocus}
+              />
+            ))}
+            {results.total > results.hits.length ? (
+              <li className="pl-2.5 pt-1.5">
+                <button
+                  className="border-line text-ink-2 hover:bg-canvas h-[34px] w-full rounded-lg border border-solid bg-white text-[13px] font-medium"
+                  onClick={() => setListed(listed + LISTED)}
+                >
+                  Show {Math.min(LISTED, results.total - results.hits.length)}{" "}
+                  more of {results.total.toLocaleString()}
+                </button>
+              </li>
+            ) : null}
+          </ul>
+        </div>
       </aside>
       <main className="absolute inset-0 grid min-h-0 min-w-0 grid-cols-[minmax(0,1fr)] grid-rows-[minmax(0,1fr)] overflow-hidden max-[900px]:relative max-[900px]:inset-auto">
         <div className="dg-canvas relative min-h-0 min-w-0">
@@ -633,9 +801,11 @@ export const App = (): JSX.Element => {
             data-testid="status"
           >
             <span>
-              <b className={TW_STRONG}>{shown.nodes}</b> notes and{" "}
-              <b className={TW_STRONG}>{shown.relations}</b> relations within{" "}
-              {depth} {depth === 1 ? "hop" : "hops"} of{" "}
+              <b className={TW_STRONG}>{shown.nodes}</b>{" "}
+              {shown.nodes === 1 ? "note" : "notes"} and{" "}
+              <b className={TW_STRONG}>{shown.relations}</b>{" "}
+              {shown.relations === 1 ? "relation" : "relations"} within {depth}{" "}
+              {depth === 1 ? "hop" : "hops"} of{" "}
               <em className={TW_STRONG}>{focus ? display(focus).head : ""}</em>
               {shown.truncated ? " (more exist: lower the hops)" : ""}
             </span>

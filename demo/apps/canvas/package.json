@@ -12,6 +12,7 @@
     "lint": "eslint ."
   },
   "dependencies": {
+    "@repo/graph": "workspace:*",
     "react": "18.2.0",
     "react-dom": "18.2.0",
     "tldraw": "3.14.2"
