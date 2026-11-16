@@ -155,18 +155,37 @@ export const describeQuery = (query: Query): string => {
 
 export const PRESETS: Preset[] = [
   {
-    id: "claims-without-evidence",
-    question: "Which model values have no evidence linked yet?",
+    id: "sourced-values",
+    question: "Which model values are backed by a quoted source?",
     plain:
-      "Values the model uses that no quote, result or other claim is linked to.",
+      "Values the model uses that are linked to a verbatim quote from a paper.",
     query: {
       type: "Claim",
       props: [{ key: "key", label: "that are model values" }],
       where: [
-        { has: false, relation: "supports", direction: "from", type: "" },
-        { has: false, relation: "informs", direction: "from", type: "" },
-        { has: false, relation: "informs", direction: "to", type: "" },
+        {
+          has: true,
+          relation: "supports",
+          direction: "from",
+          type: "Evidence",
+        },
       ],
+    },
+  },
+  {
+    id: "open-values",
+    question: "Which model values are next in line for a source?",
+    plain: "Values whose literature search has not been done yet.",
+    query: {
+      type: "Claim",
+      props: [
+        {
+          key: "status",
+          oneOf: ["unresearched"],
+          label: "whose sourcing is still to do",
+        },
+      ],
+      where: [],
     },
   },
   {
@@ -210,12 +229,12 @@ export const PRESETS: Preset[] = [
     },
   },
   {
-    id: "failed-results",
-    question: "Which results failed or showed no signal?",
-    plain: "Results whose reading was recorded as fail or no-signal.",
+    id: "positive-results",
+    question: "Which results passed or showed a signal?",
+    plain: "Results whose reading was recorded as pass or signal.",
     query: {
       type: "Result",
-      props: [{ key: "reading", oneOf: ["fail", "no-signal"] }],
+      props: [{ key: "reading", oneOf: ["pass", "signal"] }],
       where: [],
     },
   },

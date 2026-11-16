@@ -1,12 +1,12 @@
 # A research record as a discourse graph that an agent can read and write
 
-A real research project's record (4,381 notes: sources, quoted evidence, claims, hypotheses, experiments and results, failed ones included; 2,288 relations) kept in the Discourse Graphs grammar, with:
+A real research project's record (4,381 notes: sources, quoted evidence, claims, hypotheses, experiments and results; 2,288 relations) kept in the Discourse Graphs grammar, with:
 
 - **an MCP server** (TypeScript): an agent reads the graph and writes new notes; a write is refused unless it quotes its record file verbatim and fits the grammar;
 - **a canvas** (tldraw 3.14.2): any note's neighbourhood drawn as cards and labelled arrows;
 - **database rows** for the Discourse Graphs Supabase schema, loaded through its own `upsert_concepts` function into a hosted Supabase project.
 
-In this guide "their" means the [Discourse Graphs repository](https://github.com/DiscourseGraphs/discourse-graph) and its Obsidian plugin.
+The plugin referred to throughout is the Obsidian plugin of the [Discourse Graphs repository](https://github.com/DiscourseGraphs/discourse-graph).
 
 ![one value from its source to the result that tested it](docs/canvas-nmda-share.png)
 
@@ -36,7 +36,7 @@ Value notes (claims, evidence, sources) are not written by the server: they chan
 
 ## Canvas (`apps/canvas`)
 
-A tldraw 3.14.2 canvas over a static export of the vault, as a reading view: the canvas fills the window and the search and detail panels float over it. Search a note, and its neighbourhood (1 to 4 hops, 1 at the start) is drawn as cards with one labelled line per relation; a small neighbourhood is read top to bottom along its relations (what supports a note is above it, what it informs is below), a larger one in ranks by node type. A card shows a result's reading (pass, fail, no-signal). The canvas records are those of the Discourse Graphs Obsidian plugin: `discourse-node` cards with their props, `discourse-relation` shapes with tldraw's arrow props and relationTypeId, each end held by a `discourse-relation` binding, and their node migration sequence. What this view adds for drawing (the card's headline and reading, the line's routing hints) is kept in each shape's `meta`. "Save canvas" writes the drawing as their canvas file (frontmatter `tldr-dg`, the delimited JSON block, one wikilink and block reference per card).
+A tldraw 3.14.2 canvas over a static export of the vault, as a reading view: the canvas fills the window and the search and detail panels float over it. Search a note, and its neighbourhood (1 to 4 hops, 1 at the start) is drawn as cards with one labelled line per relation; a small neighbourhood is read top to bottom along its relations (what supports a note is above it, what it informs is below), a larger one in ranks by node type. A card shows a result's reading (pass, fail, no-signal). The canvas records are those of the Discourse Graphs Obsidian plugin: `discourse-node` cards with their props, `discourse-relation` shapes with tldraw's arrow props and relationTypeId, each end held by a `discourse-relation` binding, and the plugin's node migration sequence. What this view adds for drawing (the card's headline and reading, the line's routing hints) is kept in each shape's `meta`. "Save canvas" writes the drawing as the plugin's canvas file (frontmatter `tldr-dg`, the delimited JSON block, one wikilink and block reference per card).
 
 ```
 cd apps/canvas
@@ -44,17 +44,17 @@ pnpm run build      # exports public/graph.json from the vault, type-checks, bui
 pnpm run preview    # http://localhost:4173 (esbuild serve)
 ```
 
-Checked in a browser on 2026-11-15: the start view draws 4 cards and 4 relations for the value NMDA_SHARE_E16 (its evidence, the hypothesis it informs and the result that tested it); two hops draws 7 cards and 9 relations, back to the source (`docs/canvas-nmda-share.png`). The saved file loads into a tldraw store put together as their plugin does (their shape, binding and migration definitions restated here): 8 shapes and 8 bindings for the start view. Opened in Obsidian 1.15.1 with their plugin (Discourse Graph 1.8.0) on 2026-11-15: the plugin's canvas view draws the 4 cards and 4 labelled relations with no console error, and each card's block reference resolves to its note (`docs/obsidian-canvas.png`, file `docs/Canvas - NMDA share E16.md`). Not yet: saving a rearranged canvas back, automated browser tests.
+Checked in a browser on 2026-11-15: the start view draws 4 cards and 4 relations for the value NMDA_SHARE_E16 (its evidence, the hypothesis it informs and the result that tested it); two hops draws 7 cards and 9 relations, back to the source (`docs/canvas-nmda-share.png`). The saved file loads into a tldraw store put together as the plugin does (its shape, binding and migration definitions restated here): 8 shapes and 8 bindings for the start view. Opened in Obsidian 1.15.1 with the plugin (Discourse Graph 1.8.0) on 2026-11-15: the plugin's canvas view draws the 4 cards and 4 labelled relations with no console error, and each card's block reference resolves to its note (`docs/obsidian-canvas.png`, file `docs/Canvas - NMDA share E16.md`).
 
 ## Database rows (`packages/graph/src/dgExport.ts`, `packages/graph/scripts/load-hosted.ts`)
 
-The vault as the rows the Discourse Graphs Postgres function `upsert_concepts` takes, following their Obsidian plugin's own conversion: 42 schema rows (9 node types, 7 relation types, 26 allowed triples), one row per note and per relation.
+The vault as the rows the Discourse Graphs Postgres function `upsert_concepts` takes, following the Obsidian plugin's own conversion: 42 schema rows (9 node types, 7 relation types, 26 allowed triples), one row per note and per relation.
 
 ```
 pnpm run db:hosted
 ```
 
-loads them into a hosted Supabase project that holds their schema, pushed the way their deploy script does (`supabase db push`, CLI 2.122.0, 84 of 84 migrations), the way their Obsidian plugin does it: their `create-space` edge function makes the space and its account, the client signs in as that account, `create_account_in_space` gives the author, and the rows go through `upsert_concepts` under row-level security with supabase-js 2.118.0. 6,711 of 6,711 rows, no errors, unchanged on a second load, one claim read back, and a client that is not signed in reads no rows (2026-11-15, their commit 1ae4c00). No service-role key is read; a local environment file, which is not in git, holds the project address, the public key and the space password. The counts of the last load are in `docs/hosted-load.json`. Their two edge functions (`create-space`, `create-group`) are deployed from their source unchanged, with their import maps and JWT verification off as in their config; `create-group` is deployed and refuses an anonymous caller, and has not been used to make a group. The rows are compared one by one with the output of their plugin's own conversion code (`test/theirConversion.test.ts`, run when `DG_REPO` is set).
+loads them into a hosted Supabase project that holds the Discourse Graphs schema, pushed with `supabase db push` (CLI 2.122.0, 84 of 84 migrations), by the same steps the Obsidian plugin takes: the `create-space` edge function makes the space and its account, the client signs in as that account, `create_account_in_space` gives the author, and the rows go through `upsert_concepts` under row-level security with supabase-js 2.118.0. 6,711 of 6,711 rows, no errors, unchanged on a second load, one claim read back, and a client that is not signed in reads no rows (2026-11-15, repository commit 1ae4c00). No service-role key is read; a local environment file, which is not in git, holds the project address, the public key and the space password. The counts of the last load are in `docs/hosted-load.json`. The schema's two edge functions (`create-space`, `create-group`) are deployed from their source unchanged, with the repository's import maps and configuration; `create-group` is deployed and refuses an anonymous caller, and has not been used to make a group. The rows are compared one by one with the output of the plugin's own conversion code (`test/theirConversion.test.ts`, run when `DG_REPO` is set).
 
 ## Compatibility check (`packages/graph/scripts/check-upstream.ts`)
 

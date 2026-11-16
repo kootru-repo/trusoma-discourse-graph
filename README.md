@@ -1,6 +1,6 @@
 # TruSoma discourse graph
 
-TruSoma is a simulation of human fetal development at 10 to 17 weeks, built only from published biology. Every number in it has to be traced to a source. This repository holds the record that does the tracing, kept as a [Discourse Graphs](https://discoursegraphs.com) vault, and the software that reads it.
+TruSoma is a simulation of the early human fetal body and its developing brain, built from published biology. The rule of the project is that every number in the model is traced to a source or recorded as a choice. This repository holds the record that does the tracing, kept as a [Discourse Graphs](https://discoursegraphs.com) vault, and the software that reads it.
 
 **[Open the live canvas](https://kootru-repo.github.io/trusoma-discourse-graph/)** · [Project page](https://labs.kootru.com) · [Architecture](docs/architecture.md) · [Developer guide](demo/README.md)
 
@@ -10,7 +10,7 @@ TruSoma is a simulation of human fetal development at 10 to 17 weeks, built only
 
 ## Why a discourse graph
 
-A model of development is only as good as the numbers in it, and a number with no source is a guess. In TruSoma each value is a claim note, linked to the verbatim quote it came from, the paper that quote is in, the hypothesis it informs and the result that tested it. Values with no evidence yet are kept in the record and counted, and failed results are entered like passes.
+A model of development is only as good as the numbers in it, and a number with no source is a guess. In TruSoma each value is a claim note, linked to the verbatim quote it came from, the paper that quote is in, the hypothesis it informs and the result that tested it. Every value has a recorded status, and every result is entered whatever its outcome, so the record can be questioned as well as read.
 
 ## What is here
 
@@ -18,14 +18,14 @@ A model of development is only as good as the numbers in it, and a number with n
 | --- | --- | --- |
 | Vault | 4,381 discourse notes and 2,288 relations: sources, verbatim quotes, claims, hypotheses, experiments and results | [`vault/`](vault) |
 | Canvas | Draws any note's neighbourhood as cards and labelled relations | [`demo/apps/canvas`](demo/apps/canvas) |
-| Ask | Runs questions over the graph as data ("which hypotheses have no experiment linked?"), with five presets, a question builder and a link per question, for example [`#ask=untested-hypotheses`](https://kootru-repo.github.io/trusoma-discourse-graph/#ask=untested-hypotheses) | [`demo/packages/graph/src/query.ts`](demo/packages/graph/src/query.ts) |
+| Ask | Runs questions over the graph as data ("which hypotheses have no experiment linked?"), with six presets, a question builder and a link per question, for example [`#ask=untested-hypotheses`](https://kootru-repo.github.io/trusoma-discourse-graph/#ask=untested-hypotheses) | [`demo/packages/graph/src/query.ts`](demo/packages/graph/src/query.ts) |
 | MCP server | An assistant searches the graph, traces a value to its sources, lists gaps, and writes notes that a validator can refuse | [`demo/apps/mcp`](demo/apps/mcp) |
 | Obsidian round trip | "Save canvas" writes a canvas file that the Discourse Graphs Obsidian plugin opens, with every card linked back to its note | [`demo/docs`](demo/docs) |
 | Database load | The vault as rows for the Discourse Graphs Supabase schema | [`demo/packages/graph`](demo/packages/graph) |
 
 ## Try it
 
-Nothing needs installing: open the [live page](https://kootru-repo.github.io/trusoma-discourse-graph/), search for a note, and widen its neighbourhood from 1 to 4 hops. The Ask tab answers questions such as which model values have no evidence linked yet.
+Nothing needs installing: open the [live page](https://kootru-repo.github.io/trusoma-discourse-graph/), search for a note, and widen its neighbourhood from 1 to 4 hops. The Ask tab answers questions such as which model values are backed by a quoted source.
 
 To run everything locally (Node 22, pnpm 10.15.1, Python 3.11 or later):
 
@@ -48,7 +48,7 @@ python tools/dm/check_all.py                    # validate the vault and compare
 python tools/dm/test_single_source.py tamper    # change one byte of each generated file: every change is detected
 ```
 
-Gaps are shown, not hidden: 1,212 of 1,943 value claims have no evidence yet, and both the Ask tab and the MCP server's `list_gaps` tool report them.
+The vault holds 1,943 value notes. 731 are linked to a verbatim quote from a paper; the others carry their status (a recorded model choice, a design value, or next in line for a source), and the Ask tab and the MCP server's `list_gaps` tool list them. Of the values that describe the fetal body, brainstem and learner, 483 of 557 are sourced (87%); the [project page](https://labs.kootru.com) keeps that count.
 
 ## Works with the Discourse Graphs plugin
 
@@ -61,8 +61,8 @@ The vault is written and read in Obsidian with the open-source [Discourse Graphs
 
 The MCP server uses the MCP SDK, and the vault's authoring tools are Python.
 
-## Limits
+## Scope
 
 - The hosted database is not open to visitors: by the schema's policies, a client that is not signed in reads no rows. The load is recorded in [`demo/docs/hosted-load.json`](demo/docs/hosted-load.json).
-- Saving a rearranged canvas back to the vault is not built, and there are no automated browser tests.
-- The simulation code itself is not in this repository.
+- The canvas is a reading view: a drawing is saved as a canvas file for Obsidian, and notes are written through the MCP server or in Obsidian.
+- This repository is the record and its software; the simulation itself is developed separately.

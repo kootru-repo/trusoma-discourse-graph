@@ -107,8 +107,8 @@ test("a query reads as one sentence", () => {
     'Hypothesis notes with no "motivates" relation to an Experiment',
   );
   assert.equal(
-    describeQuery(PRESETS.find((p) => p.id === "failed-results")!.query),
-    "Result notes whose reading is fail or no-signal",
+    describeQuery(PRESETS.find((p) => p.id === "positive-results")!.query),
+    "Result notes whose reading is pass or signal",
   );
 });
 
@@ -131,16 +131,24 @@ const answer = (id: string): string[] =>
   }).map((n) => n.uid);
 
 test("on the vault, the preset questions agree with counts worked out another way", () => {
-  // value claims that no relation touches, counted directly
-  const touched = new Set(relations.flatMap((r) => [r.source, r.destination]));
-  const untouched = nodes.filter(
-    (n) => n.type === "Claim" && "key" in n.props && !touched.has(n.uid),
+  // value claims an evidence note supports, counted from the relation list
+  const supported = new Set(
+    relations
+      .filter(
+        (r) =>
+          r.label === "supports" &&
+          g.nodes.get(r.source)?.nodeType === "Evidence",
+      )
+      .map((r) => r.destination),
+  );
+  const sourced = nodes.filter(
+    (n) => n.type === "Claim" && "key" in n.props && supported.has(n.uid),
   );
   assert.deepEqual(
-    answer("claims-without-evidence"),
-    untouched.map((n) => n.uid),
+    answer("sourced-values"),
+    sourced.map((n) => n.uid),
   );
-  assert.ok(untouched.length > 0);
+  assert.ok(sourced.length > 0);
 
   // hypotheses that motivate no experiment, counted from the relation list
   const tested = new Set(
