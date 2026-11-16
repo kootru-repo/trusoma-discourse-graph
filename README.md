@@ -48,7 +48,7 @@ python tools/dm/check_all.py                    # validate the vault and compare
 python tools/dm/test_single_source.py tamper    # change one byte of each generated file: every change is detected
 ```
 
-The vault holds 1,943 value notes. 731 are linked to a verbatim quote from a paper; the others carry their status (a recorded model choice, a design value, or next in line for a source), and the Ask tab and the MCP server's `list_gaps` tool list them. Of the values that describe the fetal body, brainstem and learner, 483 of 557 are sourced (87%); the [project page](https://labs.kootru.com) keeps that count.
+The vault holds 1,943 value notes. 731 are linked to a verbatim quote from a paper; the others carry their status (a recorded model choice, a design value, or next in line for a source), and the Ask tab and the MCP server's `list_gaps` tool list them. Of the values that describe the fetal body, brainstem and learner, 495 of 569 are sourced (87%); the [project page](https://labs.kootru.com) keeps that count.
 
 ## Works with the Discourse Graphs plugin
 
