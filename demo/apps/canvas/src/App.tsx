@@ -212,9 +212,9 @@ const saveCanvasFile = (editor: Editor, name: string): void => {
   URL.revokeObjectURL(link.href);
 };
 
-/** Show the whole drawing, never larger than life size (a single card would otherwise fill the view). */
 /** The width each floating panel takes from the view, with its margin (the two TW_PANEL elements in App). */
 const PANEL = { left: 324, right: 348 };
+/** Show the whole drawing between the panels, at most 1.2 times life size (a single card would otherwise fill the view). */
 const fit = (editor: Editor): void => {
   const ids = editor
     .getCurrentPageShapes()

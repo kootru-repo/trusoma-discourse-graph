@@ -452,7 +452,7 @@ const PREFIX: Record<string, string> = {
   Result: "RES - ",
 };
 /**
- * Write one probe-record note (Question, Hypothesis, Experiment or Result) into the vault through tools/dm/value_add.py, then run the check.
+ * Write one probe-record note (Question, Hypothesis, Experiment or Result) into the vault (write.ts, after the zod validator in validate.ts), then load the vault again and check the whole graph.
  * The validator refuses a quote that is not verbatim in the named record file, a value on such a note, and a link that does not resolve.
  * When it refuses, the note is removed and the generated files are restored, so a refused write leaves no trace.
  */

@@ -1,4 +1,4 @@
-/** The static graph the canvas reads, and the two queries it needs: search, and the neighbourhood of one node laid out in columns by node type. */
+/** The static graph the canvas reads, and the two queries it needs: search, and the neighbourhood of one node with its layout (two tracks for a small one, ranks by node type for a larger one; see arrange). */
 export type GNode = {
   uid: string;
   type: string;

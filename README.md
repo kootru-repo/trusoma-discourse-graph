@@ -23,6 +23,8 @@ A model of development is only as good as the numbers in it, and a number with n
 | Obsidian round trip | "Save canvas" writes a canvas file that the Discourse Graphs Obsidian plugin opens, with every card linked back to its note | [`demo/docs`](demo/docs) |
 | Database load | The vault as rows for the Discourse Graphs Supabase schema | [`demo/packages/graph`](demo/packages/graph) |
 
+![A question over the graph, with its first answer drawn](demo/docs/canvas-ask.png)
+
 ## Try it
 
 Nothing needs installing: open the [live page](https://kootru-repo.github.io/trusoma-discourse-graph/), search for a note, and widen its neighbourhood from 1 to 4 hops. The Ask tab answers questions such as which model values are backed by a quoted source.
