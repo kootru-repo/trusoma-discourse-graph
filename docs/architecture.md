@@ -16,7 +16,7 @@ flowchart LR
   rows["Database rows<br/>dgExport.ts"]
   load["Hosted load<br/>load-hosted.ts"]
   supabase(["Supabase with the<br/>Discourse Graphs schema"])
-  check["Conformance check<br/>check-upstream.ts"]
+  check["Compatibility check<br/>check-upstream.ts"]
   upstream(["Discourse Graphs repository<br/>pinned commit"])
 
   vault -->|parsed| read -->|records| mcp -->|tools| assistant
@@ -38,7 +38,7 @@ Rounded boxes are software this repository does not own.
 | An assistant writes | `add_note` checks the quote is verbatim text of its record file and that every link fits the grammar, then writes the note and its relations | Notes already in the vault are reproduced byte for byte; the vault's own check accepts the result |
 | Canvas | The vault is exported to `graph.json`; the canvas draws a neighbourhood as the plugin's card and relation records | Record definitions compared with the plugin's source |
 | Obsidian | "Save canvas" writes the plugin's canvas file format | Opened in Obsidian with the plugin: cards, relations and block references resolve |
-| Database | Their migrations make the schema; `create-space` makes the space; rows go through `upsert_concepts` as a signed-in member | 6,711 of 6,711 rows; rows equal the plugin's own conversion output |
+| Database | The plugin's migrations make the schema; `create-space` makes the space; rows go through `upsert_concepts` as a signed-in member | 6,711 of 6,711 rows; rows equal the plugin's own conversion output |
 
 ## Layout
 
@@ -52,6 +52,6 @@ demo/                  a pnpm workspace run by turbo
   packages/eslint-config   the Discourse Graphs eslint preset, unchanged
 ```
 
-## What the conformance check covers
+## What the compatibility check covers
 
 `check-upstream.ts` reads a checkout of the Discourse Graphs repository and compares, item by item: canvas shape and binding definitions, canvas file constants, pinned versions and package manager, workspace layout, the eslint preset files, lint warnings, style-guide rules, Prettier formatting, the Tailwind stylesheet head, row equality with the plugin's conversion, and the recorded hosted load. A dependency the upstream repository does not have is an exception, never a pass.

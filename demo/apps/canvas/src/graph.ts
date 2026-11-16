@@ -182,14 +182,62 @@ export type Flow = "down" | "across" | "tracks" | "layers";
 
 /** A card is as tall as its text: one or two headline lines, and one or two lines under it when the note has them. */
 export const LINES = { head: 3, sub: 6, headChars: 27, subChars: 36 };
+/** The text width inside a card (its width less padding and border), a little under, so a line that only just fits counts as wrapped. */
+const TEXT_W = CARD.w - 2 * 17 - 6;
+const FONT = { head: "600 17px", sub: "400 14.5px" };
+let pen: CanvasRenderingContext2D | null | undefined;
+
+/** How many lines the browser will wrap the text to, measured in the card's own font; by character count where there is no browser (tests). */
+const lineCount = ({
+  text,
+  font,
+  chars,
+}: {
+  text: string;
+  font: string;
+  chars: number;
+}): number => {
+  if (pen === undefined)
+    pen =
+      typeof document === "undefined"
+        ? null
+        : document.createElement("canvas").getContext("2d");
+  if (!pen) return Math.ceil(text.length / chars);
+  const family =
+    getComputedStyle(document.documentElement).getPropertyValue("--sans") ||
+    "sans-serif";
+  pen.font = `${font} ${family}`;
+  let lines = 1;
+  let line = "";
+  for (const word of text.split(/\s+/).filter(Boolean)) {
+    const next = line ? `${line} ${word}` : word;
+    if (pen.measureText(next).width <= TEXT_W) {
+      line = next;
+      continue;
+    }
+    // a word wider than the card breaks inside itself
+    const own = Math.ceil(pen.measureText(word).width / TEXT_W);
+    lines += (line ? 1 : 0) + own - 1;
+    line = own > 1 ? "" : word;
+    if (own > 1) lines += 1;
+  }
+  return lines;
+};
+
 export const cardHeight = (n: GNode): number => {
   const d = display(n);
-  const head = Math.min(LINES.head, Math.ceil(d.head.length / LINES.headChars));
+  const head = Math.min(
+    LINES.head,
+    lineCount({ text: d.head, font: FONT.head, chars: LINES.headChars }),
+  );
   const sub = !d.sub
     ? 0
     : d.code
       ? 1
-      : Math.min(LINES.sub, Math.ceil(d.sub.length / LINES.subChars));
+      : Math.min(
+          LINES.sub,
+          lineCount({ text: d.sub, font: FONT.sub, chars: LINES.subChars }),
+        );
   return (
     14 + 16 + 7 + head * 24 + (sub ? 7 + (d.code ? 24 : sub * 21) : 0) + 15
   );

@@ -2,7 +2,7 @@
   "name": "trusoma-discourse-graph-demo",
   "version": "0.1.0",
   "private": true,
-  "description": "The TruSoma Discourse Graphs vault in TypeScript, laid out as the Discourse Graphs repository is: a pnpm workspace of apps/ and packages/ run by turbo.",
+  "description": "The TruSoma discourse graph in TypeScript: a canvas, a query engine, an MCP server and a database load over the vault.",
   "scripts": {
     "build": "turbo build",
     "ci:validate": "turbo check-types && turbo run test:unit --ui stream",

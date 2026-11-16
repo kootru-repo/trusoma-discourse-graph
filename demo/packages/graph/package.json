@@ -3,7 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "type": "module",
-  "description": "The TruSoma Discourse Graphs vault in TypeScript: read, validate and write notes, database rows, conformance check. The MCP server is its own package in mcp/.",
+  "description": "The TruSoma Discourse Graphs vault in TypeScript: read, validate and write notes, database rows, compatibility check. The MCP server is its own package in mcp/.",
   "scripts": {
     "db:hosted": "tsx scripts/load-hosted.ts",
     "check:upstream": "tsx scripts/check-upstream.ts",

@@ -1,5 +1,5 @@
 /**
- * Is the demo interoperable with, and built on the same software as, the Discourse Graphs repository? One line per item, pass or FAIL.
+ * Do the files and rows written here stay readable by the Discourse Graphs Obsidian plugin, and does the shared tooling match the versions it pins? One line per item, pass or FAIL.
  * Every item is read from a checkout of DiscourseGraphs/discourse-graph (DG_REPO) and compared with the demo's own files; nothing is asserted from memory.
  * A dependency of the demo that their repository does not have is listed as an exception, never counted as a pass.
  * usage: DG_REPO=/path/to/discourse-graph pnpm run check:upstream
@@ -476,6 +476,6 @@ console.log(
   `${items.length - failed} of ${items.length} items pass; ${new Set(exceptions).size} exceptions`,
 );
 console.log(
-  `Completely interoperable and on the upstream software: ${yes ? "YES" : "NO"}`,
+  `Compatible with the Discourse Graphs plugin: ${yes ? "YES" : "NO"}`,
 );
 process.exit(yes ? 0 : 1);

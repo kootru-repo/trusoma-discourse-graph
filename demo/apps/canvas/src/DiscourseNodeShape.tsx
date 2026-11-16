@@ -146,7 +146,7 @@ export class DiscourseNodeUtil extends BaseBoxShapeUtil<DiscourseNodeShape> {
             </span>
           ) : null}
         </div>
-        <div className="text-ink line-clamp-3 text-[17px] font-semibold leading-6 tracking-[-0.01em]">
+        <div className="text-ink line-clamp-3 flex-none text-[17px] font-semibold leading-6 tracking-[-0.01em]">
           {head}
         </div>
         {sub ? (

@@ -1,4 +1,4 @@
-# Tests, lint, the vault's own check, and the conformance check against a pinned commit of the Discourse Graphs repository.
+# Tests, lint, the vault's own check, and the compatibility check against a pinned commit of the Discourse Graphs repository.
 name: CI
 permissions:
   contents: read
@@ -54,7 +54,7 @@ jobs:
         working-directory: .
         run: python tools/dm/check_all.py
 
-      - name: Conformance with the Discourse Graphs repository
+      - name: Compatibility with the Discourse Graphs plugin
         run: pnpm run check:upstream
         env:
           DG_REPO: ${{ github.workspace }}/upstream
