@@ -1,3 +1,3 @@
 companion/source_audit/constant_sources.jsonl text eol=lf
 # GitHub counts a folder named demo as documentation and leaves it out of the language bar; this is the application code
-demo/** -linguist-documentation
+demo/** linguist-documentation=false
