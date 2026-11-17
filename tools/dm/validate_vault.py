@@ -13,7 +13,7 @@ REQUIRED = {"Claim": ("kind", "key", "order", "entries"),
             "Source": ("paper_id", "register", "row"),
             "Issue": ("record_file", "code", "order", "data"), "Record": ("record_file", "code", "order", "data"),
             "Question": ("record", "quote"), "Hypothesis": ("record", "quote", "prereg"), "Experiment": ("date", "record", "quote"),
-            "Result": ("reading", "counted", "record", "quote", "experiment"), "Conclusion": ("record", "quote")}
+            "Result": ("reading", "counted", "record", "quote", "experiment"), "Conclusion": ("record", "quote"), "Finding": ("statement", "record", "quote")}
 READINGS = ("signal", "no-signal", "pass", "fail", "observation")
 _FILES = {}
 
@@ -91,7 +91,11 @@ def discourse_checks(nodes, errors):
     for (kind, name), p in nodes.items():
         if "record_file" in p:
             continue
-        if kind in D.DISCOURSE or kind == "Conclusion":
+        if kind in D.DISCOURSE or kind in ("Conclusion", "Finding"):
+            if kind == "Finding" and not (p.get("supported_by") or p.get("opposed_by")):
+                errors.append("Claim %s: a finding names at least one Result for or against it (supported_by, opposed_by)" % name)
+            if kind == "Finding" and set(D.links_of(p.get("supported_by"))) & set(D.links_of(p.get("opposed_by"))):
+                errors.append("Claim %s: one Result is listed both for and against it" % name)
             if "value" in p or "value_file" in p:
                 errors.append("%s %s: a discourse note may not carry a value" % (kind, name))
             rec = p.get("record", "")

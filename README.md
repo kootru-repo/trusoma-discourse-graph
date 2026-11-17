@@ -1,6 +1,6 @@
 # TruSoma discourse graph
 
-TruSoma is a simulation of the human fetal body and its developing brain at 10 to 17 weeks of gestation, built from published biology. Every number in the model is traced to a source or recorded as a choice. This repository holds that record as a [Discourse Graphs](https://discoursegraphs.com) vault of 4,457 notes and 3,421 relations, with the software that lets people and AI assistants read and write it.
+TruSoma is a simulation of the human fetal body and its developing brain at 10 to 17 weeks of gestation, built from published biology. Every number in the model is traced to a source or recorded as a choice. This repository holds that record as a [Discourse Graphs](https://discoursegraphs.com) vault of 4,475 notes and 3,464 relations, with the software that lets people and AI assistants read and write it.
 
 **[See the six uses, illustrated](https://kootru-repo.github.io/trusoma-discourse-graph/)** · **[Open the live canvas](https://kootru-repo.github.io/trusoma-discourse-graph/explore/)** · [Project page](https://labs.kootru.com) · [Architecture](docs/architecture.md) · [Developer guide](demo/README.md)
 
@@ -23,6 +23,12 @@ The Discourse Graphs documentation for Obsidian has four use-case guides. One co
 
 ![One model value traced from its source to the result that tested it](demo/docs/canvas-nmda-share.png)
 
+## Open questions: answer one with evidence
+
+Seventeen questions mark where the model still lacks a usable source, for example how dense touch afferents are in each region of fetal skin. Each is listed in [`OPEN_QUESTIONS.md`](OPEN_QUESTIONS.md) with the values that wait on it, what is missing, and what the model's own probes say about it. If you know a paper that holds the number, open the form under the question and give the passage word for word. An answer that holds is entered in the graph as a Source and an Evidence note that quote it.
+
+The graph also holds 18 claims about the model that the probe results bear on, each with the Results for it and against it.
+
 ## Why a discourse graph
 
 The project's rule needs a record that shows where each number came from. Each value is a claim note. It is linked to the verbatim quote it came from, the paper that quote is in, the hypothesis it informs and the result that tested it. Every value has a recorded status. Every result is entered whatever its outcome.
@@ -31,7 +37,7 @@ The project's rule needs a record that shows where each number came from. Each v
 
 | Part | What it does | Where |
 | --- | --- | --- |
-| Vault | 4,457 discourse notes and 3,421 relations: sources, verbatim quotes, claims, questions, hypotheses, experiments, results and issues | [`vault/`](vault) |
+| Vault | 4,475 discourse notes and 3,464 relations: sources, verbatim quotes, claims, questions, hypotheses, experiments, results and issues | [`vault/`](vault) |
 | Canvas | Draws any note's neighbourhood as cards and labelled relations | [`demo/apps/canvas`](demo/apps/canvas) |
 | Ask | Runs questions over the graph as data ("which hypotheses have no experiment linked?"), with six presets, a question builder and a link per question, for example [`#ask=untested-hypotheses`](https://kootru-repo.github.io/trusoma-discourse-graph/explore/#ask=untested-hypotheses) | [`demo/packages/graph/src/query.ts`](demo/packages/graph/src/query.ts) |
 | MCP server | An assistant searches the graph, traces a value to its sources, lists gaps, and writes notes that a validator can refuse | [`demo/apps/mcp`](demo/apps/mcp) |

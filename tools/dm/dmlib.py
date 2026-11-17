@@ -57,7 +57,7 @@ NODE_TYPE = {"Claim": "node_LwROzkVH_Zck7ZxDgN91E", "Evidence": "node_xQmEzWQFHd
              "Result": "node_i7PzyKw2NfkA8asBfxeey", "Conclusion": "node_J9JyrRTQj6nuJs6IY83Mo",
              "Record": "trusoma-record"}   # Record is ours: a data row with no discourse meaning (not a plugin node type)
 PREFIX = {"Claim": "CLM - ", "Evidence": "EVD - ", "Source": "@", "Issue": "ISS - ", "Record": "REC - ",
-          "Question": "QUE - ", "Hypothesis": "HYP- ", "Experiment": "EXP - ", "Result": "RES - ", "Conclusion": "CON - "}   # the plugin's own title formats ("HYP- " has no space before the hyphen there)
+          "Question": "QUE - ", "Hypothesis": "HYP- ", "Experiment": "EXP - ", "Result": "RES - ", "Conclusion": "CON - ", "Finding": "CLM - "}   # the plugin's own title formats ("HYP- " has no space before the hyphen there)
 REL_TYPE = {"supports": "relation_Fvz-iAdQfeqSsmpKkZBN0", "produces": "rel_5nnUOb6wBzlAwAF2Wk-ts", "opposes": "relation_eGQp4gFgaNvQsJd3x8Nj9", "informs": "relation_G8GMDxjFv_e5ePzoR7uYn",
             "consistent_with": "rel_E2h9UFdS53YWki3-nczo0", "motivates": "rel_M4xTO_--Zo4nsjQGab9bz", "addresses": "rel_Ge2hTgsP6UFabvpMY45wN"}
 # A configuration value with no source is written to disk as a Parameter note (readable.is_parameter): a setting, not an assertion. Inside the tools it stays a Claim of
@@ -87,6 +87,11 @@ EDGE_RULES = (
     ("Claim", "addresses", "addresses", "Question", True),           # Claim addresses Question
     ("Evidence", "opposes", "opposes", "Claim", True),               # Evidence opposes Claim: a conflict between sources that the vault itself states (opposes_basis quotes where)
     ("Claim", "opposes", "opposes", "Claim", True),                  # Claim opposes Claim (our triple): two records that the vault itself says disagree (opposes_basis quotes where)
+    # A Finding is a Claim note that states what the probes show (no value, no key): on disk and in every relation it is a Claim. It lists the Results for and
+    # against it, so the lab triples Result supports Claim and Result opposes Claim hold, and the Questions it speaks to (Claim addresses Question).
+    ("Finding", "supported_by", "supports", "Result", False),
+    ("Finding", "opposed_by", "opposes", "Result", False),
+    ("Finding", "addresses", "addresses", "Question", True),
 )
 ON_RECORDS = {("Evidence", "opposes"), ("Claim", "opposes")}   # the rules that also hold on a record note (a growth web value is a record note); the other rules are for authored notes only
 # triples of ours that are not in the lab schema; each is written into vault/Meta/grammar.json and the plugin settings by tools/dm/schema_tool.py
@@ -191,7 +196,18 @@ def with_notes(body, notes):
 
 def disk_kind(kind, props):
     """the note type written to disk: Parameter for a configuration value with no source, else the kind itself"""
-    return "Parameter" if kind == "Claim" and readable.is_parameter(props) else kind
+    return "Claim" if kind == "Finding" else "Parameter" if kind == "Claim" and readable.is_parameter(props) else kind
+
+
+def kind_of(props):
+    """the kind the tools give a note from its type on disk: a Parameter is a Claim (a value with no source yet); a Claim note that states a finding and holds
+    no configuration key is a Finding"""
+    t = props["dg_type"]
+    if t == "Parameter":
+        return "Claim"
+    if t == "Claim" and "statement" in props and "key" not in props and "record_file" not in props:
+        return "Finding"
+    return t
 
 
 def _wanted_titles():
@@ -281,7 +297,7 @@ def _stale_bodies():
         props = plain(p)
         if props is None or props.get("importedFromRid") or "dg_type" not in props:
             continue
-        kind = "Claim" if props["dg_type"] == "Parameter" else props["dg_type"]
+        kind = kind_of(props)
         text = p.read_text(encoding="utf-8")
         cut = text.index(chr(10) + "---", 3) + 5
         want = with_notes(readable.body(kind, name_of(p, props), props), notes_of(text))
@@ -422,7 +438,7 @@ def _read_into(out, stems, by_stem, people, plains):
                 raise UnreadableNote("%s: a note of the graph without its dg_type property (it carries %s); put the dg_type line back" % (p, ", ".join(lost)))
             people.append(p)
             continue
-        kind = "Claim" if props["dg_type"] == "Parameter" else props["dg_type"]
+        kind = kind_of(props)
         name = name_of(p, props)
         assert (kind, name) not in out, "two notes hold %s %s" % (kind, name)
         out[(kind, name)] = props

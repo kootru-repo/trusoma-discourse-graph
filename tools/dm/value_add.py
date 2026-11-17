@@ -224,7 +224,7 @@ def parser():
     add("paper", cmd_paper, id=dict(required=True), first_author=dict(required=True), year=dict(required=True), citation=dict(required=True), doi={}, pmid={}, pmcid={}, url={}, local_file={}, n_constants=dict(default="0"))
     add("basis", cmd_basis, species_age=dict(required=True), kind=dict(required=True), lo={}, hi={}, note={}, species={}, stage={})
     add("record", cmd_record, json=dict(required=True))
-    add("discourse", cmd_discourse, kind=dict(required=True, choices=list(D.DISCOURSE)), name=dict(required=True), record=dict(required=True), quote=dict(required=True), prop=dict(action="append"))
+    add("discourse", cmd_discourse, kind=dict(required=True, choices=list(D.DISCOURSE) + ["Finding"]), name=dict(required=True), record=dict(required=True), quote=dict(required=True), prop=dict(action="append"))
     return ap
 
 

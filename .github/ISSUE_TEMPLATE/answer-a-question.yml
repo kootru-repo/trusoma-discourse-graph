@@ -1,0 +1,54 @@
+name: Answer an open question with evidence
+description: Give a paper and the passage that holds a number the model still lacks.
+title: "Answer: "
+labels: ["answer"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thank you. The open questions are listed in OPEN_QUESTIONS.md. Human fetal data at 10 to 17 weeks comes first, then human preterm or newborn data, then fetal or newborn animal data. Adult data is not used.
+  - type: input
+    id: question
+    attributes:
+      label: Which question does this answer?
+      description: The question as written in OPEN_QUESTIONS.md, or the name of a value.
+    validations:
+      required: true
+  - type: input
+    id: paper
+    attributes:
+      label: Paper
+      description: Title, first author, year and journal.
+    validations:
+      required: true
+  - type: input
+    id: doi
+    attributes:
+      label: DOI or link
+    validations:
+      required: true
+  - type: input
+    id: subjects
+    attributes:
+      label: Species and age of the subjects
+      description: For example human fetus, 12 to 14 weeks.
+    validations:
+      required: true
+  - type: textarea
+    id: quote
+    attributes:
+      label: The passage, word for word
+      description: The sentence or table row that holds the number, copied exactly.
+    validations:
+      required: true
+  - type: input
+    id: locator
+    attributes:
+      label: Page, table or figure
+    validations:
+      required: true
+  - type: textarea
+    id: note
+    attributes:
+      label: Anything else we should know
+      description: For example how the measured quantity maps to the value, or a limit of the data.

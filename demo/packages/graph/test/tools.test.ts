@@ -1,7 +1,8 @@
 /** Tests on the real vault (no fixtures): the counts are the ones the Python validator reports, so a reader that drops or misreads a note fails here. */
 import assert from "node:assert/strict";
 import { execFileSync } from "node:child_process";
-import { dirname, resolve } from "node:path";
+import { readFileSync, rmSync, writeFileSync } from "node:fs";
+import { dirname, join, resolve } from "node:path";
 import { test } from "vitest";
 import { fileURLToPath } from "node:url";
 import * as T from "../src/tools.js";
@@ -180,6 +181,7 @@ test("a write with a verbatim quote is accepted, joins the graph, and is then re
     ],
     { cwd: root, encoding: "utf8" },
   );
+  const relationsBefore = readFileSync(join(root, "vault", "relations.json"));
   const r = T.addNote(g, {
     kind: "Result",
     name: "mcp test verbatim quote",
@@ -205,12 +207,12 @@ test("a write with a verbatim quote is accepted, joins the graph, and is then re
     const verdict = T.check(r.graph);
     assert.equal(verdict.ok, true, JSON.stringify(verdict).slice(0, 600));
   } finally {
-    execFileSync("git", ["clean", "-fq", "--", "vault/DiscourseGraph"], {
-      cwd: root,
-    });
-    execFileSync("git", ["checkout", "--", "vault/relations.json"], {
-      cwd: root,
-    });
+    // remove only what this test wrote: uncommitted notes of the author's stay (a clean of the folder once deleted them)
+    rmSync(
+      join(root, "vault", "DiscourseGraph", "RES - mcp test verbatim quote.md"),
+      { force: true },
+    );
+    writeFileSync(join(root, "vault", "relations.json"), relationsBefore);
   }
   assert.equal(
     execFileSync(

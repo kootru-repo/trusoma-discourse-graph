@@ -8,6 +8,7 @@ quote: "one shared population size since 2026-11-08 (replaces 12 per-nucleus cou
 asks: "Does the shared population size of the brainstem nuclei matter, and what should it be?"
 lead: "none needed unless a probe shows the noise scale matters"
 values: ["[[PAR - brainstem_net7.pop_size = 60000, a model choice; current, changes the 12.5 brainstem loop]]"]
+outside: false
 ---
 
 Does the shared population size of the brainstem nuclei matter, and what should it be?

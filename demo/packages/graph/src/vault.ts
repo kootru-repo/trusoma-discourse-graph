@@ -52,6 +52,17 @@ export const VALUE_TYPES: readonly string[] = ["Claim", "Parameter"];
 /** The kind a note's id, handle and link rules use: Claim for a Parameter note, else the note's own type. */
 export const internalKind = (nodeType: string): string =>
   nodeType === "Parameter" ? "Claim" : nodeType;
+/** The kind a note's id derives from. A Claim note that states a finding of the probes (a statement, no configuration key) has its own id kind; on disk and in every relation it is a Claim. */
+export const idKind = (n: {
+  nodeType: string;
+  props: Record<string, unknown>;
+}): string =>
+  n.nodeType === "Claim" &&
+  "statement" in n.props &&
+  !("key" in n.props) &&
+  !("record_file" in n.props)
+    ? "Finding"
+    : internalKind(n.nodeType);
 /** A Claim or a Parameter note: where a Claim is expected, a Parameter is the same thing without a source. */
 export const isValueNote = (n: { nodeType: string }): boolean =>
   VALUE_TYPES.includes(n.nodeType);

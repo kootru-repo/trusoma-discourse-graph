@@ -124,6 +124,16 @@ def lines_for(kind, name, p):
     elif kind == "Hypothesis" and p.get("code") == "gweb":   # a growth web test statement
         out.append(sentence(d.get("statement") or name))
         out.append("Growth web test `%s` on `%s`." % (d.get("id"), d.get("node")))
+    elif kind == "Finding":   # a claim that states what the probes show
+        out.append(sentence(str(p.get("statement") or name)))
+        out.append("A claim from probe readings. Each probe is a short run and gives a reading, not a proof.")
+        for label, key in (("Supported by", "supported_by"), ("Opposed by", "opposed_by"), ("Addresses", "addresses")):
+            if p.get(key):
+                out.append("%s: %s." % (label, links(p[key])))
+        if p.get("quote"):
+            out.append("From the record: %s" % quoted(p["quote"]))
+        if p.get("record"):
+            out.append("Record file: `%s`." % p["record"])
     elif kind in ("Question", "Hypothesis", "Experiment", "Result"):
         if p.get("asks"):
             out.append(sentence(str(p["asks"])))
@@ -356,6 +366,8 @@ def title(kind, name, p, sources, ev=None):
         return fit(PREFIXES[kind], text, "- from %s (%s)" % (cite(p.get("paper_id"), sources), name))
     if kind == "Hypothesis" and p.get("code") == "gweb":
         return fit(PREFIXES[kind], d.get("statement") or "", "(%s)" % name)
+    if kind == "Finding":
+        return fit(PREFIXES["Claim"], p.get("statement") or name, "")
     if kind == "Question" and p.get("asks"):   # an open-value question: the question itself, its stable name in brackets
         return fit(PREFIXES[kind], p["asks"], "(%s)" % name)
     if kind == "Question" and p.get("quote"):

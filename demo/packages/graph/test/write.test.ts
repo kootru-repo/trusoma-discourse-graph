@@ -4,7 +4,7 @@ import { readFileSync } from "node:fs";
 import { dirname, join, resolve } from "node:path";
 import { fileURLToPath } from "node:url";
 import { test } from "vitest";
-import { internalKind, loadVault } from "../src/vault.js";
+import { idKind, loadVault } from "../src/vault.js";
 import {
   impliedRelations,
   nodeId,
@@ -61,7 +61,7 @@ test("every probe-record note in the vault is reproduced exactly from its proper
 
 test("every note's id derives from its stable name, a Parameter's as the Claim it is inside the tools", () => {
   for (const n of g.nodes.values())
-    assert.equal(nodeId(internalKind(n.nodeType), n.name), n.uid, n.title);
+    assert.equal(nodeId(idKind(n), n.name), n.uid, n.title);
   assert.ok([...g.nodes.values()].some((n) => n.nodeType === "Parameter"));
 });
 
