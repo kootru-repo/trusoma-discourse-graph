@@ -3,23 +3,23 @@
 <head>
 <meta charset="utf-8">
 <script>if (location.hash.indexOf("#ask=") === 0) location.replace("explore/" + location.hash);</script>
-<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <meta name="description" content="The TruSoma discourse graph: 4,410 notes and 3,200 relations that record where each value of a model of human fetal development came from: a quoted source or a recorded choice. Six uses, walked through a 3D graph of the vault.">
 <title>TruSoma discourse graph: six uses, illustrated</title>
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Ccircle cx='8' cy='8' r='6' fill='%23ffc46b'/%3E%3C/svg%3E">
 <style>
   :root {
-    --bg: #070b14; --ink: #eef2fb; --mute: #9aa6c0; --line: rgba(255,255,255,.10);
+    --bg: #070b14; --ink: #eef2fb; --mute: #aab5cd; --line: rgba(255,255,255,.10);
     --panel: rgba(13,19,34,.74); --dg: #7cc4ff; --ts: #ffc46b; --ok: #6ee7a8; --part: #ffd27a; --no: #8b96b3;
   }
   * { box-sizing: border-box; }
   html, body { margin: 0; background: var(--bg); color: var(--ink); font: 16px/1.5 "Segoe UI", "Inter", system-ui, -apple-system, Roboto, Helvetica, Arial, sans-serif; -webkit-font-smoothing: antialiased; }
-  #stage { position: fixed; inset: 0; width: 100vw; height: 100vh; display: block; z-index: 0; }
+  #stage { position: fixed; inset: 0; width: 100vw; height: 100vh; height: 100lvh; display: block; z-index: 0; }
   #vignette { position: fixed; inset: 0; z-index: 1; pointer-events: none;
     background: radial-gradient(ellipse at 50% 42%, rgba(7,11,20,0) 0%, rgba(7,11,20,.25) 55%, rgba(7,11,20,.88) 100%); }
   header.bar { position: fixed; top: 0; left: 0; right: 0; z-index: 5; display: flex; align-items: center; justify-content: space-between; gap: 16px;
     padding: 12px 28px; background: rgba(7,11,20,.78); backdrop-filter: blur(14px); -webkit-backdrop-filter: blur(14px); border-bottom: 1px solid var(--line); }
-  .brand { font-size: 13px; letter-spacing: .14em; text-transform: uppercase; color: var(--mute); }
+  .brand { font-size: 13px; letter-spacing: .14em; text-transform: uppercase; color: var(--mute); white-space: nowrap; }
   .brand b { color: var(--ink); font-weight: 600; }
   a.open { flex: none; padding: 7px 14px; border-radius: 999px; font-size: 13px; font-weight: 600; color: #0a0f1c; background: #ffc46b; text-decoration: none; white-space: nowrap; }
   a.open:hover, a.open:focus-visible { background: #ffd591; }
@@ -31,7 +31,7 @@
   a.go { font-size: 13.5px; color: #ffc46b; text-decoration: none; border-bottom: 1px solid rgba(255,196,107,.4); }
   a.go:hover, a.go:focus-visible { color: #ffd591; border-color: #ffd591; }
   nav.dots { display: flex; gap: 6px; }
-  nav.dots a { display: block; padding: 6px 10px; border-radius: 999px; font-size: 12px; color: var(--mute); text-decoration: none; border: 1px solid transparent; transition: all .25s; white-space: nowrap; }
+  nav.dots a { display: block; padding: 8px 12px; border-radius: 999px; font-size: 13px; color: var(--mute); text-decoration: none; border: 1px solid transparent; transition: all .25s; white-space: nowrap; }
   nav.dots a.on { color: var(--ink); border-color: var(--line); background: rgba(255,255,255,.06); }
   nav.dots a:hover { color: var(--ink); }
   main { position: relative; z-index: 3; }
@@ -85,15 +85,17 @@
   .foot { margin-top: 16px; font-size: 12.5px; color: var(--mute); max-width: 74ch; }
   .legend.hide { opacity: 0; }
   @media (max-width: 900px) { .legend.phonehide { opacity: 0; pointer-events: none; } }
-  .legend { transition: opacity .4s; position: fixed; z-index: 4; right: 24px; top: 64px; display: flex; flex-direction: column; gap: 5px; font-size: 12px; color: var(--mute); padding: 10px 12px; border-radius: 12px; background: rgba(7,11,20,.5); border: 1px solid var(--line); }
+  .legend { transition: opacity .4s; position: fixed; z-index: 4; right: 24px; top: 64px; display: flex; flex-direction: column; gap: 6px; font-size: 13px; color: #b4bfd6; padding: 11px 14px; border-radius: 12px; background: rgba(7,11,20,.5); border: 1px solid var(--line); }
   .legend div { display: flex; align-items: center; gap: 8px; transition: opacity .4s; }
   .legend div.off { opacity: .28; }
   .legend i { width: 18px; height: 3px; border-radius: 2px; }
   html { scroll-padding-top: 64px; }
   @media (max-width: 1360px) {
     header.bar { background: #070b14; backdrop-filter: none; -webkit-backdrop-filter: none; }
-    nav.dots { position: fixed; left: 0; right: 0; bottom: 0; z-index: 6; overflow-x: auto; padding: 7px 34px 7px 10px; gap: 4px; background: #070b14; border-top: 1px solid var(--line); scrollbar-width: none;
-      -webkit-mask-image: linear-gradient(to right, #000 0, #000 calc(100% - 44px), transparent 100%); mask-image: linear-gradient(to right, #000 0, #000 calc(100% - 44px), transparent 100%); }
+    nav.dots { position: fixed; left: 0; right: 0; bottom: 0; z-index: 6; overflow-x: auto; padding: 7px 34px 7px 10px; gap: 4px; background: #070b14; border-top: 1px solid var(--line); scrollbar-width: none; }
+    div.dotsfade { display: block; position: fixed; left: 0; right: 0; bottom: calc(52px + env(safe-area-inset-bottom)); height: 34px; z-index: 5; pointer-events: none; background: linear-gradient(to top, #070b14, rgba(7,11,20,0)); }
+    div.dotsmore { display: flex; position: fixed; right: 0; bottom: 0; height: calc(53px + env(safe-area-inset-bottom)); width: 54px; z-index: 7; pointer-events: none; align-items: center; justify-content: flex-end; padding: 0 10px env(safe-area-inset-bottom) 0; color: #c6cfe2; font-size: 20px; background: linear-gradient(to right, rgba(7,11,20,0), #070b14 55%); }
+    div.dotsmore.end { display: none; }
     nav.dots::-webkit-scrollbar { display: none; }
     main { padding-bottom: 52px; } html { scroll-padding-bottom: 52px; }
   }
@@ -102,18 +104,40 @@
   .scope > div:first-child { border-top: 0; }
   .scope dt { font-size: 13px; font-weight: 600; color: var(--ink); }
   .scope dd { margin: 0; font-size: 13.5px; line-height: 1.6; color: #b4bfd6; max-width: 92ch; }
-  .legend div.off { opacity: .62; }
+  .legend div.off { opacity: .72; }
+  .dotsfade, .dotsmore { display: none; }
+  header.bar.athero a.open { visibility: hidden; }
   @media (max-width: 900px) {
     .duo { grid-template-columns: 1fr; } .scope > div { grid-template-columns: 1fr; }
     .legend { top: 62px; bottom: auto; left: 8px; right: 8px; flex-direction: row; flex-wrap: wrap; justify-content: center; gap: 4px 12px; font-size: 11px; padding: 6px 10px; background: rgba(7,11,20,.86); }
     header.bar { padding: 8px 12px; background: #070b14; } .brand { font-size: 11px; letter-spacing: .08em; } .brand .long { display: none; }
     section { padding: 80px 16px 40px; } td:first-child { white-space: normal; }
     .stats { grid-template-columns: repeat(2, minmax(0, 1fr)); }
-    section.hero { justify-content: flex-start; min-height: 0; } h1 { margin-bottom: 270px; }
+    section.hero { justify-content: flex-start; min-height: 0; padding-top: 74px; }
+    section.hero .wrap { display: flex; flex-direction: column; }
+    h1 { font-size: clamp(27px, 8.4vw, 36px); max-width: none; margin-bottom: clamp(250px, calc(100svh - 338px), 520px); text-wrap: balance; }
+    section.hero .cta { order: 1; margin-top: 0; } section.hero .lede { order: 2; margin-top: 22px; } section.hero .keys { order: 3; } .hint { display: none; }
+    a.open.big { flex: 1; text-align: center; padding: 13px 18px; } a.ghost { padding: 12px 18px; }
+    nav.dots { padding: 6px 34px calc(6px + env(safe-area-inset-bottom)) 8px; } nav.dots a { padding: 10px 13px; font-size: 13px; }
+    main { padding-bottom: calc(58px + env(safe-area-inset-bottom)); }
     .keys { display: grid; grid-template-columns: 1fr 1fr; width: 100%; } .key { flex-direction: column; gap: 2px; padding: 10px 14px; } .key b { font-size: 22px; }
     .lede { background: rgba(7,11,20,.72); border-radius: 12px; padding: 10px 12px; margin-left: -12px; }
     section:not(.hero) { padding-top: 330px; background: linear-gradient(to bottom, rgba(7,11,20,0) 0, rgba(7,11,20,0) 250px, rgba(7,11,20,.95) 320px, rgba(7,11,20,.96) 100%); }
     section.full { padding-top: 90px; background: rgba(7,11,20,.6); }
+  }
+  @media (max-width: 900px) {
+    section.full table, section.full tbody, section.full tr, section.full td { display: block; } section.full thead { display: none; }
+    section.full tr { padding: 14px 2px; border-bottom: 1px solid var(--line); } section.full tr:last-child { border-bottom: 0; }
+    section.full td { padding: 0; border: 0; } section.full td:first-child { font-size: 16px; font-weight: 650; color: var(--ink); margin-bottom: 8px; }
+    section.full td:nth-child(2), section.full td:nth-child(3) { margin-bottom: 8px; color: #c6cfe2; }
+    section.full td:nth-child(2)::before, section.full td:nth-child(3)::before { display: block; font-size: 11px; letter-spacing: .12em; text-transform: uppercase; font-weight: 600; margin-bottom: 2px; }
+    section.full td:nth-child(2)::before { content: "Discourse Graphs"; color: var(--dg, #7cc4ff); } section.full td:nth-child(3)::before { content: "TruSoma vault"; color: #ffc46b; }
+  }
+  @media (max-width: 900px) and (max-height: 520px) {
+    nav.dots, div.dotsfade, div.dotsmore { display: none; } main { padding-bottom: 0; }
+    section.hero h1 { max-width: 44%; margin-bottom: 16px; font-size: 26px; } section.hero .cta, section.hero .lede, section.hero .keys { max-width: 44%; } section.hero .keys { display: none; }
+    section:not(.hero) { padding-top: 250px; background: linear-gradient(to bottom, rgba(7,11,20,0) 0, rgba(7,11,20,0) 180px, rgba(7,11,20,.95) 240px, rgba(7,11,20,.96) 100%); }
+    section.full { padding-top: 70px; background: rgba(7,11,20,.6); }
   }
 </style>
 </head>
@@ -126,6 +150,7 @@
   <nav class="dots" id="dots"></nav>
   <a class="open" href="explore/">Open the live canvas</a>
 </header>
+<div class="dotsfade"></div><div class="dotsmore" id="dotsmore" aria-hidden="true">&rsaquo;</div>
 <div class="legend" id="legend"></div>
 <main id="main"></main>
 
@@ -144,6 +169,11 @@ const TYPES = [
   { id: "Issue",      n: 268,  color: 0xff6f91, pos: [1.2, -5.4, 0] },
   { id: "Conclusion", n: 0,    color: 0x66708a, pos: [9.6, 4.0, -2] },
 ];
+if (window.matchMedia("(max-width: 900px) and (orientation: portrait)").matches) {
+  const P = { Question: [-5.2, 8.6, 0], Hypothesis: [0, 9.3, -1], Experiment: [5.2, 8.6, 0], Conclusion: [-5.2, 4.3, -2], Result: [5.2, 4.5, -1],
+              Source: [-5.6, -1.2, 0], Evidence: [0, -0.4, 1], Claim: [5.6, -1.2, 0], Issue: [-3.2, -7.4, 0], Parameter: [3.4, -7.6, -1] };
+  TYPES.forEach(x => { x.pos = P[x.id]; });
+}
 const REL_COLOR = { produces: 0x38c8f0, supports: 0x6ee7a8, opposes: 0xff6f6f, informs: 0xe6ecff, "consistent with": 0xd9c27a, motivates: 0xb79bff };
 const RELS = [
   ["Source", "produces", "Evidence", 1128], ["Evidence", "supports", "Claim", 882], ["Source", "produces", "Claim", 512],
@@ -261,7 +291,10 @@ renderer.setClearColor(0x070b14, 1);
 const scene = new THREE.Scene();
 scene.fog = new THREE.FogExp2(0x070b14, 0.012);
 const camera = new THREE.PerspectiveCamera(46, 1, 0.1, 200);
-const SMALL = window.innerWidth < 768;
+const PHONE_Q = window.matchMedia("(max-width: 900px)"), PHONE = PHONE_Q.matches, COARSE = window.matchMedia("(pointer: coarse)").matches;
+PHONE_Q.addEventListener("change", () => location.reload());
+window.matchMedia("(orientation: portrait)").addEventListener("change", () => { if (PHONE) location.reload(); });
+const SMALL = PHONE;
 const reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
 function rng(seed) { let a = seed >>> 0; return () => { a |= 0; a = a + 0x6D2B79F5 | 0; let t = Math.imul(a ^ a >>> 15, 1 | a); t = t + Math.imul(t ^ t >>> 7, 61 | t) ^ t; return ((t ^ t >>> 14) >>> 0) / 4294967296; }; }
@@ -274,12 +307,16 @@ const DISC = disc();
 
 function label(name, count, hex) {
   const c = document.createElement("canvas"); c.width = 640; c.height = 220; const g = c.getContext("2d");
-  g.textAlign = "center"; g.shadowColor = "rgba(7,11,20,.95)"; g.shadowBlur = 18;
+  g.textAlign = "center";
+  { g.font = "600 58px 'Segoe UI', system-ui, sans-serif"; const w1 = g.measureText(name).width; g.font = "650 76px 'Segoe UI', system-ui, sans-serif"; const w2 = g.measureText(count.toLocaleString("en-US")).width;
+    const pw = Math.min(620, Math.max(w1, w2) + 56), x = 320 - pw / 2, y = 22, ph = 170, r = 30; g.fillStyle = "rgba(7,11,20,.66)";
+    g.beginPath(); g.moveTo(x + r, y); g.arcTo(x + pw, y, x + pw, y + ph, r); g.arcTo(x + pw, y + ph, x, y + ph, r); g.arcTo(x, y + ph, x, y, r); g.arcTo(x, y, x + pw, y, r); g.fill(); }
+  g.shadowColor = "rgba(7,11,20,.95)"; g.shadowBlur = 18;
   g.font = "600 58px 'Segoe UI', system-ui, sans-serif"; g.fillStyle = "#eef2fb"; g.fillText(name, 320, 84);
-  g.font = "650 76px 'Segoe UI', system-ui, sans-serif"; g.fillStyle = "#" + hex.toString(16).padStart(6, "0"); g.fillText(count.toLocaleString("en-US"), 320, 168);
+  g.font = "650 76px 'Segoe UI', system-ui, sans-serif"; g.fillStyle = count ? "#" + hex.toString(16).padStart(6, "0") : "#a3aec8"; g.fillText(count.toLocaleString("en-US"), 320, 168);
   const t = new THREE.CanvasTexture(c); t.anisotropy = 4;
   const s = new THREE.Sprite(new THREE.SpriteMaterial({ map: t, transparent: true, depthWrite: false, depthTest: false }));
-  const k = window.innerWidth < 768 ? 1.9 : 1; s.scale.set(3.5 * k, 1.2 * k, 1); s.renderOrder = 10; return s;
+  s.material.sizeAttenuation = !PHONE; s.scale.set(3.9, 1.34, 1); s.renderOrder = 10; return s;
 }
 
 // backdrop dust
@@ -305,7 +342,7 @@ TYPES.forEach(t => {
     const ring = new THREE.Mesh(new THREE.TorusGeometry(R, .025, 8, 80), new THREE.MeshBasicMaterial({ color: t.color, transparent: true, opacity: .7 }));
     g.add(ring); N.ring = ring; N.mats.push([ring.material, .7]);
   }
-  const l = label(t.id, t.n, t.color); l.position.set(0, R * 0.5 + 0.85, 0); g.add(l); N.label = l.material;
+  const l = label(t.id, t.n, t.color); l.position.set(0, PHONE ? R * 0.42 + 0.6 : R * 0.5 + 0.85, 0); g.add(l); N.label = l.material; N.sprite = l; N.R = R;
   nodes[t.id] = N;
 });
 
@@ -338,16 +375,33 @@ const secEls = SECTIONS.map(s => document.getElementById(s.id));
 const camPos = new THREE.Vector3(...SECTIONS[0].cam), camLook = new THREE.Vector3(...SECTIONS[0].look);
 const goalPos = camPos.clone(), goalLook = camLook.clone();
 let current = -1, tagsOn = false;
-function resize() { const w = window.innerWidth, h = window.innerHeight; renderer.setSize(w, h, false); camera.aspect = w / h; camera.fov = w / h < 1 ? 64 : 46; camera.updateProjectionMatrix(); }
+let VW = 0, VH = 0, ready = false;
+function resize() { const w = window.innerWidth, h = window.innerHeight;
+  if (COARSE && w === VW && Math.abs(h - VH) < 180) return;   // a phone's address bar hiding or showing: not a new layout
+  VW = w; VH = h; renderer.setSize(w, h, false); camera.aspect = w / h; camera.fov = PHONE ? 50 : 46; camera.updateProjectionMatrix();
+  if (PHONE) { const tanH = Math.tan(camera.fov * Math.PI / 360), lw = w > h ? 92 : Math.min(132, w * .33), s = lw / h * 2 * tanH; Object.values(nodes).forEach(N => N.sprite.scale.set(s, s * 220 / 640, 1)); }
+  if (ready) onScroll(); }
 window.addEventListener("resize", resize); resize();
 function onScroll() {
   const y = window.scrollY + window.innerHeight * .5; let idx = 0, f = 0;
   for (let i = 0; i < secEls.length; i++) { const top = secEls[i].offsetTop, h = secEls[i].offsetHeight; if (y >= top) { idx = i; f = Math.min(1, (y - top) / h); } }
   const s = SECTIONS[idx], nx = SECTIONS[Math.min(idx + 1, SECTIONS.length - 1)];
   const e = f < .72 ? 0 : (f - .72) / .28, k = e * e * (3 - 2 * e);
-  const phone = camera.aspect < 1, tanH = Math.tan(camera.fov * Math.PI / 360), vh = window.innerHeight;
+  const phone = PHONE, tanH = Math.tan(camera.fov * Math.PI / 360), vh = VH || window.innerHeight;
+  // on a phone the frame is worked out from the clusters a section is about: they fill the clear band above its text, whatever the screen
+  const frameFor = (i) => { const q = SECTIONS[i], el = secEls[i]; let top, band;
+    const side = q.hero && VW > VH;   // a phone held sideways: the text keeps the left, the graph gets the right half
+    if (side) { top = 62; band = vh - 76; }
+    else if (q.hero) { const h1 = el.querySelector("h1"), cs = getComputedStyle(h1); top = h1.getBoundingClientRect().bottom + window.scrollY + 6; band = parseFloat(cs.marginBottom) - 12; }
+    else if (q.table) { top = 60; band = vh - 120; }
+    else { const pad = parseFloat(getComputedStyle(el).paddingTop); top = 100; band = pad - 118; }
+    let x0 = 1e9, x1 = -1e9, y0 = 1e9, y1 = -1e9;
+    q.focus.forEach(id => { const N = nodes[id], [x, y] = N.t.pos, r = N.R * .8; x0 = Math.min(x0, x - r); x1 = Math.max(x1, x + r); y0 = Math.min(y0, y - r); y1 = Math.max(y1, y + r + 1.1); });
+    const cx = (x0 + x1) / 2, cy = (y0 + y1) / 2, z = Math.max((x1 - x0 + 1.2) / (2 * tanH * camera.aspect * (side ? .52 : 1)), (y1 - y0 + .8) * vh / (band * 2 * tanH));
+    const ndc = 1 - 2 * (top + band / 2) / vh, ly = cy - ndc * z * tanH, lx = cx - (side ? .46 : 0) * z * tanH * camera.aspect;
+    return { pos: [lx, ly, z], look: [lx, ly, 0] }; };
   // where a section's subject should sit: on a wide screen, in the clear band between the header and the top of the text block
-  const place = (i) => { const q = SECTIONS[i]; let z = q.cam[2] * (phone ? 2.9 : 1.38), lift = phone ? 0.36 : 0.15;
+  const place = (i) => { if (phone) return frameFor(i); const q = SECTIONS[i]; let z = q.cam[2] * 1.38, lift = 0.15;
     if (!phone && !q.hero && !q.table) { const wrap = secEls[i].querySelector(".wrap"); const band = Math.max(vh * .14, vh - wrap.offsetHeight - 56 - 118);
       z *= Math.min(2.1, Math.max(1, (vh * .36) / band)); lift = (0.5 - (118 + band / 2) / vh) * 2 * tanH; secEls[i].style.setProperty("--clear", Math.round(118 + band) + "px"); }
     const pos = [q.cam[0], q.cam[1], z], look = [q.look[0], q.look[1], 0];
@@ -362,21 +416,22 @@ function onScroll() {
     const live = new Set(RELS.filter(r => fset.has(r[0]) && fset.has(r[2])).map(r => r[1]));
     document.getElementById('legend').classList.toggle('hide', !!s.table);
     document.querySelectorAll('#legend div').forEach(d => d.classList.toggle('off', s.table || !live.has(d.dataset.rel)));
-    [...dots.children].forEach((a, i) => a.classList.toggle("on", i === idx)); { const on = dots.children[idx]; if (on && dots.scrollWidth > dots.clientWidth) dots.scrollLeft = on.offsetLeft - (dots.clientWidth - on.offsetWidth) / 2; }
-    tagsOn = !s.table && s.focus.length <= 5 && window.innerWidth >= 768;
+    document.querySelector("header.bar").classList.toggle("athero", idx === 0); [...dots.children].forEach((a, i) => a.classList.toggle("on", i === idx)); { const on = dots.children[idx]; if (on && dots.scrollWidth > dots.clientWidth) dots.scrollLeft = on.offsetLeft - (dots.clientWidth - on.offsetWidth) / 2; }
+    tagsOn = !s.table && s.focus.length <= 5 && !PHONE;
     document.getElementById('legend').classList.toggle('phonehide', idx === 0); }
   { const r = secEls[idx].getBoundingClientRect(); document.getElementById('legend').classList.toggle('phonehide', idx === 0 || !!s.table || r.top < -140 || r.top > window.innerHeight * .45); }
 }
-window.addEventListener("scroll", onScroll, { passive: true }); onScroll();
+window.addEventListener("scroll", onScroll, { passive: true }); onScroll(); ready = true;
 if (reduced) { camPos.copy(goalPos); camLook.copy(goalLook); }
 
 let mx = 0, my = 0; window.addEventListener("pointermove", e => { mx = e.clientX / window.innerWidth - .5; my = e.clientY / window.innerHeight - .5; });
+dots.addEventListener("scroll", () => document.getElementById("dotsmore").classList.toggle("end", dots.scrollLeft + dots.clientWidth >= dots.scrollWidth - 8), { passive: true });
 const clock = new THREE.Clock(); const v = new THREE.Vector3();
 function frame() {
   const dt = Math.min(.05, clock.getDelta()), t = clock.elapsedTime, ease = reduced ? 1 : 1 - Math.pow(.02, dt);
   camPos.lerp(goalPos, ease); camLook.lerp(goalLook, ease);
-  camera.position.set(camPos.x + (reduced ? 0 : mx * .9), camPos.y - (reduced ? 0 : my * .6), camPos.z); camera.lookAt(camLook);
-  Object.values(nodes).forEach(N => { N.w += (N.target - N.w) * ease; N.mats.forEach(([m, o]) => m.opacity = o * N.w); N.label.opacity = (SMALL && current === 0) ? 0 : Math.max(0, (N.w - .2) / .8);
+  camera.position.set(camPos.x + (reduced || PHONE ? 0 : mx * .9), camPos.y - (reduced || PHONE ? 0 : my * .6), camPos.z); camera.lookAt(camLook);
+  Object.values(nodes).forEach(N => { N.w += (N.target - N.w) * ease; N.mats.forEach(([m, o]) => m.opacity = o * N.w); N.label.opacity = Math.max(0, (N.w - .2) / .8);
     if (N.cloud && !reduced) { N.cloud.rotation.y = t * .07 + N.t.pos[0]; N.cloud.rotation.x = Math.sin(t * .05 + N.t.pos[1]) * .2; }
     if (N.ring) N.ring.rotation.set(1.2, reduced ? .4 : t * .2, 0); });
   arcs.forEach(A => { A.w += (A.target - A.w) * ease; A.tube.material.opacity = A.baseOp * A.w; A.pts.material.opacity = .95 * A.w; A.tag.material.opacity = tagsOn ? Math.max(0, (A.w - .5) * 2) : Math.max(0, A.tag.material.opacity - .08);

@@ -128,16 +128,20 @@ const LONG = new Set([
 ]);
 /** Class strings used in more than one place (Tailwind utilities; the tokens are in tailwind.config.ts). */
 const TW_PANEL =
-  "absolute z-[400] min-h-0 rounded-[14px] border border-solid border-[rgba(15,23,42,0.08)] bg-white [box-shadow:0_1px_2px_rgba(15,23,42,0.05),0_8px_24px_rgba(15,23,42,0.07)] max-[900px]:static max-[900px]:max-h-none max-[900px]:w-auto max-[900px]:rounded-none max-[900px]:[box-shadow:none]";
+  "absolute z-[400] min-h-0 rounded-[14px] border border-solid border-[rgba(15,23,42,0.08)] bg-white [box-shadow:0_1px_2px_rgba(15,23,42,0.05),0_8px_24px_rgba(15,23,42,0.07)] max-[900px]:!inset-x-0 max-[900px]:!bottom-[calc(56px+env(safe-area-inset-bottom))] max-[900px]:!top-0 max-[900px]:!max-h-none max-[900px]:!w-auto max-[900px]:rounded-none max-[900px]:border-0 max-[900px]:[box-shadow:none]";
+/** On a narrow screen one pane shows at a time (the tab bar switches them); the canvas itself is never hidden, since tldraw measures it. */
+type Pane = "find" | "graph" | "note";
+const TW_OFF = "max-[900px]:hidden";
+const TW_TALL = "max-[900px]:h-11 max-[900px]:text-[16px]";
 const TW_DOT = "h-2 w-2 flex-none rounded-full";
 const TW_ROW_BUTTON = "grid w-full rounded-lg border-0 text-left";
 const TW_ZOOM_BUTTON =
-  "h-8 min-w-[34px] border-0 border-solid border-line bg-transparent px-2.5 font-medium text-ink-2 hover:bg-canvas";
+  "h-10 min-w-[42px] border-0 border-solid border-line bg-transparent px-3.5 font-medium text-ink-2 hover:bg-canvas max-[900px]:h-11 max-[900px]:min-w-[52px] max-[900px]:px-4";
 const TW_SECTION = `${TW_LABEL} mb-3.5 mt-[22px] flex justify-between border-0 border-t border-solid border-[#f1f5f9] pt-[18px]`;
 const TW_STRONG = "font-semibold not-italic text-ink";
 const TW_COUNT = "font-semibold text-ink-2 [font-variant-numeric:tabular-nums]";
 const TW_CODE =
-  "inline-block max-w-full font-mono text-[12.5px] text-[#64748b] [overflow-wrap:anywhere]";
+  "inline-block max-w-full font-mono text-[12.5px] text-[#475569] [overflow-wrap:anywhere]";
 /** Extra classes for the value of one property, by its key. */
 const DD: Record<string, string> = {
   quote: "border-0 border-l-2 border-solid border-[#cbd5e1] pl-3 text-[13.5px]",
@@ -255,12 +259,21 @@ const fit = (editor: Editor): void => {
   const view = editor.getViewportScreenBounds();
   const wide = view.w > 900;
   const clear = { left: wide ? PANEL.left : 0, right: wide ? PANEL.right : 0 };
-  const open = { w: view.w - clear.left - clear.right - 16, h: view.h - 16 };
-  const z = Math.min(1.2, open.w / box.w, open.h / box.h);
+  // on a phone the status line lies over the top of the canvas: the drawing starts below it
+  const top = wide ? 8 : view.h < 520 ? 48 : 68;
+  const open = {
+    w: view.w - clear.left - clear.right - 16,
+    h: view.h - top - 8,
+  };
+  // on a phone the cards stay readable: below this scale the view is moved with a finger instead
+  const z = Math.max(
+    wide ? 0 : 0.42,
+    Math.min(1.2, open.w / box.w, open.h / box.h),
+  );
   editor.setCamera(
     {
       x: (clear.left + 8 + open.w / 2) / z - box.midX,
-      y: (8 + open.h / 2) / z - box.midY,
+      y: (top + open.h / 2) / z - box.midY,
       z,
     },
     { animation: { duration: 220 } },
@@ -484,6 +497,15 @@ export const App = (): JSX.Element => {
   const [depth, setDepth] = useState(1);
   const [focus, setFocus] = useState<GNode | null>(null);
   const [selected, setSelected] = useState<GNode | null>(null);
+  // a link to a question promises its answers, so on a phone it opens on the list; otherwise on the drawing
+  const [pane, setPane] = useState<Pane>(() =>
+    askedFromHash() ? "find" : "graph",
+  );
+  /** Choosing a note draws it, and on a phone shows the drawing. */
+  const pick = useCallback((n: GNode): void => {
+    setFocus(n);
+    setPane("graph");
+  }, []);
   const [shown, setShown] = useState({
     nodes: 0,
     relations: 0,
@@ -515,14 +537,20 @@ export const App = (): JSX.Element => {
       );
   }, []);
 
+  // cards are sized by measuring their text, so they are drawn again once the web font is in (a fallback font wraps to fewer lines)
+  const [fonts, setFonts] = useState(false);
+  useEffect(() => {
+    void document.fonts.ready.then(() => setFonts(true));
+  }, []);
   const redraw = useCallback(() => {
+    void fonts;
     if (index && focus && editorRef.current) {
       setShown(
         draw({ editor: editorRef.current, index, uid: focus.uid, depth }),
       );
       setSelected(focus);
     }
-  }, [index, focus, depth]);
+  }, [index, focus, depth, fonts]);
   useEffect(redraw, [redraw]);
 
   const onMount = useCallback(
@@ -533,6 +561,24 @@ export const App = (): JSX.Element => {
         __canvasMarkdown: () => canvasMarkdown(editor),
         __loadAsPlugin: loadAsPlugin,
       });
+      if (window.matchMedia("(pointer: coarse)").matches) {
+        // on a touch screen one finger moves the view (the select tool would draw a selection box); a tap on a card still selects it
+        editor.setCurrentTool("hand");
+        let down: { x: number; y: number } | null = null;
+        editor.on("event", (e) => {
+          if (e.type !== "pointer") return;
+          const at = editor.inputs.currentScreenPoint;
+          if (e.name === "pointer_down") down = { x: at.x, y: at.y };
+          if (e.name !== "pointer_up" || !down) return;
+          const moved = Math.hypot(at.x - down.x, at.y - down.y);
+          down = null;
+          if (moved > 8) return;
+          const hit = editor.getShapeAtPoint(editor.inputs.currentPagePoint, {
+            hitInside: true,
+          });
+          if (hit?.type === "discourse-node") editor.select(hit.id);
+        });
+      }
       editor.sideEffects.registerAfterChangeHandler(
         "instance_page_state",
         () => {
@@ -640,9 +686,9 @@ export const App = (): JSX.Element => {
       )
     : [];
   return (
-    <div className="relative block h-full max-[900px]:grid max-[900px]:grid-cols-[308px_minmax(0,1fr)_332px] max-[900px]:grid-rows-[auto_70vh_auto]">
+    <div className="relative block h-full overflow-hidden">
       <aside
-        className={`${TW_PANEL} bottom-3 left-3 top-3 flex w-[300px] flex-col gap-4 pb-0 pl-5 pr-3.5 pt-5`}
+        className={`${TW_PANEL} ${pane === "find" ? "" : TW_OFF} bottom-3 left-3 top-3 flex w-[300px] flex-col gap-4 pb-0 pl-5 pr-3.5 pt-5 max-[900px]:overflow-y-auto`}
       >
         <header className="border-line-2 mr-1.5 flex items-center gap-3 border-0 border-b border-solid pb-4 pr-1">
           <span
@@ -661,6 +707,12 @@ export const App = (): JSX.Element => {
               A research record as a graph
             </p>
           </div>
+          <a
+            className="text-accent ml-auto whitespace-nowrap text-[12.5px] font-medium no-underline hover:underline max-[900px]:text-[14px]"
+            href="../"
+          >
+            Six uses
+          </a>
         </header>
         <p className="-mt-0.5 mr-1.5 text-[13px] leading-normal text-[#56637a]">
           <b className={TW_COUNT}>{index.data.nodes.length.toLocaleString()}</b>{" "}
@@ -675,7 +727,7 @@ export const App = (): JSX.Element => {
           values with a quoted source
         </p>
         <div
-          className="border-line mr-1 grid h-[34px] flex-none grid-cols-2 overflow-hidden rounded-lg border border-solid bg-white"
+          className="border-line mr-1 grid h-[34px] flex-none grid-cols-2 overflow-hidden rounded-lg border border-solid bg-white max-[900px]:h-11"
           role="group"
           aria-label="Mode"
         >
@@ -691,14 +743,14 @@ export const App = (): JSX.Element => {
           ))}
         </div>
         <div
-          className="flex min-h-0 flex-1 flex-col gap-4"
+          className="flex min-h-0 flex-1 flex-col gap-4 max-[900px]:flex-none"
           data-testid="column"
         >
           {mode === "search" ? (
             <>
               <div className="relative mr-1">
                 <svg
-                  className="stroke-faint absolute left-[11px] top-2.5 h-4 w-4 fill-none [stroke-linecap:round] [stroke-width:1.8]"
+                  className="stroke-faint absolute left-[11px] top-2.5 h-4 w-4 fill-none [stroke-linecap:round] [stroke-width:1.8] max-[900px]:top-3.5"
                   viewBox="0 0 20 20"
                   aria-hidden="true"
                 >
@@ -706,7 +758,7 @@ export const App = (): JSX.Element => {
                   <path d="M13.5 13.5 17 17" />
                 </svg>
                 <input
-                  className="border-line h-[38px] w-full rounded-lg border border-solid bg-white pl-[34px] pr-3 hover:border-[#cbd5e1]"
+                  className={`border-line h-[38px] w-full rounded-lg border border-solid bg-white pl-[34px] pr-3 hover:border-[#cbd5e1] ${TW_TALL}`}
                   aria-label="Search notes"
                   placeholder="Search notes"
                   value={query}
@@ -720,7 +772,7 @@ export const App = (): JSX.Element => {
                 <label className="grid gap-1.5">
                   <span className={TW_LABEL}>Type</span>
                   <select
-                    className="dg-select border-line h-[34px] w-full appearance-none rounded-lg border border-solid pl-[11px] pr-[30px] hover:border-[#cbd5e1]"
+                    className={`dg-select border-line h-[34px] w-full appearance-none rounded-lg border border-solid pl-[11px] pr-[30px] hover:border-[#cbd5e1] ${TW_TALL}`}
                     aria-label="Node type"
                     value={type}
                     onChange={(e) => {
@@ -739,14 +791,14 @@ export const App = (): JSX.Element => {
                 <div className="grid gap-1.5">
                   <span className={TW_LABEL}>Hops</span>
                   <div
-                    className="border-line flex h-[34px] overflow-hidden rounded-lg border border-solid bg-white"
+                    className="border-line flex h-[34px] overflow-hidden rounded-lg border border-solid bg-white max-[900px]:h-11"
                     role="group"
                     aria-label="Hops"
                   >
                     {[1, 2, 3, 4].map((d) => (
                       <button
                         key={d}
-                        className={`border-line w-[34px] border-0 border-solid font-medium ${d > 1 ? "border-l" : ""} ${d === depth ? "bg-ink text-white" : "text-muted hover:bg-canvas bg-transparent"}`}
+                        className={`border-line w-[38px] border-0 border-solid font-medium max-[900px]:w-12 max-[900px]:flex-none ${d > 1 ? "border-l" : ""} ${d === depth ? "bg-ink text-white" : "text-muted hover:bg-canvas bg-transparent"}`}
                         aria-pressed={d === depth}
                         onClick={() => setDepth(d)}
                       >
@@ -777,7 +829,7 @@ export const App = (): JSX.Element => {
           </div>
           {mode === "ask" && results.answers > FILTER_FROM ? (
             <input
-              className="border-line -mt-1.5 mr-1 h-[34px] flex-none rounded-lg border border-solid bg-white px-[11px] hover:border-[#cbd5e1]"
+              className={`border-line -mt-1.5 mr-1 h-[34px] flex-none rounded-lg border border-solid bg-white px-[11px] hover:border-[#cbd5e1] ${TW_TALL}`}
               aria-label="Filter the results"
               placeholder={`Filter ${results.answers.toLocaleString()} results`}
               value={within}
@@ -788,7 +840,7 @@ export const App = (): JSX.Element => {
             />
           ) : null}
           <ul
-            className="dg-scroll -ml-2.5 -mt-1.5 mb-0 mr-0 grid min-h-0 flex-1 list-none content-start gap-0.5 overflow-y-auto pb-4 pl-0 pr-2.5 pt-0 max-[900px]:max-h-60"
+            className="dg-scroll -ml-2.5 -mt-1.5 mb-0 mr-0 grid min-h-0 flex-1 list-none content-start gap-0.5 overflow-y-auto pb-6 pl-0 pr-2.5 pt-0 max-[900px]:flex-none max-[900px]:overflow-visible min-[901px]:[mask-image:linear-gradient(to_bottom,#000_calc(100%-28px),transparent)]"
             data-testid="results"
           >
             {results.hits.map((n) => (
@@ -796,13 +848,13 @@ export const App = (): JSX.Element => {
                 key={n.uid}
                 node={n}
                 active={focus?.uid === n.uid}
-                onPick={setFocus}
+                onPick={pick}
               />
             ))}
             {results.total > results.hits.length ? (
               <li className="pl-2.5 pt-1.5">
                 <button
-                  className="border-line text-ink-2 hover:bg-canvas h-[34px] w-full rounded-lg border border-solid bg-white text-[13px] font-medium"
+                  className="border-line text-ink-2 hover:bg-canvas h-[34px] w-full rounded-lg border border-solid bg-white text-[13px] font-medium max-[900px]:h-11 max-[900px]:text-[14px]"
                   onClick={() => setListed(listed + LISTED)}
                 >
                   Show {Math.min(LISTED, results.total - results.hits.length)}{" "}
@@ -813,7 +865,7 @@ export const App = (): JSX.Element => {
           </ul>
         </div>
       </aside>
-      <main className="absolute inset-0 grid min-h-0 min-w-0 grid-cols-[minmax(0,1fr)] grid-rows-[minmax(0,1fr)] overflow-hidden max-[900px]:relative max-[900px]:inset-auto">
+      <main className="absolute inset-0 grid min-h-0 min-w-0 grid-cols-[minmax(0,1fr)] grid-rows-[minmax(0,1fr)] overflow-hidden max-[900px]:bottom-[calc(56px+env(safe-area-inset-bottom))]">
         <div className="dg-canvas relative min-h-0 min-w-0">
           <Tldraw
             shapeUtils={shapeUtils}
@@ -823,7 +875,7 @@ export const App = (): JSX.Element => {
             onMount={onMount}
           />
           <div
-            className="border-line text-muted absolute left-[328px] top-3.5 z-[300] max-w-[calc(100%-688px)] truncate rounded-full border border-solid bg-[rgba(255,255,255,0.82)] px-3.5 py-[7px] text-[12.5px] [backdrop-filter:blur(8px)] [box-shadow:0_1px_2px_rgba(15,23,42,0.05)] max-[900px]:left-4 max-[900px]:max-w-[calc(100%-32px)]"
+            className="border-line text-muted absolute left-[328px] top-3.5 z-[300] max-w-[calc(100%-688px)] truncate rounded-full border border-solid bg-[rgba(255,255,255,0.82)] px-3.5 py-[7px] text-[12.5px] [backdrop-filter:blur(8px)] [box-shadow:0_1px_2px_rgba(15,23,42,0.05)] max-[900px]:left-3 max-[900px]:top-3 max-[900px]:max-w-[calc(100%-24px)] max-[900px]:whitespace-normal max-[900px]:rounded-xl max-[900px]:bg-[rgba(255,255,255,0.94)] max-[900px]:text-[13px] max-[900px]:[-webkit-box-orient:vertical] max-[900px]:[-webkit-line-clamp:2] max-[900px]:[display:-webkit-box]"
             data-testid="status"
           >
             <span>
@@ -839,7 +891,7 @@ export const App = (): JSX.Element => {
             </span>
           </div>
           <div
-            className="border-line absolute bottom-3.5 left-[328px] z-[300] flex overflow-hidden rounded-lg border border-solid bg-white [box-shadow:0_1px_2px_rgba(15,23,42,0.05)] max-[900px]:left-4"
+            className="border-line absolute bottom-3.5 left-[328px] z-[300] flex overflow-hidden rounded-lg border border-solid bg-white [box-shadow:0_1px_2px_rgba(15,23,42,0.05)] max-[900px]:bottom-3 max-[900px]:left-3"
             role="group"
             aria-label="Zoom"
           >
@@ -883,13 +935,28 @@ export const App = (): JSX.Element => {
                 )
               }
             >
-              Save canvas
+              <span className="max-[900px]:hidden">Save canvas</span>
+              <span className="hidden max-[900px]:inline">Save</span>
             </button>
           </div>
+          {selected ? (
+            <button
+              className="bg-ink absolute bottom-[60px] right-3 z-[300] hidden h-11 max-w-[60%] items-center gap-2 rounded-lg border-0 px-3.5 text-[14px] font-semibold text-white [box-shadow:0_4px_14px_rgba(15,23,42,0.25)] max-[900px]:flex"
+              data-testid="read-note"
+              onClick={() => setPane("note")}
+            >
+              <i
+                className={TW_DOT}
+                style={{ background: TYPE_COLOUR[selected.type] }}
+              />
+              <span className="truncate">Read note</span>
+            </button>
+          ) : null}
         </div>
       </main>
       <aside
-        className={`${TW_PANEL} dg-scroll right-3 top-3 max-h-[calc(100%-84px)] w-[324px] overflow-y-auto p-5`}
+        className={`${TW_PANEL} ${pane === "note" ? "" : TW_OFF} dg-scroll right-3 top-3 max-h-[calc(100%-84px)] w-[324px] overflow-y-auto p-5`}
+        data-testid="note"
       >
         {selected && head ? (
           <>
@@ -932,8 +999,8 @@ export const App = (): JSX.Element => {
             ) : null}
             {selected.uid !== focus?.uid ? (
               <button
-                className="border-line text-ink-2 hover:bg-canvas mt-3.5 h-8 rounded-lg border border-solid bg-white px-3 font-medium"
-                onClick={() => setFocus(selected)}
+                className="border-line text-ink-2 hover:bg-canvas mt-3.5 h-8 rounded-lg border border-solid bg-white px-3 font-medium max-[900px]:h-11"
+                onClick={() => pick(selected)}
               >
                 Centre the canvas here
               </button>
@@ -989,10 +1056,10 @@ export const App = (): JSX.Element => {
                 {links.map((l) => (
                   <li key={l.id}>
                     <button
-                      className={`${TW_ROW_BUTTON} grid-cols-[minmax(0,1fr)] items-baseline gap-[3px] bg-transparent p-2 hover:bg-[#f8fafc]`}
-                      onClick={() => setFocus(l.other)}
+                      className={`${TW_ROW_BUTTON} grid-cols-[minmax(0,1fr)] items-baseline gap-[3px] bg-transparent p-2 hover:bg-[#f8fafc] max-[900px]:py-2.5`}
+                      onClick={() => pick(l.other)}
                     >
-                      <span className="inline-flex min-w-0 items-center gap-[5px] justify-self-start whitespace-nowrap text-[11.5px] font-semibold uppercase tracking-[0.05em] text-[#64748b]">
+                      <span className="inline-flex min-w-0 items-center gap-[5px] justify-self-start whitespace-nowrap text-[11.5px] font-semibold uppercase tracking-[0.05em] text-[#475569]">
                         {l.outgoing ? null : (
                           <i className="text-faint not-italic">←</i>
                         )}
@@ -1025,6 +1092,37 @@ export const App = (): JSX.Element => {
           <p className="text-muted">Select a card to read its properties.</p>
         )}
       </aside>
+      <nav
+        className="border-line absolute inset-x-0 bottom-0 z-[500] hidden grid-cols-[1fr_1fr_1fr_auto] border-0 border-t border-solid bg-white pb-[env(safe-area-inset-bottom)] before:pointer-events-none before:absolute before:inset-x-0 before:-top-6 before:h-6 before:bg-gradient-to-t before:from-white before:to-transparent before:content-[''] max-[900px]:grid"
+        aria-label="View"
+      >
+        {(
+          [
+            ["find", mode === "ask" ? "Ask" : "Search"],
+            ["graph", "Graph"],
+            ["note", "Note"],
+          ] as const
+        ).map(([id, text]) => (
+          <button
+            key={id}
+            className={`relative h-14 border-0 bg-transparent text-[13px] font-semibold ${id === pane ? "text-ink" : "text-[#475569]"}`}
+            aria-pressed={id === pane}
+            data-testid={`tab-${id}`}
+            onClick={() => setPane(id)}
+          >
+            {id === pane ? (
+              <i className="bg-ink absolute inset-x-6 top-0 h-[3px] rounded-b" />
+            ) : null}
+            {text}
+          </button>
+        ))}
+        <a
+          className="text-accent border-line flex h-14 items-center border-0 border-l border-solid px-4 text-[13px] font-semibold no-underline"
+          href="../"
+        >
+          Six uses
+        </a>
+      </nav>
     </div>
   );
 };

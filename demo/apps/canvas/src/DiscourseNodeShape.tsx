@@ -155,13 +155,13 @@ export class DiscourseNodeUtil extends BaseBoxShapeUtil<DiscourseNodeShape> {
             className={
               code
                 ? "h-6 truncate font-mono text-[14.5px] leading-[22px] text-[#475569]"
-                : "line-clamp-6 whitespace-normal text-[14.5px] leading-[21px] text-[#475569]"
+                : "line-clamp-6 min-h-0 flex-1 whitespace-normal text-[14.5px] leading-[21px] text-[#475569]"
             }
           >
             <span
               className={
                 code
-                  ? "inline-block h-[23px] max-w-full truncate align-top text-[12.5px] leading-[23px] text-[#64748b]"
+                  ? "inline-block h-[23px] max-w-full truncate align-top text-[12.5px] leading-[23px] text-[#475569]"
                   : undefined
               }
             >
