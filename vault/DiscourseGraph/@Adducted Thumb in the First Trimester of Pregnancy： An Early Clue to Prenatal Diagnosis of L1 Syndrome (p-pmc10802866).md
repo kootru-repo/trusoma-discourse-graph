@@ -1,0 +1,14 @@
+---
+nodeTypeId: "node_-PIYSmr5icSFMACYAUobE"
+nodeInstanceId: "236ed500-7b1e-7411-9922-79a30d3e9b74"
+dg_type: "Source"
+dg_name: "p-pmc10802866"
+paper_id: "p-pmc10802866"
+register: "paper_register"
+order: 143
+row: {"paper_id": "p-pmc10802866", "first_author": "Chen", "year": "2023", "citation": "Adducted Thumb in the First Trimester of Pregnancy: An Early Clue to Prenatal Diagnosis of L1 Syndrome. J Med Ultrasound 2023 (PMC10802866, full text opened via Europe PMC 2026-11-06)", "doi": "", "pmid": "38264596", "pmcid": "PMC10802866", "url": "", "local_file": "", "n_constants": "0"}
+---
+
+Adducted Thumb in the First Trimester of Pregnancy: An Early Clue to Prenatal Diagnosis of L1 Syndrome. J Med Ultrasound 2023 (PMC10802866, full text opened via Europe PMC 2026-11-06).
+
+PMID: 38264596; PMCID: PMC10802866.

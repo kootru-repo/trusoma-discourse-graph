@@ -1,5 +1,5 @@
 ---
-nodeTypeId: "trusoma-record"
+recordTypeId: "trusoma-record"
 nodeInstanceId: "7046e290-c2ca-7f4d-87de-1b207951cefd"
 dg_type: "Record"
 record_file: "companion/source_audit/growth_web_12p5.json"

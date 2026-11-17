@@ -1,5 +1,5 @@
 ---
-nodeTypeId: "trusoma-record"
+recordTypeId: "trusoma-record"
 nodeInstanceId: "e1c3b636-584f-7e2f-8951-810983a20f5d"
 dg_type: "Record"
 record_file: "tools/tools_config.json"

@@ -1,5 +1,5 @@
 ---
-nodeTypeId: "trusoma-record"
+recordTypeId: "trusoma-record"
 nodeInstanceId: "bed4bc58-4277-767b-b06e-92afcde1ebf4"
 dg_type: "Record"
 record_file: "companion/TRUSOMA_JEPA_REFERENCES.csv"

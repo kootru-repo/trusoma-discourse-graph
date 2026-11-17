@@ -6,3 +6,7 @@ record: "companion/RESONANT_BUILD_CHECKLIST_2026-11-15.md"
 quote: "S1 test: collaterals entered and branched, no patches at 12.5 weeks"
 prereg: false
 ---
+
+From the record: "S1 test: collaterals entered and branched, no patches at 12.5 weeks"
+
+Record file: `companion/RESONANT_BUILD_CHECKLIST_2026-11-15.md`.

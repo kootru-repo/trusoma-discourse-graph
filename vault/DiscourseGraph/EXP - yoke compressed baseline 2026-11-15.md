@@ -6,3 +6,7 @@ date: "2026-11-15"
 record: "companion/RESONANT_BUILD_CHECKLIST_2026-11-15.md"
 quote: "RESULT_YOKE_BASELINE_2026-11-15.md"
 ---
+
+From the record: "RESULT_YOKE_BASELINE_2026-11-15.md"
+
+Record file: `companion/RESONANT_BUILD_CHECKLIST_2026-11-15.md`, 2026-11-15.

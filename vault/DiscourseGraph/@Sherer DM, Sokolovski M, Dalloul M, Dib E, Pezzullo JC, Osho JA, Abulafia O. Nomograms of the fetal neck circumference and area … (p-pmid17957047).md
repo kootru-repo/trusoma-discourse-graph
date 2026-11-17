@@ -1,0 +1,14 @@
+---
+nodeTypeId: "node_-PIYSmr5icSFMACYAUobE"
+nodeInstanceId: "a56c6d1b-995b-73fe-ac6a-b1f8c6a0cf68"
+dg_type: "Source"
+dg_name: "p-pmid17957047"
+paper_id: "p-pmid17957047"
+register: "paper_register"
+order: 96
+row: {"paper_id": "p-pmid17957047", "first_author": "Sherer", "year": "2007", "citation": "Sherer DM, Sokolovski M, Dalloul M, Dib E, Pezzullo JC, Osho JA, Abulafia O. Nomograms of the fetal neck circumference and area throughout gestation. J Ultrasound Med 2007;26(11):1529-1537, PMID 17957047 (abstract opened via Europe PMC REST)", "doi": "", "pmid": "17957047", "pmcid": "", "url": "", "local_file": "", "n_constants": "7"}
+---
+
+Sherer DM, Sokolovski M, Dalloul M, Dib E, Pezzullo JC, Osho JA, Abulafia O. Nomograms of the fetal neck circumference and area throughout gestation. J Ultrasound Med 2007;26(11):1529-1537, PMID 17957047 (abstract opened via Europe PMC REST).
+
+PMID: 17957047.

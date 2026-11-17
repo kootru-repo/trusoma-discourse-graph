@@ -1,0 +1,23 @@
+---
+nodeTypeId: "node_2unblKFUVJkOdOnT8MstZ"
+nodeInstanceId: "7ffcc7a3-43b6-7fb1-8092-0b1552f2c984"
+dg_type: "Issue"
+dg_name: "M-068"
+record_file: "companion/audit_log/nonbrain_audit_log.csv"
+code: "audit"
+order: 181
+data: {"id": "M-068", "category": "M", "priority": "P2", "ref": "companion/source_audit/sourcing_records.jsonl", "item": "Femur length: Ishikawa 2026 Table 1 reads 14.19 and 14.79 mm at CRL 62.0 and 58.7, against 9.15 mm in the growth chart at 12.5 weeks", "why": "If the chart measures only the ossified shaft and MRI the whole cartilage model, then the limb segments the body uses are too short by about 1.5 times, which affects reach, arms and torque", "resolve": "Read how each source defines femur length; if confirmed, decide whether the body takes the whole bone length, with a labelled log line", "status": "verified", "evidence": "Supported: the 12 to 14 week anchors are ultrasound femur length (Chen 2007, Chitty 2002), which reads the ossified shaft, while the 10 week anchor is specimen length (Wozniak 1999). Suzuki 2019 (PMC6707600) separates femur length from ossified shaft and reports their ratio rising fast at CRL 40-75 mm; Ishikawa 2026 reads 14.19 mm whole femur at CRL 62, against 9.15 mm. So the chart may join two different measures and limb lengths at 12.5 weeks may be about 1.5 times short. The same may hold for the humerus. Not changed: this reshapes the body, so it belongs with the growth chart rewrite. 2026-11-05: femur at 12.5 weeks set to 14.19 mm. Suzuki 2019 and Takakuwa 2023 agree. Humerus set to 14.93 mm by the femur ratio, an assumption. Limb thickness held in mm. Chart above 12.5 weeks still shaft, M-077.", "touched": "2026-11-05", "note": "Both Bareggi papers are paywalled for the USER and the reading assistant (2026-11-04), so stop chasing them. Arm estimate for the rewrite: whole humerus over whole femur at CS23 is about 5.4 / 5.10 = 1.06 (Wozniak 2006 and 1999), which applied to Ishikawa's 14.19 mm gives about 15 mm, against 9.63 mm in the chart. Declared assumption until measured; a Bareggi excerpt interpolates to about 14 mm."}
+later_record: {"on": "2026-11-17", "remark": "Both Bareggi papers are paywalled for the USER and the reading assistant (2026-11-04), so stop chasing them", "now": "pages 19-22 of Bareggi 1994 (Anat Embryol 189:19-24) were read on 2026-11-11, Tables 1 and 2 transcribed; pages 23-24 and the other Bareggi paper are still not read", "basis": "the Claim note m.body.arm_whole_bones.bareggi1994 (State: pages 19-22 read by the lead in the USER's browser tab 2026-11-11)"}
+---
+
+Femur length: Ishikawa 2026 Table 1 reads 14.19 and 14.79 mm at CRL 62.0 and 58.7, against 9.15 mm in the growth chart at 12.5 weeks.
+
+Why it matters: If the chart measures only the ossified shaft and MRI the whole cartilage model, then the limb segments the body uses are too short by about 1.5 times, which affects reach, arms and torque.
+
+To resolve: Read how each source defines femur length; if confirmed, decide whether the body takes the whole bone length, with a labelled log line.
+
+Status: verified; priority: P2; category: M.
+
+Evidence so far: Supported: the 12 to 14 week anchors are ultrasound femur length (Chen 2007, Chitty 2002), which reads the ossified shaft, while the 10 week anchor is specimen length (Wozniak 1999). Suzuki 2019 (PMC6707600) separates femur length from ossified shaft and reports their ratio rising fast at CRL 40-75 mm; Ishikawa 2026 reads 14.19 mm whole femur at CRL 62, against 9.15 mm. So the chart may join two different measures and limb lengths at 12.5 weeks may be about 1.5 times short. The same may hold for the humerus. Not changed: this reshapes the body, so it belongs with the growth chart rewrite. 2026-11-05: femur at 12.5 weeks set to 14.19 mm. Suzuki 2019 and Takakuwa 2023 agree. Humerus set to 14.93 mm by the femur ratio, an assumption. Limb thickness held in mm. Chart above 12.5 weeks still shaft, M-077.
+
+Note: Both Bareggi papers are paywalled for the USER and the reading assistant (2026-11-04), so stop chasing them. Arm estimate for the rewrite: whole humerus over whole femur at CS23 is about 5.4 / 5.10 = 1.06 (Wozniak 2006 and 1999), which applied to Ishikawa's 14.19 mm gives about 15 mm, against 9.63 mm in the chart. Declared assumption until measured; a Bareggi excerpt interpolates to about 14 mm.

@@ -1,0 +1,14 @@
+---
+nodeTypeId: "node_-PIYSmr5icSFMACYAUobE"
+nodeInstanceId: "edfd4bf9-55a5-7f72-9935-6884831ccabb"
+dg_type: "Source"
+dg_name: "p-doi-10-1007-s00404-009-1127-8"
+paper_id: "p-doi-10-1007-s00404-009-1127-8"
+register: "paper_register"
+order: 244
+row: {"paper_id": "p-doi-10-1007-s00404-009-1127-8", "first_author": "Rolo", "year": "2010", "citation": "Rolo LC, Nardozza LMM, Araujo Junior E, Nowak PM, Moron AF. Nomogram of amniotic fluid volume at 7 to 10+6 weeks of pregnancy by three-dimensional ultrasonography using the rotational method (VOCAL). Arch Gynecol Obstet 2010;281(2):235-240", "doi": "10.1007/s00404-009-1127-8", "pmid": "19468738", "pmcid": "", "url": "", "local_file": "", "n_constants": "0"}
+---
+
+Rolo LC, Nardozza LMM, Araujo Junior E, Nowak PM, Moron AF. Nomogram of amniotic fluid volume at 7 to 10+6 weeks of pregnancy by three-dimensional ultrasonography using the rotational method (VOCAL). Arch Gynecol Obstet 2010;281(2):235-240.
+
+DOI: 10.1007/s00404-009-1127-8; PMID: 19468738.

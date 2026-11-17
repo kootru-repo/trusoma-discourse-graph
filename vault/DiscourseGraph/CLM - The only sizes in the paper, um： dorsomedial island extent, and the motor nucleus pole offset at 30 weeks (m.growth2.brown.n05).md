@@ -1,0 +1,29 @@
+---
+nodeTypeId: "node_LwROzkVH_Zck7ZxDgN91E"
+nodeInstanceId: "1936bdb9-ba6a-7ca9-bf6c-608133ab736e"
+dg_type: "Claim"
+dg_name: "m.growth2.brown.n05"
+record_file: "companion/source_audit/sourcing_records.jsonl"
+code: "records"
+order: 277
+fmt: "compact"
+data: {"kind": "value", "id": "m.growth2.brown.n05", "part": "hypothesis", "quantity": "The only sizes in the paper, um: dorsomedial island extent, and the motor nucleus pole offset at 30 weeks", "value": {"island": 80, "pole_right": 480, "pole_left": 360}, "unit": "The only sizes in the paper, um: dorsomedial island extent, and the motor nucleus pole offset at 30 weeks", "paper_id": "p-brown1974", "locator": "Table 1 and text", "species": "human embryos and fetuses, 18-261 mm, Nissl and silver", "limit": "not bound; a test", "state": "read through the USER's reading-view assistant"}
+kind: "value"
+source: "[[@Brown JW. Prenatal development of the human chief sensory trigeminal nucleus. J Comp Neurol 1974;156：307-335 (p-brown1974)]]"
+---
+
+The only sizes in the paper, um: dorsomedial island extent, and the motor nucleus pole offset at 30 weeks.
+
+Value record `m.growth2.brown.n05`, part: hypothesis.
+
+Value: {"island": 80, "pole_right": 480, "pole_left": 360} (The only sizes in the paper, um: dorsomedial island extent, and the motor nucleus pole offset at 30 weeks).
+
+Where in the source: Table 1 and text.
+
+Species and age: human embryos and fetuses, 18-261 mm, Nissl and silver.
+
+Limit: not bound; a test.
+
+State: read through the USER's reading-view assistant.
+
+Source: [[@Brown JW. Prenatal development of the human chief sensory trigeminal nucleus. J Comp Neurol 1974;156：307-335 (p-brown1974)]].

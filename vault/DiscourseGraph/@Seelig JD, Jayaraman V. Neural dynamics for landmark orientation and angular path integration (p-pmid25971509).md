@@ -1,0 +1,14 @@
+---
+nodeTypeId: "node_-PIYSmr5icSFMACYAUobE"
+nodeInstanceId: "b7a034c1-a40c-7b33-b099-a6264c856874"
+dg_type: "Source"
+dg_name: "p-pmid25971509"
+paper_id: "p-pmid25971509"
+register: "paper_register"
+order: 174
+row: {"paper_id": "p-pmid25971509", "first_author": "Seelig", "year": "2015", "citation": "Seelig JD, Jayaraman V. Neural dynamics for landmark orientation and angular path integration. Nature 2015;521:186-191 (author manuscript read 2026-11-07)", "doi": "10.1038/nature14446", "pmid": "25971509", "pmcid": "PMC4704792", "url": "", "local_file": "papers/src_2026_11_07/m4/pmc4704792_fulltext.txt", "n_constants": ""}
+---
+
+Seelig JD, Jayaraman V. Neural dynamics for landmark orientation and angular path integration. Nature 2015;521:186-191 (author manuscript read 2026-11-07).
+
+DOI: 10.1038/nature14446; PMID: 25971509; PMCID: PMC4704792.

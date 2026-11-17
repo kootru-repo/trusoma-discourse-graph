@@ -1,0 +1,29 @@
+---
+nodeTypeId: "node_LwROzkVH_Zck7ZxDgN91E"
+nodeInstanceId: "e917fb7c-d30b-7a66-abfd-dcc50e59e996"
+dg_type: "Claim"
+dg_name: "m.growth.upper_core.qu2006.sc_layers_wk"
+record_file: "companion/source_audit/sourcing_records.jsonl"
+code: "records"
+order: 421
+fmt: "compact"
+data: {"kind": "value", "id": "m.growth.upper_core.qu2006.sc_layers_wk", "part": "hypothesis", "quantity": "test.qu2006.sc_layers_wk", "value": {"lamination_emerges": 11, "all_seven_layers": 16, "largely_complete": 20}, "unit": "weeks, convention not stated in the abstract", "paper_id": "p-pmid16125175", "locator": "abstract (papers/src_2026_11_07/upper_core/abstracts.txt)", "species": "human, 17 embryos and fetuses 8-28 weeks, Nissl, GAP-43, calretinin, DiI", "limit": "not bound; a presence test for the upper brainstem core (Merker plan M2)", "state": "abstract read 2026-11-07"}
+kind: "value"
+source: "[[@Qu J, Zhou X, Zhu H, Cheng G, Ashwell KW, Lu F. Development of the human superior colliculus and the retinocollicular projection (p-pmid16125175)]]"
+---
+
+test.qu2006.sc_layers_wk.
+
+Value record `m.growth.upper_core.qu2006.sc_layers_wk`, part: hypothesis.
+
+Value: {"lamination_emerges": 11, "all_seven_layers": 16, "largely_complete": 20} (weeks, convention not stated in the abstract).
+
+Where in the source: abstract (papers/src_2026_11_07/upper_core/abstracts.txt).
+
+Species and age: human, 17 embryos and fetuses 8-28 weeks, Nissl, GAP-43, calretinin, DiI.
+
+Limit: not bound; a presence test for the upper brainstem core (Merker plan M2).
+
+State: abstract read 2026-11-07.
+
+Source: [[@Qu J, Zhou X, Zhu H, Cheng G, Ashwell KW, Lu F. Development of the human superior colliculus and the retinocollicular projection (p-pmid16125175)]].

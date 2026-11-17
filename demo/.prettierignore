@@ -5,3 +5,4 @@ apps/canvas/public/graph.json
 docs
 packages/eslint-config/base.js
 packages/eslint-config/react-internal.js
+site/three.min.js

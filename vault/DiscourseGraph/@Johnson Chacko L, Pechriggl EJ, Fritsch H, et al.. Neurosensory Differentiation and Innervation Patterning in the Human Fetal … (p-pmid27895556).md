@@ -1,0 +1,14 @@
+---
+nodeTypeId: "node_-PIYSmr5icSFMACYAUobE"
+nodeInstanceId: "bcba21de-f414-72b1-91ec-d7fd1183d289"
+dg_type: "Source"
+dg_name: "p-pmid27895556"
+paper_id: "p-pmid27895556"
+register: "paper_register"
+order: 206
+row: {"paper_id": "p-pmid27895556", "first_author": "Johnson Chacko", "year": "2016", "citation": "Johnson Chacko L, Pechriggl EJ, Fritsch H, et al.. Neurosensory Differentiation and Innervation Patterning in the Human Fetal Vestibular End Organs between the Gestational Weeks 8–12. Frontiers in Neuroanatomy 2016;10: (full text read 2026-11-08)", "doi": "10.3389/fnana.2016.00111", "pmid": "27895556", "pmcid": "PMC5108762", "url": "", "local_file": "papers/src_2026_11_08/oa_library/10.3389_fnana.2016.00111.txt", "n_constants": ""}
+---
+
+Johnson Chacko L, Pechriggl EJ, Fritsch H, et al.. Neurosensory Differentiation and Innervation Patterning in the Human Fetal Vestibular End Organs between the Gestational Weeks 8–12. Frontiers in Neuroanatomy 2016;10: (full text read 2026-11-08).
+
+DOI: 10.3389/fnana.2016.00111; PMID: 27895556; PMCID: PMC5108762.

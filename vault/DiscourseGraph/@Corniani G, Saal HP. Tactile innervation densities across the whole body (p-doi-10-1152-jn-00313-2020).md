@@ -1,0 +1,14 @@
+---
+nodeTypeId: "node_-PIYSmr5icSFMACYAUobE"
+nodeInstanceId: "b4d30878-b16a-70b9-85da-be42d36a1034"
+dg_type: "Source"
+dg_name: "p-doi-10-1152-jn-00313-2020"
+paper_id: "p-doi-10-1152-jn-00313-2020"
+register: "paper_register"
+order: 23
+row: {"paper_id": "p-doi-10-1152-jn-00313-2020", "first_author": "Corniani", "year": "2020", "citation": "Corniani G, Saal HP. Tactile innervation densities across the whole body. J Neurophysiol 2020;124(4):1229-1240, doi 10.1152/jn.00313.2020 (published PDF opened: https://eprints.whiterose.ac.uk/166148/8/jn.00313.2020.pdf)", "doi": "10.1152/jn.00313.2020", "pmid": "", "pmcid": "", "url": "https://eprints.whiterose.ac.uk/166148/8/jn.00313.2020.pdf", "local_file": "papers/src_audit_e/corniani2020.pdf", "n_constants": "9"}
+---
+
+Corniani G, Saal HP. Tactile innervation densities across the whole body. J Neurophysiol 2020;124(4):1229-1240, doi 10.1152/jn.00313.2020 (published PDF opened: https://eprints.whiterose.ac.uk/166148/8/jn.00313.2020.pdf).
+
+DOI: 10.1152/jn.00313.2020.

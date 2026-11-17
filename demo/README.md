@@ -1,6 +1,6 @@
 # A research record as a discourse graph that an agent can read and write
 
-A real research project's record (4,381 notes: sources, quoted evidence, claims, hypotheses, experiments and results; 2,288 relations) kept in the Discourse Graphs grammar, with:
+A real research project's record (4,410 notes: sources, quoted evidence, claims, questions, hypotheses, experiments, results and issues; 3,200 relations) kept in the Discourse Graphs grammar, with:
 
 - **an MCP server** (TypeScript): an agent reads the graph and writes new notes; a write is refused unless it quotes its record file verbatim and fits the grammar;
 - **a canvas** (tldraw 3.14.2): any note's neighbourhood drawn as cards and labelled arrows;
@@ -26,11 +26,11 @@ The notes are the single source: every table, configuration file and database is
 | ------------------------------------------------------------------------------------------------------------------ | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | search_nodes, get_node, get_linked_nodes, get_schema, get_relationships, get_relation_types, get_node_neighborhood | read the graph; the names and argument names follow the Discourse Graphs proof-of-concept MCP server                                                                                                                                                            |
 | trace_value                                                                                                        | one model value's whole path: sources and verbatim quotes behind it, the hypotheses it informs, the runs and readings that tested them (failed ones included)                                                                                                   |
-| list_gaps                                                                                                          | value claims with no evidence (1,212 of 1,943 today), hypotheses no run has tested, hypotheses blocked by an open issue                                                                                                                                         |
+| list_gaps                                                                                                          | values with no related note (1,151 today, all Parameter notes: settings with no source), hypotheses no run has tested, hypotheses blocked by an open issue                                                                                                      |
 | check                                                                                                              | the vault's commit check: validate every note, compare every generated file                                                                                                                                                                                     |
 | add_note                                                                                                           | write a Question, Hypothesis, Experiment or Result note. The quote must be verbatim text of the named record file and every link must resolve to a note of the right type. A refusal returns its reasons and writes nothing. Left out when `TRUSOMA_READONLY=1` |
 
-Writing is TypeScript only. `packages/graph/src/validate.ts` (zod) holds the rules: required properties, the quote found verbatim in its record file, the 26 allowed triples. `packages/graph/src/write.ts` writes the note file and adds the relations its links imply. A refused write leaves no trace. Two tests hold the writer to the vault's own Python tool: every probe-record note already in the vault is reproduced byte for byte from its properties, and after a write the vault's Python check (the one every commit runs) passes, generated files included.
+Writing is TypeScript only. `packages/graph/src/validate.ts` (zod) holds the rules: required properties, the quote found verbatim in its record file, the 31 allowed triples. `packages/graph/src/write.ts` writes the note file (a Question is titled with its quote) and adds the relations its links imply, with the ones the vault derives for a Result (it informs the question behind the tested hypotheses; a failed or null result of a one-hypothesis experiment opposes that hypothesis). A refused write leaves no trace. Two tests hold the writer to the vault's own Python tool: every probe-record note already in the vault is reproduced byte for byte from its properties, and after a write the vault's Python check (the one every commit runs) passes, generated files included.
 
 Value notes (claims, evidence, sources) are not written by the server: they change generated configuration files and stay with the Python tool.
 
@@ -48,7 +48,7 @@ Checked in a browser on 2026-11-15: the start view draws 4 cards and 4 relations
 
 ## Database rows (`packages/graph/src/dgExport.ts`, `packages/graph/scripts/load-hosted.ts`)
 
-The vault as the rows the Discourse Graphs Postgres function `upsert_concepts` takes, following the Obsidian plugin's own conversion: 42 schema rows (9 node types, 7 relation types, 26 allowed triples), one row per note and per relation.
+The vault as the rows the Discourse Graphs Postgres function `upsert_concepts` takes, following the Obsidian plugin's own conversion: 50 schema rows (10 node types, 7 relation types, 31 allowed triples), one row per note and per relation.
 
 ```
 pnpm run db:hosted

@@ -7,4 +7,14 @@ counted: false
 record: "companion/TRUSOMA_PROBES.md"
 quote: "same-surface partners 0.68-0.82 against 0.16-0.28 time-shuffled, on every seed"
 experiment: "[[EXP - the body's own touch 2026-11-09]]"
+answers: ["[[QUE - Does `skin7` input carry a map？]]"]
+answers_basis: "| B1 | Does `skin7` input carry a map? |"
 ---
+
+From the record: "same-surface partners 0.68-0.82 against 0.16-0.28 time-shuffled, on every seed"
+
+Reading: signal (not counted).
+
+Experiment: [[EXP - the body's own touch 2026-11-09]].
+
+Record file: `companion/TRUSOMA_PROBES.md`.

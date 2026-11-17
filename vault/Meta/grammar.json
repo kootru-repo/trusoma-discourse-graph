@@ -88,6 +88,16 @@
    "created": 1776698405622,
    "modified": 1777371361833,
    "description": "An untested claim posed for discussion"
+  },
+  {
+   "id": "node_trusomaParameter00001",
+   "name": "Parameter",
+   "format": "PAR - {content}",
+   "color": "#8A8F98",
+   "created": 1794787200000,
+   "modified": 1794787200000,
+   "description": "A model setting with no source yet: not an assertion (a model choice, a value not researched, one with no source found, or one that cites the design only)",
+   "tag": "par-candidate"
   }
  ],
  "relationTypes": [
@@ -356,6 +366,62 @@
    "relationshipTypeId": "relation_G8GMDxjFv_e5ePzoR7uYn",
    "created": 1781200335319,
    "modified": 1781200349067
+  },
+  {
+   "sourceId": "node_i7PzyKw2NfkA8asBfxeey",
+   "destinationId": "node_4SqRl5RIkaUMb9fLOpdhq",
+   "relationshipTypeId": "relation_G8GMDxjFv_e5ePzoR7uYn",
+   "created": 1794787200000,
+   "modified": 1794787200000,
+   "id": "rel3_trusomaOwnTriple00001"
+  },
+  {
+   "sourceId": "node_i7PzyKw2NfkA8asBfxeey",
+   "destinationId": "node_8eLgGKXiSzIWJvcrGCBFE",
+   "relationshipTypeId": "relation_eGQp4gFgaNvQsJd3x8Nj9",
+   "created": 1794787200000,
+   "modified": 1794787200000,
+   "id": "rel3_trusomaOwnTriple00002"
+  },
+  {
+   "sourceId": "node_LwROzkVH_Zck7ZxDgN91E",
+   "destinationId": "node_LwROzkVH_Zck7ZxDgN91E",
+   "relationshipTypeId": "relation_eGQp4gFgaNvQsJd3x8Nj9",
+   "created": 1794787200000,
+   "modified": 1794787200000,
+   "id": "rel3_trusomaOwnTriple00003"
+  },
+  {
+   "sourceId": "node_xQmEzWQFHdHy2swhrugrF",
+   "destinationId": "node_trusomaParameter00001",
+   "relationshipTypeId": "relation_G8GMDxjFv_e5ePzoR7uYn",
+   "created": 1794787200000,
+   "modified": 1794787200000,
+   "id": "rel3_trusomaOwnTriple00004"
+  },
+  {
+   "sourceId": "node_-PIYSmr5icSFMACYAUobE",
+   "destinationId": "node_LwROzkVH_Zck7ZxDgN91E",
+   "relationshipTypeId": "relation_G8GMDxjFv_e5ePzoR7uYn",
+   "created": 1794787200000,
+   "modified": 1794787200000,
+   "id": "rel3_trusomaOwnTriple00005"
+  },
+  {
+   "sourceId": "node_2unblKFUVJkOdOnT8MstZ",
+   "destinationId": "node_LwROzkVH_Zck7ZxDgN91E",
+   "relationshipTypeId": "relation_G8GMDxjFv_e5ePzoR7uYn",
+   "created": 1794787200000,
+   "modified": 1794787200000,
+   "id": "rel3_trusomaOwnTriple00006"
+  },
+  {
+   "sourceId": "node_2unblKFUVJkOdOnT8MstZ",
+   "destinationId": "node_trusomaParameter00001",
+   "relationshipTypeId": "relation_G8GMDxjFv_e5ePzoR7uYn",
+   "created": 1794787200000,
+   "modified": 1794787200000,
+   "id": "rel3_trusomaOwnTriple00007"
   }
  ]
 }

@@ -92,7 +92,7 @@ server.tool(
 );
 server.tool(
   "list_gaps",
-  "What the graph lacks: value claims with no evidence, hypotheses no run has tested, hypotheses blocked by an open issue.",
+  "What the graph lacks: values (Claim or Parameter notes) with no evidence, hypotheses no run has tested, hypotheses blocked by an open issue.",
   T.ListGapsSchema.shape,
   guarded((a) => T.listGaps(graph, T.ListGapsSchema.parse(a))),
 );

@@ -1,5 +1,5 @@
 ---
-nodeTypeId: "trusoma-record"
+recordTypeId: "trusoma-record"
 nodeInstanceId: "e26cb579-113a-7ff7-a029-ef2f2548eeaa"
 dg_type: "Record"
 record_file: "companion/source_audit/batch_2026-11-04_equations/equations.jsonl"

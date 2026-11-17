@@ -1,0 +1,13 @@
+---
+nodeTypeId: "node_-PIYSmr5icSFMACYAUobE"
+nodeInstanceId: "d389e551-370a-7728-8014-06c781fa5f3d"
+dg_type: "Source"
+dg_name: "p-pmid20860060"
+paper_id: "p-pmid20860060"
+register: "jepa_references"
+row: {"paper_id": "p-pmid20860060", "first_author": "Nowlan", "year": "2010", "citation": "Nowlan NC, Sharpe J, Roddy KA, Prendergast PJ, Murphy P. Mechanobiology of embryonic skeletal development: Insights from animal models. Birth Defects Res C Embryo Today 2010;90(3):203-213", "doi": "10.1002/bdrc.20184", "pmid": "20860060", "pmcid": "", "used_for": "Coupled growth plan, hypothesis: L2", "how_far_read": "Full text, by keyword search and surrounding passages", "local_file": "papers/growth_sources/p-pmid20860060.txt"}
+---
+
+Nowlan NC, Sharpe J, Roddy KA, Prendergast PJ, Murphy P. Mechanobiology of embryonic skeletal development: Insights from animal models. Birth Defects Res C Embryo Today 2010;90(3):203-213.
+
+DOI: 10.1002/bdrc.20184; PMID: 20860060.

@@ -1,0 +1,14 @@
+---
+nodeTypeId: "node_-PIYSmr5icSFMACYAUobE"
+nodeInstanceId: "f1f4e6a7-d239-75e6-969b-2b5e95604af5"
+dg_type: "Source"
+dg_name: "p-pmc5121665"
+paper_id: "p-pmc5121665"
+register: "paper_register"
+order: 93
+row: {"paper_id": "p-pmc5121665", "first_author": "Shastry", "year": "2016", "citation": "Shastry A, Ravindranath Y, Ravindranath R. Analysis of Fetal Palate to Assist Pre-natal Ultrasound. J Clin Diagn Res 2016;10(10):AC10-AC12, doi 10.7860/JCDR/2016/21170.8709 (full text read at https://pmc.ncbi.nlm.nih.gov/articles/PMC5121665/)", "doi": "10.7860/jcdr/2016/21170.8709", "pmid": "", "pmcid": "PMC5121665", "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC5121665/", "local_file": "", "n_constants": "3"}
+---
+
+Shastry A, Ravindranath Y, Ravindranath R. Analysis of Fetal Palate to Assist Pre-natal Ultrasound. J Clin Diagn Res 2016;10(10):AC10-AC12, doi 10.7860/JCDR/2016/21170.8709 (full text read at https://pmc.ncbi.nlm.nih.gov/articles/PMC5121665/).
+
+DOI: 10.7860/jcdr/2016/21170.8709; PMCID: PMC5121665.

@@ -9,3 +9,13 @@ quote: "(sag 1.79 vs 0.16 mV, same end voltage)"
 experiment: "[[EXP - test tr9 static ih e4707cd]]"
 consistent_with: ["[[HYP- TR9 dynamic Ih against a static conductance]]"]
 ---
+
+From the record: "(sag 1.79 vs 0.16 mV, same end voltage)"
+
+Reading: pass.
+
+Experiment: [[EXP - test tr9 static ih e4707cd]].
+
+Consistent with: [[HYP- TR9 dynamic Ih against a static conductance]].
+
+Record file: `companion/RESONANT_BUILD_CHECKLIST_2026-11-15.md`.

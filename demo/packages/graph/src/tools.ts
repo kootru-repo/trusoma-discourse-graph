@@ -6,12 +6,19 @@
  * and leaves no trace when it refuses. The vault's Python check (the `check` tool, and every commit) stays the independent check of what was written.
  */
 import { checkGraph, checkNote } from "./validate.js";
-import { checkName, impliedRelations, noteText, writeNote } from "./write.js";
+import {
+  checkName,
+  impliedRelations,
+  noteText,
+  noteTitle,
+  writeNote,
+} from "./write.js";
 import { spawnSync } from "node:child_process";
 import { existsSync } from "node:fs";
 import { join } from "node:path";
 import { z } from "zod";
 import {
+  isValueNote,
   loadVault,
   type DiscourseNode,
   type Graph,
@@ -21,6 +28,7 @@ import {
 
 const ABBREVIATION: Record<string, string> = {
   CLM: "Claim",
+  PAR: "Parameter",
   EVD: "Evidence",
   SRC: "Source",
   ISS: "Issue",
@@ -37,6 +45,7 @@ type Reading = Brief & { reading: Json; quote: Json };
 type Trace = {
   claim: Brief & { value: Json; status: Json };
   evidence: (Brief & {
+    bearing: "supports" | "informs";
     quote: Json;
     locator: Json;
     transfer: Json;
@@ -66,8 +75,11 @@ const brief = (n: DiscourseNode): Brief => ({
   title: n.title,
 });
 const mustGet = (g: Graph, uid: string): DiscourseNode => {
-  const node = g.nodes.get(uid) ?? g.byTitle.get(uid);
-  if (!node) throw new Error(`no node with uid or title ${uid}`);
+  const node = g.nodes.get(uid) ?? g.byTitle.get(uid) ?? g.byHandle.get(uid);
+  if (!node)
+    throw new Error(
+      `no node with uid, title or handle (type prefix + name) ${uid}`,
+    );
   return node;
 };
 const edge = (g: Graph, r: Relation): Edge => ({
@@ -86,7 +98,7 @@ export const SearchNodesSchema = z.object({
     .string()
     .optional()
     .describe(
-      "Claim, Evidence, Source, Issue, Question, Hypothesis, Experiment, Result (or CLM, EVD, ...)",
+      "Claim, Parameter, Evidence, Source, Issue, Question, Hypothesis, Experiment, Result (or CLM, PAR, EVD, ...). A Parameter is a model value with no source: Claim finds those too, Parameter only those",
     ),
   limit: z.number().optional().default(10),
 });
@@ -100,7 +112,12 @@ export const searchNodes = (
     : undefined;
   const hits: { node: DiscourseNode; inTitle: number }[] = [];
   for (const node of g.nodes.values()) {
-    if (want && node.nodeType.toLowerCase() !== want.toLowerCase()) continue;
+    if (
+      want &&
+      node.nodeType.toLowerCase() !== want.toLowerCase() &&
+      !(want.toLowerCase() === "claim" && node.nodeType === "Parameter")
+    )
+      continue;
     const title = node.title.toLowerCase();
     const text = title + " " + JSON.stringify(node.props).toLowerCase();
     if (words.every((w) => text.includes(w)))
@@ -119,7 +136,11 @@ export const searchNodes = (
 };
 
 export const GetNodeSchema = z.object({
-  uid: z.string().describe("The node's uid (nodeInstanceId) or its full title"),
+  uid: z
+    .string()
+    .describe(
+      "The node's uid (nodeInstanceId), its full title, or its stable handle (type prefix + name, e.g. CLM - phase1_substrate.NMDA_SHARE_E16)",
+    ),
 });
 export const getNode = (
   g: Graph,
@@ -289,7 +310,7 @@ export const getNodeNeighborhood = (
   };
 };
 
-/** The whole path of one value: the sources and quotes behind it, and the hypotheses, runs and readings that used it. */
+/** The whole path of one value (a Claim, or a Parameter when it has no source): the sources and quotes behind it, and the hypotheses, runs and readings that used it. */
 export const TraceValueSchema = z.object({
   key: z
     .string()
@@ -303,10 +324,11 @@ export const traceValue = (
 ): Trace => {
   const claim = [...g.nodes.values()].find(
     (n) =>
-      n.nodeType === "Claim" &&
+      isValueNote(n) &&
       (n.props.key === a.key || n.props.name === a.key || n.name === a.key),
   );
-  if (!claim) throw new Error(`no Claim with key or name ${a.key}`);
+  if (!claim)
+    throw new Error(`no Claim or Parameter with key or name ${a.key}`);
   const into = (uid: string, label: string): DiscourseNode[] =>
     (g.incoming.get(uid) ?? [])
       .filter((r) => r.label === label)
@@ -315,10 +337,16 @@ export const traceValue = (
     (g.outgoing.get(uid) ?? [])
       .filter((r) => r.label === label)
       .map((r) => mustGet(g, r.destination));
-  const evidence = into(claim.uid, "supports")
-    .filter((n) => n.nodeType === "Evidence")
-    .map((e) => ({
+  // Evidence that informs a value (its source is not one the project accepts as sourcing it) is listed too, marked as such: every reference a value has is shown
+  const evidence = (["supports", "informs"] as const)
+    .flatMap((bearing) =>
+      into(claim.uid, bearing)
+        .filter((n) => n.nodeType === "Evidence")
+        .map((e) => ({ e, bearing })),
+    )
+    .map(({ e, bearing }) => ({
       ...brief(e),
+      bearing,
       quote: e.props.quote ?? null,
       locator: e.props.locator ?? null,
       transfer: e.props.transfer ?? null,
@@ -365,7 +393,7 @@ export const traceValue = (
   };
 };
 
-/** What the graph does not have yet: value claims with no evidence, hypotheses that no run has tested, hypotheses blocked by an issue. */
+/** What the graph does not have yet: values (Claim or Parameter notes, records apart) that no note is related to, hypotheses that no run has tested, hypotheses blocked by an issue. */
 export const ListGapsSchema = z.object({
   kind: z.enum([
     "claims_without_evidence",
@@ -384,7 +412,7 @@ export const listGaps = (
   if (a.kind === "claims_without_evidence")
     hits = all.filter(
       (n) =>
-        n.nodeType === "Claim" &&
+        isValueNote(n) &&
         !("record_file" in n.props) &&
         !(g.incoming.get(n.uid) ?? []).length &&
         !(g.outgoing.get(n.uid) ?? []).length,
@@ -476,7 +504,19 @@ export const addNote = (
   g: Graph,
   a: z.infer<typeof AddNoteSchema>,
 ): AddNoteResult => {
-  const title = PREFIX[a.kind] + a.name;
+  const props: Record<string, Json> = {
+    record: a.record,
+    quote: a.quote,
+    ...((a.properties ?? {}) as Record<string, Json>),
+  };
+  // a Question is titled with its quote, the other kinds with their prefix and name; the handle (prefix + name) is what ids derive from
+  const handle = PREFIX[a.kind] + a.name;
+  let title = handle;
+  try {
+    title = noteTitle({ g, kind: a.kind, name: a.name, props });
+  } catch {
+    // a quote that is not text: refused below with its reason
+  }
   const refuse = (message: string[]): AddNoteResult => ({
     accepted: false,
     title,
@@ -484,15 +524,13 @@ export const addNote = (
     graph: g,
   });
   if (
-    g.byTitle.has(title) ||
+    g.byHandle.has(handle) ||
+    [...g.byTitle.keys()].some(
+      (t) => t.toLowerCase() === title.toLowerCase(),
+    ) ||
     existsSync(join(g.root, "vault", "DiscourseGraph", title + ".md"))
   )
     return refuse(["a note with this title already exists"]);
-  const props: Record<string, Json> = {
-    record: a.record,
-    quote: a.quote,
-    ...((a.properties ?? {}) as Record<string, Json>),
-  };
   let implied: ReturnType<typeof impliedRelations>;
   try {
     noteText({ g, kind: a.kind, name: a.name, props });

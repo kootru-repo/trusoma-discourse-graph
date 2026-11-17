@@ -15,7 +15,7 @@ export type DiscourseNode = {
   nodeType: string;
   nodeTypeId: string;
   title: string;
-  /** the title without its type prefix, e.g. "phase1_substrate.NMDA_SHARE_E16" */
+  /** the stable name, e.g. "phase1_substrate.NMDA_SHARE_E16": the note's dg_name property when its title is derived from its properties, else the title without its type prefix */
   name: string;
   props: Record<string, Json>;
 };
@@ -35,6 +35,8 @@ export type Graph = {
   root: string;
   nodes: Map<string, DiscourseNode>;
   byTitle: Map<string, DiscourseNode>;
+  /** by stable handle (type prefix + name, e.g. "CLM - phase1_substrate.NMDA_SHARE_E16"): a title can change, a handle cannot */
+  byHandle: Map<string, DiscourseNode>;
   relations: Relation[];
   outgoing: Map<string, Relation[]>;
   incoming: Map<string, Relation[]>;
@@ -44,6 +46,25 @@ export type Graph = {
 };
 
 const HEAD = new Set(["nodeTypeId", "nodeInstanceId", "dg_type"]);
+
+/** A configuration value with no source is a Parameter note on disk; inside the vault's tools it is a Claim of the same name and id. */
+export const VALUE_TYPES: readonly string[] = ["Claim", "Parameter"];
+/** The kind a note's id, handle and link rules use: Claim for a Parameter note, else the note's own type. */
+export const internalKind = (nodeType: string): string =>
+  nodeType === "Parameter" ? "Claim" : nodeType;
+/** A Claim or a Parameter note: where a Claim is expected, a Parameter is the same thing without a source. */
+export const isValueNote = (n: { nodeType: string }): boolean =>
+  VALUE_TYPES.includes(n.nodeType);
+/** The stable handle of a note (the vault's canon): the prefix of its internal kind and its name. Ids derive from it, never from the title. */
+export const handleOf = (
+  g: Pick<Graph, "nodeTypes">,
+  { nodeType, name }: { nodeType: string; name: string },
+): string => {
+  const kind = internalKind(nodeType);
+  const t = g.nodeTypes.find((x) => x.name === kind);
+  if (!t) throw new Error(`node type ${kind} is not in the grammar`);
+  return t.format.replace("{content}", "") + name;
+};
 
 export const parseFrontmatter = (
   text: string,
@@ -132,6 +153,8 @@ export const loadVault = (root: string): Graph => {
 
   const nodes = new Map<string, DiscourseNode>();
   const byTitle = new Map<string, DiscourseNode>();
+  const byHandle = new Map<string, DiscourseNode>();
+  const notOurs = new Set<string>();
   const folder = join(vault, "DiscourseGraph");
   for (const file of readdirSync(folder).sort()) {
     if (!file.endsWith(".md")) continue;
@@ -139,6 +162,12 @@ export const loadVault = (root: string): Graph => {
       readFileSync(join(folder, file), "utf8"),
       file,
     );
+    // a note imported from another space, or one a person made in Obsidian with the plugin (no dg_type): theirs, never read (the vault's read_all)
+    if (all.importedFromRid || !("dg_type" in all)) {
+      if (typeof all.nodeInstanceId === "string")
+        notOurs.add(all.nodeInstanceId);
+      continue;
+    }
     const uid = all.nodeInstanceId;
     const nodeTypeId = all.nodeTypeId;
     if (typeof uid !== "string" || typeof nodeTypeId !== "string")
@@ -153,16 +182,28 @@ export const loadVault = (root: string): Graph => {
     const props: Record<string, Json> = {};
     for (const [key, value] of Object.entries(all))
       if (!HEAD.has(key)) props[key] = value;
+    const stable = all.dg_name;
+    if (!(typeof stable === "string" && stable) && !title.startsWith(prefix))
+      throw new Error(
+        `${file}: title does not match type ${nodeType} and the note has no dg_name`,
+      );
     const node: DiscourseNode = {
       uid,
       nodeType,
       nodeTypeId,
       title,
-      name: title.startsWith(prefix) ? title.slice(prefix.length) : title,
+      name:
+        typeof stable === "string" && stable
+          ? stable
+          : title.slice(prefix.length),
       props,
     };
+    const handle = handleOf({ nodeTypes }, { nodeType, name: node.name });
+    if (byHandle.has(handle))
+      throw new Error(`${file}: two notes hold ${handle}`);
     nodes.set(uid, node);
     byTitle.set(title, node);
+    byHandle.set(handle, node);
   }
 
   const file = JSON.parse(
@@ -170,13 +211,26 @@ export const loadVault = (root: string): Graph => {
   ) as {
     relations: Record<
       string,
-      { id: string; type: string; source: string; destination: string }
+      {
+        id: string;
+        type: string;
+        source: string;
+        destination: string;
+        importedFromRid?: string;
+      }
     >;
   };
   const relations: Relation[] = [];
   const outgoing = new Map<string, Relation[]>();
   const incoming = new Map<string, Relation[]>();
   for (const r of Object.values(file.relations)) {
+    // a relation of another space, or one on a person's own note: carried in the file, not part of this graph (the vault's split_relations)
+    if (
+      r.importedFromRid ||
+      notOurs.has(r.source) ||
+      notOurs.has(r.destination)
+    )
+      continue;
     if (!nodes.has(r.source) || !nodes.has(r.destination))
       throw new Error(`relation ${r.id}: an end is not a note of the vault`);
     const relation: Relation = {
@@ -194,6 +248,7 @@ export const loadVault = (root: string): Graph => {
     root,
     nodes,
     byTitle,
+    byHandle,
     relations,
     outgoing,
     incoming,

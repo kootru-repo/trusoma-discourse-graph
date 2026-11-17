@@ -7,4 +7,13 @@ counted: false
 record: "companion/TRUSOMA_PROBES.md"
 quote: "| 2b error, degrees | **No signal** | 9.6-11.4 | 6.4-6.9 | 25.4-28.0 | raw_matched 2.6-2.8 |"
 experiment: "[[EXP - probe 1 existing checkpoints 2026-11-03]]"
+against: ["[[HYP- probe 2b orientation criterion]]"]
 ---
+
+From the record: "| 2b error, degrees | **No signal** | 9.6-11.4 | 6.4-6.9 | 25.4-28.0 | raw_matched 2.6-2.8 |"
+
+Reading: no-signal (not counted).
+
+Experiment: [[EXP - probe 1 existing checkpoints 2026-11-03]].
+
+Record file: `companion/TRUSOMA_PROBES.md`.

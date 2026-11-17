@@ -1,5 +1,5 @@
 ---
-nodeTypeId: "trusoma-record"
+recordTypeId: "trusoma-record"
 nodeInstanceId: "d3a34f34-387c-72a5-a885-73a865c53e0a"
 dg_type: "Record"
 record_file: "tools/trusoma/brain/window_config_10_17.json"

@@ -1,0 +1,13 @@
+---
+nodeTypeId: "node_-PIYSmr5icSFMACYAUobE"
+nodeInstanceId: "491b8a6b-1f4f-70b7-9dc6-e06745d68c01"
+dg_type: "Source"
+dg_name: "p-pmid30602787"
+paper_id: "p-pmid30602787"
+register: "jepa_references"
+row: {"paper_id": "p-pmid30602787", "first_author": "Larsson", "year": "2019", "citation": "Larsson AJM, Johnsson P, Hagemann-Jensen M, Hartmanis L, Faridani OR, Reinius B, Segerstolpe Å, Rivera CM, Ren B, Sandberg R. Genomic encoding of transcriptional burst kinetics. Nature 2019;565(7738):251-254", "doi": "10.1038/s41586-018-0836-1", "pmid": "30602787", "pmcid": "", "used_for": "Coupled growth plan, hypothesis: L12", "how_far_read": "Full text, by keyword search and surrounding passages", "local_file": "papers/growth_sources/p-pmid30602787.txt"}
+---
+
+Larsson AJM, Johnsson P, Hagemann-Jensen M, Hartmanis L, Faridani OR, Reinius B, Segerstolpe Å, Rivera CM, Ren B, Sandberg R. Genomic encoding of transcriptional burst kinetics. Nature 2019;565(7738):251-254.
+
+DOI: 10.1038/s41586-018-0836-1; PMID: 30602787.

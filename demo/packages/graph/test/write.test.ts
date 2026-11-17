@@ -4,11 +4,13 @@ import { readFileSync } from "node:fs";
 import { dirname, join, resolve } from "node:path";
 import { fileURLToPath } from "node:url";
 import { test } from "vitest";
-import { loadVault } from "../src/vault.js";
+import { internalKind, loadVault } from "../src/vault.js";
 import {
   impliedRelations,
   nodeId,
+  notesOf,
   noteText,
+  noteTitle,
   pyJson,
   WRITABLE,
 } from "../src/write.js";
@@ -33,15 +35,50 @@ test("every probe-record note in the vault is reproduced exactly from its proper
   assert.ok(record.length >= 40, `only ${record.length} notes`);
   for (const n of record) {
     assert.equal(nodeId(n.nodeType, n.name), n.uid, n.title);
+    // the title is derived too: a Question's from its quote, the other kinds' from their name
     assert.equal(
-      noteText({ g, kind: n.nodeType, name: n.name, props: n.props }),
-      readFileSync(
-        join(root, "vault", "DiscourseGraph", n.title + ".md"),
-        "utf8",
-      ),
+      noteTitle({ g, kind: n.nodeType, name: n.name, props: n.props }),
+      n.title,
+    );
+    const onDisk = readFileSync(
+      join(root, "vault", "DiscourseGraph", n.title + ".md"),
+      "utf8",
+    );
+    // properties and derived body are reproduced; a reader's own section under "## Notes" is kept as it is, as the vault's tool keeps it
+    assert.equal(
+      noteText({
+        g,
+        kind: n.nodeType,
+        name: n.name,
+        props: n.props,
+        notes: notesOf(onDisk),
+      }),
+      onDisk,
       n.title,
     );
   }
+});
+
+test("every note's id derives from its stable name, a Parameter's as the Claim it is inside the tools", () => {
+  for (const n of g.nodes.values())
+    assert.equal(nodeId(internalKind(n.nodeType), n.name), n.uid, n.title);
+  assert.ok([...g.nodes.values()].some((n) => n.nodeType === "Parameter"));
+});
+
+test("the reader's own notes start at the line '## Notes' and follow the derived body after one empty line", () => {
+  const n = record[0]!;
+  const plain = noteText({ g, kind: n.nodeType, name: n.name, props: n.props });
+  assert.equal(notesOf(plain), "");
+  const mine = "## Notes\nmy own words\n";
+  const withMine = noteText({
+    g,
+    kind: n.nodeType,
+    name: n.name,
+    props: n.props,
+    notes: mine,
+  });
+  assert.equal(withMine, plain + "\n" + mine);
+  assert.equal(notesOf(withMine), mine);
 });
 
 test("the relations derived from their links are the ones stored, id and content", () => {

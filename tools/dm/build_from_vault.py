@@ -67,7 +67,7 @@ def generate():
             if "status" in c:
                 e["status"] = c["status"]
             for link in c.get("evidence", []):
-                ev = evid[link[len("[[" + D.PREFIX["Evidence"]):-2]]
+                ev = evid[D.target_of(link, "Evidence")]
                 e.update({k: ev[k] for k in ("paper_id", "locator", "quote", "saved_text", "transfer", "source_note") if k in ev})
                 basis[c["key"]] = {"source_kind": ev["class"], "species": ev["species"], "age_stage": ev["stage"], "ga_lo_wk": ev["ga_lo_wk"], "ga_hi_wk": ev["ga_hi_wk"], "note": ev["basis_note"]}
             modules.setdefault(c["module"], {})[c["name"]] = {k: e[k] for k in ENTRY_ORDER if k in e}
@@ -104,7 +104,7 @@ def render(modules, values, link_rows, registers, texts, parts):
            LINKS: csv_text(headers["links"], link_rows), REGISTER: csv_text(headers["register"], reg_rows)}
     for path, text in texts.items():
         out[D.ROOT / path] = text
-    rel = {"version": 1, "lastModified": D.STAMP_MS, "relations": D.expected_relations(D.read_all())}
+    rel = {"version": 1, "lastModified": D.STAMP_MS, "relations": D.merged_relations(D.read_all(), D.existing_relations())}   # foreign (imported) relations and the plugin's publish fields are carried through
     out[D.RELATIONS] = json.dumps(rel, indent=1, sort_keys=True) + NL
     out[APPENDIX] = with_block(APPENDIX.read_bytes().decode("utf-8") if APPENDIX.exists() else "", appendix_block(D.read_all()))
     return out
@@ -123,6 +123,21 @@ def compare_side_records(basis, registers):
 
 def main():
     mode = sys.argv[1] if len(sys.argv) > 1 else "check"
+    if mode == "write":
+        moved = [(kind, name, p) for (kind, name), p in D.read_all().items() if not p.get("dg_name") and p.get("nodeInstanceId") != D.node_id(kind, name)]
+        if moved:
+            for kind, name, p in moved:
+                print("STOPPED: the %s note now named '%s' carries an id that is not the one of that name%s. Its file name is its name: give the file its old name back, then run write again."
+                      % (kind, name, (" (its key property says: %s)" % p["key"]) if p.get("key") and p.get("key") != name else ""))
+            print("nothing was written")
+            return 1
+    if mode == "write":   # first: titles and bodies. A note renamed by hand gets its derived title back before anything reads the links to it, so the relations are right in one pass
+        fresh = D.refresh_bodies()   # a note edited by hand or in Obsidian gets its readable body rebuilt from its properties
+        if fresh:
+            print("readable bodies rebuilt:", fresh)
+        import passages
+        if passages.write():   # the index of passages that stand in several Evidence notes follows the titles
+            print("written Repeated passages.md")
     modules, values, basis, link_rows, registers, texts, parts = generate()
     outputs = render(modules, values, link_rows, registers, texts, parts)
     problems = compare_side_records(basis, registers)

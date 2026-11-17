@@ -1,0 +1,14 @@
+---
+nodeTypeId: "node_-PIYSmr5icSFMACYAUobE"
+nodeInstanceId: "1692c086-8b86-7bcd-bbbf-c92c0791d2fa"
+dg_type: "Source"
+dg_name: "p-doi-10-1002-uog-1898"
+paper_id: "p-doi-10-1002-uog-1898"
+register: "paper_register"
+order: 242
+row: {"paper_id": "p-doi-10-1002-uog-1898", "first_author": "Falcon", "year": "2005", "citation": "Falcon O, Wegrzyn P, Faro C, Peralta CFA, Nicolaides KH. Gestational sac volume measured by three-dimensional ultrasound at 11 to 13 + 6 weeks of gestation: relation to chromosomal defects. Ultrasound Obstet Gynecol 2005;25(6):546-550", "doi": "10.1002/uog.1898", "pmid": "15880661", "pmcid": "", "url": "", "local_file": "", "n_constants": "1"}
+---
+
+Falcon O, Wegrzyn P, Faro C, Peralta CFA, Nicolaides KH. Gestational sac volume measured by three-dimensional ultrasound at 11 to 13 + 6 weeks of gestation: relation to chromosomal defects. Ultrasound Obstet Gynecol 2005;25(6):546-550.
+
+DOI: 10.1002/uog.1898; PMID: 15880661.

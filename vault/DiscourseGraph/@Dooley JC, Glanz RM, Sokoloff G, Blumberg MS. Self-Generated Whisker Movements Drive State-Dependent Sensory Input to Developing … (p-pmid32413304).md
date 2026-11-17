@@ -1,0 +1,13 @@
+---
+nodeTypeId: "node_-PIYSmr5icSFMACYAUobE"
+nodeInstanceId: "e1c4a1ab-6ad9-7f29-b9a9-e26f749fbf33"
+dg_type: "Source"
+dg_name: "p-pmid32413304"
+paper_id: "p-pmid32413304"
+register: "jepa_references"
+row: {"paper_id": "p-pmid32413304", "first_author": "Dooley", "year": "2020", "citation": "Dooley JC, Glanz RM, Sokoloff G, Blumberg MS. Self-Generated Whisker Movements Drive State-Dependent Sensory Input to Developing Barrel Cortex. Curr Biol 2020;30(12):2404-2410.e4", "doi": "10.1016/j.cub.2020.04.045", "pmid": "32413304", "pmcid": "", "used_for": "Coupled growth plan, hypothesis: L4", "how_far_read": "Full text, by keyword search and surrounding passages", "local_file": "papers/growth_sources/p-pmid32413304.txt"}
+---
+
+Dooley JC, Glanz RM, Sokoloff G, Blumberg MS. Self-Generated Whisker Movements Drive State-Dependent Sensory Input to Developing Barrel Cortex. Curr Biol 2020;30(12):2404-2410.e4.
+
+DOI: 10.1016/j.cub.2020.04.045; PMID: 32413304.

@@ -1,0 +1,14 @@
+---
+nodeTypeId: "node_-PIYSmr5icSFMACYAUobE"
+nodeInstanceId: "7606f59c-d36b-7513-9fe2-0db6846233fd"
+dg_type: "Source"
+dg_name: "p-doi-10-7863-jum-1996-15-11-771"
+paper_id: "p-doi-10-7863-jum-1996-15-11-771"
+register: "paper_register"
+order: 243
+row: {"paper_id": "p-doi-10-7863-jum-1996-15-11-771", "first_author": "Weissman", "year": "1996", "citation": "Weissman A, Itskovitz-Eldor J, Jakobi P. Sonographic measurement of amniotic fluid volume in the first trimester of pregnancy. J Ultrasound Med 1996;15(11):771-774", "doi": "10.7863/jum.1996.15.11.771", "pmid": "8908588", "pmcid": "", "url": "", "local_file": "", "n_constants": "0"}
+---
+
+Weissman A, Itskovitz-Eldor J, Jakobi P. Sonographic measurement of amniotic fluid volume in the first trimester of pregnancy. J Ultrasound Med 1996;15(11):771-774.
+
+DOI: 10.7863/jum.1996.15.11.771; PMID: 8908588.

@@ -1,0 +1,14 @@
+---
+nodeTypeId: "node_-PIYSmr5icSFMACYAUobE"
+nodeInstanceId: "1e3acf6a-806f-77ec-8013-401dff844aa3"
+dg_type: "Source"
+dg_name: "p-pmid7238681"
+paper_id: "p-pmid7238681"
+register: "paper_register"
+order: 192
+row: {"paper_id": "p-pmid7238681", "first_author": "Altman", "year": "1981", "citation": "Altman J, Bayer S. Time of origin of neurons of the rat superior colliculus in relation to other components of the visual and visuomotor pathways. Experimental Brain Research 1981;42-42: (abstract read 2026-11-07)", "doi": "10.1007/bf00237507", "pmid": "7238681", "pmcid": "", "url": "", "local_file": "papers/src_2026_11_07/m2/", "n_constants": ""}
+---
+
+Altman J, Bayer S. Time of origin of neurons of the rat superior colliculus in relation to other components of the visual and visuomotor pathways. Experimental Brain Research 1981;42-42: (abstract read 2026-11-07).
+
+DOI: 10.1007/bf00237507; PMID: 7238681.

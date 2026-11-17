@@ -1,0 +1,24 @@
+---
+nodeTypeId: "node_trusomaParameter00001"
+nodeInstanceId: "c7f1eee8-d509-71d5-8383-ed9b33d4a22a"
+dg_type: "Parameter"
+dg_name: "brainstem_s2.n_b4i"
+kind: "value"
+key: "brainstem_s2.n_b4i"
+target: "global"
+order: 430
+value: 40
+text: "40"
+entries: ["A19"]
+db: "brainstem_s2.n_b4i"
+state: "current, changes the 12.5 brainstem loop"
+status: "model-choice"
+---
+
+`brainstem_s2.n_b4i` = 40.
+
+Status: model-choice (a model choice, not a sourced value).
+
+State: current, changes the 12.5 brainstem loop.
+
+No evidence note is attached.

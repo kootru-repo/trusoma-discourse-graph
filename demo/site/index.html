@@ -1,0 +1,389 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<script>if (location.hash.indexOf("#ask=") === 0) location.replace("explore/" + location.hash);</script>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="The TruSoma discourse graph: 4,410 notes and 3,200 relations that trace each value of a model of human fetal development to its source. Six uses, walked through a 3D graph of the vault.">
+<title>TruSoma discourse graph: six uses, illustrated</title>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Ccircle cx='8' cy='8' r='6' fill='%23ffc46b'/%3E%3C/svg%3E">
+<style>
+  :root {
+    --bg: #070b14; --ink: #eef2fb; --mute: #9aa6c0; --line: rgba(255,255,255,.10);
+    --panel: rgba(13,19,34,.74); --dg: #7cc4ff; --ts: #ffc46b; --ok: #6ee7a8; --part: #ffd27a; --no: #8b96b3;
+  }
+  * { box-sizing: border-box; }
+  html, body { margin: 0; background: var(--bg); color: var(--ink); font: 16px/1.5 "Segoe UI", "Inter", system-ui, -apple-system, Roboto, Helvetica, Arial, sans-serif; -webkit-font-smoothing: antialiased; }
+  #stage { position: fixed; inset: 0; width: 100vw; height: 100vh; display: block; z-index: 0; }
+  #vignette { position: fixed; inset: 0; z-index: 1; pointer-events: none;
+    background: radial-gradient(ellipse at 50% 42%, rgba(7,11,20,0) 0%, rgba(7,11,20,.25) 55%, rgba(7,11,20,.88) 100%); }
+  header.bar { position: fixed; top: 0; left: 0; right: 0; z-index: 5; display: flex; align-items: center; justify-content: space-between; gap: 16px;
+    padding: 12px 28px; background: rgba(7,11,20,.78); backdrop-filter: blur(14px); -webkit-backdrop-filter: blur(14px); border-bottom: 1px solid var(--line); }
+  .brand { font-size: 13px; letter-spacing: .14em; text-transform: uppercase; color: var(--mute); }
+  .brand b { color: var(--ink); font-weight: 600; }
+  a.open { flex: none; padding: 7px 14px; border-radius: 999px; font-size: 13px; font-weight: 600; color: #0a0f1c; background: #ffc46b; text-decoration: none; white-space: nowrap; }
+  a.open:hover, a.open:focus-visible { background: #ffd591; }
+  a.open.big { padding: 11px 20px; font-size: 15px; }
+  a.ghost { padding: 10px 18px; border-radius: 999px; font-size: 15px; color: var(--ink); border: 1px solid var(--line); text-decoration: none; background: rgba(7,11,20,.5); }
+  .cta { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 22px; align-items: center; }
+  .row { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 10px 16px; margin-top: 12px; }
+  .row .fit { margin-top: 0; }
+  a.go { font-size: 13.5px; color: #ffc46b; text-decoration: none; border-bottom: 1px solid rgba(255,196,107,.4); }
+  a.go:hover, a.go:focus-visible { color: #ffd591; border-color: #ffd591; }
+  nav.dots { display: flex; gap: 6px; }
+  nav.dots a { display: block; padding: 6px 10px; border-radius: 999px; font-size: 12px; color: var(--mute); text-decoration: none; border: 1px solid transparent; transition: all .25s; white-space: nowrap; }
+  nav.dots a.on { color: var(--ink); border-color: var(--line); background: rgba(255,255,255,.06); }
+  nav.dots a:hover { color: var(--ink); }
+  main { position: relative; z-index: 3; }
+  section { min-height: 100vh; padding: 96px 28px 56px; display: flex; flex-direction: column; justify-content: flex-end; }
+  section.hero { justify-content: center; align-items: flex-start; }
+  section:not(.hero) { background: linear-gradient(to bottom, rgba(7,11,20,0) 0, rgba(7,11,20,0) calc(100% - 100vh + var(--clear, 40vh) - 50px), rgba(7,11,20,.93) calc(100% - 100vh + var(--clear, 40vh) + 10px), rgba(7,11,20,.96) 100%); }
+  section.full { background: rgba(7,11,20,.55); justify-content: flex-start; padding-top: 92px; }
+  section.full h2 { margin-bottom: 12px; font-size: clamp(22px, 2.4vw, 34px); max-width: none; } section.full th, section.full td { padding: 8px 12px; }
+  .wrap { width: 100%; max-width: 1280px; margin: 0 auto; }
+  h1 { font-size: clamp(34px, 5.2vw, 68px); line-height: 1.04; margin: 0 0 18px; font-weight: 650; letter-spacing: -.02em; max-width: 15ch; }
+  h1 em { font-style: normal; color: var(--dg); } h1 i { font-style: normal; color: var(--ts); }
+  .lede { font-size: clamp(16px, 1.5vw, 20px); color: #c9d2e6; max-width: 56ch; margin: 0 0 26px; }
+  .keys { display: flex; flex-wrap: wrap; gap: 10px; }
+  .key { display: flex; align-items: baseline; gap: 10px; padding: 10px 16px; border: 1px solid var(--line); border-radius: 12px; background: var(--panel); backdrop-filter: blur(10px); }
+  .key b { font-size: 26px; font-weight: 650; font-variant-numeric: tabular-nums; }
+  .key span { font-size: 13px; color: var(--mute); }
+  .hint { margin-top: 22px; font-size: 13px; color: var(--mute); letter-spacing: .08em; text-transform: uppercase; }
+  .num { font-size: 13px; letter-spacing: .16em; text-transform: uppercase; color: var(--mute); margin-bottom: 6px; }
+  h2 { font-size: clamp(26px, 3vw, 42px); line-height: 1.1; margin: 0 0 18px; font-weight: 650; letter-spacing: -.015em; max-width: 24ch; text-shadow: 0 2px 24px rgba(7,11,20,.9); }
+  .duo { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+  .card { background: var(--panel); border: 1px solid var(--line); border-radius: 16px; padding: 20px 22px; backdrop-filter: blur(12px); }
+  .card.dg { border-top: 3px solid var(--dg); } .card.ts { border-top: 3px solid var(--ts); }
+  .tag { font-size: 12px; letter-spacing: .14em; text-transform: uppercase; font-weight: 600; margin-bottom: 8px; }
+  .dg .tag { color: var(--dg); } .ts .tag { color: var(--ts); }
+  .card p { margin: 0 0 10px; color: #d5dcec; font-size: 15px; }
+  .card ul { margin: 0; padding: 0; list-style: none; }
+  .card li { position: relative; padding: 4px 0 4px 18px; font-size: 14.5px; color: #c6cfe2; }
+  .card li::before { content: ""; position: absolute; left: 0; top: 13px; width: 7px; height: 7px; border-radius: 50%; background: currentColor; opacity: .55; }
+  .stats { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 12px; margin: 4px 0 12px; align-items: start; }
+  .stat b { display: block; font-size: clamp(20px, 1.85vw, 28px); line-height: 1.15; font-weight: 650; color: var(--ink); font-variant-numeric: tabular-nums; white-space: nowrap; }
+  .stat span { font-size: 12.5px; color: var(--mute); }
+  .bar { margin: 2px 0 12px; }
+  .bar .cap { font-size: 12.5px; color: var(--mute); margin-bottom: 5px; }
+  .bar .track { display: flex; height: 12px; border-radius: 6px; overflow: hidden; background: rgba(255,255,255,.06); gap: 2px; }
+  .bar .track i { display: block; height: 100%; }
+  .bar .keys2 { display: flex; flex-wrap: wrap; gap: 3px 14px; margin-top: 6px; font-size: 12.5px; color: #c6cfe2; }
+  .bar .keys2 span { display: inline-flex; align-items: center; gap: 6px; }
+  .bar .keys2 b { width: 9px; height: 9px; border-radius: 2px; display: inline-block; }
+  .fit { display: inline-flex; align-items: center; gap: 8px; margin-top: 12px; padding: 5px 12px; border-radius: 999px; font-size: 12.5px; font-weight: 600; border: 1px solid currentColor; }
+  .fit.ok { color: var(--ok); } .fit.part { color: var(--part); }
+  .fit i { width: 8px; height: 8px; border-radius: 50%; background: currentColor; }
+  .src { margin-top: 10px; font-size: 12px; color: var(--mute); }
+  table { width: 100%; border-collapse: collapse; font-size: 14.5px; }
+  th, td { text-align: left; padding: 11px 12px; border-bottom: 1px solid var(--line); vertical-align: top; }
+  th { font-size: 12px; letter-spacing: .12em; text-transform: uppercase; color: var(--mute); font-weight: 600; }
+  th.c-dg { color: var(--dg); } th.c-ts { color: var(--ts); }
+  td:first-child { font-weight: 600; white-space: nowrap; }
+  .pill { display: inline-block; padding: 2px 10px; border-radius: 999px; font-size: 12px; font-weight: 600; border: 1px solid currentColor; white-space: nowrap; }
+  .pill.ok { color: var(--ok); } .pill.part { color: var(--part); } .pill.no { color: var(--no); }
+  .scroll { overflow-x: auto; }
+  .foot { margin-top: 16px; font-size: 12.5px; color: var(--mute); max-width: 74ch; }
+  .legend.hide { opacity: 0; }
+  @media (max-width: 900px) { .legend.phonehide { opacity: 0; pointer-events: none; } }
+  .legend { transition: opacity .4s; position: fixed; z-index: 4; right: 24px; top: 64px; display: flex; flex-direction: column; gap: 5px; font-size: 12px; color: var(--mute); padding: 10px 12px; border-radius: 12px; background: rgba(7,11,20,.5); border: 1px solid var(--line); }
+  .legend div { display: flex; align-items: center; gap: 8px; transition: opacity .4s; }
+  .legend div.off { opacity: .28; }
+  .legend i { width: 18px; height: 3px; border-radius: 2px; }
+  html { scroll-padding-top: 64px; }
+  @media (max-width: 1360px) {
+    header.bar { background: #070b14; backdrop-filter: none; -webkit-backdrop-filter: none; }
+    nav.dots { position: fixed; left: 0; right: 0; bottom: 0; z-index: 6; overflow-x: auto; padding: 7px 34px 7px 10px; gap: 4px; background: #070b14; border-top: 1px solid var(--line); scrollbar-width: none;
+      -webkit-mask-image: linear-gradient(to right, #000 0, #000 calc(100% - 44px), transparent 100%); mask-image: linear-gradient(to right, #000 0, #000 calc(100% - 44px), transparent 100%); }
+    nav.dots::-webkit-scrollbar { display: none; }
+    main { padding-bottom: 52px; } html { scroll-padding-bottom: 52px; }
+  }
+  .scope { margin: 18px 0 0; padding: 6px 20px; border: 1px solid var(--line); border-radius: 14px; background: rgba(10,15,27,.94); }
+  .scope > div { display: grid; grid-template-columns: 150px minmax(0, 1fr); gap: 4px 20px; padding: 11px 0; border-top: 1px solid var(--line); }
+  .scope > div:first-child { border-top: 0; }
+  .scope dt { font-size: 13px; font-weight: 600; color: var(--ink); }
+  .scope dd { margin: 0; font-size: 13.5px; line-height: 1.6; color: #b4bfd6; max-width: 92ch; }
+  .legend div.off { opacity: .62; }
+  @media (max-width: 900px) {
+    .duo { grid-template-columns: 1fr; } .scope > div { grid-template-columns: 1fr; }
+    .legend { top: 62px; bottom: auto; left: 8px; right: 8px; flex-direction: row; flex-wrap: wrap; justify-content: center; gap: 4px 12px; font-size: 11px; padding: 6px 10px; background: rgba(7,11,20,.86); }
+    header.bar { padding: 8px 12px; background: #070b14; } .brand { font-size: 11px; letter-spacing: .08em; } .brand .long { display: none; }
+    section { padding: 80px 16px 40px; } td:first-child { white-space: normal; }
+    .stats { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    section.hero { justify-content: flex-start; min-height: 0; } h1 { margin-bottom: 270px; }
+    .keys { display: grid; grid-template-columns: 1fr 1fr; width: 100%; } .key { flex-direction: column; gap: 2px; padding: 10px 14px; } .key b { font-size: 22px; }
+    .lede { background: rgba(7,11,20,.72); border-radius: 12px; padding: 10px 12px; margin-left: -12px; }
+    section:not(.hero) { padding-top: 330px; background: linear-gradient(to bottom, rgba(7,11,20,0) 0, rgba(7,11,20,0) 250px, rgba(7,11,20,.95) 320px, rgba(7,11,20,.96) 100%); }
+    section.full { padding-top: 90px; background: rgba(7,11,20,.6); }
+  }
+</style>
+</head>
+<body>
+<canvas id="stage" aria-hidden="true"></canvas>
+<noscript><p style="position:relative;z-index:9;padding:90px 28px">This page draws the vault as a 3D graph and needs JavaScript. The same counts are in the repository README.</p></noscript>
+<div id="vignette"></div>
+<header class="bar">
+  <div class="brand"><b>TruSoma</b> discourse graph<span class="long"> &nbsp;/&nbsp; six uses of <b>Discourse Graphs</b></span></div>
+  <nav class="dots" id="dots"></nav>
+  <a class="open" href="explore/">Open the live canvas</a>
+</header>
+<div class="legend" id="legend"></div>
+<main id="main"></main>
+
+<script src="three.min.js"></script>
+<script>
+// ---------------------------------------------------------------- data (counted from the vault working tree, 2026-11-17, commit ffe8c039)
+const TYPES = [
+  { id: "Question",   n: 12,   color: 0x8ec5ff, pos: [-9.5, 4.2, 0] },
+  { id: "Hypothesis", n: 39,   color: 0xb79bff, pos: [-4.6, 5.0, -1] },
+  { id: "Experiment", n: 12,   color: 0xff9ecb, pos: [0.4, 5.6, 0] },
+  { id: "Result",     n: 17,   color: 0xff8a70, pos: [5.2, 4.6, -1] },
+  { id: "Source",     n: 398,  color: 0x6ee7c8, pos: [-9.0, -1.6, 0] },
+  { id: "Evidence",   n: 1128, color: 0x7cc4ff, pos: [-3.0, -0.6, 1] },
+  { id: "Claim",      n: 1377, color: 0xffc46b, pos: [3.4, -0.4, 0] },
+  { id: "Parameter",  n: 1159, color: 0xc9d2e6, pos: [9.4, -1.8, -1] },
+  { id: "Issue",      n: 268,  color: 0xff6f91, pos: [1.2, -5.4, 0] },
+  { id: "Conclusion", n: 0,    color: 0x66708a, pos: [9.6, 4.0, -2] },
+];
+const REL_COLOR = { produces: 0x38c8f0, supports: 0x6ee7a8, opposes: 0xff6f6f, informs: 0xe6ecff, "consistent with": 0xd9c27a, motivates: 0xb79bff };
+const RELS = [
+  ["Source", "produces", "Evidence", 1128], ["Evidence", "supports", "Claim", 882], ["Source", "produces", "Claim", 512],
+  ["Claim", "consistent with", "Evidence", 216], ["Evidence", "consistent with", "Hypothesis", 140], ["Evidence", "informs", "Claim", 74],
+  ["Issue", "informs", "Claim", 42], ["Source", "informs", "Claim", 29], ["Experiment", "produces", "Result", 17],
+  ["Hypothesis", "motivates", "Issue", 16], ["Hypothesis", "motivates", "Experiment", 11], ["Result", "informs", "Question", 10],
+  ["Question", "motivates", "Hypothesis", 8], ["Claim", "informs", "Hypothesis", 6], ["Evidence", "informs", "Parameter", 6],
+  ["Result", "consistent with", "Hypothesis", 6], ["Result", "opposes", "Hypothesis", 5], ["Evidence", "opposes", "Claim", 4],
+  ["Issue", "informs", "Parameter", 3], ["Result", "supports", "Claim", 2], ["Experiment", "produces", "Issue", 1],
+];
+const ALL = TYPES.map(t => t.id);
+const SECTIONS = [
+  { id: "top", nav: "Overview", cam: [0, 0.4, 26], look: [0, 0, 0], focus: ALL, hero: true },
+  { id: "literature", nav: "Literature", cam: [-4.6, -0.8, 14.5], look: [-3.0, -0.2, 0], lift: 0.17, focus: ["Source", "Evidence", "Claim"],
+    title: "Synthesize insights from the literature",
+    dg: { p: "Reading is directed by a question. Each paper becomes a Source, each finding an Evidence note, and each Evidence note supports or opposes a Claim.",
+          li: ["Base grammar: Question, Claim, Evidence, Source", "Relations: informs, supports, opposes, derived from", "Provenance kept back to the citation"] },
+    ts: { stats: [["398", "Sources"], ["1,128", "Evidence notes"], ["752", "with a quote and locator"], ["884", "supports relations"]],
+          bars: [{ cap: "495 sourced values of the 12.5 week model", parts: [[246, "from fetal data", "#6ee7a8"], [249, "from other sourced data", "#7cc4ff"]] },
+                 { cap: "398 Sources", parts: [[287, "papers of the register", "#6ee7c8"], [111, "comparison-model references", "#55607c"]] }],
+          li: ["A quoted Evidence note carries the passage and where it is in the paper", "A sourced value is linked to its quote, and the quote to its paper"],
+          link: ["explore/#ask=sourced-values", "See the 714 sourced values in the canvas"],
+          fit: ["ok", "In use for every sourced value"] } },
+  { id: "knowledge", nav: "Knowledge base", cam: [5.6, -1.2, 14.5], look: [5.2, -1.6, 0], focus: ["Claim", "Parameter", "Evidence", "Source"],
+    title: "Build and use a knowledge base",
+    dg: { p: "Discourse nodes live in a folder of an ordinary vault, beside other notes. Structured notes make an existing pile of reading something you can query and reuse.",
+          li: ["Nodes coexist with regular notes", "Convert a note to a discourse node when it matures", "Paths form around the central questions"] },
+    ts: { stats: [["4,410", "discourse notes"], ["1,728", "table records"], ["3,200", "relations"], ["25", "files generated from it"]],
+          li: ["The vault is the single authored source of the model", "Configuration and databases are generated from the notes and compared at every commit",
+               "1,377 Claims hold values, methods, joins and growth links. 1,159 Parameters hold settings", "Notes are written by scripts and coding agents through validated tools"],
+          link: ["explore/", "Search any note in the canvas"],
+          fit: ["ok", "In use, as the system of record"] } },
+  { id: "projects", nav: "Projects", cam: [-1.0, -3.6, 14.0], look: [-0.6, -2.6, 0], focus: ["Issue", "Hypothesis", "Claim", "Question"],
+    title: "Track projects and open work",
+    dg: { p: "The lab's example vault uses a Project page to gather the questions, experiments, issues and results of one research goal.",
+          li: ["Project templates and Bases for status", "Issues hold ideas for future experiments", "A canvas per project"] },
+    ts: { stats: [["268", "Issues"], ["101", "not yet settled"], ["16", "Issues linked to values"], ["39", "Hypotheses"]],
+          bars: [{ cap: "268 Issues, by state in the audit log", parts: [[44, "open", "#ff6f91"], [49, "in progress", "#ffc46b"], [8, "blocked", "#b79bff"], [167, "settled", "#55607c"]] }],
+          li: ["The project's audit log is 268 Issue notes in the graph", "16 Issues inform the 43 values they are about", "14 Hypotheses motivate 15 Issues"],
+          link: ["explore/#ask=untested-hypotheses", "Ask the canvas which hypotheses await an experiment"],
+          fit: ["part", "In use through Issues"] } },
+  { id: "experiments", nav: "Experiments", cam: [0.2, 4.6, 13.5], look: [-0.2, 4.2, 0], focus: ["Question", "Hypothesis", "Experiment", "Result"],
+    title: "Track experiments from hypothesis to result",
+    dg: { p: "An Experiment is the container for work on a Hypothesis. It produces Results.",
+          li: ["An Experiment explores a Hypothesis", "An Experiment produces Results", "Candidate results mature into Result nodes"] },
+    ts: { stats: [["12", "Experiments"], ["17", "Results"], ["12", "Questions"], ["39", "Hypotheses"]],
+          li: ["A Result is entered whatever its reading", "Each Result quotes its record file, and a misquote is refused", "Results inform the Questions they answer"],
+          link: ["explore/#ask=positive-results", "See the results with a positive reading"],
+          fit: ["ok", "In use for the probe record"] } },
+  { id: "share", nav: "Share", cam: [2.6, 0.2, 16.5], look: [1.2, -0.4, 0], focus: ["Claim", "Evidence", "Source", "Result", "Hypothesis"],
+    title: "Share ideas and research",
+    dg: { p: "Publish live nodes to a group space, import them in a collaborator's vault, and present the work on a canvas.",
+          li: ["Sync, publish and import between vaults", "Canvas as a visual walk through the work", "The graph as a start for a manuscript"] },
+    ts: { stats: [["4", "notes published and imported"], ["2", "relations carried"], ["2", "vaults"], ["6,035", "notes rewrite-tested"]],
+          li: ["Publish and import ran between two vaults on 2026-11-17, on the sync service started locally", "Imported notes kept every property",
+               "A restore step puts a note's lines back in the form the generators read", "Public repository with a live canvas of the graph"],
+          link: ["explore/", "Open the live canvas"],
+          fit: ["part", "Tested locally"] } },
+  { id: "agents", nav: "Assistants", cam: [0, 0.6, 27.5], look: [0, 2.6, 0], lift: 0.2, focus: ALL, own: true,
+    title: "Read and write the graph through an assistant",
+    dg: { p: "This use is not in the plugin, which has no assistant server. It is added by the TruSoma repository, on the plugin's note and relation formats.",
+          li: ["An MCP server over the vault files", "A written note must fit the grammar"] },
+    ts: { stats: [["11", "MCP tools"], ["65", "of 65 check cases pass"], ["6,127", "of 6,127 baseline notes kept"], ["74", "later records added"]],
+          li: ["10 tools read or check. 1 writes Question, Hypothesis, Experiment and Result notes", "A written note whose quote is not word for word in its record file is refused",
+               "Older remarks are never edited. A later record is added beside them"],
+          link: ["https://github.com/kootru-repo/trusoma-discourse-graph/tree/main/demo/apps/mcp", "The MCP server in the repository"],
+          fit: ["part", "Built and tested"] } },
+  { id: "compare", nav: "Side by side", cam: [0, 0.4, 30], look: [0, 0, 0], focus: ALL, table: true },
+];
+const TABLE = [
+  ["Literature synthesis", "Source, Evidence, Claim with supports and opposes", "398 Sources, 1,128 Evidence notes, 884 supports relations", "ok", "In use"],
+  ["Knowledge base", "Nodes in a vault folder beside other notes", "4,410 notes are the authored source. 25 files are generated from them", "ok", "In use"],
+  ["Projects", "Project pages, Bases and Issues in the example vault", "268 Issues from the audit log, as notes in the graph", "part", "Partly"],
+  ["Experiments", "Hypothesis, Experiment, Result", "12 Experiments, 17 Results, each quoting its record file", "ok", "In use"],
+  ["Sharing", "Publish to a group, import, canvas", "4 notes published and imported in a local test. Public canvas", "part", "Tested locally"],
+  ["Assistants", "Not in the plugin", "11 MCP tools. Verbatim quote check on written notes", "part", "Built and tested"],
+  ["Grammar", "The plugin ships 4 node types and 4 relation types", "The lab's example grammar plus Parameter and 7 triples: 10 node types, 7 relation types, 33 triples", "ok", "Small addition"],
+];
+
+// ---------------------------------------------------------------- page
+const main = document.getElementById("main"), dots = document.getElementById("dots");
+const esc = s => s.replace(/&/g, "&amp;").replace(/</g, "&lt;");
+SECTIONS.forEach((s, i) => {
+  const el = document.createElement("section"); el.id = s.id;
+  if (s.hero) {
+    el.className = "hero";
+    el.innerHTML = `<div class="wrap"><h1>Six uses of <em>Discourse Graphs</em>, and how the <i>TruSoma</i> vault handles each</h1>
+      <p class="lede">The Discourse Graphs documentation for Obsidian has four use-case guides. One covers projects and experiments, shown here as two. A sixth use is added by this repository: reading and writing through an assistant. TruSoma is a non-commercial research program on fetal development. It keeps the sourcing record of its model in one Discourse Graphs vault. Each point in a cluster is one note.</p>
+      <div class="keys"><div class="key"><b>4,410</b><span>discourse notes</span></div><div class="key"><b>3,200</b><span>relations</span></div><div class="key"><b>10</b><span>node types</span></div><div class="key"><b>495 / 569</b><span>values of the 12.5 week model sourced</span></div></div>
+      <div class="cta"><a class="open big" href="explore/">Open the live canvas</a><a class="ghost" href="https://github.com/kootru-repo/trusoma-discourse-graph">Repository</a></div>
+      <div class="hint">Scroll to walk the graph</div></div>`;
+  } else if (s.table) {
+    el.className = "full"; el.innerHTML = `<div class="wrap"><div class="num">Side by side</div><h2>What Discourse Graphs describes, and what the vault holds today</h2>
+      <div class="card scroll"><table><thead><tr><th>Use</th><th class="c-dg">Discourse Graphs</th><th class="c-ts">TruSoma vault</th><th>State</th></tr></thead><tbody>
+      ${TABLE.map(r => `<tr><td>${esc(r[0])}</td><td>${esc(r[1])}</td><td>${esc(r[2])}</td><td><span class="pill ${r[3]}">${esc(r[4])}</span></td></tr>`).join("")}
+      </tbody></table></div>
+      <dl class="scope"><div><dt>Scope and limits</dt><dd>Counts are from the vault on 2026-11-17. The note and relation counts on this page are compared with the vault by a test at every commit.</dd></div><div><dt>Literature</dt><dd>Quotes are entered when a note is written. 25 of the 752 were checked again against the source. 130 quoted notes are kept but marked unusable, because their data are adult. 74 of the 569 values of the 12.5 week model are not yet sourced. The 1,159 Parameters are settings with no source.</dd></div><div><dt>Projects</dt><dd>16 of the 268 Issues link to the 43 values they are about. There are no Project pages or Bases yet.</dd></div><div><dt>Experiments</dt><dd>The 17 Results read: 5 pass, 3 signal, 6 no signal, 2 fail, 1 observation. 3 of the 17 count as tests. The others are recorded as readings. 9 of 12 Experiments name the Hypothesis they test. The grammar has a Conclusion type with 0 notes. None is claimed yet.</dd></div><div><dt>Sharing</dt><dd>The publish and import test used the plugin built from the Discourse Graphs source at 1ae4c00 against the sync service run locally. The released plugin on the hosted service was not tested. The local gateway refused every full sync above about 200 notes, so subset vaults were used. The rewrite test covered 6,035 of 6,138 notes, with the plugin off. Obsidian's rewrite drops the .0 of whole numbers, and the restore step puts the committed lines back.</dd></div><div><dt>Assistants</dt><dd>Day to day, notes are written by the Python authoring tools, not through the MCP server. Of the 65 check cases, 36 are edits the check must refuse and 29 are edits it must allow.</dd></div><div><dt>This page</dt><dd>Uses 1 to 5 follow the Discourse Graphs documentation for Obsidian and the lab's example vault. Use 6 is this repository's own. The scene draws 3,118 relations. The 82 Claim to Claim relations are not drawn. The background dust and the moving points on the arcs are decoration.</dd></div></dl></div>`;
+  } else {
+    el.innerHTML = `<div class="wrap"><div class="num">Use ${i} of 6</div><h2>${esc(s.title)}</h2><div class="duo">
+      <div class="card dg"><div class="tag">${s.own ? "Added by this repository" : "Discourse Graphs: the use"}</div><p>${esc(s.dg.p)}</p><ul>${s.dg.li.map(x => `<li>${esc(x)}</li>`).join("")}</ul></div>
+      <div class="card ts"><div class="tag">TruSoma vault today</div><div class="stats">${s.ts.stats.map(x => `<div class="stat"><b>${x[0]}</b><span>${esc(x[1])}</span></div>`).join("")}</div>
+        ${(s.ts.bars || []).map(b => { const tot = b.parts.reduce((a, x) => a + x[0], 0); return `<div class="bar" role="img" aria-label="${esc(b.cap + ": " + b.parts.map(x => x[0] + " " + x[1]).join(", "))}"><div class="cap">${esc(b.cap)}</div><div class="track">${b.parts.map(x => `<i style="width:${(100 * x[0] / tot).toFixed(2)}%;background:${x[2]}"></i>`).join("")}</div><div class="keys2">${b.parts.map(x => `<span><b style="background:${x[2]}"></b>${x[0].toLocaleString("en-US")} ${esc(x[1])}</span>`).join("")}</div></div>`; }).join("")}
+        <ul>${s.ts.li.map(x => `<li>${esc(x)}</li>`).join("")}</ul><div class="row"><div class="fit ${s.ts.fit[0]}"><i></i>${esc(s.ts.fit[1])}</div>${s.ts.link ? `<a class="go" href="${s.ts.link[0]}">${esc(s.ts.link[1])} &rarr;</a>` : ""}</div></div></div></div>`;
+  }
+  main.appendChild(el);
+  const a = document.createElement("a"); a.href = "#" + s.id; a.textContent = s.nav; dots.appendChild(a);
+});
+document.getElementById("legend").innerHTML = Object.entries(REL_COLOR).map(([k, c]) => `<div data-rel="${k}"><i style="background:#${c.toString(16).padStart(6, "0")}"></i>${k}</div>`).join("");
+
+// ---------------------------------------------------------------- scene
+const canvas = document.getElementById("stage");
+const renderer = new THREE.WebGLRenderer({ canvas, antialias: true, alpha: false, preserveDrawingBuffer: false });
+renderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, 2));
+renderer.setClearColor(0x070b14, 1);
+const scene = new THREE.Scene();
+scene.fog = new THREE.FogExp2(0x070b14, 0.012);
+const camera = new THREE.PerspectiveCamera(46, 1, 0.1, 200);
+const SMALL = window.innerWidth < 768;
+const reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+function rng(seed) { let a = seed >>> 0; return () => { a |= 0; a = a + 0x6D2B79F5 | 0; let t = Math.imul(a ^ a >>> 15, 1 | a); t = t + Math.imul(t ^ t >>> 7, 61 | t) ^ t; return ((t ^ t >>> 14) >>> 0) / 4294967296; }; }
+const rand = rng(20261117);
+const gauss = () => { let u = 0, v = 0; while (!u) u = rand(); v = rand(); return Math.sqrt(-2 * Math.log(u)) * Math.cos(6.2831853 * v); };
+
+function disc() { const c = document.createElement("canvas"); c.width = c.height = 64; const g = c.getContext("2d"); const gr = g.createRadialGradient(32, 32, 0, 32, 32, 32);
+  gr.addColorStop(0, "rgba(255,255,255,1)"); gr.addColorStop(.35, "rgba(255,255,255,.75)"); gr.addColorStop(1, "rgba(255,255,255,0)"); g.fillStyle = gr; g.fillRect(0, 0, 64, 64); return new THREE.CanvasTexture(c); }
+const DISC = disc();
+
+function label(name, count, hex) {
+  const c = document.createElement("canvas"); c.width = 640; c.height = 220; const g = c.getContext("2d");
+  g.textAlign = "center"; g.shadowColor = "rgba(7,11,20,.95)"; g.shadowBlur = 18;
+  g.font = "600 58px 'Segoe UI', system-ui, sans-serif"; g.fillStyle = "#eef2fb"; g.fillText(name, 320, 84);
+  g.font = "650 76px 'Segoe UI', system-ui, sans-serif"; g.fillStyle = "#" + hex.toString(16).padStart(6, "0"); g.fillText(count.toLocaleString("en-US"), 320, 168);
+  const t = new THREE.CanvasTexture(c); t.anisotropy = 4;
+  const s = new THREE.Sprite(new THREE.SpriteMaterial({ map: t, transparent: true, depthWrite: false, depthTest: false }));
+  const k = window.innerWidth < 768 ? 1.9 : 1; s.scale.set(3.5 * k, 1.2 * k, 1); s.renderOrder = 10; return s;
+}
+
+// backdrop dust
+{ const n = 1400, p = new Float32Array(n * 3); for (let i = 0; i < n; i++) { p[i * 3] = (rand() - .5) * 120; p[i * 3 + 1] = (rand() - .5) * 70; p[i * 3 + 2] = -10 - rand() * 60; }
+  const g = new THREE.BufferGeometry(); g.setAttribute("position", new THREE.BufferAttribute(p, 3));
+  scene.add(new THREE.Points(g, new THREE.PointsMaterial({ size: .09, map: DISC, color: 0x4a5a80, transparent: true, opacity: .7, depthWrite: false, blending: THREE.AdditiveBlending }))); }
+
+const nodes = {};
+TYPES.forEach(t => {
+  const g = new THREE.Group(); g.position.set(...t.pos); scene.add(g);
+  const R = t.n ? 0.55 + Math.cbrt(t.n) * 0.2 : 0.8;
+  const N = { t, g, R, mats: [], w: 1, target: 1 };
+  if (t.n) {
+    const p = new Float32Array(t.n * 3);
+    for (let i = 0; i < t.n; i++) { const r = R * (0.25 + 0.5 * Math.abs(gauss())); const th = rand() * 6.2831853, ph = Math.acos(2 * rand() - 1);
+      p[i * 3] = r * Math.sin(ph) * Math.cos(th); p[i * 3 + 1] = r * Math.sin(ph) * Math.sin(th) * .82; p[i * 3 + 2] = r * Math.cos(ph); }
+    const geo = new THREE.BufferGeometry(); geo.setAttribute("position", new THREE.BufferAttribute(p, 3));
+    const m = new THREE.PointsMaterial({ size: t.n > 300 ? .11 : .2, map: DISC, color: t.color, transparent: true, opacity: .95, depthWrite: false, blending: THREE.AdditiveBlending });
+    N.cloud = new THREE.Points(geo, m); g.add(N.cloud); N.mats.push([m, .95]);
+    const core = new THREE.Sprite(new THREE.SpriteMaterial({ map: DISC, color: t.color, transparent: true, opacity: .22, depthWrite: false, blending: THREE.AdditiveBlending }));
+    core.scale.set(R * 3.4, R * 3.4, 1); g.add(core); N.mats.push([core.material, .22]);
+  } else {
+    const ring = new THREE.Mesh(new THREE.TorusGeometry(R, .025, 8, 80), new THREE.MeshBasicMaterial({ color: t.color, transparent: true, opacity: .7 }));
+    g.add(ring); N.ring = ring; N.mats.push([ring.material, .7]);
+  }
+  const l = label(t.id, t.n, t.color); l.position.set(0, R * 0.5 + 0.85, 0); g.add(l); N.label = l.material;
+  nodes[t.id] = N;
+});
+
+function arcLabel(text, hex) { const c = document.createElement("canvas"); c.width = 512; c.height = 96; const g = c.getContext("2d");
+  g.font = "600 44px 'Segoe UI', system-ui, sans-serif"; g.textAlign = "center"; g.textBaseline = "middle"; const w = g.measureText(text).width + 44;
+  g.fillStyle = "rgba(7,11,20,.82)"; const x = 256 - w / 2; g.beginPath(); g.moveTo(x + 24, 8); g.arcTo(x + w, 8, x + w, 88, 24); g.arcTo(x + w, 88, x, 88, 24); g.arcTo(x, 88, x, 8, 24); g.arcTo(x, 8, x + w, 8, 24); g.fill();
+  g.fillStyle = "#" + hex.toString(16).padStart(6, "0"); g.fillText(text, 256, 50);
+  const s = new THREE.Sprite(new THREE.SpriteMaterial({ map: new THREE.CanvasTexture(c), transparent: true, opacity: 0, depthWrite: false, depthTest: false })); s.scale.set(3.0, .5625, 1); s.renderOrder = 12; return s; }
+const arcs = [];
+const pairSeen = {};
+RELS.forEach(([a, rel, b, n], k) => {
+  const A = new THREE.Vector3(...nodes[a].t.pos), B = new THREE.Vector3(...nodes[b].t.pos);
+  const mid = A.clone().add(B).multiplyScalar(.5); const d = B.clone().sub(A); const len = d.length();
+  const up = new THREE.Vector3(-d.y, d.x, 0).normalize().multiplyScalar(len * (0.14 + (k % 3) * 0.07) * (k % 2 ? 1 : -1)); mid.add(up); mid.z += 1.2 + (k % 4) * .5;
+  const curve = new THREE.QuadraticBezierCurve3(A, mid, B);
+  const w = 0.012 + Math.log10(n + 1) * 0.022;
+  const baseOp = 0.34 + Math.min(.5, Math.log10(n + 1) * .15);
+  const tube = new THREE.Mesh(new THREE.TubeGeometry(curve, 48, w, 6, false), new THREE.MeshBasicMaterial({ color: REL_COLOR[rel], transparent: true, opacity: baseOp, depthWrite: false, blending: THREE.AdditiveBlending }));
+  scene.add(tube);
+  const pn = Math.max(3, Math.min(46, Math.round(Math.sqrt(n) * 1.4)));
+  const pg = new THREE.BufferGeometry(); pg.setAttribute("position", new THREE.BufferAttribute(new Float32Array(pn * 3), 3));
+  const pm = new THREE.PointsMaterial({ size: .2, map: DISC, color: REL_COLOR[rel], transparent: true, opacity: .95, depthWrite: false, blending: THREE.AdditiveBlending });
+  const pts = new THREE.Points(pg, pm); scene.add(pts);
+  const tag = arcLabel(rel + " " + n.toLocaleString("en-US"), REL_COLOR[rel]); const pk = [a, b].sort().join("|"), nth = (pairSeen[pk] = (pairSeen[pk] || 0) + 1) - 1; tag.position.copy(curve.getPoint([.5, .3, .7, .18][nth % 4])); tag.position.y += [0, .5, -.5, 1][nth % 4]; scene.add(tag);
+  arcs.push({ a, b, curve, tube, pts, pn, baseOp, tag, off: Array.from({ length: pn }, () => rand()), speed: .05 + rand() * .05, w: 1, target: 1 });
+});
+
+// ---------------------------------------------------------------- scroll driven camera
+const secEls = SECTIONS.map(s => document.getElementById(s.id));
+const camPos = new THREE.Vector3(...SECTIONS[0].cam), camLook = new THREE.Vector3(...SECTIONS[0].look);
+const goalPos = camPos.clone(), goalLook = camLook.clone();
+let current = -1, tagsOn = false;
+function resize() { const w = window.innerWidth, h = window.innerHeight; renderer.setSize(w, h, false); camera.aspect = w / h; camera.fov = w / h < 1 ? 64 : 46; camera.updateProjectionMatrix(); }
+window.addEventListener("resize", resize); resize();
+function onScroll() {
+  const y = window.scrollY + window.innerHeight * .5; let idx = 0, f = 0;
+  for (let i = 0; i < secEls.length; i++) { const top = secEls[i].offsetTop, h = secEls[i].offsetHeight; if (y >= top) { idx = i; f = Math.min(1, (y - top) / h); } }
+  const s = SECTIONS[idx], nx = SECTIONS[Math.min(idx + 1, SECTIONS.length - 1)];
+  const e = f < .72 ? 0 : (f - .72) / .28, k = e * e * (3 - 2 * e);
+  const phone = camera.aspect < 1, tanH = Math.tan(camera.fov * Math.PI / 360), vh = window.innerHeight;
+  // where a section's subject should sit: on a wide screen, in the clear band between the header and the top of the text block
+  const place = (i) => { const q = SECTIONS[i]; let z = q.cam[2] * (phone ? 2.9 : 1.38), lift = phone ? 0.36 : 0.15;
+    if (!phone && !q.hero && !q.table) { const wrap = secEls[i].querySelector(".wrap"); const band = Math.max(vh * .14, vh - wrap.offsetHeight - 56 - 118);
+      z *= Math.min(2.1, Math.max(1, (vh * .36) / band)); lift = (0.5 - (118 + band / 2) / vh) * 2 * tanH; secEls[i].style.setProperty("--clear", Math.round(118 + band) + "px"); }
+    const pos = [q.cam[0], q.cam[1], z], look = [q.look[0], q.look[1], 0];
+    if (q.hero) { if (!phone) look[0] -= z * 0.27; else look[1] += z * 0.03; } else if (!q.table) look[1] -= z * lift;
+    return { pos, look }; };
+  const A = place(idx), B = place(Math.min(idx + 1, SECTIONS.length - 1));
+  goalPos.set(A.pos[0] + (B.pos[0] - A.pos[0]) * k, A.pos[1] + (B.pos[1] - A.pos[1]) * k, A.pos[2] + (B.pos[2] - A.pos[2]) * k);
+  goalLook.set(A.look[0] + (B.look[0] - A.look[0]) * k, A.look[1] + (B.look[1] - A.look[1]) * k, 0);
+  if (idx !== current) { current = idx; const fset = new Set(s.focus);
+    Object.values(nodes).forEach(N => N.target = s.table ? .16 : fset.has(N.t.id) ? 1 : .12);
+    arcs.forEach(A => A.target = s.table ? .1 : fset.has(A.a) && fset.has(A.b) ? 1 : .05);
+    const live = new Set(RELS.filter(r => fset.has(r[0]) && fset.has(r[2])).map(r => r[1]));
+    document.getElementById('legend').classList.toggle('hide', !!s.table);
+    document.querySelectorAll('#legend div').forEach(d => d.classList.toggle('off', s.table || !live.has(d.dataset.rel)));
+    [...dots.children].forEach((a, i) => a.classList.toggle("on", i === idx)); { const on = dots.children[idx]; if (on && dots.scrollWidth > dots.clientWidth) dots.scrollLeft = on.offsetLeft - (dots.clientWidth - on.offsetWidth) / 2; }
+    tagsOn = !s.table && s.focus.length <= 5 && window.innerWidth >= 768;
+    document.getElementById('legend').classList.toggle('phonehide', idx === 0); }
+  { const r = secEls[idx].getBoundingClientRect(); document.getElementById('legend').classList.toggle('phonehide', idx === 0 || !!s.table || r.top < -140 || r.top > window.innerHeight * .45); }
+}
+window.addEventListener("scroll", onScroll, { passive: true }); onScroll();
+if (reduced) { camPos.copy(goalPos); camLook.copy(goalLook); }
+
+let mx = 0, my = 0; window.addEventListener("pointermove", e => { mx = e.clientX / window.innerWidth - .5; my = e.clientY / window.innerHeight - .5; });
+const clock = new THREE.Clock(); const v = new THREE.Vector3();
+function frame() {
+  const dt = Math.min(.05, clock.getDelta()), t = clock.elapsedTime, ease = reduced ? 1 : 1 - Math.pow(.02, dt);
+  camPos.lerp(goalPos, ease); camLook.lerp(goalLook, ease);
+  camera.position.set(camPos.x + (reduced ? 0 : mx * .9), camPos.y - (reduced ? 0 : my * .6), camPos.z); camera.lookAt(camLook);
+  Object.values(nodes).forEach(N => { N.w += (N.target - N.w) * ease; N.mats.forEach(([m, o]) => m.opacity = o * N.w); N.label.opacity = (SMALL && current === 0) ? 0 : Math.max(0, (N.w - .2) / .8);
+    if (N.cloud && !reduced) { N.cloud.rotation.y = t * .07 + N.t.pos[0]; N.cloud.rotation.x = Math.sin(t * .05 + N.t.pos[1]) * .2; }
+    if (N.ring) N.ring.rotation.set(1.2, reduced ? .4 : t * .2, 0); });
+  arcs.forEach(A => { A.w += (A.target - A.w) * ease; A.tube.material.opacity = A.baseOp * A.w; A.pts.material.opacity = .95 * A.w; A.tag.material.opacity = tagsOn ? Math.max(0, (A.w - .5) * 2) : Math.max(0, A.tag.material.opacity - .08);
+    const p = A.pts.geometry.attributes.position; for (let i = 0; i < A.pn; i++) { const u = (A.off[i] + (reduced ? 0 : t * A.speed)) % 1; A.curve.getPoint(u, v); p.setXYZ(i, v.x, v.y, v.z); } p.needsUpdate = true; });
+  renderer.render(scene, camera); requestAnimationFrame(frame);
+}
+frame();
+</script>
+</body>
+</html>

@@ -1,0 +1,30 @@
+---
+nodeTypeId: "node_xQmEzWQFHdHy2swhrugrF"
+nodeInstanceId: "ff69d841-5542-7ac9-b33f-7300c7c4c6d7"
+dg_type: "Evidence"
+dg_name: "phase1_substrate.CHEV_VPMCA 1"
+claim: "[[CLM - V PMCA = 2 (phase1_substrate.CHEV_VPMCA = 2.0)]]"
+source: "[[@Chevalier M, Toporikova N, Simmers J, Thoby-Brisson M. Development of pacemaker properties and rhythmogenic mechanisms in the … (p-chevalier2016)]]"
+paper_id: "p-chevalier2016"
+locator: "Table 1 (model inspiratory neuron, after Toporikova et al. 2015)"
+quote: "V PMCA = 2"
+transfer: "computational model parameter (model of a mouse E16.5-E18.5 pre-Botzinger neuron), not a measurement; declared in K16"
+class: "model_parameter"
+species: "none (computational model)"
+stage: "model"
+ga_lo_wk: ""
+ga_hi_wk: ""
+basis_note: "computational model parameter (Chevalier 2016 Table 1), as logged in its transfer text"
+---
+
+Quote: "V PMCA = 2"
+
+Where in the source: Table 1 (model inspiratory neuron, after Toporikova et al. 2015).
+
+Species and age: none (computational model) model.
+
+Transfer: computational model parameter (model of a mouse E16.5-E18.5 pre-Botzinger neuron), not a measurement; declared in K16.
+
+Source: [[@Chevalier M, Toporikova N, Simmers J, Thoby-Brisson M. Development of pacemaker properties and rhythmogenic mechanisms in the … (p-chevalier2016)]].
+
+For: [[CLM - V PMCA = 2 (phase1_substrate.CHEV_VPMCA = 2.0)]].

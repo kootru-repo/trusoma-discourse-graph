@@ -1,0 +1,13 @@
+---
+nodeTypeId: "node_-PIYSmr5icSFMACYAUobE"
+nodeInstanceId: "fec486d4-59dd-712f-b63e-5db309156b20"
+dg_type: "Source"
+dg_name: "p-pmid3826651"
+paper_id: "p-pmid3826651"
+register: "jepa_references"
+row: {"paper_id": "p-pmid3826651", "first_author": "Müller", "year": "1986", "citation": "Müller F, O'Rahilly R. The development of the human brain and the closure of the rostral neuropore at stage 11. Anat Embryol (Berl) 1986;175(2):205-222", "doi": "10.1007/bf00389597", "pmid": "3826651", "pmcid": "", "used_for": "Coupled growth plan, hypothesis: BODY,START", "how_far_read": "Abstract only", "local_file": "papers/growth_sources/p-pmid3826651.txt"}
+---
+
+Müller F, O'Rahilly R. The development of the human brain and the closure of the rostral neuropore at stage 11. Anat Embryol (Berl) 1986;175(2):205-222.
+
+DOI: 10.1007/bf00389597; PMID: 3826651.

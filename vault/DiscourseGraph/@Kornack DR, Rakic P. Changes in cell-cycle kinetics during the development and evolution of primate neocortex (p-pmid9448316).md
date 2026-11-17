@@ -1,0 +1,13 @@
+---
+nodeTypeId: "node_-PIYSmr5icSFMACYAUobE"
+nodeInstanceId: "3ab7dc55-d304-7ebb-b40b-8c358aeb0174"
+dg_type: "Source"
+dg_name: "p-pmid9448316"
+paper_id: "p-pmid9448316"
+register: "jepa_references"
+row: {"paper_id": "p-pmid9448316", "first_author": "Kornack", "year": "1998", "citation": "Kornack DR, Rakic P. Changes in cell-cycle kinetics during the development and evolution of primate neocortex. Proc Natl Acad Sci U S A 1998;95(3):1242-1246", "doi": "10.1073/pnas.95.3.1242", "pmid": "9448316", "pmcid": "", "used_for": "Coupled growth plan, hypothesis: COUNTS", "how_far_read": "Abstract only", "local_file": "papers/growth_sources/p-pmid9448316.txt"}
+---
+
+Kornack DR, Rakic P. Changes in cell-cycle kinetics during the development and evolution of primate neocortex. Proc Natl Acad Sci U S A 1998;95(3):1242-1246.
+
+DOI: 10.1073/pnas.95.3.1242; PMID: 9448316.

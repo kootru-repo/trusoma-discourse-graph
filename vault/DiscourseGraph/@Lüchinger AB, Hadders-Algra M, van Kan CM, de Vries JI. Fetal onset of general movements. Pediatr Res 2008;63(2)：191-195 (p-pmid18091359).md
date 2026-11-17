@@ -1,0 +1,13 @@
+---
+nodeTypeId: "node_-PIYSmr5icSFMACYAUobE"
+nodeInstanceId: "48dc9bc4-9f23-75b1-9476-72b117b41f2d"
+dg_type: "Source"
+dg_name: "p-pmid18091359"
+paper_id: "p-pmid18091359"
+register: "jepa_references"
+row: {"paper_id": "p-pmid18091359", "first_author": "Lüchinger", "year": "2008", "citation": "Lüchinger AB, Hadders-Algra M, van Kan CM, de Vries JI. Fetal onset of general movements. Pediatr Res 2008;63(2):191-195", "doi": "10.1203/pdr.0b013e31815ed03e", "pmid": "18091359", "pmcid": "", "used_for": "Coupled growth plan, hypothesis: L2", "how_far_read": "Full text", "local_file": " read by the lead from screenshots of the USER's reading view"}
+---
+
+Lüchinger AB, Hadders-Algra M, van Kan CM, de Vries JI. Fetal onset of general movements. Pediatr Res 2008;63(2):191-195.
+
+DOI: 10.1203/pdr.0b013e31815ed03e; PMID: 18091359.

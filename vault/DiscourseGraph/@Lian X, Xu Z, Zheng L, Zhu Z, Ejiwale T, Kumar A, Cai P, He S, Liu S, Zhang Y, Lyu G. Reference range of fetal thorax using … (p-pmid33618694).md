@@ -1,0 +1,14 @@
+---
+nodeTypeId: "node_-PIYSmr5icSFMACYAUobE"
+nodeInstanceId: "6afd8b16-9dc6-7209-a5cf-eb1fa5d368e5"
+dg_type: "Source"
+dg_name: "p-pmid33618694"
+paper_id: "p-pmid33618694"
+register: "paper_register"
+order: 64
+row: {"paper_id": "p-pmid33618694", "first_author": "Lian", "year": "2021", "citation": "Lian X, Xu Z, Zheng L, Zhu Z, Ejiwale T, Kumar A, Cai P, He S, Liu S, Zhang Y, Lyu G. Reference range of fetal thorax using two-dimensional and three-dimensional ultrasound VOCAL technique and application in fetal thoracic malformations. BMC Med Imaging 2021;21:34, doi 10.1186/s12880-021-00548-w, PM", "doi": "10.1186/s12880-021-00548-w", "pmid": "33618694", "pmcid": "PMC7898741", "url": "", "local_file": "", "n_constants": "1"}
+---
+
+Lian X, Xu Z, Zheng L, Zhu Z, Ejiwale T, Kumar A, Cai P, He S, Liu S, Zhang Y, Lyu G. Reference range of fetal thorax using two-dimensional and three-dimensional ultrasound VOCAL technique and application in fetal thoracic malformations. BMC Med Imaging 2021;21:34, doi 10.1186/s12880-021-00548-w, PM.
+
+DOI: 10.1186/s12880-021-00548-w; PMID: 33618694; PMCID: PMC7898741.

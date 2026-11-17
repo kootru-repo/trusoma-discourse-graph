@@ -1,0 +1,14 @@
+---
+nodeTypeId: "node_-PIYSmr5icSFMACYAUobE"
+nodeInstanceId: "2b2e0ed7-c628-7eef-9ec1-b6c9349c483b"
+dg_type: "Source"
+dg_name: "p-doi-10-1148-radiol-12121374"
+paper_id: "p-doi-10-1148-radiol-12121374"
+register: "paper_register"
+order: 55
+row: {"paper_id": "p-doi-10-1148-radiol-12121374", "first_author": "Kacem", "year": "2013", "citation": "Kacem Y et al. Fetal weight estimation: comparison of two-dimensional US and MR imaging assessments. Radiology 2013;267:902-910, doi 10.1148/radiol.12121374 (abstract opened via Europe PMC REST)", "doi": "10.1148/radiol.12121374", "pmid": "", "pmcid": "", "url": "", "local_file": "", "n_constants": "2"}
+---
+
+Kacem Y et al. Fetal weight estimation: comparison of two-dimensional US and MR imaging assessments. Radiology 2013;267:902-910, doi 10.1148/radiol.12121374 (abstract opened via Europe PMC REST).
+
+DOI: 10.1148/radiol.12121374.

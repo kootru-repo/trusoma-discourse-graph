@@ -1,0 +1,14 @@
+---
+nodeTypeId: "node_-PIYSmr5icSFMACYAUobE"
+nodeInstanceId: "11556196-bf52-71c4-bc66-16e0b708db22"
+dg_type: "Source"
+dg_name: "p-pmid7397496"
+paper_id: "p-pmid7397496"
+register: "paper_register"
+order: 13
+row: {"paper_id": "p-pmid7397496", "first_author": "Brain", "year": "1980", "citation": "'Brain aminergic axons exhibit marked variability in conduction velocity', Brain Res 1980, PMID 7397496, doi:10.1016/0006-8993(80)90880-x; 'Physiological properties of ascending locus coeruleus axons in the squirrel monkey', Brain Res 1983, PMID 6626968, doi:10.1016/0006-8993(83)90723-0 (abstracts v", "doi": "10.1016/0006-8993(80", "pmid": "7397496", "pmcid": "", "url": "", "local_file": "", "n_constants": "1"}
+---
+
+'Brain aminergic axons exhibit marked variability in conduction velocity', Brain Res 1980, PMID 7397496, doi:10.1016/0006-8993(80)90880-x; 'Physiological properties of ascending locus coeruleus axons in the squirrel monkey', Brain Res 1983, PMID 6626968, doi:10.1016/0006-8993(83)90723-0 (abstracts v.
+
+DOI: 10.1016/0006-8993(80; PMID: 7397496.

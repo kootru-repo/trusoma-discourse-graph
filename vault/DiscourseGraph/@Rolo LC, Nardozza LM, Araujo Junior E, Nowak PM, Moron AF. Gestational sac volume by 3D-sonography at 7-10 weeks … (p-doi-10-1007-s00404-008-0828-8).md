@@ -1,0 +1,14 @@
+---
+nodeTypeId: "node_-PIYSmr5icSFMACYAUobE"
+nodeInstanceId: "aad0b9df-65db-7c0e-bc57-176f20ab4150"
+dg_type: "Source"
+dg_name: "p-doi-10-1007-s00404-008-0828-8"
+paper_id: "p-doi-10-1007-s00404-008-0828-8"
+register: "paper_register"
+order: 247
+row: {"paper_id": "p-doi-10-1007-s00404-008-0828-8", "first_author": "Rolo", "year": "2009", "citation": "Rolo LC, Nardozza LM, Araujo Junior E, Nowak PM, Moron AF. Gestational sac volume by 3D-sonography at 7-10 weeks of pregnancy using the VOCAL method. Arch Gynecol Obstet 2009;279(6):821-827", "doi": "10.1007/s00404-008-0828-8", "pmid": "18979112", "pmcid": "", "url": "", "local_file": "", "n_constants": "0"}
+---
+
+Rolo LC, Nardozza LM, Araujo Junior E, Nowak PM, Moron AF. Gestational sac volume by 3D-sonography at 7-10 weeks of pregnancy using the VOCAL method. Arch Gynecol Obstet 2009;279(6):821-827.
+
+DOI: 10.1007/s00404-008-0828-8; PMID: 18979112.

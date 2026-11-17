@@ -1,0 +1,13 @@
+---
+nodeTypeId: "node_-PIYSmr5icSFMACYAUobE"
+nodeInstanceId: "7b0cd84d-3c46-7386-ae30-f308c3d4a871"
+dg_type: "Source"
+dg_name: "p-pmid6470766"
+paper_id: "p-pmid6470766"
+register: "jepa_references"
+row: {"paper_id": "p-pmid6470766", "first_author": "Lanser", "year": "1984", "citation": "Lanser ME, Fallon JF. Development of the lateral motor column in the limbless mutant chick embryo. J Neurosci 1984;4(8):2043-2050", "doi": "10.1523/jneurosci.04-08-02043.1984", "pmid": "6470766", "pmcid": "", "used_for": "Coupled growth plan, hypothesis: L1", "how_far_read": "Full text from the USER's PDF", "local_file": " tables read by the lead and two delegated readers"}
+---
+
+Lanser ME, Fallon JF. Development of the lateral motor column in the limbless mutant chick embryo. J Neurosci 1984;4(8):2043-2050.
+
+DOI: 10.1523/jneurosci.04-08-02043.1984; PMID: 6470766.

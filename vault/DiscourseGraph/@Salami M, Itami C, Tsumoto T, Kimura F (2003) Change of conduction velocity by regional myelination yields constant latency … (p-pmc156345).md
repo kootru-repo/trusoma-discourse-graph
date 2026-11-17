@@ -1,0 +1,14 @@
+---
+nodeTypeId: "node_-PIYSmr5icSFMACYAUobE"
+nodeInstanceId: "fbcb807d-dfbd-7fb4-bb8f-f297fd11616f"
+dg_type: "Source"
+dg_name: "p-pmc156345"
+paper_id: "p-pmc156345"
+register: "paper_register"
+order: 90
+row: {"paper_id": "p-pmc156345", "first_author": "Salami", "year": "2003", "citation": "Salami M, Itami C, Tsumoto T, Kimura F (2003) Change of conduction velocity by regional myelination yields constant latency irrespective of distance between thalamus and cortex. PNAS 100(10):6174-6179, PMC156345 (full text opened)", "doi": "", "pmid": "", "pmcid": "PMC156345", "url": "", "local_file": "", "n_constants": "1"}
+---
+
+Salami M, Itami C, Tsumoto T, Kimura F (2003) Change of conduction velocity by regional myelination yields constant latency irrespective of distance between thalamus and cortex. PNAS 100(10):6174-6179, PMC156345 (full text opened).
+
+PMCID: PMC156345.

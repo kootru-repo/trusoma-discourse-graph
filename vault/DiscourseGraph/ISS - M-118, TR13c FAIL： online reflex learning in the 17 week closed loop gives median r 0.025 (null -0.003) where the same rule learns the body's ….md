@@ -1,0 +1,22 @@
+---
+nodeTypeId: "node_2unblKFUVJkOdOnT8MstZ"
+nodeInstanceId: "ed70d834-19fd-72ff-bf78-e4645bd1d185"
+dg_type: "Issue"
+dg_name: "M-118"
+record_file: "companion/audit_log/nonbrain_audit_log.csv"
+code: "audit"
+order: 252
+data: {"id": "M-118", "category": "M", "priority": "P1", "ref": "companion/audit_log/verification/phase1_learner_2026-11-14/RESULT_TR13c_2026-11-14.md", "item": "TR13c FAIL: online reflex learning in the 17 week closed loop gives median r 0.025 (null -0.003) where the same rule learns the body's twitch matrix offline at 0.905; the brainstem drives general movements (many pools at once) and the model has no isolated-twitch generator", "why": "Part B (reflex learner) needs the body's own sparse twitches as its drive (Petersson 2003)", "resolve": "measure pool co-activation in a recording; source a fetal isolated-twitch generator (rate, duration, recruitment) and rerun TR13c with twitch-epoch updates", "status": "blocked", "evidence": "Sourcing pass 3, 2026-11-15 (TWITCH_STRENGTH_SOURCING_2026-11-15.md): no source measures a spontaneous twitch's strength as a fraction of maximum at any age; human fetal and motor units per twitch not found. Found, not bound: fetal rat E18 diaphragm twitch:tetanus 0.64 +/- 0.03, contraction time 182 +/- 20 ms (in vitro 27 C, thesis table); rat P8/P12 forelimb twitch wrist displacement 0-16 mm, small ones most frequent (Glanz 2021, full text); rat 3-5 day lumbrical single motor unit 19.9% of whole-muscle twitch tension (abstract only). Close 1964 not read (blocked). TR13g what-if (RESULT_TR13g_2026-11-15.md): strength decides the map (0.11 at 1.0, 0.53 at 0.1). Hypothesis only: one unit x twitch:tetanus = about 0.13 of maximum; needs a source that a twitch is one or few units.", "touched": "2026-11-15", "note": "Deferred with TR13/PB2 out of the 10-17 week window on 2026-11-15 (see M-122); twitch strength matters again only when a reflex rule is taken up."}
+---
+
+TR13c FAIL: online reflex learning in the 17 week closed loop gives median r 0.025 (null -0.003) where the same rule learns the body's twitch matrix offline at 0.905; the brainstem drives general movements (many pools at once) and the model has no isolated-twitch generator.
+
+Why it matters: Part B (reflex learner) needs the body's own sparse twitches as its drive (Petersson 2003).
+
+To resolve: measure pool co-activation in a recording; source a fetal isolated-twitch generator (rate, duration, recruitment) and rerun TR13c with twitch-epoch updates.
+
+Status: blocked; priority: P1; category: M.
+
+Evidence so far: Sourcing pass 3, 2026-11-15 (TWITCH_STRENGTH_SOURCING_2026-11-15.md): no source measures a spontaneous twitch's strength as a fraction of maximum at any age; human fetal and motor units per twitch not found. Found, not bound: fetal rat E18 diaphragm twitch:tetanus 0.64 +/- 0.03, contraction time 182 +/- 20 ms (in vitro 27 C, thesis table); rat P8/P12 forelimb twitch wrist displacement 0-16 mm, small ones most frequent (Glanz 2021, full text); rat 3-5 day lumbrical single motor unit 19.9% of whole-muscle twitch tension (abstract only). Close 1964 not read (blocked). TR13g what-if (RESULT_TR13g_2026-11-15.md): strength decides the map (0.11 at 1.0, 0.53 at 0.1). Hypothesis only: one unit x twitch:tetanus = about 0.13 of maximum; needs a source that a twitch is one or few units.
+
+Note: Deferred with TR13/PB2 out of the 10-17 week window on 2026-11-15 (see M-122); twitch strength matters again only when a reflex rule is taken up.

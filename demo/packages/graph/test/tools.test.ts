@@ -27,7 +27,7 @@ test("the reader sees every discourse note and relation the vault holds", () => 
   const [notes, relations] = JSON.parse(py) as [number, number];
   assert.equal(g.nodes.size, notes);
   assert.equal(g.relations.length, relations);
-  assert.equal(g.nodeTypes.length, 9);
+  assert.equal(g.nodeTypes.length, 10);
   assert.equal(g.relationTypes.length, 7);
 });
 
@@ -37,7 +37,11 @@ test("search finds a value by name and filters by type", () => {
     nodeType: "CLM",
     limit: 5,
   });
-  assert.equal(r.results[0]?.title, "CLM - " + KEY);
+  // the first hit is the value itself, found by its stable name: its title is derived from its properties (what its source says) and ends with the key and value in brackets
+  assert.equal(r.results[0]?.uid, g.byHandle.get("CLM - " + KEY)?.uid);
+  assert.ok(r.results[0]?.title.startsWith("CLM - "));
+  assert.ok(r.results[0]?.title.endsWith(`(${KEY} = 0.755)`));
+  assert.equal(T.getNode(g, { uid: "CLM - " + KEY }).name, KEY);
   const results = T.searchNodes(g, {
     query: "NMDA_SHARE_E16",
     nodeType: "Result",
@@ -53,8 +57,20 @@ test("trace_value joins source, quote, hypothesis, run and reading into one path
   const t = T.traceValue(g, { key: "NMDA_SHARE_E16" });
   assert.equal(t.claim.value, 0.755);
   assert.equal(t.supported, true);
-  assert.equal(t.evidence[0]?.sources[0]?.title, "@p-waite2000");
+  // a Source is titled with its citation; its handle is "@" and the paper id
+  const source = g.byHandle.get("@p-waite2000");
+  assert.ok(source);
+  assert.ok(source.title.startsWith("@Waite PME"));
+  assert.ok(source.title.endsWith("(p-waite2000)"));
+  assert.equal(t.evidence[0]?.sources[0]?.uid, source.uid);
+  assert.equal(t.evidence[0]?.sources[0]?.title, source.title);
   assert.ok(JSON.stringify(t.evidence[0]?.quote ?? "").length > 10);
+  assert.equal(t.evidence[0]?.bearing, "supports");
+  // a value whose only Evidence informs it (no accepted source) still shows that Evidence and its Source
+  const informed = T.traceValue(g, { key: "body7.body7.init.k" });
+  assert.ok(informed.evidence.length > 0);
+  assert.ok(informed.evidence.every((e) => e.bearing === "informs"));
+  assert.ok((informed.evidence[0]?.sources.length ?? 0) > 0);
   const run = t.hypotheses[0]?.experiments[0];
   assert.ok(run, "the value informs a hypothesis that a run tested");
   assert.equal(run.results[0]?.reading, "pass");
@@ -62,8 +78,20 @@ test("trace_value joins source, quote, hypothesis, run and reading into one path
 });
 
 test("gaps are reported, not hidden", () => {
-  const gaps = T.listGaps(g, { kind: "claims_without_evidence", limit: 3 });
-  assert.equal(gaps.total, 1212);
+  // values (records apart) that no note is related to: 1,151 Parameter notes (settings with no source; 8 more have a passage or an audit item that informs them) and no Claim note
+  const gaps = T.listGaps(g, { kind: "claims_without_evidence", limit: 2000 });
+  assert.equal(gaps.total, 1151);
+  const byType = (type: string): number =>
+    gaps.results.filter((n) => n.nodeType === type).length;
+  assert.equal(byType("Parameter"), 1151);
+  assert.equal(byType("Claim"), 0);
+  // a Parameter is a value like any other: it is traced under its real type, with nothing behind it
+  const setting = gaps.results.find((n) => n.nodeType === "Parameter")!;
+  const traced = T.traceValue(g, {
+    key: T.getNode(g, { uid: setting.uid }).name,
+  });
+  assert.equal(traced.claim.nodeType, "Parameter");
+  assert.equal(traced.supported, false);
   assert.ok(
     T.listGaps(g, { kind: "blocked_hypotheses", limit: 50 }).results.some((n) =>
       n.title.includes("TR12"),
@@ -72,7 +100,7 @@ test("gaps are reported, not hidden", () => {
 });
 
 test("neighbourhood and typed relationships agree with the relation list", () => {
-  const claim = g.byTitle.get("CLM - " + KEY)!;
+  const claim = g.byHandle.get("CLM - " + KEY)!;
   const hood = T.getNodeNeighborhood(g, {
     uid: claim.uid,
     depth: 2,

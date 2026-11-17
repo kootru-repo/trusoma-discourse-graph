@@ -6,3 +6,7 @@ date: "2026-11-09"
 record: "companion/TRUSOMA_PROBES.md"
 quote: "180 simulated seconds, 3 brainstem seeds, 860-1060 s of wall time each"
 ---
+
+From the record: "180 simulated seconds, 3 brainstem seeds, 860-1060 s of wall time each"
+
+Record file: `companion/TRUSOMA_PROBES.md`, 2026-11-09.

@@ -1,0 +1,14 @@
+---
+nodeTypeId: "node_-PIYSmr5icSFMACYAUobE"
+nodeInstanceId: "7de945e6-a84b-7139-8a1f-008bdcf01014"
+dg_type: "Source"
+dg_name: "p-doi-10-1111-1523-1747-ep12665903"
+paper_id: "p-doi-10-1111-1523-1747-ep12665903"
+register: "paper_register"
+order: 227
+row: {"paper_id": "p-doi-10-1111-1523-1747-ep12665903", "first_author": "Kim", "year": "1995", "citation": "Kim DK, Holbrook KA. The appearance, density, and distribution of Merkel cells in human embryonic and fetal skin: their relation to sweat gland and hair follicle development. J Invest Dermatol 1995;104:411-416 (full text read 2026-11-08, Golda library)", "doi": "10.1111/1523-1747.ep12665903", "pmid": "", "pmcid": "", "url": "", "local_file": "papers/golda/1-s2.0-S0022202X15420779-main.pdf", "n_constants": ""}
+---
+
+Kim DK, Holbrook KA. The appearance, density, and distribution of Merkel cells in human embryonic and fetal skin: their relation to sweat gland and hair follicle development. J Invest Dermatol 1995;104:411-416 (full text read 2026-11-08, Golda library).
+
+DOI: 10.1111/1523-1747.ep12665903.

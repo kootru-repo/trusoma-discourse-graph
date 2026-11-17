@@ -1,9 +1,0 @@
----
-nodeTypeId: "node_2unblKFUVJkOdOnT8MstZ"
-nodeInstanceId: "205915b8-4335-7b48-acb1-e97e5be2234f"
-dg_type: "Issue"
-record_file: "companion/audit_log/nonbrain_audit_log.csv"
-code: "audit"
-order: 172
-data: {"id": "M-062", "category": "M", "priority": "P3", "ref": "companion/audit_log/verification/trusoma_growth/RESULT_2026-11-04.md", "item": "12.5 week sculpt may be short of the crown-rump charts: bounding box diagonal 5.87 cm against about 6.2 cm", "why": "The body is the source and the charts are the landing test, so a real shortfall would matter", "resolve": "Measure crown-rump on the sculpt and compare with the charts within their spread; report, do not edit the sculpt", "status": "open", "evidence": "", "touched": "2026-11-04", "note": ""}
----

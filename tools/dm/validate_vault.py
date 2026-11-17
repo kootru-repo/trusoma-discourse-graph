@@ -3,8 +3,10 @@ node ids, unique keys, key matches the note name, every wiki-link resolves, evid
 relations.json equals the relations implied by the wiki-links, learner values equal the appendix [V] token when the appendix names the key (missing token: warning),
 every link row's species_age is covered by a source_basis rule or key row (warning count; the database build reports the binding ones).
 usage: python validate_vault.py"""
-import csv, json, re, sys
+import csv, datetime, json, re, sys
 import dmlib as D
+
+LATER_ADDED = ("later_record", "verified", "pmid_checked", "dg_name", "question", "opposes", "opposes_basis", "against", "answers", "answers_basis")   # properties added after the import: a later_record remark may not rest on them
 
 REQUIRED = {"Claim": ("kind", "key", "order", "entries"),
             "Evidence": ("paper_id", "locator", "quote", "transfer", "source"),
@@ -16,12 +18,61 @@ READINGS = ("signal", "no-signal", "pass", "fail", "observation")
 _FILES = {}
 
 
+def _leaves(v, skip=()):
+    if isinstance(v, str):
+        yield v
+    elif isinstance(v, dict):
+        for k, x in v.items():
+            if k not in skip:
+                yield from _leaves(x)
+    elif isinstance(v, list):
+        for x in v:
+            yield from _leaves(x)
+
+
+def _strings(nodes):
+    """every text held by a vault note, apart from the opposes_basis properties themselves (a basis cannot be its own proof)"""
+    if "s" not in _TEXT:
+        _TEXT["s"] = [s for p in nodes.values() for s in _leaves(p, ("opposes_basis",))]
+    return _TEXT["s"]
+
+
+_TEXT = {}
+
+
 def discourse_checks(nodes, errors):
     """the probe record (plan section 18, O2): no value enters here; every note quotes its record file verbatim (so nothing is written from memory); links follow D.EDGE_RULES"""
     errors.extend("growth web " + x for x in D.gweb_relations(nodes)[1])
     for (kind, name), p in nodes.items():
         if p.get("code") == "gweb" and kind != D.GWEB_KIND.get(p.get("group"), "Record"):
             errors.append("%s %s: a growth web %s note must be a %s" % (kind, name, p.get("group"), D.GWEB_KIND.get(p.get("group"), "Record")))
+    for (kind, name), p in nodes.items():   # the rules that also hold on record notes (D.ON_RECORDS)
+        for rule_kind, prop, rel, other, outgoing in D.EDGE_RULES:
+            if kind == rule_kind and (kind, prop) in D.ON_RECORDS and "record_file" in p:
+                for l in D.links_of(p.get(prop)):
+                    t = D.target_of(l, other)
+                    if t is None or (other, t) not in nodes:
+                        errors.append("%s %s: %s link %s does not resolve to a %s" % (kind, name, prop, l, other))
+        if kind in ("Evidence", "Claim") and (p.get("opposes") or "opposes_basis" in p):
+            # an opposition is never written from memory: its basis is a passage found verbatim in one of the two notes it joins, or in a growth web test that lists this
+            # value (where the web itself says the sources disagree); and one Evidence cannot both support and oppose a Claim
+            basis = p.get("opposes_basis")
+            where = [p] + [nodes[("Claim", t)] for t in (D.target_of(l, "Claim") for l in D.links_of(p.get("opposes"))) if ("Claim", t) in nodes]
+            if p.get("code") == "gweb":
+                where += [q for (k, _), q in nodes.items() if k == "Hypothesis" and q.get("code") == "gweb" and p.get("label") in (q["data"].get("values") or [])]
+            opposed = {D.target_of(l, "Claim") for l in D.links_of(p.get("opposes"))}
+            where += [q for (k, _), q in nodes.items() if k == "Evidence" and q.get("code") == "gweb" and q["data"].get("record") in opposed]   # the opposed record's own growth web value
+            near = [s for q in where for s in _leaves(q, ("opposes_basis",))]
+            if not p.get("opposes"):
+                errors.append("%s %s: opposes_basis without an opposes link" % (kind, name))
+            elif not isinstance(basis, str) or len(basis) < 20 or not any(basis in s for s in near):
+                errors.append("%s %s: opposes needs an opposes_basis found verbatim in this note, in the opposed Claim or its growth web value, or in a growth web test that lists this value" % (kind, name))
+            if name in [D.target_of(l, "Claim") for l in D.links_of(p.get("opposes"))] and kind == "Claim":
+                errors.append("Claim %s: opposes itself" % name)
+            own = {D.link("Claim", p["data"]["record"])} if p.get("code") == "gweb" and ("Claim", p["data"].get("record")) in nodes else set()
+            both = set(D.links_of(p.get("opposes"))) & (set(D.links_of(p.get("claim"))) | set(D.links_of(p.get("applies_to"))) | own)
+            if both:
+                errors.append("Evidence %s: both supports and opposes %s" % (name, ", ".join(sorted(both))))
     for (kind, name), p in nodes.items():
         if "record_file" in p:
             continue
@@ -38,6 +89,21 @@ def discourse_checks(nodes, errors):
                 errors.append("%s %s: its quote is not found verbatim in %s" % (kind, name, rec))
             if kind == "Result" and p.get("reading") not in READINGS:
                 errors.append("Result %s: reading %r is not one of %s" % (name, p.get("reading"), READINGS))
+            if kind == "Result" and p.get("against"):
+                exp = nodes.get(("Experiment", D.target_of(p.get("experiment"), "Experiment"))) or {}
+                tested = [D.target_of(l, "Hypothesis") for l in D.links_of(exp.get("hypotheses"))]
+                if p.get("reading") not in D.AGAINST or any(D.target_of(l, "Hypothesis") not in tested for l in D.links_of(p["against"])):
+                    errors.append("Result %s: against is for a failed or no-signal result and may only name a hypothesis its own experiment tested" % name)
+                if any(l in D.links_of(p.get("consistent_with")) for l in D.links_of(p["against"])):
+                    errors.append("Result %s: one result cannot be both against and consistent with a hypothesis" % name)
+            if kind == "Result" and (p.get("answers") or "answers_basis" in p):   # never from memory: the words that tie this run to the question stand in the result's own record file
+                texts = [_FILES.get(rec) or ""]
+                for l in D.links_of(p.get("answers")):   # the words may stand in the question's own record file (the plan row that names the run)
+                    qrec = (nodes.get(("Question", D.target_of(l, "Question"))) or {}).get("record", "")
+                    f = D.ROOT / qrec
+                    texts.append(f.read_text(encoding="utf-8") if qrec and f.is_file() else "")
+                if not p.get("answers") or not p.get("answers_basis") or not any(p["answers_basis"] in x for x in texts):
+                    errors.append("Result %s: answers needs an answers_basis found verbatim in its record file or in the record file of the question" % name)
             if kind == "Result" and not isinstance(p.get("counted"), bool):
                 errors.append("Result %s: counted must be true or false" % name)
             if "text" in p:
@@ -49,7 +115,7 @@ def discourse_checks(nodes, errors):
         for rule_kind, prop, rel, other, outgoing in D.EDGE_RULES:
             if kind != rule_kind or prop not in p:
                 continue
-            for l in ([] if "record_file" in p else D.links_of(p[prop])):
+            for l in D.links_of(p[prop]):
                 t = D.target_of(l, other)
                 if t is None or (other, t) not in nodes:
                     errors.append("%s %s: %s link %s does not resolve to a %s" % (kind, name, prop, l, other))
@@ -60,8 +126,7 @@ ADULT = ("adult", "mixed_adult")
 
 
 def target(link, kind):
-    m = re.fullmatch(r"\[\[%s(.*)\]\]" % re.escape(D.PREFIX[kind]), link or "")
-    return m.group(1) if m else None
+    return D.target_of(link, kind)
 
 
 def extra_checks(nodes, errors):
@@ -138,8 +203,42 @@ def main():
         for f in (REQUIRED[kind] if "record_file" not in p else ("record_file", "code", "order", "data")):
             if f not in p:
                 errors.append("%s %s: missing %s" % (kind, name, f))
-        if p.get("nodeInstanceId") != D.node_id(kind, name) or p.get("nodeTypeId") != D.NODE_TYPE[kind]:
+        if p.get("nodeInstanceId") != D.node_id(kind, name) or p.get("recordTypeId" if kind == "Record" else "nodeTypeId") != D.NODE_TYPE[D.disk_kind(kind, p)] or (kind == "Record" and "nodeTypeId" in p):
             errors.append("%s %s: node id or type id is not the deterministic one" % (kind, name))
+    for (kind, name), p in nodes.items():   # a later verification of a passage: complete, dated, and only on an Evidence note
+        if "verified" in p:
+            v = p["verified"]
+            if kind != "Evidence" or not isinstance(v, dict) or not all(isinstance(v.get(f), str) and v[f].strip() for f in ("on", "against", "passage")) or not re.fullmatch(r"20[0-9]{2}-[01][0-9]-[0-3][0-9]", v.get("on", "")):
+                errors.append("%s %s: verified needs on (YYYY-MM-DD), against (where the passage was read) and passage (its words), on an Evidence note" % (kind, name))
+        if "later_record" in p:   # an older remark that a later record overtakes: the remark stays where it is, this says what holds now
+            v = p["later_record"]
+            ok = isinstance(v, dict) and all(isinstance(v.get(f), str) and v[f].strip() for f in ("on", "remark", "now", "basis")) and len(v["remark"].strip()) >= 12
+            try:
+                ok = ok and bool(re.fullmatch(r"20[0-9]{2}-[01][0-9]-[0-3][0-9]", v["on"])) and datetime.date.fromisoformat(v["on"]) <= datetime.date.today()
+            except (ValueError, TypeError, KeyError):
+                ok = False
+            older = [x if isinstance(x, str) else json.dumps(x, ensure_ascii=False) for k, x in p.items() if k not in LATER_ADDED]   # one property at a time, and never a property that was itself added after the import
+            if not ok or not any(v["remark"] in x for x in older):
+                errors.append("%s %s: later_record needs on (a real date written YYYY-MM-DD, not in the future), remark (12 or more characters that stand in one older property of this note), now (what holds since) and basis (the record it rests on)" % (kind, name))
+    known = set(D.NODE_TYPE.values()) - {D.NODE_TYPE["Record"]}
+    people = D.people_notes()
+    for q in people:   # a note a person made with the plugin: accepted as theirs when the plugin can show it (a known node type); nothing of it is read as a value
+        if D.read_note(q).get("nodeTypeId") not in known:
+            errors.append("%s: a note without dg_type must carry a nodeTypeId of the vault's schema (a note made with the plugin does); this one does not" % q.name)
+    outside = []   # a node made with the plugin before its folder setting was in place lies outside the folders the tools read: say so
+    for q in sorted(D.VAULT.rglob("*.md")):
+        part = q.relative_to(D.VAULT).parts
+        if part[0] in (".obsidian", ".trash", "DiscourseGraph", "Tables", "Meta", "import"):   # "import" is where the plugin keeps notes imported from another space
+            continue
+        head = q.read_text(encoding="utf-8", errors="replace")[:400]
+        if head.startswith("---") and "nodeTypeId:" in head.split(chr(10) + "---")[0]:
+            outside.append("/".join(part))
+    if outside:
+        print("notes made with the plugin outside vault/DiscourseGraph (not read by the tools; move them into DiscourseGraph): %d: %s" % (len(outside), "; ".join(outside[:5])))
+    if D.plain_notes():
+        print("plain notes in the vault folders (not nodes: never read, never rewritten): %d: %s" % (len(D.plain_notes()), "; ".join(sorted(str(getattr(x, "name", x)) for x in D.plain_notes())[:8])))
+    if people:
+        print("notes made by a person in Obsidian (kept as theirs, never read as a value, never rewritten): %d" % len(people))
     orphans = 0
     for (kind, name), p in nodes.items():
         if "record_file" in p:   # phase 3 notes: Issues, method and join Claims, Records (one row of an authored table each)
@@ -205,12 +304,20 @@ def main():
                 errors.append("Source %s: register row without order" % name)
     extra_checks(nodes, errors)
     discourse_checks(nodes, errors)
+    bad = D.title_problems() + D.body_problems()
+    errors.extend(bad[:5] + (["... and %d more notes with a body that is not the derived text" % (len(bad) - 5)] if len(bad) > 5 else []))
     rel = json.load(open(D.RELATIONS, encoding="utf-8"))["relations"]
     expected = D.expected_relations(nodes) if not errors else {}
     if errors:
         pass
-    elif rel != expected:
-        errors.append("relations.json differs from the relations implied by the wiki-links (%d vs %d)" % (len(rel), len(expected)))
+    else:
+        ours, foreign, stale = D.split_relations(rel, nodes)   # relations imported from another space are not ours to imply or refuse
+        if stale:
+            errors.append("relations.json holds %d relation(s) with an end that is no note of this vault and no imported note (regenerate to drop them)" % len(stale))
+        if {k: D.relation_core(v) for k, v in ours.items()} != {k: D.relation_core(v) for k, v in expected.items()} or any("lastModified" not in v for v in ours.values()):   # lastModified is the plugin's to change once a relation is published
+            errors.append("relations.json differs from the relations implied by the wiki-links (%d vs %d)" % (len(ours), len(expected)))
+        if foreign:
+            print("foreign relations kept (imported from another space, or drawn in Obsidian to or from a person's or an imported note): %d" % len(foreign))
     app = open(D.ROOT / "companion/CF2_CONSTANTS_APPENDIX.md", encoding="utf-8").read()
     missing = 0
     for (kind, name), p in nodes.items():

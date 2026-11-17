@@ -9,3 +9,13 @@ quote: "passes in the recorded closed-loop runs; not a unit test"
 experiment: "[[EXP - S4 recorded closed-loop runs]]"
 consistent_with: ["[[HYP- S4 arm-movement interval about 1 s]]"]
 ---
+
+From the record: "passes in the recorded closed-loop runs; not a unit test"
+
+Reading: pass (not counted).
+
+Experiment: [[EXP - S4 recorded closed-loop runs]].
+
+Consistent with: [[HYP- S4 arm-movement interval about 1 s]].
+
+Record file: `companion/RESONANT_BUILD_CHECKLIST_2026-11-15.md`.

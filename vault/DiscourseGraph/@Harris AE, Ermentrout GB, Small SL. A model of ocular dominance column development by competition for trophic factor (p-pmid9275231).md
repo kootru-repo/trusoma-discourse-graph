@@ -1,0 +1,13 @@
+---
+nodeTypeId: "node_-PIYSmr5icSFMACYAUobE"
+nodeInstanceId: "ad802709-e91f-7eda-b9d6-f07a4cf221ad"
+dg_type: "Source"
+dg_name: "p-pmid9275231"
+paper_id: "p-pmid9275231"
+register: "jepa_references"
+row: {"paper_id": "p-pmid9275231", "first_author": "Harris", "year": "1997", "citation": "Harris AE, Ermentrout GB, Small SL. A model of ocular dominance column development by competition for trophic factor. PNAS 1997;94:9944.", "doi": "10.1073/pnas.94.18.9944", "pmid": "9275231", "pmcid": "", "used_for": "Growth web equation: activity_relay", "how_far_read": "Full text, equations and keyword passages", "local_file": "papers/growth_sources/pdf/p-pmid9275231.pdf"}
+---
+
+Harris AE, Ermentrout GB, Small SL. A model of ocular dominance column development by competition for trophic factor. PNAS 1997;94:9944.
+
+DOI: 10.1073/pnas.94.18.9944; PMID: 9275231.

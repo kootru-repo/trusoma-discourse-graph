@@ -1,0 +1,14 @@
+---
+nodeTypeId: "node_-PIYSmr5icSFMACYAUobE"
+nodeInstanceId: "c5b087b2-cc78-704e-a9e5-64d0eaccde2e"
+dg_type: "Source"
+dg_name: "p-doi-10-1152-jn-00848-2015"
+paper_id: "p-doi-10-1152-jn-00848-2015"
+register: "paper_register"
+order: 25
+row: {"paper_id": "p-doi-10-1152-jn-00848-2015", "first_author": "Current", "year": "2016", "citation": "Current injection and receptor-mediated excitation produce similar maximal firing rates in hypoglossal motoneurons, J Neurophysiol 2016, doi 10.1152/jn.00848.2015 (abstract opened via Europe PMC)", "doi": "10.1152/jn.00848.2015", "pmid": "", "pmcid": "", "url": "", "local_file": "", "n_constants": "3"}
+---
+
+Current injection and receptor-mediated excitation produce similar maximal firing rates in hypoglossal motoneurons, J Neurophysiol 2016, doi 10.1152/jn.00848.2015 (abstract opened via Europe PMC).
+
+DOI: 10.1152/jn.00848.2015.

@@ -7,3 +7,9 @@ record: "companion/RESONANT_BUILD_CHECKLIST_2026-11-15.md"
 quote: "passes in the recorded closed-loop runs; not a unit test"
 hypotheses: ["[[HYP- S4 arm-movement interval about 1 s]]"]
 ---
+
+From the record: "passes in the recorded closed-loop runs; not a unit test"
+
+Tests: [[HYP- S4 arm-movement interval about 1 s]].
+
+Record file: `companion/RESONANT_BUILD_CHECKLIST_2026-11-15.md`, 2026-11-15.

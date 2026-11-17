@@ -1,0 +1,14 @@
+---
+nodeTypeId: "node_-PIYSmr5icSFMACYAUobE"
+nodeInstanceId: "f5578c2b-c47f-75c8-ba5d-ea988fa7be98"
+dg_type: "Source"
+dg_name: "p-pmc5370055"
+paper_id: "p-pmc5370055"
+register: "paper_register"
+order: 249
+row: {"paper_id": "p-pmc5370055", "first_author": "Verbruggen", "year": "2017", "citation": "Verbruggen SW et al. Function and failure of the fetal membrane: Modelling the mechanics of the chorion and amnion. PLoS One 2017", "doi": "10.1371/journal.pone.0171588", "pmid": "", "pmcid": "PMC5370055", "url": "", "local_file": "papers/src_2026_11_11_uterus/PMC5370055.txt", "n_constants": "0"}
+---
+
+Verbruggen SW et al. Function and failure of the fetal membrane: Modelling the mechanics of the chorion and amnion. PLoS One 2017.
+
+DOI: 10.1371/journal.pone.0171588; PMCID: PMC5370055.

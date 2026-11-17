@@ -1,0 +1,35 @@
+---
+nodeTypeId: "node_xQmEzWQFHdHy2swhrugrF"
+nodeInstanceId: "bf261cb1-28c4-760f-9599-e6a0e88d9ae2"
+dg_type: "Evidence"
+dg_name: "setting.brainstem_net7.POPS.B1d_scn_1 1"
+evidence_kind: "link"
+link_cid: "setting.brainstem_net7.POPS.B1d_scn_1"
+link_order: 674
+status: "adult-sourced-unusable"
+paper_id: "p-pmid37939194"
+locator: "Results, neuronal subtypes (H369 level)"
+locator_basis: "quote"
+quote: "all SCN and ZI clusters were assigned as GABAergic neurons"
+value_in_source: "human SCN neurons are GABAergic: -1 (was +1)"
+species_age: "human hypothalamus scRNA-seq, adult SCN clusters annotated, prenatal GW6-25 lineages (Herb 2023)"
+transfer: "adult-annotated identity carried to the 12.5 week SCN via the prenatal lineages; as for every GABA population this sources the transmitter and not the polarity (M-071); 15 s loop guard 0 both seeds"
+source: "[[@Herb BR, Glover HJ, Bhaduri A, et al. Single-cell genomics reveals region-specific developmental trajectories underlying neuronal … (p-pmid37939194)]]"
+claim: "[[CLM - D 50,000 until Hofman 1988 is extracted (A17 U6) ｜ F7 WEAK： Hofman 1988 to be extracted (U) … (setting.brainstem_net7.POPS.B1d_scn_1 = -1)]]"
+---
+
+Quote: "all SCN and ZI clusters were assigned as GABAergic neurons"
+
+Where in the source: Results, neuronal subtypes (H369 level).
+
+Value in the source: human SCN neurons are GABAergic: -1 (was +1).
+
+Species and age: human hypothalamus scRNA-seq, adult SCN clusters annotated, prenatal GW6-25 lineages (Herb 2023).
+
+Transfer: adult-annotated identity carried to the 12.5 week SCN via the prenatal lineages; as for every GABA population this sources the transmitter and not the polarity (M-071); 15 s loop guard 0 both seeds.
+
+Status: adult-sourced-unusable (only an adult source exists, which this project does not accept, so not a sourced value).
+
+Source: [[@Herb BR, Glover HJ, Bhaduri A, et al. Single-cell genomics reveals region-specific developmental trajectories underlying neuronal … (p-pmid37939194)]].
+
+For: [[CLM - D 50,000 until Hofman 1988 is extracted (A17 U6) ｜ F7 WEAK： Hofman 1988 to be extracted (U) … (setting.brainstem_net7.POPS.B1d_scn_1 = -1)]].

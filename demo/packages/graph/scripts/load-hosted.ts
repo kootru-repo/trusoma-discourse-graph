@@ -23,7 +23,7 @@ const ACCOUNT = { localId: "trusoma-demo-loader", name: "TruSoma" };
 const ROLE =
   "space member (their create-space function, signed in as the space account)";
 const BATCH = 250;
-const CLAIM = "DiscourseGraph/CLM - phase1_substrate.NMDA_SHARE_E16.md";
+const CLAIM_HANDLE = "CLM - phase1_substrate.NMDA_SHARE_E16"; // the stable handle; the file's title is derived from the note's properties
 
 type Tally = { ok: number; conflict: number; error: number };
 type Counts = {
@@ -144,6 +144,9 @@ const countRows = async (): Promise<Counts> => {
 };
 
 const g = loadVault(root);
+const claimNote = g.byHandle.get(CLAIM_HANDLE);
+if (!claimNote) throw new Error(`no note with the handle ${CLAIM_HANDLE}`);
+const CLAIM = `DiscourseGraph/${claimNote.title}.md`;
 const created = JSON.parse(
   readFileSync(join(root, "vault", "relations.json"), "utf8"),
 ) as { relations: Record<string, { created: number }> };

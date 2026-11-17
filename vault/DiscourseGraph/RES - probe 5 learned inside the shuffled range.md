@@ -8,3 +8,11 @@ record: "companion/TRUSOMA_PROBES.md"
 quote: "puts learned at z 1.0-1.3 and inside the shuffled range on every seed"
 experiment: "[[EXP - probe 5 noise check 2026-11-03]]"
 ---
+
+From the record: "puts learned at z 1.0-1.3 and inside the shuffled range on every seed"
+
+Reading: no-signal (not counted).
+
+Experiment: [[EXP - probe 5 noise check 2026-11-03]].
+
+Record file: `companion/TRUSOMA_PROBES.md`.

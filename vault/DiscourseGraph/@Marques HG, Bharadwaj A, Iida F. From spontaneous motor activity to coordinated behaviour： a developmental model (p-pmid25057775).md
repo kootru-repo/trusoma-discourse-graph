@@ -1,0 +1,13 @@
+---
+nodeTypeId: "node_-PIYSmr5icSFMACYAUobE"
+nodeInstanceId: "3ddfa3e7-88c6-7ba6-8963-713c1174a9f3"
+dg_type: "Source"
+dg_name: "p-pmid25057775"
+paper_id: "p-pmid25057775"
+register: "jepa_references"
+row: {"paper_id": "p-pmid25057775", "first_author": "Marques", "year": "2014", "citation": "Marques HG, Bharadwaj A, Iida F. From spontaneous motor activity to coordinated behaviour: a developmental model. PLoS Comput Biol 2014;10:e1003653.", "doi": "10.1371/journal.pcbi.1003653", "pmid": "25057775", "pmcid": "", "used_for": "Growth web equation: gen_move", "how_far_read": "Full text, equations and keyword passages", "local_file": "papers/growth_sources/pdf/p-pmid25057775.pdf"}
+---
+
+Marques HG, Bharadwaj A, Iida F. From spontaneous motor activity to coordinated behaviour: a developmental model. PLoS Comput Biol 2014;10:e1003653.
+
+DOI: 10.1371/journal.pcbi.1003653; PMID: 25057775.

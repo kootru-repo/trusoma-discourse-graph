@@ -5,5 +5,11 @@ dg_type: "Hypothesis"
 record: "companion/TRUSOMA_PROBES.md"
 quote: "Error below shuffled and untrained on all seeds"
 prereg: true
-question: "[[QUE - orientation reaches spikes with sparse afferents]]"
+question: "[[QUE - Does orientation survive to spikes with sparse afferents？]]"
 ---
+
+From the record: "Error below shuffled and untrained on all seeds"
+
+Question: [[QUE - Does orientation survive to spikes with sparse afferents？]].
+
+Record file: `companion/TRUSOMA_PROBES.md`.

@@ -1,0 +1,14 @@
+---
+nodeTypeId: "node_-PIYSmr5icSFMACYAUobE"
+nodeInstanceId: "1ce851e4-01dc-7971-b4c9-5362a080493d"
+dg_type: "Source"
+dg_name: "p-pmid33439907"
+paper_id: "p-pmid33439907"
+register: "paper_register"
+order: 200
+row: {"paper_id": "p-pmid33439907", "first_author": "Griffin", "year": "2021", "citation": "Griffin K, Pedersen H, Stauss K, et al. Characterization of intrauterine growth, proliferation and biomechanical properties of the murine larynx. PLoS One 2021;16(1):e0245073 (read in full 2026-11-07)", "doi": "10.1371/journal.pone.0245073", "pmid": "33439907", "pmcid": "PMC7806159", "url": "", "local_file": "papers/src_2026_11_07/adult_transition/c9_tongue/griffin2021_fulltext.txt", "n_constants": ""}
+---
+
+Griffin K, Pedersen H, Stauss K, et al. Characterization of intrauterine growth, proliferation and biomechanical properties of the murine larynx. PLoS One 2021;16(1):e0245073 (read in full 2026-11-07).
+
+DOI: 10.1371/journal.pone.0245073; PMID: 33439907; PMCID: PMC7806159.

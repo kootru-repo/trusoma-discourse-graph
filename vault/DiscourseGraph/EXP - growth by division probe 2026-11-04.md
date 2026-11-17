@@ -5,4 +5,11 @@ dg_type: "Experiment"
 date: "2026-11-04"
 record: "companion/TRUSOMA_PROBES.md"
 quote: "a learner that doubles twice by division"
+hypotheses: ["[[HYP- the learner grows into the cortex by division with inherited addresses]]"]
 ---
+
+From the record: "a learner that doubles twice by division"
+
+Tests: [[HYP- the learner grows into the cortex by division with inherited addresses]].
+
+Record file: `companion/TRUSOMA_PROBES.md`, 2026-11-04.

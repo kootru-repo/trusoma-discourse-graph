@@ -1,0 +1,14 @@
+---
+nodeTypeId: "node_-PIYSmr5icSFMACYAUobE"
+nodeInstanceId: "68d0e596-56f0-7c06-8522-7fc662d94aa1"
+dg_type: "Source"
+dg_name: "p-pmid26237362"
+paper_id: "p-pmid26237362"
+register: "paper_register"
+order: 175
+row: {"paper_id": "p-pmid26237362", "first_author": "Kim", "year": "2015", "citation": "Kim AJ, Fitzgerald JK, Maimon G. Cellular evidence for efference copy in Drosophila visuomotor processing. Nat Neurosci 2015;18:1247-1255 (author manuscript read 2026-11-07)", "doi": "10.1038/nn.4083", "pmid": "26237362", "pmcid": "PMC6327952", "url": "", "local_file": "papers/src_2026_11_07/m4/pmc6327952_fulltext.txt", "n_constants": ""}
+---
+
+Kim AJ, Fitzgerald JK, Maimon G. Cellular evidence for efference copy in Drosophila visuomotor processing. Nat Neurosci 2015;18:1247-1255 (author manuscript read 2026-11-07).
+
+DOI: 10.1038/nn.4083; PMID: 26237362; PMCID: PMC6327952.

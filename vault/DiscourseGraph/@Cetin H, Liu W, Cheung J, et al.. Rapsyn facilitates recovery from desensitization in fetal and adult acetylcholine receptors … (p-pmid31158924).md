@@ -1,0 +1,14 @@
+---
+nodeTypeId: "node_-PIYSmr5icSFMACYAUobE"
+nodeInstanceId: "2ce671ad-394b-7156-b7fb-401c7194c58f"
+dg_type: "Source"
+dg_name: "p-pmid31158924"
+paper_id: "p-pmid31158924"
+register: "paper_register"
+order: 217
+row: {"paper_id": "p-pmid31158924", "first_author": "Cetin", "year": "2019", "citation": "Cetin H, Liu W, Cheung J, et al.. Rapsyn facilitates recovery from desensitization in fetal and adult acetylcholine receptors expressed in a muscle cell line. The Journal of Physiology 2019;597:3713-3725 (full text read 2026-11-08)", "doi": "10.1113/jp277819", "pmid": "31158924", "pmcid": "PMC6767687", "url": "", "local_file": "papers/src_2026_11_08/oa_library/10.1113_jp277819.txt", "n_constants": ""}
+---
+
+Cetin H, Liu W, Cheung J, et al.. Rapsyn facilitates recovery from desensitization in fetal and adult acetylcholine receptors expressed in a muscle cell line. The Journal of Physiology 2019;597:3713-3725 (full text read 2026-11-08).
+
+DOI: 10.1113/jp277819; PMID: 31158924; PMCID: PMC6767687.

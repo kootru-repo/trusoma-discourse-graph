@@ -7,3 +7,9 @@ record: "companion/RESONANT_BUILD_CHECKLIST_2026-11-15.md"
 quote: "RESULT_S1_2026-11-15.md"
 hypotheses: ["[[HYP- S1 collaterals entered and branched, no patches at 12.5 weeks]]"]
 ---
+
+From the record: "RESULT_S1_2026-11-15.md"
+
+Tests: [[HYP- S1 collaterals entered and branched, no patches at 12.5 weeks]].
+
+Record file: `companion/RESONANT_BUILD_CHECKLIST_2026-11-15.md`, 2026-11-15.

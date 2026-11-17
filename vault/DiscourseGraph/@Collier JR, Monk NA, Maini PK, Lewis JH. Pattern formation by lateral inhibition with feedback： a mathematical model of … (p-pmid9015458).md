@@ -1,0 +1,13 @@
+---
+nodeTypeId: "node_-PIYSmr5icSFMACYAUobE"
+nodeInstanceId: "fdb82518-9a47-7bb5-bf1d-569e6e0c7e69"
+dg_type: "Source"
+dg_name: "p-pmid9015458"
+paper_id: "p-pmid9015458"
+register: "jepa_references"
+row: {"paper_id": "p-pmid9015458", "first_author": "Collier", "year": "1996", "citation": "Collier JR, Monk NA, Maini PK, Lewis JH. Pattern formation by lateral inhibition with feedback: a mathematical model of delta-notch intercellular signalling. J Theor Biol 1996;183(4):429-446", "doi": "10.1006/jtbi.1996.0233", "pmid": "9015458", "pmcid": "", "used_for": "Coupled growth plan, hypothesis: L7", "how_far_read": "Full text", "local_file": " Oxford archive PDF"}
+---
+
+Collier JR, Monk NA, Maini PK, Lewis JH. Pattern formation by lateral inhibition with feedback: a mathematical model of delta-notch intercellular signalling. J Theor Biol 1996;183(4):429-446.
+
+DOI: 10.1006/jtbi.1996.0233; PMID: 9015458.

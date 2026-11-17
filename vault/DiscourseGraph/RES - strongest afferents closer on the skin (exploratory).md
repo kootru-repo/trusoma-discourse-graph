@@ -9,3 +9,13 @@ quote: "(z -5.8 to -9.8)"
 experiment: "[[EXP - scorer positive control 2026-11-09]]"
 consistent_with: ["[[HYP- strongest afferents sit closer on the skin (post hoc)]]"]
 ---
+
+From the record: "(z -5.8 to -9.8)"
+
+Reading: signal (not counted).
+
+Experiment: [[EXP - scorer positive control 2026-11-09]].
+
+Consistent with: [[HYP- strongest afferents sit closer on the skin (post hoc)]].
+
+Record file: `companion/TRUSOMA_PROBES.md`.

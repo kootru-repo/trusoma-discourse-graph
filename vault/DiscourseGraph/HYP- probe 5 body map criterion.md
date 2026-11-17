@@ -5,5 +5,11 @@ dg_type: "Hypothesis"
 record: "companion/TRUSOMA_PROBES.md"
 quote: "per_column above shuffled and untrained on all seeds"
 prereg: true
-question: "[[QUE - body map in the afferent weights]]"
+question: "[[QUE - Is there a body map in the afferent weights？]]"
 ---
+
+From the record: "per_column above shuffled and untrained on all seeds"
+
+Question: [[QUE - Is there a body map in the afferent weights？]].
+
+Record file: `companion/TRUSOMA_PROBES.md`.

@@ -1,5 +1,5 @@
 ---
-nodeTypeId: "trusoma-record"
+recordTypeId: "trusoma-record"
 nodeInstanceId: "16d01072-9985-7e87-9bdd-6d138b0c744a"
 dg_type: "Record"
 record_file: "companion/source_audit/body_provenance_12p5_required.json"

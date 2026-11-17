@@ -1,0 +1,14 @@
+---
+nodeTypeId: "node_-PIYSmr5icSFMACYAUobE"
+nodeInstanceId: "c7d14179-a5ee-739a-a716-5b79b9ce4d07"
+dg_type: "Source"
+dg_name: "p-pmid33754346"
+paper_id: "p-pmid33754346"
+register: "paper_register"
+order: 203
+row: {"paper_id": "p-pmid33754346", "first_author": "Takakuwa", "year": "2021", "citation": "Takakuwa T, Shiraishi N, Terashima M, et al.. Morphology and morphometry of the human early foetal brain: A three‐dimensional analysis. Journal of Anatomy 2021;239:498-516 (full text read 2026-11-08)", "doi": "10.1111/joa.13433", "pmid": "33754346", "pmcid": "", "url": "", "local_file": "papers/src_2026_11_08/oa_library/10.1111_joa.13433.txt", "n_constants": ""}
+---
+
+Takakuwa T, Shiraishi N, Terashima M, et al.. Morphology and morphometry of the human early foetal brain: A three‐dimensional analysis. Journal of Anatomy 2021;239:498-516 (full text read 2026-11-08).
+
+DOI: 10.1111/joa.13433; PMID: 33754346.

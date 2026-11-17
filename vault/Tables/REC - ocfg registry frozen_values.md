@@ -1,5 +1,5 @@
 ---
-nodeTypeId: "trusoma-record"
+recordTypeId: "trusoma-record"
 nodeInstanceId: "db8a2bf4-b2af-731c-8614-df4511c185ce"
 dg_type: "Record"
 record_file: "tools/trusoma/brain/other_config.json"

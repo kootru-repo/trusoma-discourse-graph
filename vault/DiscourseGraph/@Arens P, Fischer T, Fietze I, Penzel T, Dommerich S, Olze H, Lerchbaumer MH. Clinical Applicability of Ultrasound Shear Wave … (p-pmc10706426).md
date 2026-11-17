@@ -1,0 +1,14 @@
+---
+nodeTypeId: "node_-PIYSmr5icSFMACYAUobE"
+nodeInstanceId: "7e917939-8601-7571-8ba6-ab75202a2b58"
+dg_type: "Source"
+dg_name: "p-pmc10706426"
+paper_id: "p-pmc10706426"
+register: "paper_register"
+order: 4
+row: {"paper_id": "p-pmc10706426", "first_author": "Arens", "year": "2023", "citation": "Arens P, Fischer T, Fietze I, Penzel T, Dommerich S, Olze H, Lerchbaumer MH. Clinical Applicability of Ultrasound Shear Wave Elastography in Patients under Hypoglossal Nerve Stimulation Therapy. Diagnostics (Basel) 2023;13(23):3493, doi 10.3390/diagnostics13233493 (full text https://pmc.ncbi.nlm.nih", "doi": "10.3390/diagnostics13233493", "pmid": "", "pmcid": "PMC10706426", "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC10706426/", "local_file": "", "n_constants": "1"}
+---
+
+Arens P, Fischer T, Fietze I, Penzel T, Dommerich S, Olze H, Lerchbaumer MH. Clinical Applicability of Ultrasound Shear Wave Elastography in Patients under Hypoglossal Nerve Stimulation Therapy. Diagnostics (Basel) 2023;13(23):3493, doi 10.3390/diagnostics13233493 (full text https://pmc.ncbi.nlm.nih.
+
+DOI: 10.3390/diagnostics13233493; PMCID: PMC10706426.

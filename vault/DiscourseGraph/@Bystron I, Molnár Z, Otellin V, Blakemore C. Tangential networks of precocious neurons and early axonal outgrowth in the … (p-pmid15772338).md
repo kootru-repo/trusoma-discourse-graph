@@ -1,0 +1,13 @@
+---
+nodeTypeId: "node_-PIYSmr5icSFMACYAUobE"
+nodeInstanceId: "be657ec6-2bc3-7f3f-83a9-99dabf307974"
+dg_type: "Source"
+dg_name: "p-pmid15772338"
+paper_id: "p-pmid15772338"
+register: "jepa_references"
+row: {"paper_id": "p-pmid15772338", "first_author": "Bystron", "year": "2005", "citation": "Bystron I, Molnár Z, Otellin V, Blakemore C. Tangential networks of precocious neurons and early axonal outgrowth in the embryonic human forebrain. J Neurosci 2005;25(11):2781-2792", "doi": "10.1523/jneurosci.4770-04.2005", "pmid": "15772338", "pmcid": "", "used_for": "Coupled growth plan, hypothesis: TOUCHMAP", "how_far_read": "Abstract only", "local_file": "papers/growth_sources/p-pmid15772338.txt"}
+---
+
+Bystron I, Molnár Z, Otellin V, Blakemore C. Tangential networks of precocious neurons and early axonal outgrowth in the embryonic human forebrain. J Neurosci 2005;25(11):2781-2792.
+
+DOI: 10.1523/jneurosci.4770-04.2005; PMID: 15772338.

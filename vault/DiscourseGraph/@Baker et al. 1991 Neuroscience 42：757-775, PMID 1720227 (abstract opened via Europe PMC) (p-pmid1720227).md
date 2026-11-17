@@ -1,0 +1,14 @@
+---
+nodeTypeId: "node_-PIYSmr5icSFMACYAUobE"
+nodeInstanceId: "cefe6840-276a-7d9b-b48f-0fbd263f1d89"
+dg_type: "Source"
+dg_name: "p-pmid1720227"
+paper_id: "p-pmid1720227"
+register: "paper_register"
+order: 8
+row: {"paper_id": "p-pmid1720227", "first_author": "Baker", "year": "1991", "citation": "Baker et al. 1991 Neuroscience 42:757-775, PMID 1720227 (abstract opened via Europe PMC)", "doi": "", "pmid": "1720227", "pmcid": "", "url": "", "local_file": "", "n_constants": "1"}
+---
+
+Baker et al. 1991 Neuroscience 42:757-775, PMID 1720227 (abstract opened via Europe PMC).
+
+PMID: 1720227.

@@ -1,0 +1,14 @@
+---
+nodeTypeId: "node_-PIYSmr5icSFMACYAUobE"
+nodeInstanceId: "a7038f12-a4a3-77e6-b2be-f953b566faf1"
+dg_type: "Source"
+dg_name: "p-pmid7686963"
+paper_id: "p-pmid7686963"
+register: "paper_register"
+order: 196
+row: {"paper_id": "p-pmid7686963", "first_author": "Rinaman", "year": "1993", "citation": "Rinaman L, Levitt P. Establishment of vagal sensorimotor circuits during fetal development in rats. Journal of Neurobiology 1993;24:641-659 (abstract read 2026-11-07)", "doi": "10.1002/neu.480240509", "pmid": "7686963", "pmcid": "", "url": "", "local_file": "papers/src_2026_11_07/m2/", "n_constants": ""}
+---
+
+Rinaman L, Levitt P. Establishment of vagal sensorimotor circuits during fetal development in rats. Journal of Neurobiology 1993;24:641-659 (abstract read 2026-11-07).
+
+DOI: 10.1002/neu.480240509; PMID: 7686963.

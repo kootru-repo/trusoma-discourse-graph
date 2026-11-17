@@ -8,3 +8,11 @@ record: "companion/RESONANT_BUILD_CHECKLIST_2026-11-15.md"
 quote: "DONE (run, failed or blocked)"
 experiment: "[[EXP - step 3 relay probes TR3-TR6 TR10 TR11]]"
 ---
+
+From the record: "DONE (run, failed or blocked)"
+
+Reading: fail (not counted).
+
+Experiment: [[EXP - step 3 relay probes TR3-TR6 TR10 TR11]].
+
+Record file: `companion/RESONANT_BUILD_CHECKLIST_2026-11-15.md`.

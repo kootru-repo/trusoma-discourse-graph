@@ -1,0 +1,14 @@
+---
+nodeTypeId: "node_-PIYSmr5icSFMACYAUobE"
+nodeInstanceId: "37eb9844-5d7d-7785-bea4-dae38bd8477c"
+dg_type: "Source"
+dg_name: "p-pmc12223135"
+paper_id: "p-pmc12223135"
+register: "paper_register"
+order: 248
+row: {"paper_id": "p-pmc12223135", "first_author": "Fodera", "year": "2025", "citation": "Fodera DM et al. Time-dependent material properties and composition of the nonhuman primate uterine layers through gestation. Sci Rep 2025", "doi": "10.1038/s41598-025-02986-w", "pmid": "", "pmcid": "PMC12223135", "url": "", "local_file": "papers/src_2026_11_11_uterus/PMC12223135.txt", "n_constants": "0"}
+---
+
+Fodera DM et al. Time-dependent material properties and composition of the nonhuman primate uterine layers through gestation. Sci Rep 2025.
+
+DOI: 10.1038/s41598-025-02986-w; PMCID: PMC12223135.

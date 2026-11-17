@@ -1,0 +1,14 @@
+---
+nodeTypeId: "node_-PIYSmr5icSFMACYAUobE"
+nodeInstanceId: "2b5d697b-0630-7279-a735-5b1d75c74292"
+dg_type: "Source"
+dg_name: "p-pmid4032293"
+paper_id: "p-pmid4032293"
+register: "paper_register"
+order: 221
+row: {"paper_id": "p-pmid4032293", "first_author": "Fitzgerald", "year": "1985", "citation": "Fitzgerald M. The post‐natal development of cutaneous afferent fibre input and receptive field organization in the rat dorsal horn.. The Journal of Physiology 1985;364:1-18 (full text read 2026-11-08)", "doi": "10.1113/jphysiol.1985.sp015725", "pmid": "4032293", "pmcid": "", "url": "", "local_file": "papers/src_2026_11_08/oa_library/fitzgerald1985_postnatal_input.txt", "n_constants": ""}
+---
+
+Fitzgerald M. The post‐natal development of cutaneous afferent fibre input and receptive field organization in the rat dorsal horn.. The Journal of Physiology 1985;364:1-18 (full text read 2026-11-08).
+
+DOI: 10.1113/jphysiol.1985.sp015725; PMID: 4032293.

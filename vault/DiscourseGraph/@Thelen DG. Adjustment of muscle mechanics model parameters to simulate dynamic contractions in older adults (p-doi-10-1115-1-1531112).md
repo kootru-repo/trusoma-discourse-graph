@@ -1,0 +1,14 @@
+---
+nodeTypeId: "node_-PIYSmr5icSFMACYAUobE"
+nodeInstanceId: "f1f73bbc-4239-7c7b-860a-f5a1087aa302"
+dg_type: "Source"
+dg_name: "p-doi-10-1115-1-1531112"
+paper_id: "p-doi-10-1115-1-1531112"
+register: "paper_register"
+order: 107
+row: {"paper_id": "p-doi-10-1115-1-1531112", "first_author": "Thelen", "year": "2003", "citation": "Thelen DG. Adjustment of muscle mechanics model parameters to simulate dynamic contractions in older adults. J Biomech Eng 2003;125(1):70-77, doi 10.1115/1.1531112 (PDF opened: https://uwnmbl.engr.wisc.edu/pubs/jbme03.pdf)", "doi": "10.1115/1.1531112", "pmid": "", "pmcid": "", "url": "https://uwnmbl.engr.wisc.edu/pubs/jbme03.pdf", "local_file": "", "n_constants": "3"}
+---
+
+Thelen DG. Adjustment of muscle mechanics model parameters to simulate dynamic contractions in older adults. J Biomech Eng 2003;125(1):70-77, doi 10.1115/1.1531112 (PDF opened: https://uwnmbl.engr.wisc.edu/pubs/jbme03.pdf).
+
+DOI: 10.1115/1.1531112.

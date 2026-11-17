@@ -1,0 +1,14 @@
+---
+nodeTypeId: "node_-PIYSmr5icSFMACYAUobE"
+nodeInstanceId: "06c9cca9-fae7-783e-b016-63daa72ac5d1"
+dg_type: "Source"
+dg_name: "p-lo1999"
+paper_id: "p-lo1999"
+register: "paper_register"
+order: 260
+row: {"paper_id": "p-lo1999", "first_author": "Lo", "year": "1999", "citation": "Lo FS, Guido W, Erzurumlu RS. Electrophysiological properties and synaptic responses of cells in the trigeminal principal sensory nucleus of postnatal rats. J Neurophysiol 1999;82(5):2765, doi 10.1152/jn.1999.82.5.2765 (PMC3677564, page read 2026-11-14)", "doi": "10.1152/jn.1999.82.5.2765", "pmid": "", "pmcid": "PMC3677564", "url": "https://doi.org/10.1152/jn.1999.82.5.2765", "local_file": "", "n_constants": "4"}
+---
+
+Lo FS, Guido W, Erzurumlu RS. Electrophysiological properties and synaptic responses of cells in the trigeminal principal sensory nucleus of postnatal rats. J Neurophysiol 1999;82(5):2765, doi 10.1152/jn.1999.82.5.2765 (PMC3677564, page read 2026-11-14).
+
+DOI: 10.1152/jn.1999.82.5.2765; PMCID: PMC3677564.

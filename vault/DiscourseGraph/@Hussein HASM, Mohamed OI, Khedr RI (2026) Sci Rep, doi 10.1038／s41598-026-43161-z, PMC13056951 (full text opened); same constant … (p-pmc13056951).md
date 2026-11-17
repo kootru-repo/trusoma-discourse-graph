@@ -1,0 +1,14 @@
+---
+nodeTypeId: "node_-PIYSmr5icSFMACYAUobE"
+nodeInstanceId: "0126828d-730e-76a7-904b-3925c22e0013"
+dg_type: "Source"
+dg_name: "p-pmc13056951"
+paper_id: "p-pmc13056951"
+register: "paper_register"
+order: 49
+row: {"paper_id": "p-pmc13056951", "first_author": "Hussein", "year": "2026", "citation": "Hussein HASM, Mohamed OI, Khedr RI (2026) Sci Rep, doi 10.1038/s41598-026-43161-z, PMC13056951 (full text opened); same constant as transduction.py|HAND_THUMB|0.4 (blind-verified 2026-10-10)", "doi": "10.1038/s41598-026-43161-z", "pmid": "", "pmcid": "PMC13056951", "url": "", "local_file": "", "n_constants": "2"}
+---
+
+Hussein HASM, Mohamed OI, Khedr RI (2026) Sci Rep, doi 10.1038/s41598-026-43161-z, PMC13056951 (full text opened); same constant as transduction.py|HAND_THUMB|0.4 (blind-verified 2026-10-10).
+
+DOI: 10.1038/s41598-026-43161-z; PMCID: PMC13056951.

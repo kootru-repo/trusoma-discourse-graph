@@ -1,0 +1,14 @@
+---
+nodeTypeId: "node_-PIYSmr5icSFMACYAUobE"
+nodeInstanceId: "c230faa4-c21f-7203-a35d-dc72707f9aaa"
+dg_type: "Source"
+dg_name: "p-pmid25209488"
+paper_id: "p-pmid25209488"
+register: "paper_register"
+order: 83
+row: {"paper_id": "p-pmid25209488", "first_author": "Papageorghiou", "year": "2014", "citation": "Papageorghiou 2014 chart range (weeks 14-40)", "doi": "10.1016/s0140-6736(14)61490-2", "pmid": "25209488", "pmcid": "", "url": "https://raw.githubusercontent.com/lshtm-gigs/gigs/master/R/ig_fet.R", "local_file": "", "n_constants": "31"}
+---
+
+Papageorghiou 2014 chart range (weeks 14-40).
+
+DOI: 10.1016/s0140-6736(14)61490-2; PMID: 25209488.

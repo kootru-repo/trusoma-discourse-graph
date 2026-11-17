@@ -8,3 +8,9 @@ quote: "DONE e4707cd: test_tr8_synaptic_filter_direction"
 hypotheses: ["[[HYP- TR8 synaptic filter direction]]"]
 commit: "e4707cd"
 ---
+
+From the record: "DONE e4707cd: test_tr8_synaptic_filter_direction"
+
+Tests: [[HYP- TR8 synaptic filter direction]].
+
+Record file: `companion/RESONANT_BUILD_CHECKLIST_2026-11-15.md`, 2026-11-15.

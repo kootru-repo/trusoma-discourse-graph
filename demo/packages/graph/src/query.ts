@@ -177,7 +177,7 @@ export const PRESETS: Preset[] = [
     question: "Which model values are next in line for a source?",
     plain: "Values whose literature search has not been done yet.",
     query: {
-      type: "Claim",
+      type: "Parameter",
       props: [
         {
           key: "status",

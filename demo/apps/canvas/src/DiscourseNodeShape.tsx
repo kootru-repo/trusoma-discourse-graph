@@ -57,6 +57,7 @@ export const TYPE_COLOUR: Record<string, string> = {
   Source: "#64748b",
   Evidence: "#2563eb",
   Claim: "#0891b2",
+  Parameter: "#8a8f98",
   Question: "#9333ea",
   Hypothesis: "#d97706",
   Issue: "#dc2626",

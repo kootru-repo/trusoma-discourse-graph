@@ -1,0 +1,14 @@
+---
+nodeTypeId: "node_-PIYSmr5icSFMACYAUobE"
+nodeInstanceId: "8a031736-e9ba-73a4-a7c9-89b1888297ba"
+dg_type: "Source"
+dg_name: "p-doi-10-1038-326603a0"
+paper_id: "p-doi-10-1038-326603a0"
+register: "paper_register"
+order: 224
+row: {"paper_id": "p-doi-10-1038-326603a0", "first_author": "Fitzgerald", "year": "1987", "citation": "Fitzgerald M. Spontaneous and evoked activity of fetal primary afferents in vivo. Nature 1987;326:603-605 (full text read 2026-11-08, Golda library)", "doi": "10.1038/326603a0", "pmid": "", "pmcid": "", "url": "", "local_file": "papers/golda/326603a0.pdf", "n_constants": ""}
+---
+
+Fitzgerald M. Spontaneous and evoked activity of fetal primary afferents in vivo. Nature 1987;326:603-605 (full text read 2026-11-08, Golda library).
+
+DOI: 10.1038/326603a0.

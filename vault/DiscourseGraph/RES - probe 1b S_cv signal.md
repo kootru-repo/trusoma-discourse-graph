@@ -9,3 +9,13 @@ quote: "| 1b S_cv | **Signal** | 0.989-0.992 | 0.375-0.400 | 0.207-0.216 | Not a
 experiment: "[[EXP - probe 1 existing checkpoints 2026-11-03]]"
 consistent_with: ["[[HYP- probe 1b sparse afferents criterion]]"]
 ---
+
+From the record: "| 1b S_cv | **Signal** | 0.989-0.992 | 0.375-0.400 | 0.207-0.216 | Not applicable |"
+
+Reading: signal (not counted).
+
+Experiment: [[EXP - probe 1 existing checkpoints 2026-11-03]].
+
+Consistent with: [[HYP- probe 1b sparse afferents criterion]].
+
+Record file: `companion/TRUSOMA_PROBES.md`.

@@ -1,0 +1,13 @@
+---
+nodeTypeId: "node_-PIYSmr5icSFMACYAUobE"
+nodeInstanceId: "a71ee229-4f64-7d7a-a4c3-16bf73330b7c"
+dg_type: "Source"
+dg_name: "p-pmid12649586"
+paper_id: "p-pmid12649586"
+register: "jepa_references"
+row: {"paper_id": "p-pmid12649586", "first_author": "O'Rahilly", "year": "2003", "citation": "O'Rahilly R, Müller F. Somites, spinal Ganglia, and centra. Enumeration and interrelationships in staged human embryos, and implications for neural tube defects. Cells Tissues Organs 2003;173(2):75-92", "doi": "10.1159/000068948", "pmid": "12649586", "pmcid": "", "used_for": "Coupled growth plan, hypothesis: BODY,START", "how_far_read": "Abstract only", "local_file": "papers/growth_sources/p-pmid12649586.txt"}
+---
+
+O'Rahilly R, Müller F. Somites, spinal Ganglia, and centra. Enumeration and interrelationships in staged human embryos, and implications for neural tube defects. Cells Tissues Organs 2003;173(2):75-92.
+
+DOI: 10.1159/000068948; PMID: 12649586.

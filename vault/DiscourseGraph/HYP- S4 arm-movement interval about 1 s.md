@@ -6,3 +6,7 @@ record: "companion/RESONANT_BUILD_CHECKLIST_2026-11-15.md"
 quote: "S4 test: arm-movement interval about 1 s"
 prereg: false
 ---
+
+From the record: "S4 test: arm-movement interval about 1 s"
+
+Record file: `companion/RESONANT_BUILD_CHECKLIST_2026-11-15.md`.

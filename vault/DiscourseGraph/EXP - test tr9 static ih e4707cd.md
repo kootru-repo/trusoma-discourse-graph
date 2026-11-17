@@ -8,3 +8,9 @@ quote: "DONE e4707cd: test_tr9_static_ih_same_steady_state"
 hypotheses: ["[[HYP- TR9 dynamic Ih against a static conductance]]"]
 commit: "e4707cd"
 ---
+
+From the record: "DONE e4707cd: test_tr9_static_ih_same_steady_state"
+
+Tests: [[HYP- TR9 dynamic Ih against a static conductance]].
+
+Record file: `companion/RESONANT_BUILD_CHECKLIST_2026-11-15.md`, 2026-11-15.

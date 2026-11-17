@@ -5,5 +5,11 @@ dg_type: "Hypothesis"
 record: "companion/TRUSOMA_PROBES.md"
 quote: "Each unit's 10 strongest afferents sit 7-8% closer on the skin than its own wiring gives by chance on all three kept checkpoints"
 prereg: false
-question: "[[QUE - body map in the afferent weights]]"
+question: "[[QUE - Is there a body map in the afferent weights？]]"
 ---
+
+From the record: "Each unit's 10 strongest afferents sit 7-8% closer on the skin than its own wiring gives by chance on all three kept checkpoints"
+
+Question: [[QUE - Is there a body map in the afferent weights？]].
+
+Record file: `companion/TRUSOMA_PROBES.md`.

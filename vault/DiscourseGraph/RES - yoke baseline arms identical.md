@@ -8,3 +8,11 @@ record: "companion/RESONANT_BUILD_CHECKLIST_2026-11-15.md"
 quote: "link holds in the closed loop (0.0000019 mm); arms identical at the pre-registered threshold; post-hoc low thresholds show no yoke effect"
 experiment: "[[EXP - yoke compressed baseline 2026-11-15]]"
 ---
+
+From the record: "link holds in the closed loop (0.0000019 mm); arms identical at the pre-registered threshold; post-hoc low thresholds show no yoke effect"
+
+Reading: no-signal (not counted).
+
+Experiment: [[EXP - yoke compressed baseline 2026-11-15]].
+
+Record file: `companion/RESONANT_BUILD_CHECKLIST_2026-11-15.md`.

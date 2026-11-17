@@ -1,0 +1,13 @@
+---
+nodeTypeId: "node_-PIYSmr5icSFMACYAUobE"
+nodeInstanceId: "431295ff-5c70-75fb-989a-472c7dce597e"
+dg_type: "Source"
+dg_name: "p-pmid3317037"
+paper_id: "p-pmid3317037"
+register: "jepa_references"
+row: {"paper_id": "p-pmid3317037", "first_author": "Anand", "year": "1987", "citation": "Anand KJ, Hickey PR. Pain and its effects in the human neonate and fetus. N Engl J Med 1987;317:1321-1329", "doi": "10.1056/nejm198711193172105", "pmid": "3317037", "pmcid": "", "used_for": "Skin onset, M-048", "how_far_read": "AI reading pasted by the USER; paper not seen", "local_file": "companion/source_audit/batch_2026-11-04_undone/anand_baker_brace_notes.md"}
+---
+
+Anand KJ, Hickey PR. Pain and its effects in the human neonate and fetus. N Engl J Med 1987;317:1321-1329.
+
+DOI: 10.1056/nejm198711193172105; PMID: 3317037.

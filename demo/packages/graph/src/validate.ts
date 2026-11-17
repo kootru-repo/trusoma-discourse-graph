@@ -6,7 +6,7 @@
 import { existsSync, readFileSync } from "node:fs";
 import { join } from "node:path";
 import { z } from "zod";
-import type { Graph, Json } from "./vault.js";
+import { internalKind, type Graph, type Json } from "./vault.js";
 
 export const READINGS = [
   "signal",
@@ -95,7 +95,7 @@ export const checkNote = ({
   return errors;
 };
 
-/** Every probe-record note against its rule, and every relation against the grammar's allowed triples. */
+/** Every probe-record note against its rule, and every relation against the grammar's allowed triples (a Parameter note stands where a Claim is allowed). */
 export const checkGraph = (g: Graph): string[] => {
   const errors: string[] = [];
   for (const n of g.nodes.values())
@@ -114,7 +114,11 @@ export const checkGraph = (g: Graph): string[] => {
     const s = g.nodes.get(r.source);
     const d = g.nodes.get(r.destination);
     if (!s || !d) errors.push(`relation ${r.id}: an end is not a note`);
-    else if (!allowed.has(`${s.nodeType}|${r.label}|${d.nodeType}`))
+    else if (
+      !allowed.has(
+        `${internalKind(s.nodeType)}|${r.label}|${internalKind(d.nodeType)}`,
+      )
+    )
       errors.push(
         `relation ${r.id}: ${s.nodeType} -${r.label}-> ${d.nodeType} is not an allowed triple`,
       );

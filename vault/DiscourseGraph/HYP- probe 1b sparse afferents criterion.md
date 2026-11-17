@@ -5,5 +5,11 @@ dg_type: "Hypothesis"
 record: "companion/TRUSOMA_PROBES.md"
 quote: "Rate at least 10 % of untrained and under 45 Hz; S_cv and C above shuffled on all seeds; S_cv above untrained"
 prereg: true
-question: "[[QUE - sparse afferents alive and selective]]"
+question: "[[QUE - Do sparse afferents stay alive and selective on simple input？]]"
 ---
+
+From the record: "Rate at least 10 % of untrained and under 45 Hz; S_cv and C above shuffled on all seeds; S_cv above untrained"
+
+Question: [[QUE - Do sparse afferents stay alive and selective on simple input？]].
+
+Record file: `companion/TRUSOMA_PROBES.md`.

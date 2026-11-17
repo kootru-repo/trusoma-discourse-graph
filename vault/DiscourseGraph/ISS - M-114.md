@@ -1,9 +1,0 @@
----
-nodeTypeId: "node_2unblKFUVJkOdOnT8MstZ"
-nodeInstanceId: "4a3b8af1-14e0-7568-a351-71d7bf45beb4"
-dg_type: "Issue"
-record_file: "companion/audit_log/nonbrain_audit_log.csv"
-code: "audit"
-order: 247
-data: {"id": "M-114", "category": "M", "priority": "P1", "ref": "companion/TRUSOMA_COUPLED_GROWTH_PLAN.md", "item": "Phase 1 now runs to about 17 weeks (USER 2026-11-14): the body must grow past 12.5 weeks. Known gaps: Body7 does not build at 14 weeks (embedded rest posture; T-001); skin surfaces for trunk, forearm, leg and rest of head start at 14 weeks or later and have no units; body, posture, nerve and receptor values for 14-17 weeks are unsourced (74 values still open at 12.5); the growth web stops at 12.5 weeks; the body targets (body_targets) exist only for 12.5 weeks.", "why": "the body map is read out at about 16-17 weeks; without a 17 week body there is nothing to learn it on", "resolve": "derive rest rows for 13-17 weeks; add skin units as surfaces appear; source 14-17 week values (fetal first); extend the growth web and the body targets to 17 weeks; Body7 must build and step at 14, 15.5 and 17 weeks", "status": "in-progress", "evidence": "Step 2 done 2026-11-14: the only rest overlap at 14-17 weeks was the two hands interpenetrating (0.9-1.6 mm); rest_pose_fit.py (12.5 week method) run at 14, 15.5 and 17 weeks gives arm rows (about 12 deg more shoulder abduction, 3-5 deg less elbow flexion; shoulder flexion 50-55 deg against Kumano 2022's about 50 deg), bound as window constant body7.arm_rest_window and read by rest_deg past 12.5 weeks. Body7 now builds and steps with contact at 14, 15.5 and 17 weeks (4.4-4.7 ms per body step); the 12.5 body digest is unchanged. Remaining: per-age brainstem values (W_INT, generator biases), skin-surface values for 14-17, cavity size past 13+6.", "touched": "2026-11-14", "note": ""}
----

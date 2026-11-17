@@ -1,0 +1,14 @@
+---
+nodeTypeId: "node_-PIYSmr5icSFMACYAUobE"
+nodeInstanceId: "fcfa60b6-518c-79ca-ae82-8c762272b57b"
+dg_type: "Source"
+dg_name: "p-doi-10-1111-1523-1747-ep12458993"
+paper_id: "p-doi-10-1111-1523-1747-ep12458993"
+register: "paper_register"
+order: 228
+row: {"paper_id": "p-doi-10-1111-1523-1747-ep12458993", "first_author": "Moll", "year": "1986", "citation": "Moll I, Moll R, Franke WW. Formation of epidermal and dermal Merkel cells during human fetal skin development. J Invest Dermatol 1986;87:779-787 (full text held 2026-11-08, Golda library)", "doi": "10.1111/1523-1747.ep12458993", "pmid": "", "pmcid": "", "url": "", "local_file": "papers/golda/1-s2.0-S0022202X86901867-main.pdf", "n_constants": ""}
+---
+
+Moll I, Moll R, Franke WW. Formation of epidermal and dermal Merkel cells during human fetal skin development. J Invest Dermatol 1986;87:779-787 (full text held 2026-11-08, Golda library).
+
+DOI: 10.1111/1523-1747.ep12458993.

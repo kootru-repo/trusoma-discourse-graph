@@ -1,4 +1,4 @@
-# Builds the canvas from the vault and publishes it on GitHub Pages.
+# Builds the canvas from the vault and publishes it on GitHub Pages under explore/, with the illustrated page (demo/site) at the root.
 name: Pages
 on:
   push:
@@ -43,12 +43,16 @@ jobs:
       - name: Build the canvas
         run: pnpm --filter @repo/canvas build
 
-      - name: Remove source maps
-        run: rm -f apps/canvas/dist/*.map
+      - name: Assemble the site (the illustrated page at the root, the canvas under explore/)
+        run: |
+          rm -f apps/canvas/dist/*.map
+          mkdir -p _site/explore
+          cp site/index.html site/three.min.js _site/
+          cp -r apps/canvas/dist/. _site/explore/
 
       - uses: actions/upload-pages-artifact@v4
         with:
-          path: demo/apps/canvas/dist
+          path: demo/_site
 
   deploy:
     needs: build

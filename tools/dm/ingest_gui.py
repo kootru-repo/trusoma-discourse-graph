@@ -14,7 +14,10 @@ HEAD = ("nodeTypeId", "nodeInstanceId", "dg_type")
 
 
 def plan(nodes):
-    drawn = json.load(open(D.RELATIONS, encoding="utf-8"))["relations"]
+    drawn, foreign, stale = D.split_relations(json.load(open(D.RELATIONS, encoding="utf-8"))["relations"], nodes)   # imported relations are kept as they are, never authored or dropped
+    drawn = dict(drawn, **stale)   # a relation with an end that is no note at all is listed and dropped, as before
+    if foreign:
+        print("foreign relations left untouched: %d" % len(foreign))
     expected = D.expected_relations(nodes)
     by_id = {D.node_id(k, n): (k, n) for (k, n) in nodes}
     name_of = {v: k for k, v in D.REL_TYPE.items()}
@@ -31,7 +34,7 @@ def plan(nodes):
         owner = None
         for kind, prop, rule_rel, other, outgoing in D.EDGE_RULES:
             me, it = (a, b) if outgoing else (b, a)
-            if rule_rel == rel and me[0] == kind and it[0] == other and "record_file" not in nodes[me]:
+            if rule_rel == rel and me[0] == kind and it[0] == other and ("record_file" not in nodes[me] or (kind, prop) in D.ON_RECORDS):
                 owner = (me, prop, D.link(*it))
                 break
         if owner is None and rel == "supports" and a[0] == "Evidence" and b[0] == "Claim" and nodes[a].get("evidence_kind") == "link":

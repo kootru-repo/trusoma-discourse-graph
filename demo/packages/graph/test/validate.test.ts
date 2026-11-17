@@ -70,7 +70,7 @@ test("a probe-record note is refused for each broken rule", () => {
   );
 });
 
-test("a relation outside the 26 allowed triples is refused", () => {
+test("a relation outside the 33 allowed triples is refused", () => {
   const r = g.relations[0]!;
   const twisted = {
     ...g,

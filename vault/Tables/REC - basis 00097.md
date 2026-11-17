@@ -1,5 +1,5 @@
 ---
-nodeTypeId: "trusoma-record"
+recordTypeId: "trusoma-record"
 nodeInstanceId: "43536de9-9425-735b-b5f9-3787aa7cd8f0"
 dg_type: "Record"
 record_file: "companion/source_audit/source_basis.csv"

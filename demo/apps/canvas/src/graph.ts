@@ -74,6 +74,7 @@ export const COLUMNS = [
   "Source",
   "Evidence",
   "Claim",
+  "Parameter",
   "Question",
   "Hypothesis",
   "Issue",
@@ -255,6 +256,7 @@ const TRACK: Record<string, number> = {
   Source: 0,
   Evidence: 0,
   Claim: 0,
+  Parameter: 0,
   Issue: 0,
   Question: 1,
   Hypothesis: 1,
@@ -612,6 +614,9 @@ export const paths = ({
   return out;
 };
 
+/** A model value: a Claim, or a Parameter (a value with no source). */
+const isValue = (n: GNode): boolean =>
+  n.type === "Claim" || n.type === "Parameter";
 const text = (v: unknown): string =>
   typeof v === "string"
     ? v
@@ -647,8 +652,7 @@ export const display = (
 ): { head: string; sub: string; code: boolean; value: string } => {
   const d = show(n);
   return {
-    head:
-      d.code && n.type === "Claim" && n.props.key ? d.head : sentence(d.head),
+    head: d.code && isValue(n) && n.props.key ? d.head : sentence(d.head),
     sub: d.sub,
     code: d.code,
     value: d.value ?? "",
@@ -684,7 +688,7 @@ const show = (
       sub: [text(p.paper_id), n.name].filter(Boolean).join(" · "),
       code: false,
     };
-  if (n.type === "Claim" && p.key) {
+  if (isValue(n) && p.key) {
     const value = text(p.value);
     // a meaning is a phrase, so it starts with a letter; anything else falls back to the key
     const meaning = /^[A-Za-z]/.test(text(p.meaning)) ? text(p.meaning) : "";
