@@ -22,6 +22,9 @@ REL_TYPE = {"supports": "relation_Fvz-iAdQfeqSsmpKkZBN0", "produces": "rel_5nnUO
 # A configuration value with no source is written to disk as a Parameter note (readable.is_parameter): a setting, not an assertion. Inside the tools it stays a Claim of
 # the same name and id, so no reader of values changes; only the note's type, prefix and title on disk differ.
 PREFIX["Parameter"] = "PAR - "
+OUR_PREFIXES = tuple(sorted(set(PREFIX.values())))   # the title starts the tools give; taken from PREFIX so the two cannot drift
+# properties the tools write and the plugin's own dialog does not: a note without dg_type that carries one is a note of the graph that lost its type line
+TOOL_PROPS = ("dg_name", "record_file", "record", "quote", "paper_id", "key", "module", "order")
 NODE_TYPE["Parameter"] = "node_trusomaParameter00001"
 DISCOURSE = ("Question", "Hypothesis", "Experiment", "Result")   # the probe record (plan section 18, O2): no value, every note quotes its record file verbatim
 # (note kind, property holding wiki-links, relation, kind at the other end, True when the note is the relation's source). Every triple is one of the plugin grammar's
@@ -277,8 +280,12 @@ def plain(path):
         marks = (b"nodeInstanceId: ", b"dg_type: ", b"recordTypeId: ", b"nodeTypeId: ")
         with open(path, "rb") as f:
             raw = f.read()
-        if any(line.startswith(marks) for line in raw.splitlines()):
-            raise UnreadableNote("%s: a note of the graph whose properties cannot be read (%s)" % (path, (str(e).splitlines() or [""])[0][:120]))
+        searched = [raw]
+        if raw[:2] in (b"\xff\xfe", b"\xfe\xff") or b"\x00" in raw:   # UTF-16, which Windows PowerShell 5.1 writes with > and Out-File (review of e7f9def8)
+            searched += [raw.decode(enc, "replace").encode("utf-8") for enc in ("utf-16", "utf-16-le", "utf-16-be")]
+        if any(line.lstrip(b"\xef\xbb\xbf").startswith(marks) for s in searched for line in s.splitlines()):
+            raise UnreadableNote("%s: a note with a line of the graph (dg_type, nodeTypeId, nodeInstanceId or recordTypeId) whose properties cannot be read (%s)"
+                                 % (path, str(e).rsplit(": ", 1)[-1][:120]))
         return None
     return props if ("dg_type" in props or "nodeTypeId" in props or "recordTypeId" in props) else None
 
@@ -339,14 +346,31 @@ def read_all():
         return _CACHE["all"]
     out, stems, by_stem, people, plains = {}, {}, {}, [], []
     _CACHE["reading"] = True
+    try:
+        _read_into(out, stems, by_stem, people, plains)
+    finally:
+        _CACHE.pop("reading", None)
+    _CACHE.update(all=out, stem=stems, by_stem=by_stem, people=people, plains=plains)
+    return out
+
+
+def _read_into(out, stems, by_stem, people, plains):
     for p in sorted(NODES.glob("*.md")) + sorted(TABLES.glob("*.md")):
         props = plain(p)
         if props is None:   # an ordinary note someone keeps in the folder: not a node, never read, never rewritten
+            # the last guard, whatever the cause (an emptied file, a second --- line, anything later): a file that reads as plain but is named the way the
+            # tools name a node or a record is not skipped, because skipping it drops its row from the generated files with the check passing
+            if p.name.startswith(OUR_PREFIXES):
+                raise UnreadableNote("%s: named like a note of the graph (it begins with %r) but it has no readable properties of one; mend the note or rename it"
+                                     % (p, next(x for x in OUR_PREFIXES if p.name.startswith(x))))
             plains.append(p)
             continue
         if props.get("importedFromRid"):   # a note imported from another space by the plugin (normally under vault/import/, which is not read): never ours, never a value
             continue
         if "dg_type" not in props:   # a note a person created in Obsidian with the plugin: theirs, never a value, never rewritten (validate_vault.py checks its type is known)
+            lost = [k for k in TOOL_PROPS if k in props]
+            if lost:   # the plugin's dialog writes none of these: this is a note of the graph whose dg_type line was removed, and skipping it drops its row
+                raise UnreadableNote("%s: a note of the graph without its dg_type property (it carries %s); put the dg_type line back" % (p, ", ".join(lost)))
             people.append(p)
             continue
         kind = "Claim" if props["dg_type"] == "Parameter" else props["dg_type"]
@@ -355,9 +379,22 @@ def read_all():
         out[(kind, name)] = props
         stems[(kind, name)] = p.stem
         by_stem[p.stem] = (kind, name)
-    _CACHE.pop("reading", None)
-    _CACHE.update(all=out, stem=stems, by_stem=by_stem, people=people, plains=plains)
-    return out
+    # a note of the graph moved out of the top level of the two folders (a subfolder, the vault root, another folder: ordinary use of Obsidian) is not
+    # read above, so its row would drop from the generated files with every check passing (review of 13698d7d): stop and say where it is
+    for q in sorted(VAULT.rglob("*.md")):
+        part = q.relative_to(VAULT).parts
+        if q.parent in (NODES, TABLES) or part[0] in (".obsidian", ".trash"):   # vault/Meta and vault/import are looked at too (review of b68d4578)
+            continue
+        try:
+            props = plain(q)
+        except UnreadableNote:
+            if part[0] == "import":   # a note imported from another space is never ours and must never stop the tools
+                continue
+            raise
+        ours = (props is not None and not props.get("importedFromRid") and ("dg_type" in props or any(k in props for k in TOOL_PROPS))) or \
+               (props is None and part[0] in (NODES.name, TABLES.name) and q.name.startswith(OUR_PREFIXES))
+        if ours:
+            raise UnreadableNote("%s: a note of the graph outside the top level of vault/%s and vault/%s, where the tools do not read it; move it back" % (q, NODES.name, TABLES.name))
 
 
 def plain_notes():

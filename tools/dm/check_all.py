@@ -1,5 +1,6 @@
 """One process, one parse of the vault: regenerate-and-compare (build_from_vault check) and validate (validate_vault). the schema check (schema_tool) and the repeated passages index (passages). Exit 1 if any fails. Run by build_sourcing_db.py --check."""
 import sys
+sys.stdout.reconfigure(errors="backslashreplace")   # a note name outside the console code page must not stop a captured check (review of e7f9def8)
 import build_from_vault, validate_vault, schema_tool, passages
 sys.argv = [sys.argv[0], "check"]
 a = build_from_vault.main()
