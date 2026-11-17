@@ -44,6 +44,8 @@ pnpm run build      # exports public/graph.json from the vault, type-checks, bui
 pnpm run preview    # http://localhost:4173 (esbuild serve)
 ```
 
+The published site puts the illustrated page (`site/index.html`, one static file drawn with three.js) at its root and this canvas under `explore/`. `packages/graph/test/site.test.ts` compares that page's note and relation counts with the vault.
+
 Checked in a browser on 2026-11-15: the start view draws 4 cards and 4 relations for the value NMDA_SHARE_E16 (its evidence, the hypothesis it informs and the result that tested it); two hops draws 7 cards and 9 relations, back to the source (`docs/canvas-nmda-share.png`). The saved file loads into a tldraw store put together as the plugin does (its shape, binding and migration definitions restated here): 8 shapes and 8 bindings for the start view. Opened in Obsidian 1.15.1 with the plugin (Discourse Graph 1.8.0) on 2026-11-15: the plugin's canvas view draws the 4 cards and 4 labelled relations with no console error, and each card's block reference resolves to its note (`docs/obsidian-canvas.png`, file `docs/Canvas - NMDA share E16.md`).
 
 ## Database rows (`packages/graph/src/dgExport.ts`, `packages/graph/scripts/load-hosted.ts`)

@@ -270,7 +270,15 @@ def plain(path):
     """the properties of a note, or None for a plain note of a person (no frontmatter, or neither dg_type nor nodeTypeId): such a note is not part of the graph and is never read"""
     try:
         props = read_note(path)
-    except ValueError:
+    except ValueError as e:
+        # a person's plain note carries none of our lines. A note that carries one and cannot be read (a byte-order mark before the first ---, a byte
+        # that is not UTF-8, a closing line that is missing or has a trailing space) is a note of the graph: skipping it drops its row from the generated
+        # files with the check passing (review of f5f30000), so it stops the check and the write instead
+        marks = (b"nodeInstanceId: ", b"dg_type: ", b"recordTypeId: ", b"nodeTypeId: ")
+        with open(path, "rb") as f:
+            raw = f.read()
+        if any(line.startswith(marks) for line in raw.splitlines()):
+            raise UnreadableNote("%s: a note of the graph whose properties cannot be read (%s)" % (path, (str(e).splitlines() or [""])[0][:120]))
         return None
     return props if ("dg_type" in props or "nodeTypeId" in props or "recordTypeId" in props) else None
 

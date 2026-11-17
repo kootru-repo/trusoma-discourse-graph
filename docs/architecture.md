@@ -47,10 +47,13 @@ vault/                 the notes, the relation file, the grammar
 tools/dm/              the vault's authoring and checking tools (Python)
 demo/                  a pnpm workspace run by turbo
   apps/canvas          tldraw canvas, built with esbuild and Tailwind
+  site                 the site's first page: one static file drawn with three.js, outside the workspace
   apps/mcp             MCP server, the only package with the MCP SDK
   packages/graph       reading, validating, writing, exporting, checking
   packages/eslint-config   the Discourse Graphs eslint preset, unchanged
 ```
+
+The published site has the illustrated page (`demo/site`) at its root and the canvas under `explore/`. A link to the root with `#ask=<preset>` is forwarded to the canvas. A test compares the page's note and relation counts with the vault.
 
 ## What the compatibility check covers
 
