@@ -89,6 +89,8 @@ def lines_for(kind, name, p):
         if p.get("state"):
             out.append(sentence("State: " + str(p["state"])))
         out.append("Evidence: %s." % links(p["evidence"]) if p.get("evidence") else "No evidence note is attached.")
+        if p.get("informs"):
+            out.append("Feeds: %s. Basis: %s" % (links(p["informs"]), quoted(p.get("informs_basis") or "")))
     elif kind == "Evidence" and p.get("code") == "gweb":   # a growth web value with its quote
         out.append(sentence("%s = %s" % (p.get("label"), short(d.get("value"), 400))))
         if d.get("unit"):
@@ -123,6 +125,8 @@ def lines_for(kind, name, p):
         out.append(sentence(d.get("statement") or name))
         out.append("Growth web test `%s` on `%s`." % (d.get("id"), d.get("node")))
     elif kind in ("Question", "Hypothesis", "Experiment", "Result"):
+        if p.get("asks"):
+            out.append(sentence(str(p["asks"])))
         if p.get("quote"):
             out.append("From the record: %s" % quoted(p["quote"]))
         if p.get("reading"):
@@ -131,6 +135,10 @@ def lines_for(kind, name, p):
                            ("Consistent with", "consistent_with"), ("Rests on", "informed_by"), ("Open issues", "issues")):
             if p.get(key):
                 out.append("%s: %s." % (label, links(p[key])))
+        if p.get("lead"):
+            out.append(sentence("Next lead: " + str(p["lead"])))
+        if p.get("values"):
+            out.append("Values that wait on this question (a sourced one answers its part): %s." % links(p["values"]))
         if p.get("record"):
             out.append("Record file: `%s`%s." % (p["record"], ", %s" % p["date"] if p.get("date") else ""))
     elif kind == "Issue":
@@ -348,6 +356,8 @@ def title(kind, name, p, sources, ev=None):
         return fit(PREFIXES[kind], text, "- from %s (%s)" % (cite(p.get("paper_id"), sources), name))
     if kind == "Hypothesis" and p.get("code") == "gweb":
         return fit(PREFIXES[kind], d.get("statement") or "", "(%s)" % name)
+    if kind == "Question" and p.get("asks"):   # an open-value question: the question itself, its stable name in brackets
+        return fit(PREFIXES[kind], p["asks"], "(%s)" % name)
     if kind == "Question" and p.get("quote"):
         return fit(PREFIXES[kind], p["quote"], "")
     if kind == "Issue" and d.get("item"):

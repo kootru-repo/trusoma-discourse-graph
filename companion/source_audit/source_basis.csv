@@ -354,3 +354,4 @@ key,phase1_substrate.TT_TAUM_V1_MS,animal_postnatal,,,"measured value, declared 
 key,phase1_substrate.TT_TAUM_V2_MS,animal_postnatal,,,"measured value, declared transfer to the fetal relay learner (J-RL8, J-RL14)",rat,neonatal
 key,phase1_substrate.TT_TAUH_V1_MS,animal_postnatal,,,"measured value, declared transfer to the fetal relay learner (J-RL8, J-RL14)",rat,neonatal
 key,phase1_substrate.TT_TAUH_V2_MS,animal_postnatal,,,"measured value, declared transfer to the fetal relay learner (J-RL8, J-RL14)",rat,neonatal
+species_age,"human fetus, crown-rump length 60-74 mm (Garn 1975, n = 9, histological hand sections) and 60-75 mm (Malas 2006 rows labelled 9-10 weeks, caliper, n = 4 and 3)",human_fetal,12,13.5,"Garn 1975 and Malas 2006, CRL-matched (CRL 60-75 mm = about 12.4-13.6 weeks standard)",human,prenatal

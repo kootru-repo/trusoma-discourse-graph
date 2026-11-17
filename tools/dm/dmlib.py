@@ -9,6 +9,47 @@ VAULT = ROOT / "vault"
 NODES = VAULT / "DiscourseGraph"   # discourse nodes: Claim, Evidence, Source, Issue
 TABLES = VAULT / "Tables"   # Record notes: one row of an authored table each, no discourse meaning (kept out of the plugin's node folder and of Obsidian's graph and search)
 RELATIONS = VAULT / "relations.json"
+# Bookkeeping tables that hold no body or brain value (the source classifier rules, the kind and role of each unsourced value, the comparator's reference
+# list) are one data file each, one JSON row per line, instead of one note per row (2026-11-17). Inside the tools a row is the same Record as before, with
+# the same name, id and properties; only where it is stored differs. Every table that holds a body or brain value stays as notes in vault/Tables.
+TABLE_DIR = VAULT / "Data" / "tables"
+TABLE_FILES = ("basis", "unsrc", "jepa")
+
+
+def table_path(code):
+    return TABLE_DIR / (code + ".jsonl")
+
+
+def table_rows(code):
+    """[(name, props)] of one file table, in file order; props as a Record note of that row would read"""
+    path = table_path(code)
+    if not path.exists():
+        return []
+    out = []
+    for i, line in enumerate(path.read_text(encoding="utf-8").split("\n"), 1):
+        if not line.strip():
+            continue
+        try:
+            row = json.loads(line)
+            name = row.pop("name")
+            assert isinstance(name, str) and isinstance(row.get("order"), int) and "data" in row and row.get("code") == code and row.get("record_file")
+        except Exception:
+            raise UnreadableNote("%s line %d: not a row of the %s table (one JSON object per line with name, record_file, code, order, data); mend the line" % (path, i, code))
+        props = {"recordTypeId": NODE_TYPE["Record"], "nodeInstanceId": node_id("Record", name), "dg_type": "Record"}
+        props.update(row)
+        out.append((name, props))
+    return out
+
+
+def write_table_row(code, name, props):
+    rows = {n: p for n, p in table_rows(code)}
+    rows[name] = dict(props)
+    TABLE_DIR.mkdir(parents=True, exist_ok=True)
+    lines = []
+    for n, p in sorted(rows.items(), key=lambda kv: (kv[1]["order"], kv[0])):
+        body = {k: v for k, v in p.items() if k not in ("recordTypeId", "nodeInstanceId", "dg_type", "dg_name")}
+        lines.append(json.dumps(dict(name=n, **body), ensure_ascii=False))
+    table_path(code).write_text("\n".join(lines) + "\n", encoding="utf-8", newline="\n")
 CONFIG = ROOT / "tools/trusoma/brain/global_config.json"
 # node and relation type ids of the lab vault's schema (DiscourseGraphs/obsidian-lab-example), adopted as our grammar; replaced by our own schema export in phase 0 when the plugin is installed
 NODE_TYPE = {"Claim": "node_LwROzkVH_Zck7ZxDgN91E", "Evidence": "node_xQmEzWQFHdHy2swhrugrF", "Source": "node_-PIYSmr5icSFMACYAUobE", "Issue": "node_2unblKFUVJkOdOnT8MstZ",
@@ -49,7 +90,7 @@ EDGE_RULES = (
 )
 ON_RECORDS = {("Evidence", "opposes"), ("Claim", "opposes")}   # the rules that also hold on a record note (a growth web value is a record note); the other rules are for authored notes only
 # triples of ours that are not in the lab schema; each is written into vault/Meta/grammar.json and the plugin settings by tools/dm/schema_tool.py
-OWN_TRIPLES = (("Result", "informs", "Question"), ("Result", "opposes", "Hypothesis"), ("Claim", "opposes", "Claim"), ("Evidence", "informs", "Parameter"), ("Source", "informs", "Claim"), ("Issue", "informs", "Claim"), ("Issue", "informs", "Parameter"))   # the last: a passage that bears on a setting which still has no accepted source
+OWN_TRIPLES = (("Result", "informs", "Question"), ("Result", "opposes", "Hypothesis"), ("Claim", "opposes", "Claim"), ("Evidence", "informs", "Parameter"), ("Source", "informs", "Claim"), ("Issue", "informs", "Claim"), ("Issue", "informs", "Parameter"), ("Parameter", "informs", "Question"), ("Claim", "informs", "Parameter"), ("Parameter", "informs", "Claim"), ("Parameter", "informs", "Parameter"))   # the last three: a value that feeds another (informs + informs_basis on the value note), whatever the sourcing state of either; before them: a setting whose stand-in value waits on an open question; the one before: a passage that bears on a setting which still has no accepted source
 KEY_TOKEN = re.compile(r"[A-Za-z_][A-Za-z0-9_]*(?:[.][A-Za-z0-9_~]+)+")   # the shape of a configuration key inside free text
 GROUP_REF = re.compile(r"([A-Za-z_][A-Za-z0-9_]*(?:[.][A-Za-z0-9_~]+)+) [(]([0-9]+) values[)]")   # a group of values named in an audit item's ref
 WORD = re.compile(r"[A-Za-z_][A-Za-z0-9_]*")
@@ -108,6 +149,10 @@ def link(kind, name):
 
 
 def write_note_kind(kind, name, props):
+    if kind == "Record" and props.get("code") in TABLE_FILES:   # a row of a file table
+        _CACHE.clear()
+        write_table_row(props["code"], name, props)
+        return
     old = title(kind, name)
     _CACHE.clear()
     dk = disk_kind(kind, props)
@@ -202,7 +247,11 @@ def retitle():
             inner = text[a + 2:b]
             out.append(text[i:a] + "[[" + moves.get(inner, inner) + "]]")
             i = b + 2
+    for code in TABLE_FILES:   # a row of a file table is not a note file; its rows hold no links, so a retitle has nothing to rewrite there
+        assert not (moves and table_path(code).exists() and "[[" in table_path(code).read_text(encoding="utf-8")), "a row of the %s table holds a link: a retitle cannot rewrite it" % code
     for (kind, name), stem in have.items():
+        if kind == "Record" and nodes[(kind, name)].get("code") in TABLE_FILES:
+            continue
         folder = TABLES if kind == "Record" else NODES
         path = folder / (stem + ".md")
         text = path.read_text(encoding="utf-8")
@@ -379,6 +428,14 @@ def _read_into(out, stems, by_stem, people, plains):
         out[(kind, name)] = props
         stems[(kind, name)] = p.stem
         by_stem[p.stem] = (kind, name)
+    for code in TABLE_FILES:   # the file tables: each row is a Record, as if it were a note
+        if not table_path(code).exists():   # a missing file would drop a whole generated table: stop and say so
+            raise UnreadableNote("%s: the %s table file is missing; restore it (git checkout)" % (table_path(code), code))
+        for name, props in table_rows(code):
+            assert ("Record", name) not in out, "two rows hold Record %s" % name
+            out[("Record", name)] = props
+            stems[("Record", name)] = PREFIX["Record"] + name
+            by_stem[PREFIX["Record"] + name] = ("Record", name)
     # a note of the graph moved out of the top level of the two folders (a subfolder, the vault root, another folder: ordinary use of Obsidian) is not
     # read above, so its row would drop from the generated files with every check passing (review of 13698d7d): stop and say where it is
     for q in sorted(VAULT.rglob("*.md")):
@@ -559,6 +616,21 @@ def gweb_relations(nodes):
     return out, problems
 
 
+def is_sourced(p):
+    return str(p.get("status") or "").startswith("source-found")
+
+
+def open_questions(nodes):
+    """the questions that still hold values up: {question name: (sourced value names, unsourced value names)}, for every Question that lists values"""
+    out = {}
+    for (kind, name), p in nodes.items():
+        if kind == "Question" and "record_file" not in p and p.get("values"):
+            vals = [target_of(l, "Claim") for l in links_of(p["values"])]
+            vals = [v for v in vals if ("Claim", v) in nodes]
+            out[name] = ([v for v in vals if is_sourced(nodes[("Claim", v)])], [v for v in vals if not is_sourced(nodes[("Claim", v)])])
+    return out
+
+
 def expected_relations(nodes):
     """the relations implied by the notes: Evidence wiki-links (Source produces Evidence, Evidence supports Claim), the EDGE_RULES properties, the growth web's own data"""
     out = {}
@@ -619,6 +691,14 @@ def expected_relations(nodes):
                 pairs.append((rel, me_c, canon("Claim", cl), node_id("Evidence", name), node_id("Claim", cl)))
             for k, a, b, ai, bi in pairs:
                 rid, rec = relation_record(k, a, b, ai, bi)
+                out[rid] = rec
+        if kind == "Question" and "record_file" not in p:   # the values that wait on this question: a sourced one addresses it, a stand-in only informs it
+            for l in links_of(p.get("values")):
+                cl = target_of(l, "Claim")
+                if ("Claim", cl) not in nodes:
+                    continue   # reported by the check as an unresolved link
+                rel = "addresses" if is_sourced(nodes[("Claim", cl)]) else "informs"
+                rid, rec = relation_record(rel, canon("Claim", cl), canon(kind, name), node_id("Claim", cl), node_id(kind, name))
                 out[rid] = rec
         for rule_kind, prop, rel, other, outgoing in EDGE_RULES:
             if kind != rule_kind or not p.get(prop) or ("record_file" in p and (kind, prop) not in ON_RECORDS):

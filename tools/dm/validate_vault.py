@@ -73,6 +73,21 @@ def discourse_checks(nodes, errors):
             both = set(D.links_of(p.get("opposes"))) & (set(D.links_of(p.get("claim"))) | set(D.links_of(p.get("applies_to"))) | own)
             if both:
                 errors.append("Evidence %s: both supports and opposes %s" % (name, ", ".join(sorted(both))))
+    for (kind, name), p in nodes.items():   # a value that feeds another: never from memory, the basis is a line of the brain code or a passage of a vault note, word for word
+        if kind == "Claim" and "record_file" not in p and (p.get("informs") or "informs_basis" in p):
+            basis = str(p.get("informs_basis") or "").strip()
+            if not p.get("informs") or not basis:
+                errors.append("Claim %s: informs needs an informs_basis, and the reverse" % name)
+                continue
+            for l in D.links_of(p["informs"]):
+                t = D.target_of(l, "Claim")
+                if t is None or ("Claim", t) not in nodes or "record_file" in nodes[("Claim", t)] or t == name:
+                    errors.append("Claim %s: informs link %s does not resolve to another configuration value" % (name, l))
+            if "code" not in _FILES:
+                _FILES["code"] = [f.read_text(encoding="utf-8", errors="replace") for f in sorted((D.ROOT / "tools" / "trusoma" / "brain").glob("*.py"))]
+            in_vault = any(basis in str(v) for q in nodes.values() for v in q.values() if isinstance(v, str))
+            if not in_vault and not any(basis in t for t in _FILES["code"]):
+                errors.append("Claim %s: its informs_basis is not found verbatim in the brain code or in a vault note" % name)
     for (kind, name), p in nodes.items():
         if "record_file" in p:
             continue
@@ -87,6 +102,17 @@ def discourse_checks(nodes, errors):
                 errors.append("%s %s: record file %r does not exist" % (kind, name, rec))
             elif not p.get("quote") or p["quote"] not in _FILES[rec]:
                 errors.append("%s %s: its quote is not found verbatim in %s" % (kind, name, rec))
+            if kind == "Question" and ("values" in p or "asks" in p or "lead" in p):   # an open-value question: what is asked, and configuration values only
+                if not p.get("asks") or not p.get("values"):
+                    errors.append("Question %s: a question that lists values needs both asks and values" % name)
+                seen = set()
+                for l in D.links_of(p.get("values")):
+                    t = D.target_of(l, "Claim")
+                    if t is None or ("Claim", t) not in nodes or "record_file" in nodes[("Claim", t)] or "value" not in nodes[("Claim", t)] and "value_file" not in nodes[("Claim", t)]:
+                        errors.append("Question %s: values link %s does not resolve to a configuration value" % (name, l))
+                    elif t in seen:
+                        errors.append("Question %s: value %s is listed twice" % (name, t))
+                    seen.add(t)
             if kind == "Result" and p.get("reading") not in READINGS:
                 errors.append("Result %s: reading %r is not one of %s" % (name, p.get("reading"), READINGS))
             if kind == "Result" and p.get("against"):

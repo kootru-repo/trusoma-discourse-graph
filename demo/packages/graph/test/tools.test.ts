@@ -78,12 +78,12 @@ test("trace_value joins source, quote, hypothesis, run and reading into one path
 });
 
 test("gaps are reported, not hidden", () => {
-  // values (records apart) that no note is related to: 1,151 Parameter notes (settings with no source; 8 more have a passage or an audit item that informs them) and no Claim note
+  // values (records apart) that no note is related to: 1,117 Parameter notes (settings with no source; 42 more have a passage, an audit item or an open question related to them) and no Claim note
   const gaps = T.listGaps(g, { kind: "claims_without_evidence", limit: 2000 });
-  assert.equal(gaps.total, 1151);
+  assert.equal(gaps.total, 1117);
   const byType = (type: string): number =>
     gaps.results.filter((n) => n.nodeType === type).length;
-  assert.equal(byType("Parameter"), 1151);
+  assert.equal(byType("Parameter"), 1117);
   assert.equal(byType("Claim"), 0);
   // a Parameter is a value like any other: it is traced under its real type, with nothing behind it
   const setting = gaps.results.find((n) => n.nodeType === "Parameter")!;

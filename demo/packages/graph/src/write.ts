@@ -130,6 +130,11 @@ const pyStr = (v: Json): string => {
 /** Python's str.split(): the words of a text. */
 const pyWords = (s: string): string[] => s.split(PY_SPACE).filter(Boolean);
 const quoted = (q: Json): string => `"${pyWords(pyStr(q)).join(" ")}"`;
+/** A text as one sentence: its words joined by single spaces, closed with a full stop unless it already ends a sentence (tools/dm/readable.py, sentence). */
+const sentence = (s: string): string => {
+  const one = pyWords(s).join(" ");
+  return /[.?!]$/.test(one) ? one : `${one}.`;
+};
 const linksText = (v: Json): string =>
   Array.isArray(v) ? v.map(pyStr).join(", ") : pyStr(v);
 const BODY_LINKS: readonly (readonly [string, string])[] = [
@@ -151,6 +156,7 @@ export const noteBody = (kind: string, props: Record<string, Json>): string => {
   if (!(WRITABLE as readonly string[]).includes(kind))
     throw new Error(`the body of a ${kind} note is not derived here`);
   const lines: string[] = [];
+  if (truthy(props.asks)) lines.push(sentence(pyStr(props.asks)));
   if (truthy(props.quote))
     lines.push(`From the record: ${quoted(props.quote)}`);
   if (truthy(props.reading)) {
@@ -163,6 +169,12 @@ export const noteBody = (kind: string, props: Record<string, Json>): string => {
     const value = props[key];
     if (truthy(value)) lines.push(`${label}: ${linksText(value)}.`);
   }
+  if (truthy(props.lead))
+    lines.push(sentence(`Next lead: ${pyStr(props.lead)}`));
+  if (truthy(props.values))
+    lines.push(
+      `Values that wait on this question (a sourced one answers its part): ${linksText(props.values)}.`,
+    );
   if (truthy(props.record))
     lines.push(
       `Record file: \`${pyStr(props.record)}\`${truthy(props.date) ? `, ${pyStr(props.date)}` : ""}.`,
@@ -209,21 +221,37 @@ const clean = (s: string): string =>
     .join(" ")
     .replace(/^[ .]+|[ .]+$/g, "");
 /** prefix + text, the text cut at a word to fit TITLE_MAX characters (Python counts code points, so this does too). */
-const fit = (prefix: string, text: string): string => {
-  const room = TITLE_MAX - [...prefix].length;
+const fit = ({
+  prefix,
+  text,
+  suffix = "",
+}: {
+  prefix: string;
+  text: string;
+  suffix?: string;
+}): string => {
+  const tail = clean(suffix) ? ` ${clean(suffix)}` : "";
+  const room = TITLE_MAX - [...prefix].length - [...tail].length;
   let t = [...clean(text)];
   if (t.length > room) {
     const cut = t.slice(0, Math.max(room - 2, 1)).join("");
     const at = cut.lastIndexOf(" ");
     t = [...((at < 0 ? cut : cut.slice(0, at)).replace(/[ ,;.]+$/, "") + " …")];
   }
-  return (prefix + t.join("")).trim();
+  return (prefix + t.join("") + tail).trim();
 };
 /** The title (file name without .md) of a probe-record note: a Question is titled with its quote, the other kinds with their prefix and name. */
 export const noteTitle = ({ g, kind, name, props }: NoteArgs): string =>
-  kind === "Question" && truthy(props.quote)
-    ? fit(prefixOf(g, kind), pyStr(props.quote))
-    : prefixOf(g, kind) + name;
+  kind === "Question" && truthy(props.asks)
+    ? // an open-value question: the question itself, its stable name in brackets
+      fit({
+        prefix: prefixOf(g, kind),
+        text: pyStr(props.asks),
+        suffix: `(${name})`,
+      })
+    : kind === "Question" && truthy(props.quote)
+      ? fit({ prefix: prefixOf(g, kind), text: pyStr(props.quote) })
+      : prefixOf(g, kind) + name;
 
 /** The note file's text, as the vault's tool writes it: the properties (dg_name after dg_type when the title is not the prefix and name), the derived body, then the reader's own notes when the note has any. */
 export const noteText = ({

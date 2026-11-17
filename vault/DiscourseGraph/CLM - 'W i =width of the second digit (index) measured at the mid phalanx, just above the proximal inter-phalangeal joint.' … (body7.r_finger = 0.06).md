@@ -14,6 +14,8 @@ db: "body7.r_finger"
 state: "current, changes the 12.5 run"
 status: "source-found-fetal"
 evidence: ["[[EVD - 'W i =width of the second digit (index) measured at the mid phalanx, just above the proximal … - Honore 2016 (body7.r_finger 1)]]"]
+informs: ["[[CLM - our reading, mean MCP spacing 0.222 of breadth, breadth 0.454 of length： about 0.10, human adult hand, CT, n = 15 (body7.finger_gap = 0.11)]]"]
+informs_basis: "derived gap = (0.454 - 2 x r_finger 0.06) / 3"
 ---
 
 `body7.r_finger` = 0.06.
@@ -23,3 +25,5 @@ Status: source-found-fetal (sourced from fetal data).
 State: current, changes the 12.5 run.
 
 Evidence: [[EVD - 'W i =width of the second digit (index) measured at the mid phalanx, just above the proximal … - Honore 2016 (body7.r_finger 1)]].
+
+Feeds: [[CLM - our reading, mean MCP spacing 0.222 of breadth, breadth 0.454 of length： about 0.10, human adult hand, CT, n = 15 (body7.finger_gap = 0.11)]]. Basis: "derived gap = (0.454 - 2 x r_finger 0.06) / 3"

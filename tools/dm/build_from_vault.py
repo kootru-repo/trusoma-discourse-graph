@@ -5,6 +5,7 @@
 usage: python build_from_vault.py [check|write]"""
 import csv, io, json, sys
 import dmlib as D
+import worklist
 import records as R
 
 NL = chr(10)
@@ -106,6 +107,7 @@ def render(modules, values, link_rows, registers, texts, parts):
         out[D.ROOT / path] = text
     rel = {"version": 1, "lastModified": D.STAMP_MS, "relations": D.merged_relations(D.read_all(), D.existing_relations())}   # foreign (imported) relations and the plugin's publish fields are carried through
     out[D.RELATIONS] = json.dumps(rel, indent=1, sort_keys=True) + NL
+    out[worklist.PATH] = worklist.text(D.read_all())
     out[APPENDIX] = with_block(APPENDIX.read_bytes().decode("utf-8") if APPENDIX.exists() else "", appendix_block(D.read_all()))
     return out
 

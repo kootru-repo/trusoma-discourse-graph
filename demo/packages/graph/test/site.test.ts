@@ -38,7 +38,7 @@ test("the page's relation count per pair of types is the vault's", () => {
   const drawn = [
     ...page.matchAll(/\["(\w+)", "([\w ]+)", "(\w+)", (\d+)\]/g),
   ].map((m) => ({ a: m[1]!, label: m[2]!, b: m[3]!, n: Number(m[4]) }));
-  assert.equal(drawn.length, 21);
+  assert.equal(drawn.length, 25);
   for (const d of drawn)
     assert.equal(
       relations.filter(

@@ -15,7 +15,7 @@ value_in_source: "middle phalanx 0.100-0.151 of hand length, mean 0.131"
 species_age: "human adult hand, CT, n = 15"
 transfer: "adult ratio applied to the fetal hand"
 source: "[[@Cao Y, Yang X, Lim Z, Jung H, Park D, You H. A Linkage Representation of the Human Hand Skeletal System Using CT Hand Scan Images (p-cao2021)]]"
-claim: "[[CLM - body7.phalanx.n1 = 0.131, only an adult source exists, which this project does not accept, so not a sourced value]]"
+claim: "[[CLM - our reading, middle phalanx 0.100-0.151 of hand length, mean 0.131, human adult hand, CT, n = 15 (body7.phalanx.n1 = 0.12)]]"
 ---
 
 Where in the source: Table 2.
@@ -30,4 +30,4 @@ Status: adult-sourced-unusable (only an adult source exists, which this project 
 
 Source: [[@Cao Y, Yang X, Lim Z, Jung H, Park D, You H. A Linkage Representation of the Human Hand Skeletal System Using CT Hand Scan Images (p-cao2021)]].
 
-For: [[CLM - body7.phalanx.n1 = 0.131, only an adult source exists, which this project does not accept, so not a sourced value]].
+For: [[CLM - our reading, middle phalanx 0.100-0.151 of hand length, mean 0.131, human adult hand, CT, n = 15 (body7.phalanx.n1 = 0.12)]].

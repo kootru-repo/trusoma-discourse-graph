@@ -1,6 +1,6 @@
 # TruSoma discourse graph
 
-TruSoma is a simulation of the human fetal body and its developing brain at 10 to 17 weeks of gestation, built from published biology. Every number in the model is traced to a source or recorded as a choice. This repository holds that record as a [Discourse Graphs](https://discoursegraphs.com) vault of 4,410 notes and 3,200 relations, with the software that lets people and AI assistants read and write it.
+TruSoma is a simulation of the human fetal body and its developing brain at 10 to 17 weeks of gestation, built from published biology. Every number in the model is traced to a source or recorded as a choice. This repository holds that record as a [Discourse Graphs](https://discoursegraphs.com) vault of 4,457 notes and 3,421 relations, with the software that lets people and AI assistants read and write it.
 
 **[See the six uses, illustrated](https://kootru-repo.github.io/trusoma-discourse-graph/)** · **[Open the live canvas](https://kootru-repo.github.io/trusoma-discourse-graph/explore/)** · [Project page](https://labs.kootru.com) · [Architecture](docs/architecture.md) · [Developer guide](demo/README.md)
 
@@ -14,10 +14,10 @@ The Discourse Graphs documentation for Obsidian has four use-case guides. One co
 
 | Use | In this vault | Try it |
 | --- | --- | --- |
-| Synthesize the literature | 398 sources, 1,128 evidence notes and 884 `supports` relations. 714 model values are backed by a quoted source | [Sourced values](https://kootru-repo.github.io/trusoma-discourse-graph/explore/#ask=sourced-values) |
-| Keep a knowledge base | The vault is the only authored source. 25 tables, configuration files and databases are generated from it and compared at every commit | [`vault/`](vault) |
-| Track open work | The project's audit log is kept as 268 issue notes in the graph. 16 of them link to the 43 values they are about | [Hypotheses that await an experiment](https://kootru-repo.github.io/trusoma-discourse-graph/explore/#ask=untested-hypotheses) |
-| Track experiments | 12 questions, 39 hypotheses, 12 experiments and 17 results. Each result quotes its record file and is entered whatever its reading | [Results with a positive reading](https://kootru-repo.github.io/trusoma-discourse-graph/explore/#ask=positive-results) |
+| Synthesize the literature | 399 sources, 1,130 evidence notes and 888 `supports` relations. 716 model values are backed by a quoted source | [Sourced values](https://kootru-repo.github.io/trusoma-discourse-graph/explore/#ask=sourced-values) |
+| Keep a knowledge base | The vault is the only authored source. 26 tables, configuration files, worklists and databases are generated from it and compared at every commit | [`vault/`](vault) |
+| Track open work | The project's audit log is kept as 269 issue notes in the graph. 16 of them link to the 43 values they are about. 19 open questions list the 72 values that still wait for a source, and the sourcing worklist is generated from them | [Hypotheses that await an experiment](https://kootru-repo.github.io/trusoma-discourse-graph/explore/#ask=untested-hypotheses) |
+| Track experiments | 31 questions, 39 hypotheses, 16 experiments and 37 results. Each result quotes its record file and is entered whatever its reading | [Results with a positive reading](https://kootru-repo.github.io/trusoma-discourse-graph/explore/#ask=positive-results) |
 | Share the work | A live canvas of any note's neighbourhood, and canvas files that open in Obsidian. Publish and import between two vaults were run on a local copy of the sync service | [Live canvas](https://kootru-repo.github.io/trusoma-discourse-graph/explore/) |
 | Read and write through an assistant | An MCP server with 11 tools: 10 read or check, and 1 writes question, hypothesis, experiment and result notes. A note that misquotes its record is refused | [`demo/apps/mcp`](demo/apps/mcp) |
 
@@ -31,7 +31,7 @@ The project's rule needs a record that shows where each number came from. Each v
 
 | Part | What it does | Where |
 | --- | --- | --- |
-| Vault | 4,410 discourse notes and 3,200 relations: sources, verbatim quotes, claims, questions, hypotheses, experiments, results and issues | [`vault/`](vault) |
+| Vault | 4,457 discourse notes and 3,421 relations: sources, verbatim quotes, claims, questions, hypotheses, experiments, results and issues | [`vault/`](vault) |
 | Canvas | Draws any note's neighbourhood as cards and labelled relations | [`demo/apps/canvas`](demo/apps/canvas) |
 | Ask | Runs questions over the graph as data ("which hypotheses have no experiment linked?"), with six presets, a question builder and a link per question, for example [`#ask=untested-hypotheses`](https://kootru-repo.github.io/trusoma-discourse-graph/explore/#ask=untested-hypotheses) | [`demo/packages/graph/src/query.ts`](demo/packages/graph/src/query.ts) |
 | MCP server | An assistant searches the graph, traces a value to its sources, lists gaps, and writes notes that a validator can refuse | [`demo/apps/mcp`](demo/apps/mcp) |
@@ -105,7 +105,7 @@ python tools/dm/check_all.py                    # validate the vault and compare
 python tools/dm/test_single_source.py tamper    # change one byte of each generated file: every change is detected
 ```
 
-714 model values are linked to a verbatim quote from a paper. The others carry their status (a recorded model choice, a design value, or next in line for a source), and the Ask tab and the MCP server's `list_gaps` tool list them. Of the values that describe the fetal body, brainstem and learner, 495 of 569 are sourced (87%). The [project page](https://labs.kootru.com) keeps that count.
+716 model values are linked to a verbatim quote from a paper. The others carry their status (a recorded model choice, a design value, or next in line for a source), and the Ask tab and the MCP server's `list_gaps` tool list them. Of the values that describe the fetal body, brainstem and learner, 497 of 569 are sourced (87%). The [project page](https://labs.kootru.com) keeps that count.
 
 A remark in a note is never edited after the fact. When a later reading overtakes it, the note gains a dated `later_record` beside the older words.
 

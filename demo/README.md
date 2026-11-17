@@ -1,6 +1,6 @@
 # A research record as a discourse graph that an agent can read and write
 
-A real research project's record (4,410 notes: sources, quoted evidence, claims, questions, hypotheses, experiments, results and issues; 3,200 relations) kept in the Discourse Graphs grammar, with:
+A real research project's record (4,457 notes: sources, quoted evidence, claims, questions, hypotheses, experiments, results and issues; 3,421 relations) kept in the Discourse Graphs grammar, with:
 
 - **an MCP server** (TypeScript): an agent reads the graph and writes new notes; a write is refused unless it quotes its record file verbatim and fits the grammar;
 - **a canvas** (tldraw 3.14.2): any note's neighbourhood drawn as cards and labelled arrows;

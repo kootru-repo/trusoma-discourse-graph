@@ -15,7 +15,7 @@ value_in_source: "proximal phalanx over hand length, Table 2: index 0.231, middl
 species_age: "15 adult male hands, CT"
 transfer: "adult ratio applied to the fetal hand; Garn 1975 abstract reports near-adult metacarpal and phalangeal proportions by the 13th week; the model uses one value for four fingers"
 source: "[[@Cao Y, Yang X, Lim Z, Jung H, Park D, You H. A Linkage Representation of the Human Hand Skeletal System Using CT Hand Scan Images (p-cao2021)]]"
-claim: "[[CLM - body7.phalanx.n0 = 0.24, only an adult source exists, which this project does not accept, so not a sourced value]]"
+claim: "[[CLM - For the four ﬁngers, Segment 1 is the carpometacarpal segment, 2 the proximal phalangeal, 3 the middle phalangeal … (body7.phalanx.n0 = 0.2)]]"
 ---
 
 Quote: "For the four ﬁngers, Segment 1 is the carpometacarpal segment, 2 the proximal phalangeal, 3 the middle phalangeal, and 4 the distal phalangeal."
@@ -32,4 +32,4 @@ Status: adult-sourced-unusable (only an adult source exists, which this project 
 
 Source: [[@Cao Y, Yang X, Lim Z, Jung H, Park D, You H. A Linkage Representation of the Human Hand Skeletal System Using CT Hand Scan Images (p-cao2021)]].
 
-For: [[CLM - body7.phalanx.n0 = 0.24, only an adult source exists, which this project does not accept, so not a sourced value]].
+For: [[CLM - For the four ﬁngers, Segment 1 is the carpometacarpal segment, 2 the proximal phalangeal, 3 the middle phalangeal … (body7.phalanx.n0 = 0.2)]].

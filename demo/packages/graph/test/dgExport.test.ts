@@ -24,11 +24,11 @@ test("one row per grammar item, note and relation", () => {
   assert.deepEqual(counts, {
     nodeTypes: 10,
     relationTypes: 7,
-    triples: 33,
+    triples: 37,
     instances: g.nodes.size,
     relations: g.relations.length,
   });
-  assert.equal(concepts.length, 50 + g.nodes.size + g.relations.length);
+  assert.equal(concepts.length, 54 + g.nodes.size + g.relations.length);
 });
 
 test("ids are unique and every reference points at an earlier row (their loader's dependency order)", () => {

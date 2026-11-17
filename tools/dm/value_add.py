@@ -146,6 +146,9 @@ def cmd_set(a):
     if a.entries:
         p["entries"] = a.entries.split(",")
     D.write_note_kind("Claim", D.safe(a.key), p)
+    if a.value is not None:   # what to look at again, from the vault's relations and the code that reads the value
+        import impact
+        print(chr(10).join(["IMPACT of the change:"] + ["  " + l for l in impact.report(a.key)]))
     return ["changed %s; if the value changed, the appendix [V] line and the consumer's tag must agree (the check compares learner values with the appendix)" % a.key]
 
 
