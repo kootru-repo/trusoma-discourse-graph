@@ -1,12 +1,18 @@
 # TruSoma discourse graph
 
-TruSoma is a simulation of the human fetal body and its developing brain at 10 to 17 weeks of gestation, built from published biology. Every number in the model is traced to a source or recorded as a choice. This repository holds that record as a [Discourse Graphs](https://discoursegraphs.com) vault of 4,491 notes and 3,509 relations, with the software that lets people and AI assistants read and write it.
+TruSoma is a simulation of the human fetal body and its developing brain at 10 to 17 weeks of gestation, built from published biology. Every number in the model is traced to a source or recorded as a choice. This repository holds that record as a [Discourse Graphs](https://discoursegraphs.com) vault of 4,492 notes and 3,511 relations, with the software that lets people and AI assistants read and write it.
 
 **[See the six uses, illustrated](https://kootru-repo.github.io/trusoma-discourse-graph/)** · **[Open the live canvas](https://kootru-repo.github.io/trusoma-discourse-graph/explore/)** · [Project page](https://labs.kootru.com) · [Architecture](docs/architecture.md) · [Developer guide](demo/README.md)
 
 [![CI](https://github.com/kootru-repo/trusoma-discourse-graph/actions/workflows/ci.yaml/badge.svg)](https://github.com/kootru-repo/trusoma-discourse-graph/actions/workflows/ci.yaml)
 
 [![The whole vault as a graph: every point is one note](demo/docs/uses-overview.png)](https://kootru-repo.github.io/trusoma-discourse-graph/)
+
+## How a claim gets in
+
+[![A claim written freely in Obsidian, refused once at its field, then admitted with the words of the record](demo/docs/entry-forms.gif)](https://kootru-repo.github.io/trusoma-discourse-graph/forms.html)
+
+New Results, claims and passages enter the vault through entry forms in Obsidian. What is copied goes through a strict form. What is judged is written freely and admitted afterwards. Each note carries the button for the form that fits it, a refusal is said at its field, and a save that fails the vault's check changes no file. The plugin is TypeScript ([`demo/apps/forms`](demo/apps/forms)) over the vault's own Python check. **[See the walkthrough and the design decisions](https://kootru-repo.github.io/trusoma-discourse-graph/forms.html)**.
 
 ## Six ways the graph is used
 
@@ -37,7 +43,7 @@ The project's rule needs a record that shows where each number came from. Each v
 
 | Part | What it does | Where |
 | --- | --- | --- |
-| Vault | 4,491 discourse notes and 3,509 relations: sources, verbatim quotes, claims, questions, hypotheses, experiments, results and issues | [`vault/`](vault) |
+| Vault | 4,492 discourse notes and 3,511 relations: sources, verbatim quotes, claims, questions, hypotheses, experiments, results and issues | [`vault/`](vault) |
 | Canvas | Draws any note's neighbourhood as cards and labelled relations | [`demo/apps/canvas`](demo/apps/canvas) |
 | Ask | Runs questions over the graph as data ("which hypotheses have no experiment linked?"), with six presets, a question builder and a link per question, for example [`#ask=untested-hypotheses`](https://kootru-repo.github.io/trusoma-discourse-graph/explore/#ask=untested-hypotheses) | [`demo/packages/graph/src/query.ts`](demo/packages/graph/src/query.ts) |
 | MCP server | An assistant searches the graph, traces a value to its sources, lists gaps, and writes notes that a validator can refuse | [`demo/apps/mcp`](demo/apps/mcp) |

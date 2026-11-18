@@ -47,7 +47,7 @@ jobs:
         run: |
           rm -f apps/canvas/dist/*.map
           mkdir -p _site/explore
-          cp site/index.html site/three.min.js _site/
+          cp -r site/. _site/
           cp -r apps/canvas/dist/. _site/explore/
 
       - uses: actions/upload-pages-artifact@v4

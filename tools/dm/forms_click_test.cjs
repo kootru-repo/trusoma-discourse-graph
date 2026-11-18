@@ -101,7 +101,7 @@ const shots = path.dirname(outFile);
   await k.type("Does the order of neighbours within a surface appear once the learner has grown?"); await k.press("Enter"); await k.press("Enter");
   await k.type("My thought: the raw input holds no order, so any order must come from learning. Not sure yet."); await wait(150);   // no wait for Obsidian's own delayed save: the plugin saves an open draft before the vault tool reads it
   out.steps.draft = find("vault/Drafts", "draft ");
-  await command("TruSoma entry forms: Admit a draft"); await formReady();
+  await command("TruSoma entry forms: Save a draft to the graph"); await formReady();
   await pickFrom("Draft: choose", "order of neighbours");
   await tabTo("Short name"); await k.type("neighbour order after growth");
   await shot("admit_question");
@@ -113,7 +113,7 @@ const shots = path.dirname(outFile);
   await command("TruSoma entry forms: New draft"); await wait(2500);
   await k.type("Raw touch already tells surfaces apart before any learning"); await k.press("Enter"); await k.press("Enter");
   await k.type("Why I hold this: the partner score sits far above the shuffled one on every seed."); await wait(150);
-  await command("TruSoma entry forms: Admit a draft"); await formReady();
+  await command("TruSoma entry forms: Save a draft to the graph"); await formReady();
   await pickFrom("Draft: choose", "tells surfaces apart");
   await tabTo("Short name"); await k.type("finding, forms click test");
   await k.press("Control+Enter"); await wait(4000);

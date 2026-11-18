@@ -3,6 +3,7 @@
   "globalEnv": [
     "DG_REPO",
     "NODE_ENV",
+    "PLAYWRIGHT_CORE",
     "TRUSOMA_PYTHON",
     "TRUSOMA_READONLY",
     "TRUSOMA_ROOT"

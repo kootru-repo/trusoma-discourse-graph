@@ -1,0 +1,176 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="description" content="An Obsidian plugin for the TruSoma discourse graph: draft a claim in a plain note, then check it and link it to its source in one form. A 41 second film, the design decisions and how it was tested.">
+<title>Entry forms: draft a claim, then link it to its source</title>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Ccircle cx='8' cy='8' r='6' fill='%23ffc46b'/%3E%3C/svg%3E">
+<style>
+  :root {
+    --bg: #070b14; --ink: #eef2fb; --soft: #d5dcec; --mute: #aab5cd; --line: rgba(255,255,255,.12);
+    --panel: #0e1526; --dg: #7cc4ff; --ts: #ffc46b;
+  }
+  * { box-sizing: border-box; }
+  html { scroll-padding-top: 72px; }
+  html, body { margin: 0; background: var(--bg); color: var(--ink); font: 17px/1.6 "Segoe UI", "Inter", system-ui, -apple-system, Roboto, Helvetica, Arial, sans-serif; -webkit-font-smoothing: antialiased; }
+  a { color: var(--ts); }
+  a:focus-visible, button:focus-visible, video:focus-visible { outline: 3px solid var(--dg); outline-offset: 3px; border-radius: 6px; }
+  header.bar { position: sticky; top: 0; z-index: 5; display: flex; align-items: center; justify-content: space-between; gap: 16px; padding: 12px 28px; background: #070b14; border-bottom: 1px solid var(--line); }
+  .brand { font-size: 13px; letter-spacing: .14em; text-transform: uppercase; color: var(--mute); text-decoration: none; }
+  .brand b { color: var(--ink); font-weight: 600; }
+  a.open { flex: none; padding: 8px 15px; border-radius: 999px; font-size: 14px; font-weight: 600; color: #0a0f1c; background: var(--ts); text-decoration: none; white-space: nowrap; }
+  a.open:hover { background: #ffd591; }
+  a.quiet { font-size: 14px; color: var(--mute); text-decoration: none; border-bottom: 1px solid var(--line); white-space: nowrap; }
+  a.quiet:hover { color: var(--ink); }
+  main { max-width: 1080px; margin: 0 auto; padding: 0 28px 80px; }
+  .num { font-size: 13px; letter-spacing: .16em; text-transform: uppercase; color: var(--mute); margin: 56px 0 8px; }
+  h1 { font-size: clamp(30px, 4.2vw, 52px); line-height: 1.08; margin: 0 0 18px; font-weight: 650; letter-spacing: -.02em; max-width: 21ch; text-wrap: balance; }
+  h1 i { font-style: normal; color: var(--ts); }
+  h2 { font-size: clamp(24px, 2.6vw, 34px); line-height: 1.15; margin: 0 0 16px; font-weight: 650; letter-spacing: -.015em; max-width: 28ch; text-wrap: balance; }
+  h3 { font-size: 18px; margin: 0 0 6px; font-weight: 650; }
+  p { margin: 0 0 14px; color: var(--soft); max-width: 68ch; }
+  .lede { font-size: clamp(17px, 1.5vw, 20px); color: #c9d2e6; max-width: 62ch; }
+  .rule { margin: 20px 0 0; padding: 14px 18px; border-left: 3px solid var(--ts); background: var(--panel); border-radius: 0 12px 12px 0; font-size: 18px; color: var(--ink); max-width: 64ch; }
+  figure { margin: 0; }
+  .film { margin-top: 26px; border: 1px solid var(--line); border-radius: 16px; overflow: hidden; background: #000; }
+  .film video { display: block; width: 100%; height: auto; aspect-ratio: 16 / 10; }
+  p.full { margin: 10px 0 0; font-size: 16px; font-weight: 600; }
+  figcaption { font-size: 14px; color: var(--mute); padding: 10px 2px 0; max-width: 84ch; }
+  .steps { display: grid; grid-template-columns: 1fr; gap: 26px; }
+  .step { background: var(--panel); border: 1px solid var(--line); border-radius: 16px; padding: 16px; }
+  .step a.shot { display: block; }
+  .step.narrow a.shot { max-width: 860px; }
+  .step img { display: block; width: 100%; height: auto; border-radius: 10px; border: 1px solid var(--line); }
+  .step h3 { margin-top: 14px; }
+  .step p { font-size: 15.5px; margin: 0; }
+  .step .n { color: var(--ts); font-variant-numeric: tabular-nums; margin-right: 6px; }
+  .three { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
+  .card { background: var(--panel); border: 1px solid var(--line); border-top: 3px solid var(--dg); border-radius: 16px; padding: 18px 20px; }
+  .card p { font-size: 15.5px; margin: 0; }
+  ul.plain { margin: 0; padding: 0; list-style: none; max-width: 76ch; }
+  ul.plain li { padding: 14px 0; border-top: 1px solid var(--line); color: var(--soft); }
+  ul.plain li:first-child { border-top: 0; }
+  ul.plain b { color: var(--ink); display: block; }
+  ol.start { margin: 0 0 14px; padding-left: 22px; color: var(--soft); max-width: 70ch; }
+  ol.start li { padding: 4px 0; }
+  pre { margin: 8px 0 4px; padding: 12px 14px; background: var(--panel); border: 1px solid var(--line); border-radius: 10px; overflow-x: auto; }
+  pre code { border: 0; padding: 0; background: none; overflow-wrap: normal; white-space: pre; }
+  code { font: 14.5px/1.5 Consolas, "Cascadia Mono", Menlo, monospace; background: var(--panel); border: 1px solid var(--line); border-radius: 6px; padding: 1px 6px; color: var(--ink); overflow-wrap: anywhere; }
+  .cta { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 22px; }
+  a.ghost { padding: 9px 17px; border-radius: 999px; font-size: 15px; color: var(--ink); border: 1px solid var(--line); text-decoration: none; }
+  a.ghost:hover { border-color: var(--mute); }
+  a.open.big { padding: 10px 19px; font-size: 15px; }
+  .foot { margin-top: 40px; font-size: 14px; color: var(--mute); }
+  @media (max-width: 860px) {
+    header.bar { padding: 9px 14px; } .brand { font-size: 11px; letter-spacing: .08em; } .brand .long { display: none; }
+    main { padding: 0 16px 64px; } .num { margin-top: 44px; }
+    .three { grid-template-columns: 1fr; } .step { padding: 12px; }
+  }
+</style>
+</head>
+<body>
+<header class="bar">
+  <a class="brand" href="./"><b>TruSoma</b><span class="long"> discourse graph</span></a>
+  <a class="quiet" href="https://github.com/kootru-repo/trusoma-discourse-graph/tree/main/demo/apps/forms">Plugin source</a>
+</header>
+<main>
+  <section aria-labelledby="top">
+    <div class="num">An Obsidian plugin, built in a day for one researcher</div>
+    <h1 id="top">Draft a claim in a plain note. <i>Link it to its source when it is ready.</i></h1>
+    <p class="lede">The TruSoma vault is a research record kept in Obsidian as a discourse graph. This plugin is how a new result, claim or quoted passage gets into it. Drafting is free writing. Saving to the graph is one form that checks the entry and links it to the record it rests on.</p>
+    <p class="rule">Quoted words are checked against the record. Claims are written freely. Saving checks that a claim rests on a result and a quoted line. It does not judge whether the claim is true.</p>
+    <figure class="film" id="film">
+      <video controls muted playsinline preload="metadata" poster="forms/poster.jpg" aria-label="Film of a claim being drafted, refused once and saved to the graph">
+        <source src="forms/forms.mp4" type="video/mp4">
+        <a href="forms/forms.mp4">Watch the film</a>
+      </video>
+    </figure>
+    <figcaption>41 seconds, no sound, recorded in Obsidian on a copy of the vault. The yellow label at the top names each step and is not part of the plugin. Waits for the vault's check are shortened: a save takes about 10 seconds on this vault. Nothing else is edited.</figcaption>
+    <p class="full"><a href="forms/forms.mp4">Watch the film full screen</a></p>
+  </section>
+
+  <section aria-labelledby="steps">
+    <div class="num">The flow</div>
+    <h2 id="steps">Four moments in one entry</h2>
+    <div class="steps">
+      <figure class="step">
+        <a class="shot" href="forms/1-draft.png"><img src="forms/1-draft.png" width="1236" height="400" loading="lazy" alt="A draft note in Obsidian. A line above the text says the first line is the claim and the rest is reasoning. The header has the buttons Save to graph and Copy note."></a>
+        <h3><span class="n">1</span>A draft says what it is for</h3>
+        <p>A draft is a plain note that no check reads, so it never blocks anything. A line above the text explains the one rule: the first line is the claim, the rest is reasoning. The button to save it to the graph is on the note.</p>
+      </figure>
+      <figure class="step narrow">
+        <a class="shot" href="forms/2-form.png"><img src="forms/2-form.png" width="860" height="406" loading="lazy" alt="The form, opened with the draft chosen and the claim kind set. The researcher has typed a short name."></a>
+        <h3><span class="n">2</span>The form already knows the context</h3>
+        <p>The draft was started from a result, so the form opens with that result and its record file chosen. The researcher types one short name.</p>
+      </figure>
+      <figure class="step narrow">
+        <a class="shot" href="forms/3-refused.png"><img src="forms/3-refused.png" width="860" height="479" loading="lazy" alt="The quotation field after a check. Under it: Problem: these words are not word for word in the record. Find the line with step 1 above and pick it. The foot of the form says 1 problem, shown at its field."></a>
+        <h3><span class="n">3</span>A problem is shown at its field, with the way out</h3>
+        <p>A quotation typed from memory is not in the record. The message sits under the field and says what to do next. The keyboard focus moves to the search box that fixes it. Nothing has been written.</p>
+      </figure>
+      <figure class="step">
+        <a class="shot" href="forms/4-saved.png"><img src="forms/4-saved.png" width="1236" height="400" loading="lazy" alt="The saved claim note with its properties: the record file, the quoted line and a link to the result that supports it."></a>
+        <h3><span class="n">4</span>The saved note, checked and linked</h3>
+        <p>The line was found in the record and picked, not retyped. The vault's full check ran before the note was kept. The claim links to its result and quotes the record word for word.</p>
+      </figure>
+    </div>
+  </section>
+
+  <section aria-labelledby="why">
+    <div class="num">Design decisions</div>
+    <h2 id="why">Three choices, and why</h2>
+    <div class="three">
+      <div class="card"><h3>Strict where you copy, free where you judge</h3><p>A reading or a quotation has a right answer, so the form checks it. A claim is a judgement, so it starts as free writing and meets the rules only when its author is ready.</p></div>
+      <div class="card"><h3>The button is on the note you are looking at</h3><p>A result offers "Draft a claim from this Result". A draft offers "Save to graph". A value offers "Change this value". Each opens the form with that note already chosen.</p></div>
+      <div class="card"><h3>Nothing is half saved</h3><p>"Check only" previews the note. A save runs the vault's whole check first. If the check fails, every file is put back exactly as it was.</p></div>
+    </div>
+  </section>
+
+  <section aria-labelledby="use">
+    <div class="num">Shaped by use</div>
+    <h2 id="use">Changed the same day the researcher used it</h2>
+    <p>The forms were built and first used for real entries on the same day. Each change below followed something found in use.</p>
+    <ul class="plain">
+      <li><b>A new draft opens with room to write.</b>In a narrow window the side pane took the space. A draft now opens in its own tab, the side pane gives way and the cursor is ready.</li>
+      <li><b>The way in moved onto the note.</b>Saving a draft first meant finding it in a list inside the form. Every draft, result, question, experiment and value now carries its own button.</li>
+      <li><b>The "saved" message moved out of the way.</b>It used to appear over the buttons of the note that had just opened. It now shows in the status bar.</li>
+      <li><b>One press copies a whole note.</b>Select all did not reach a note's properties. Every note now has a Copy note button.</li>
+      <li><b>Plainer words.</b>Early readers found "admit" and "mend" unclear. The button now says "Save to graph", and a problem says how to fix it.</li>
+    </ul>
+  </section>
+
+  <section aria-labelledby="start">
+    <div class="num">First run</div>
+    <h2 id="start">Try it from the repository</h2>
+    <p>You need Obsidian, Python, and Node with pnpm, on a desktop computer. The setup builds the plugin from source.</p>
+    <ol class="start">
+      <li>Get the code and build the plugin into the vault:
+<pre><code>git clone https://github.com/kootru-repo/trusoma-discourse-graph
+cd trusoma-discourse-graph/demo
+pnpm install
+cd ..
+python tools/dm/forms_plugin/install.py</code></pre></li>
+      <li>In Obsidian choose "Open folder as vault" and pick the <code>vault</code> folder. Accept the prompt to trust and enable its plugins.</li>
+      <li>Open the note <code>RES - surface identity in the raw touch input</code> and press "Draft a claim from this Result". A draft opens with a line that says what to write.</li>
+      <li>Write one line, press "Save to graph", type a short name and find a line of the record. Press "Check and save". The new claim opens, linked to its result, and the status bar says "Saved and checked".</li>
+    </ol>
+    <p>The form's lists come from the vault itself, so there is nothing to configure. A first result needs no draft: the command "Enter a Result" asks for the experiment and the line of its record file.</p>
+  </section>
+
+  <section aria-labelledby="measured">
+    <div class="num">How it was tested</div>
+    <h2 id="measured">Tested in real Obsidian, not asserted</h2>
+    <p>A script drives the real Obsidian window with the keyboard alone: Tab, Enter and Ctrl+Enter reach every step in the film. It measured text contrast of 9:1 or more for labels, errors and buttons in the light and dark themes. It found no control without an accessible name and none smaller than 24 pixels. A save that fails the vault's check leaves every file unchanged, covered by 45 test cases.</p>
+    <p>The plugin is TypeScript with strict types, built and linted the way the Discourse Graphs Obsidian plugin is. It holds no rule of its own. The form and a commit run the same vault check.</p>
+    <p>Scope: desktop Obsidian. Keyboard use and contrast are measured. Speech output of screen readers is not yet tested.</p>
+    <div class="cta">
+      <a class="open big" href="https://github.com/kootru-repo/trusoma-discourse-graph/tree/main/demo/apps/forms">Read the plugin source</a>
+      <a class="ghost" href="./">Six uses of the graph, illustrated</a>
+      <a class="ghost" href="explore/">Open the graph canvas</a>
+    </div>
+    <p class="foot">TruSoma is a non-commercial research program on fetal development. The film and the stills are made by <a href="https://github.com/kootru-repo/trusoma-discourse-graph/blob/main/demo/apps/forms/scripts/walkthrough.ts">a script in the repository</a>.</p>
+  </section>
+</main>
+</body>
+</html>

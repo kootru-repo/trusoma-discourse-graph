@@ -198,16 +198,16 @@ export class AdmitForm extends Form<AdmitValues> {
   }
 
   protected heading(): string {
-    return "Admit a draft to the graph";
+    return "Save a draft to the graph";
   }
   protected intro(): string {
-    return "A claim or question you wrote freely in the Drafts folder. Its first line becomes the statement; the rest stays yours, under Notes. Until you admit it, a draft is checked by nothing.";
+    return "A claim or question you wrote freely in the Drafts folder. Its first line becomes the statement; the rest stays yours, under Notes. Until you save it to the graph, a draft is checked by nothing.";
   }
   protected saveLabel(): string {
-    return "Check and admit";
+    return "Check and save";
   }
   protected passLabel(): string {
-    return "Admit now";
+    return "Save now";
   }
   protected fieldOf(field: string): string {
     return field === "statement" ? "draft" : field;
@@ -228,7 +228,7 @@ export class AdmitForm extends Form<AdmitValues> {
       field: "draft",
       label: "Draft",
       desc: L.drafts.length
-        ? "The draft to admit."
+        ? "The draft to save."
         : "No drafts are waiting. Make one with the command New draft.",
       need: true,
       noun: "the draft",
@@ -242,7 +242,7 @@ export class AdmitForm extends Form<AdmitValues> {
     if (!v.draft) return;
     this.choice({
       field: "kind",
-      label: "Admit as",
+      label: "Save as",
       desc: "A question ends with a question mark.",
       options: ["Claim", "Question"],
       rerender: true,

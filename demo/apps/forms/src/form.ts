@@ -36,6 +36,9 @@ export type PickField<V, T> = FieldBase<V> &
     onChange?: (item: T | null) => void;
   };
 export type QuoteField<V> = FieldBase<V> & { record: () => string | undefined };
+const FIND_IT = " Find the line with step 1 above and pick it.";
+const NOT_IN_RECORD = "These words are not word for word in the record.";
+
 type Wire = { field: string; label: string; el: HTMLElement; need?: boolean };
 
 export abstract class Form<V extends object> extends Modal {
@@ -50,6 +53,7 @@ export abstract class Form<V extends object> extends Modal {
   private errs: Record<string, HTMLElement> = {};
   private ctl: Record<string, HTMLElement> = {};
   private labels: Record<string, string> = {};
+  private readonly quoted = new Set<string>();
   private busy = false;
   private ready = false;
   private at = 0;
@@ -120,7 +124,7 @@ export abstract class Form<V extends object> extends Modal {
       attr: { role: "alert" },
     });
     this.goBtn = foot.createEl("button", {
-      text: "Go to the next one",
+      text: "Go to the next problem",
       cls: "tsf-go",
     });
     this.goBtn.onclick = () => this.toFirst(true);
@@ -329,6 +333,7 @@ export abstract class Form<V extends object> extends Modal {
      than the line. Whatever stands in the box is checked against the file, here and again by the vault's own check. */
   protected quote(o: QuoteField<V>): Setting {
     const { field, label, record } = o;
+    this.quoted.add(field);
     const s = this.text({
       field,
       label,
@@ -357,7 +362,7 @@ export abstract class Form<V extends object> extends Modal {
     const found = createDiv({ cls: "tsf-lines" });
     const second = createDiv({ cls: "tsf-find" });
     second.createEl("label", {
-      text: "2. The words as they stand in the record (trim them if less than the line is meant)",
+      text: "2. The exact words from the record (trim to the part you need)",
     });
     s.controlEl.prepend(find, found, second); // the finder stands above the box it fills
     const note = s.controlEl.createDiv({
@@ -399,9 +404,7 @@ export abstract class Form<V extends object> extends Modal {
         return;
       }
       err?.setText(
-        a.exists
-          ? "These words are not in the record."
-          : "The record file does not exist.",
+        a.exists ? NOT_IN_RECORD + FIND_IT : "The record file does not exist.",
       );
       area.setAttribute("aria-invalid", "true");
       const closest = a.closest;
@@ -469,6 +472,7 @@ export abstract class Form<V extends object> extends Modal {
         : tag === "SELECT"
           ? "choose one from the list"
           : "fill it in";
+    if (this.lost(error, field)) return NOT_IN_RECORD + FIND_IT;
     const said =
       error.message === "needed"
         ? `"${this.labels[field] || field}" is needed: ${how}`
@@ -480,12 +484,19 @@ export abstract class Form<V extends object> extends Modal {
     );
   }
 
+  /* words that are not in the record: the way out is the finder above the box, not the box */
+  private lost(error: FieldError, field: string): boolean {
+    return this.quoted.has(field) && /verbatim/.test(error.message);
+  }
+
   protected show(errors: FieldError[] = []): void {
     Object.values(this.errs).forEach((e) => e.setText(""));
     Object.values(this.ctl).forEach((e) => e.removeAttribute("aria-invalid"));
     this.summary.empty();
     this.goBtn.hide();
     let first: HTMLElement | undefined;
+    let finder: HTMLElement | null = null;
+    const marked = new Set<string>();
     const loose: string[] = [];
     const order = Object.keys(this.ctl); // the first field in the form's own order takes the focus
     const place = (e: FieldError): number =>
@@ -504,18 +515,24 @@ export abstract class Form<V extends object> extends Modal {
         const ctl = this.ctl[field];
         if (!ctl) return;
         ctl.setAttribute("aria-invalid", "true");
+        marked.add(field);
+        if (!first && this.lost(e, field))
+          finder = this.contentEl.querySelector<HTMLElement>(
+            "#tsf-find-" + field,
+          );
         first = first ?? ctl;
       });
     if (errors.length) {
       const count =
         errors.length === 1
-          ? "1 thing to mend, shown at its field. "
-          : errors.length + " things to mend, each shown at its field. ";
+          ? "1 problem, shown at its field. "
+          : errors.length + " problems, each shown at its field. ";
       this.summary.setText(count + loose.join(" "));
     }
     if (first) {
-      this.goBtn.show();
+      if (marked.size > 1) this.goBtn.show(); // with one problem the focus is already on it
       this.toFirst(false);
+      (finder as HTMLElement | null)?.focus();
     }
   }
 
@@ -538,6 +555,8 @@ export abstract class Form<V extends object> extends Modal {
   protected async run(req: Request, saying: string): Promise<Answer | null> {
     if (this.busy || !this.ready) return null; // Ctrl+Enter before the form is drawn, or while the vault could not be read
     this.busy = true;
+    this.summary.empty(); // what an earlier press found is no longer what is being checked
+    this.goBtn.hide();
     this.status.setText(saying);
     this.checkBtn.disabled = true;
     this.saveBtn.disabled = true;

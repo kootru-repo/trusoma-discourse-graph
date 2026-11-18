@@ -1,8 +1,9 @@
 /* A note carries its own way into the form that fits it: a button in the note's header, a command, and an entry in the note's menu, each
    opening the form with this note already chosen. What kind of note it is comes from its properties. The drafts that wait are counted in the
    status bar, one press away. */
-import { FileView, TFile } from "obsidian";
+import { FileView, Notice, TextFileView, TFile } from "obsidian";
 import type { App, FrontMatterCache, Plugin, TAbstractFile } from "obsidian";
+import { messageOf } from "./backend";
 import type { DraftHints, Host } from "./backend";
 import { AdmitForm, ResultForm } from "./noteForms";
 import { PickModal } from "./pick";
@@ -10,6 +11,8 @@ import { EvidenceForm, ValueForm } from "./valueForms";
 
 const DRAFTS = "Drafts/";
 const GRAPH = "DiscourseGraph/";
+const DRAFT_HINT =
+  "First line: your claim or question. Below it: your reasoning, as long as you like. When it is ready, press Save to graph.";
 
 export type FormsHost = Plugin &
   Host & { newDraft: (hints?: DraftHints) => void };
@@ -28,7 +31,27 @@ const asNote = (file: TAbstractFile | null | undefined): TFile | null =>
 export const inDrafts = (note: TFile): boolean =>
   note.extension === "md" && note.path.startsWith(DRAFTS);
 
+/* the whole note as it stands, properties included: from the open editor when the note is open (what is typed may not be on the disk yet) */
+const noteText = async (app: App, note: TFile): Promise<string> => {
+  let open: string | undefined;
+  app.workspace.iterateAllLeaves((leaf) => {
+    const view = leaf.view;
+    if (view instanceof TextFileView && view.file === note)
+      open = view.getViewData();
+  });
+  return open ?? app.vault.read(note);
+};
+
 const noteActions = (app: App, host: FormsHost): NoteAction[] => {
+  const copy = (note: TFile): void => {
+    noteText(app, note)
+      .then((text) => navigator.clipboard.writeText(text))
+      .then(() => host.say("Copied the whole note: " + note.basename))
+      .catch(
+        (e: unknown) =>
+          void new Notice("The note could not be copied: " + messageOf(e)),
+      );
+  };
   const front = (note: TFile): FrontMatterCache =>
     app.metadataCache.getFileCache(note)?.frontmatter ?? {};
   const inGraph = (note: TFile, type: string): boolean =>
@@ -50,7 +73,7 @@ const noteActions = (app: App, host: FormsHost): NoteAction[] => {
   return [
     {
       id: "admit-this",
-      name: "Admit this draft",
+      name: "Save to graph",
       icon: "check-circle",
       when: inDrafts,
       run: (note) =>
@@ -90,6 +113,13 @@ const noteActions = (app: App, host: FormsHost): NoteAction[] => {
       icon: "sliders-horizontal",
       when: isValue,
       run: (note) => new ValueForm(app, host, key(note)).open(),
+    },
+    {
+      id: "copy-note",
+      name: "Copy note",
+      icon: "copy",
+      when: () => true,
+      run: copy,
     },
   ];
 };
@@ -141,6 +171,13 @@ export const registerNoteActions = (host: FormsHost): void => {
         b.createSpan({ text: a.name });
         return b;
       });
+      // a draft says what it is for above its text: the first line is the statement, the rest is reasoning
+      if (note && inDrafts(note)) {
+        const hint = createDiv({ cls: "tsf-draft-hint", text: DRAFT_HINT });
+        hint.setAttribute("role", "note");
+        view.containerEl.insertBefore(hint, view.contentEl);
+        buttons.push(hint);
+      }
       marked.set(view, { sign, buttons });
     });
   host.registerEvent(app.workspace.on("file-open", mark));
@@ -181,7 +218,10 @@ export const registerDraftCount = (host: FormsHost): void => {
   const count = (): void => {
     const n = waiting().length;
     bar.setText(n ? `${n} ${n === 1 ? "draft" : "drafts"} waiting` : "");
-    bar.setAttribute("aria-label", `${n} drafts wait to be admitted: open one`);
+    bar.setAttribute(
+      "aria-label",
+      `${n} drafts wait to be saved to the graph: open one`,
+    );
     bar.toggle(n > 0);
   };
   const go = (note: TFile): void =>

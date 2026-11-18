@@ -66,7 +66,7 @@ export default class TruSomaForms extends Plugin {
       },
       {
         id: "admit",
-        name: "Admit a draft (claim or question)",
+        name: "Save a draft to the graph (claim or question)",
         open: () => new AdmitForm(this.app, this),
       },
       {
