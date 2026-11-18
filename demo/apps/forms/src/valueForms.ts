@@ -1,7 +1,16 @@
 /* The two forms that change a value note: a new value, status or meaning, and a passage read in a paper. A value is never written by one
    press: the first press checks and shows what changes, the second writes. */
 import type { App } from "obsidian";
-import type { Answer, Host, Paper, PapersAnswer, Request, ValueItem, ValuesAnswer, ValueState } from "./backend";
+import type {
+  Answer,
+  Host,
+  Paper,
+  PapersAnswer,
+  Request,
+  ValueItem,
+  ValuesAnswer,
+  ValueState,
+} from "./backend";
 import { Form } from "./form";
 
 type ValueValues = {
@@ -25,7 +34,12 @@ const ROWS: [keyof ValueState, string][] = [
   ["evidence", "Passages"],
 ];
 
-const say = (x: unknown): string => (x === null || x === undefined ? "none" : typeof x === "string" ? x : JSON.stringify(x));
+const say = (x: unknown): string =>
+  x === null || x === undefined
+    ? "none"
+    : typeof x === "string"
+      ? x
+      : JSON.stringify(x);
 
 abstract class ValueBase extends Form<ValueValues> {
   private checked: string | null = null;
@@ -50,11 +64,16 @@ abstract class ValueBase extends Form<ValueValues> {
   }
 
   private async values(find: string): Promise<ValueItem[]> {
-    return (await this.plugin.call<ValuesAnswer>({ action: "values", find })).values ?? [];
+    return (
+      (await this.plugin.call<ValuesAnswer>({ action: "values", find }))
+        .values ?? []
+    );
   }
 
   protected keyPick(): void {
-    this.titleEl.setText(this.heading() + (this.v.key ? ": " + this.v.key.key : ""));
+    this.titleEl.setText(
+      this.heading() + (this.v.key ? ": " + this.v.key.key : ""),
+    );
     this.pick<ValueItem>({
       field: "key",
       label: "Value",
@@ -63,7 +82,8 @@ abstract class ValueBase extends Form<ValueValues> {
       noun: "the value",
       search: (q) => this.values(q),
       text: (i) => i.key,
-      sub: (i) => `${JSON.stringify(i.value)}, ${i.status}${i.meaning ? ", " + i.meaning : ""}`,
+      sub: (i) =>
+        `${JSON.stringify(i.value)}, ${i.status}${i.meaning ? ", " + i.meaning : ""}`,
     });
   }
 
@@ -77,15 +97,22 @@ abstract class ValueBase extends Form<ValueValues> {
     p.createEl("h4", { text: a.after ? "Written" : "What the change will be" });
     const table = p.createEl("table", { cls: "tsf-table" });
     const head = table.createEl("tr");
-    ["", a.after ? "Was" : "Now", a.after ? "Is now" : "After the change"].forEach((x) =>
-      head.createEl("th", { text: x, attr: { scope: "col" } }),
-    );
+    [
+      "",
+      a.after ? "Was" : "Now",
+      a.after ? "Is now" : "After the change",
+    ].forEach((x) => head.createEl("th", { text: x, attr: { scope: "col" } }));
     ROWS.forEach(([k, name]) => {
       const same = say(then[k]) === say(before[k]);
       const row = table.createEl("tr", { cls: same ? "" : "tsf-changed" });
-      row.createEl("th", { text: name + (same ? "" : " (changes)"), attr: { scope: "row" } });
+      row.createEl("th", {
+        text: name + (same ? "" : " (changes)"),
+        attr: { scope: "row" },
+      });
       row.createEl("td", { text: say(before[k]) });
-      row.createEl("td", { text: same ? say(then[k]) + " (unchanged)" : say(then[k]) });
+      row.createEl("td", {
+        text: same ? say(then[k]) + " (unchanged)" : say(then[k]),
+      });
     });
     const sourced = (before.status ?? "").startsWith("source-found");
     if (!a.after && "value" in asked && sourced && !this.v.status)
@@ -124,10 +151,15 @@ abstract class ValueBase extends Form<ValueValues> {
       if (!(await this.check())) return;
       this.checked = now;
       this.saveBtn.setText(this.writeLabel());
-      this.status.setText(`Check passed. Nothing is written yet. Press "${this.writeLabel()}" to write it.`);
+      this.status.setText(
+        `Check passed. Nothing is written yet. Press "${this.writeLabel()}" to write it.`,
+      );
       return;
     }
-    const a = await this.run(this.request(false), "Writing, regenerating and running the vault check (about 10 seconds)…");
+    const a = await this.run(
+      this.request(false),
+      "Writing, regenerating and running the vault check (about 10 seconds)…",
+    );
     if (!a) return;
     this.checked = null;
     this.saveBtn.setText(this.saveLabel());
@@ -182,17 +214,33 @@ export class ValueForm extends ValueBase {
       options: this.lists.statuses,
       empty: "Unchanged",
     });
-    this.text({ field: "meaning", label: "New meaning", desc: "Leave it empty to keep the meaning." });
+    this.text({
+      field: "meaning",
+      label: "New meaning",
+      desc: "Leave it empty to keep the meaning.",
+    });
   }
   protected request(dry: boolean): Request {
     const v = this.v;
-    const req: Request = { action: dry ? "value_preview" : "value_save", key: v.key?.key ?? "" };
-    for (const k of ["value", "status", "meaning"] as const) if (v[k]) req[k] = v[k];
+    const req: Request = {
+      action: dry ? "value_preview" : "value_save",
+      key: v.key?.key ?? "",
+    };
+    for (const k of ["value", "status", "meaning"] as const)
+      if (v[k]) req[k] = v[k];
     return req;
   }
 }
 
-const PASSAGE_FIELDS = ["locator", "quote", "value_in_source", "species_age", "transfer", "link_status", "status"] as const;
+const PASSAGE_FIELDS = [
+  "locator",
+  "quote",
+  "value_in_source",
+  "species_age",
+  "transfer",
+  "link_status",
+  "status",
+] as const;
 
 export class EvidenceForm extends ValueBase {
   protected heading(): string {
@@ -208,7 +256,10 @@ export class EvidenceForm extends ValueBase {
     return "Write the passage now";
   }
   protected asked(): ValueState {
-    return { evidence: "one more", ...(this.v.status ? { status: this.v.status } : {}) };
+    return {
+      evidence: "one more",
+      ...(this.v.status ? { status: this.v.status } : {}),
+    };
   }
   protected build(): void {
     this.keyPick();
@@ -218,12 +269,25 @@ export class EvidenceForm extends ValueBase {
       desc: "Search the register by author, year, title or DOI.",
       need: true,
       noun: "the paper",
-      search: async (q) => (await this.plugin.call<PapersAnswer>({ action: "papers", find: q })).papers ?? [],
+      search: async (q) =>
+        (await this.plugin.call<PapersAnswer>({ action: "papers", find: q }))
+          .papers ?? [],
       text: (i) => i.title,
       sub: (i) => i.id,
     });
-    this.text({ field: "locator", label: "Where in the paper", desc: "Page, table or figure.", need: true });
-    this.text({ field: "quote", label: "Words of the paper", desc: "Copied as they stand.", area: true, need: true });
+    this.text({
+      field: "locator",
+      label: "Where in the paper",
+      desc: "Page, table or figure.",
+      need: true,
+    });
+    this.text({
+      field: "quote",
+      label: "Words of the paper",
+      desc: "Copied as they stand.",
+      area: true,
+      need: true,
+    });
     this.text({
       field: "value_in_source",
       label: "Value in the paper",

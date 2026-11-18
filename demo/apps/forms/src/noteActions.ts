@@ -11,23 +11,40 @@ import { EvidenceForm, ValueForm } from "./valueForms";
 const DRAFTS = "Drafts/";
 const GRAPH = "DiscourseGraph/";
 
-export type FormsHost = Plugin & Host & { newDraft: (hints?: DraftHints) => void };
+export type FormsHost = Plugin &
+  Host & { newDraft: (hints?: DraftHints) => void };
 
-type NoteAction = { id: string; name: string; icon: string; when: (note: TFile) => boolean; run: (note: TFile) => void };
+type NoteAction = {
+  id: string;
+  name: string;
+  icon: string;
+  when: (note: TFile) => boolean;
+  run: (note: TFile) => void;
+};
 
 const asNote = (file: TAbstractFile | null | undefined): TFile | null =>
   file instanceof TFile && file.extension === "md" ? file : null;
 
-export const inDrafts = (note: TFile): boolean => note.extension === "md" && note.path.startsWith(DRAFTS);
+export const inDrafts = (note: TFile): boolean =>
+  note.extension === "md" && note.path.startsWith(DRAFTS);
 
 const noteActions = (app: App, host: FormsHost): NoteAction[] => {
-  const front = (note: TFile): FrontMatterCache => app.metadataCache.getFileCache(note)?.frontmatter ?? {};
+  const front = (note: TFile): FrontMatterCache =>
+    app.metadataCache.getFileCache(note)?.frontmatter ?? {};
   const inGraph = (note: TFile, type: string): boolean =>
-    note.path.startsWith(GRAPH) && front(note).dg_type === type && !front(note).record_file;
+    note.path.startsWith(GRAPH) &&
+    front(note).dg_type === type &&
+    !front(note).record_file;
   const isValue = (note: TFile): boolean => {
     const f = front(note);
     const kind = ["Claim", "Parameter"].includes(String(f.dg_type));
-    return note.path.startsWith(GRAPH) && kind && !!f.key && !f.record_file && !f.module;
+    return (
+      note.path.startsWith(GRAPH) &&
+      kind &&
+      !!f.key &&
+      !f.record_file &&
+      !f.module
+    );
   };
   const key = (note: TFile): string => String(front(note).key);
   return [
@@ -36,7 +53,8 @@ const noteActions = (app: App, host: FormsHost): NoteAction[] => {
       name: "Admit this draft",
       icon: "check-circle",
       when: inDrafts,
-      run: (note) => new AdmitForm(app, host, note.path.slice(DRAFTS.length)).open(),
+      run: (note) =>
+        new AdmitForm(app, host, note.path.slice(DRAFTS.length)).open(),
     },
     {
       id: "claim-from-result",
@@ -166,13 +184,19 @@ export const registerDraftCount = (host: FormsHost): void => {
     bar.setAttribute("aria-label", `${n} drafts wait to be admitted: open one`);
     bar.toggle(n > 0);
   };
-  const go = (note: TFile): void => void app.workspace.getLeaf("tab").openFile(note, { active: true });
+  const go = (note: TFile): void =>
+    void app.workspace.getLeaf("tab").openFile(note, { active: true });
   const openDraft = (): void => {
     const drafts = waiting();
     const only = drafts.length === 1 ? drafts[0] : undefined;
     if (only) go(only);
     else if (drafts.length)
-      new PickModal<TFile>(app, { placeholder: "Drafts waiting", items: drafts, text: (f) => f.basename, onPick: go }).open();
+      new PickModal<TFile>(app, {
+        placeholder: "Drafts waiting",
+        items: drafts,
+        text: (f) => f.basename,
+        onPick: go,
+      }).open();
   };
   bar.onclick = openDraft;
   bar.addEventListener("keydown", (ev) => {

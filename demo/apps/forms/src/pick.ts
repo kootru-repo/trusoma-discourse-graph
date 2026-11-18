@@ -9,12 +9,16 @@ export type PickSource<T> = {
   sub?: (item: T) => string | undefined;
 };
 
-export type PickOptions<T> = PickSource<T> & { placeholder?: string; onPick: (item: T) => void };
+export type PickOptions<T> = PickSource<T> & {
+  placeholder?: string;
+  onPick: (item: T) => void;
+};
 
 const SHOWN = 80;
 const PAUSE_MS = 300;
 
-const words = (query: string): string[] => query.toLowerCase().split(/\s+/).filter(Boolean);
+const words = (query: string): string[] =>
+  query.toLowerCase().split(/\s+/).filter(Boolean);
 
 export class PickModal<T> extends SuggestModal<T> {
   private turn = 0;
@@ -31,8 +35,11 @@ export class PickModal<T> extends SuggestModal<T> {
     const { items, search, text, sub } = this.opts;
     if (items) {
       const asked = words(query);
-      const said = (item: T): string => `${text(item)} ${sub?.(item) ?? ""}`.toLowerCase();
-      return items.filter((item) => asked.every((word) => said(item).includes(word))).slice(0, SHOWN);
+      const said = (item: T): string =>
+        `${text(item)} ${sub?.(item) ?? ""}`.toLowerCase();
+      return items
+        .filter((item) => asked.every((word) => said(item).includes(word)))
+        .slice(0, SHOWN);
     }
     const mine = ++this.turn; // only the last words typed are searched for
     await new Promise((resolve) => setTimeout(resolve, PAUSE_MS));

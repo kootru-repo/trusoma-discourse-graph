@@ -7,9 +7,23 @@ import type { Component } from "obsidian";
 export type Note = { title: string; link: string };
 export type Experiment = Note & { record?: string; hypotheses?: string[] };
 export type ResultNote = Note & { reading: string; record: string };
-export type DraftHints = { claim_from_result?: string; claim_addresses?: string };
-export type Draft = { draft: string; sentence: string; more: number; kind: string; hints?: DraftHints };
-export type ValueItem = { key: string; value: unknown; status: string; meaning?: string };
+export type DraftHints = {
+  claim_from_result?: string;
+  claim_addresses?: string;
+};
+export type Draft = {
+  draft: string;
+  sentence: string;
+  more: number;
+  kind: string;
+  hints?: DraftHints;
+};
+export type ValueItem = {
+  key: string;
+  value: unknown;
+  status: string;
+  meaning?: string;
+};
 export type Paper = { id: string; title: string };
 
 export type Lists = {
@@ -27,7 +41,12 @@ export type Lists = {
 };
 
 export type FieldError = { field: string; message: string };
-export type ValueState = { value?: unknown; status?: string; meaning?: string; evidence?: unknown };
+export type ValueState = {
+  value?: unknown;
+  status?: string;
+  meaning?: string;
+  evidence?: unknown;
+};
 
 /* what a check or a save answers: for a note its title, text and relations; for a value its state before and after and what reads it */
 export type Answer = {
@@ -42,9 +61,20 @@ export type Answer = {
   impact?: string[];
 };
 
-export type QuoteAnswer = { found: boolean; exists: boolean; line?: number; count?: number; closest?: string; closest_line?: number };
+export type QuoteAnswer = {
+  found: boolean;
+  exists: boolean;
+  line?: number;
+  count?: number;
+  closest?: string;
+  closest_line?: number;
+};
 export type RecordLine = { line: number; text: string };
-export type RecordAnswer = { exists: boolean; total: number; lines?: RecordLine[] };
+export type RecordAnswer = {
+  exists: boolean;
+  total: number;
+  lines?: RecordLine[];
+};
 export type ValuesAnswer = { values?: ValueItem[] };
 export type PapersAnswer = { papers?: Paper[] };
 
@@ -62,15 +92,25 @@ type BackendCall = { python: string; root: string; request: Request };
    stopped: the tool restores the vault itself when its check fails, and stopping it half way would leave that undone. */
 const ANSWER_MS = 120000;
 const writes = (request: Request): boolean =>
-  request.action === "save" || request.action.endsWith("_save") || (request.action === "admit" && !request.dry);
+  request.action === "save" ||
+  request.action.endsWith("_save") ||
+  (request.action === "admit" && !request.dry);
 
-export const callBackend = <T>({ python, root, request }: BackendCall): Promise<T> =>
+export const callBackend = <T>({
+  python,
+  root,
+  request,
+}: BackendCall): Promise<T> =>
   new Promise<T>((resolve, reject) => {
-    const child = spawn(python, ["-B", path.join("tools", "dm", "form_api.py")], {
-      cwd: root,
-      env: { ...process.env, PYTHONUTF8: "1" },
-      windowsHide: true,
-    });
+    const child = spawn(
+      python,
+      ["-B", path.join("tools", "dm", "form_api.py")],
+      {
+        cwd: root,
+        env: { ...process.env, PYTHONUTF8: "1" },
+        windowsHide: true,
+      },
+    );
     let out = "";
     let err = "";
     let late = false;
@@ -91,12 +131,20 @@ export const callBackend = <T>({ python, root, request }: BackendCall): Promise<
     });
     child.on("error", (e) => {
       clearTimeout(timer);
-      reject(new Error(`could not start ${python} (${e.message}); set the Python command in this plugin's settings`));
+      reject(
+        new Error(
+          `could not start ${python} (${e.message}); set the Python command in this plugin's settings`,
+        ),
+      );
     });
     child.on("close", () => {
       clearTimeout(timer);
       if (late) {
-        reject(new Error(`no answer in ${ANSWER_MS / 1000} seconds; nothing was written`));
+        reject(
+          new Error(
+            `no answer in ${ANSWER_MS / 1000} seconds; nothing was written`,
+          ),
+        );
         return;
       }
       try {
@@ -108,4 +156,5 @@ export const callBackend = <T>({ python, root, request }: BackendCall): Promise<
     child.stdin.end(JSON.stringify(request), "utf8");
   });
 
-export const messageOf = (e: unknown): string => (e instanceof Error ? e.message : String(e));
+export const messageOf = (e: unknown): string =>
+  e instanceof Error ? e.message : String(e);

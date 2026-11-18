@@ -1,11 +1,19 @@
 /* The two forms that write a note of the graph: a Result copied from a record file, and a draft admitted as a claim or a question. */
 import type { App } from "obsidian";
-import type { Draft, Experiment, Host, Note, Request, ResultNote } from "./backend";
+import type {
+  Draft,
+  Experiment,
+  Host,
+  Note,
+  Request,
+  ResultNote,
+} from "./backend";
 import { Form } from "./form";
 
 const noteText = (note: Note): string => note.title;
 const links = (notes: Note[] = []): string[] => notes.map((note) => note.link);
-const resultSub = (result: ResultNote): string => `${result.reading}, ${result.record}`;
+const resultSub = (result: ResultNote): string =>
+  `${result.reading}, ${result.record}`;
 
 type ResultValues = {
   name: string;
@@ -31,7 +39,9 @@ export class ResultForm extends Form<ResultValues> {
   }
 
   protected prepare(): Promise<void> {
-    const e = this.want ? this.lists.experiments.find((x) => x.title === this.want) : undefined;
+    const e = this.want
+      ? this.lists.experiments.find((x) => x.title === this.want)
+      : undefined;
     if (e) this.v.experiment = e;
     if (e?.record) this.v.record = e.record;
     return Promise.resolve();
@@ -139,17 +149,30 @@ export class ResultForm extends Form<ResultValues> {
 
   protected request(dry: boolean): Request {
     const v = this.v;
-    const props: Record<string, unknown> = { reading: v.reading, counted: !!v.counted };
+    const props: Record<string, unknown> = {
+      reading: v.reading,
+      counted: !!v.counted,
+    };
     if (v.record) props.record = v.record;
     if (v.quote) props.quote = v.quote;
     if (v.experiment) props.experiment = v.experiment.link;
-    if (v.consistent_with?.length) props.consistent_with = links(v.consistent_with);
-    if (v.against?.length && this.lists.against_readings.includes(v.reading ?? "")) props.against = links(v.against);
+    if (v.consistent_with?.length)
+      props.consistent_with = links(v.consistent_with);
+    if (
+      v.against?.length &&
+      this.lists.against_readings.includes(v.reading ?? "")
+    )
+      props.against = links(v.against);
     if (v.answers?.length) {
       props.answers = links(v.answers);
       if (v.answers_basis) props.answers_basis = v.answers_basis;
     }
-    return { action: dry ? "preview" : "save", kind: "Result", name: (v.name ?? "").trim(), props };
+    return {
+      action: dry ? "preview" : "save",
+      kind: "Result",
+      name: (v.name ?? "").trim(),
+      props,
+    };
   }
 }
 
@@ -204,7 +227,9 @@ export class AdmitForm extends Form<AdmitValues> {
     this.pick<Draft>({
       field: "draft",
       label: "Draft",
-      desc: L.drafts.length ? "The draft to admit." : "No drafts are waiting. Make one with the command New draft.",
+      desc: L.drafts.length
+        ? "The draft to admit."
+        : "No drafts are waiting. Make one with the command New draft.",
       need: true,
       noun: "the draft",
       items: L.drafts,
@@ -288,12 +313,16 @@ export class AdmitForm extends Form<AdmitValues> {
     const v = this.v;
     const hints = d.hints ?? {};
     v.kind = d.kind === "Question" ? "Question" : "Claim";
-    const result = hints.claim_from_result ? L.results.find((x) => x.title === hints.claim_from_result) : undefined;
+    const result = hints.claim_from_result
+      ? L.results.find((x) => x.title === hints.claim_from_result)
+      : undefined;
     if (result && !v.supported_by?.length && !v.opposed_by?.length) {
       v.supported_by = [result];
       v.kind = "Claim";
     }
-    const question = hints.claim_addresses ? L.questions.find((x) => x.title === hints.claim_addresses) : undefined;
+    const question = hints.claim_addresses
+      ? L.questions.find((x) => x.title === hints.claim_addresses)
+      : undefined;
     if (question && !v.addresses?.length) {
       v.addresses = [question];
       v.kind = "Claim";
