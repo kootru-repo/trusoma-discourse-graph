@@ -1,0 +1,49 @@
+/* TruSoma entry forms. Colours come from the Obsidian theme variables, so light and dark follow the app; the two error colours are set here
+   because the theme's own error colour is too faint on its background for small text (measured 4.2 to 1; these are above 7 to 1). */
+.theme-light .tsf-modal { --tsf-bad: #8f0015; }
+.theme-dark .tsf-modal { --tsf-bad: #ffb4b4; }
+.tsf-modal { width: min(860px, 94vw); max-width: 94vw; max-height: 92vh; display: flex; flex-direction: column; }
+.tsf-modal .modal-title { flex: 0 0 auto; border-bottom: 1px solid var(--text-muted); padding-bottom: 10px; margin-bottom: 0; }
+.tsf-modal .modal-content { flex: 1 1 auto; overflow-y: auto; min-height: 0; padding: 12px 8px 16px 0; }
+.tsf-foot { flex: 0 0 auto; border-top: 1px solid var(--text-muted); padding-top: 10px; margin-top: 8px; }
+.tsf-modal .setting-item { align-items: flex-start; flex-wrap: wrap; row-gap: 6px; }
+.tsf-modal .setting-item-info { flex: 0 1 240px; }
+.tsf-modal .setting-item-description { color: var(--text-normal); }
+.tsf-control { flex: 1 1 340px; display: flex; flex-direction: column; align-items: stretch; gap: 6px; text-align: left; }
+.tsf-control > button { align-self: flex-start; }
+.tsf-modal input[type="text"], .tsf-modal textarea, .tsf-modal select { width: 100%; min-height: 36px; font-size: var(--font-ui-medium); border: 1px solid var(--text-muted); }
+.tsf-modal textarea { min-height: 84px; resize: vertical; font-family: var(--font-monospace); }
+.tsf-modal button { min-height: 36px; border: 1px solid var(--text-muted); }
+.tsf-modal :focus-visible { outline: 3px solid var(--interactive-accent); outline-offset: 3px; }
+.tsf-modal [aria-invalid="true"] { border: 2px solid var(--tsf-bad) !important; box-shadow: 0 0 0 2px var(--tsf-bad) !important; }
+.tsf-intro { color: var(--text-normal); margin: 0 0 8px 0; }
+.tsf-error { color: var(--tsf-bad); font-weight: 600; }
+.tsf-error::before { content: "To mend: "; }
+.tsf-error:empty, .tsf-note:empty, .tsf-summary:empty, .tsf-preview:empty, .tsf-chips:empty, .tsf-lines:empty { display: none; }
+.tsf-note { color: var(--text-normal); }
+.tsf-checkrow { display: flex; align-items: center; gap: 10px; min-height: 36px; cursor: pointer; }
+.tsf-modal input.tsf-check { width: 24px; height: 24px; min-height: 24px; margin: 0; border: 2px solid var(--text-muted); }
+.tsf-chips { display: flex; flex-direction: column; gap: 4px; list-style: none; margin: 0; padding: 0; }
+.tsf-chips li { display: flex; gap: 8px; align-items: center; justify-content: space-between; border: 1px solid var(--text-muted); border-radius: 6px; padding: 6px 8px; }
+.tsf-find { display: flex; flex-direction: column; gap: 4px; }
+.tsf-find label { color: var(--text-normal); font-size: var(--font-ui-small); }
+.tsf-lines { display: flex; flex-direction: column; gap: 4px; max-height: 220px; overflow: auto; }
+.tsf-lines button { height: auto; white-space: normal; text-align: left; justify-content: flex-start; font-family: var(--font-monospace); font-size: var(--font-ui-small); padding: 6px 8px; }
+.tsf-preview { border: 1px solid var(--text-muted); border-radius: 8px; padding: 10px 12px; margin-top: 12px; background: var(--background-secondary); }
+.tsf-preview h4 { margin: 0 0 6px 0; }
+.tsf-preview pre { white-space: pre-wrap; margin: 6px 0; font-size: var(--font-ui-small); }
+.tsf-title { font-weight: 600; }
+.tsf-table { border-collapse: collapse; width: 100%; margin-bottom: 10px; }
+.tsf-table th, .tsf-table td { border: 1px solid var(--text-muted); padding: 4px 8px; text-align: left; vertical-align: top; }
+.tsf-summary { color: var(--tsf-bad); font-weight: 600; margin-bottom: 8px; display: inline; }
+.tsf-go { margin: 0 0 8px 10px; }
+.tsf-buttons { display: flex; gap: 8px; justify-content: flex-end; flex-wrap: wrap; }
+.tsf-status { flex: 1 0 100%; color: var(--text-normal); font-weight: 600; }
+.tsf-status:empty { display: none; }
+.tsf-sub { color: var(--text-normal); font-size: var(--font-ui-small); }
+.tsf-modal button.mod-cta { background: var(--text-normal); color: var(--background-primary); }
+.tsf-preview a { color: var(--text-normal); text-decoration: underline; }
+.tsf-modal .setting-item-name { font-weight: 600; }
+.tsf-find button { align-self: flex-start; }
+.tsf-changed th, .tsf-changed td { font-weight: 700; }
+.tsf-caution { border-left: 6px solid var(--color-orange); padding-left: 8px; font-weight: 600; color: var(--text-normal); }
