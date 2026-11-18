@@ -20,7 +20,7 @@ actions (request {"action": ..., ...}):
   value_preview / value_save    key + value, status, meaning: before and after, what to look at again (impact), then value_add.py set
   evidence_preview / evidence_save   key, paper, locator, quote, value_in_source, species_age, transfer: then value_add.py evidence
 usage: python -B tools/dm/form_api.py < request.json"""
-import contextlib, datetime, difflib, io, json, re, subprocess, sys, time
+import contextlib, datetime, difflib, io, json, os, re, subprocess, sys, time
 import dmlib as D
 
 DRAFTS = D.VAULT / "Drafts"   # plain notes; dmlib reads vault/DiscourseGraph and vault/Tables only, so nothing here is read, checked or published
@@ -127,6 +127,43 @@ def preview(kind, name, props):
     return out
 
 
+LOCK = D.ROOT / "local" / "form_api.lock"   # outside the vault and ignored by git: holding it changes nothing a check reads
+WAIT = 60   # seconds a writing request waits for the one before it (a save takes about 10) before it is refused
+WRITERS = ("save", "admit", "value_save", "evidence_save")   # admit is here whole: its trial run of a question writes and takes back a line
+
+
+class Busy(Exception):
+    pass
+
+
+@contextlib.contextmanager
+def one_writer(wait=WAIT):
+    """one writing request at a time. A save snapshots the vault, writes, checks and may put the snapshot back; a second save inside that time
+    would have its files removed by the first one's rollback, or be rolled back over. The lock is held by the operating system on an open file,
+    so it is let go when the process ends, however it ends: there is no stale lock to clear."""
+    LOCK.parent.mkdir(parents=True, exist_ok=True)
+    f = open(LOCK, "a+b")
+    try:
+        end = time.time() + wait
+        while True:
+            try:
+                if os.name == "nt":
+                    import msvcrt
+                    f.seek(0)
+                    msvcrt.locking(f.fileno(), msvcrt.LK_NBLCK, 1)
+                else:
+                    import fcntl
+                    fcntl.flock(f.fileno(), fcntl.LOCK_EX | fcntl.LOCK_NB)
+                break
+            except OSError:
+                if time.time() >= end:
+                    raise Busy()
+                time.sleep(0.25)
+        yield
+    finally:
+        f.close()
+
+
 def snapshot(extra=()):
     """the bytes of every file a save can touch: the vault (notes can be retitled and links rewritten), the generated files, and the files named"""
     import build_from_vault as B
@@ -138,12 +175,21 @@ def snapshot(extra=()):
     return {p: (p.read_bytes() if p.exists() else None) for p in set(paths)}
 
 
-def restore(snap):
-    """put back exactly what was there: changed and deleted files rewritten, files that did not exist removed. Never git."""
+def touched_since(snap):
+    """the files that differ from the snapshot now: changed, deleted, or new in the vault. Taken as soon as the save has written and regenerated,
+    before the long check, this is what the save itself did. A new file in vault/Drafts is never listed: no save writes one."""
+    out = {p for p, b in snap.items() if (p.read_bytes() if p.exists() else None) != b}
     for p in D.VAULT.rglob("*"):
-        if p.is_file() and p.relative_to(D.VAULT).parts[0] not in (".obsidian", ".trash") and p not in snap:
-            p.unlink()
-    for p, b in snap.items():
+        if p.is_file() and p.relative_to(D.VAULT).parts[0] not in (".obsidian", ".trash", "Drafts") and p not in snap:
+            out.add(p)
+    return out
+
+
+def restore(snap, touched):
+    """undo the save and nothing else: each file the save touched is put back as it was (rewritten, or removed if it did not exist). Never git.
+    A file the save did not touch is left as it is now, so what its author typed or began in Obsidian while the check ran stays."""
+    for p in touched:
+        b = snap.get(p)
         if b is None:
             if p.exists():
                 p.unlink()
@@ -153,8 +199,9 @@ def restore(snap):
     D._CACHE.clear()
 
 
-def regenerate_and_check():
-    """regenerate from the vault, then the full check in a fresh process (it reads the disk, not this process's memory). [] when it passes"""
+def regenerate_and_check(written=lambda: None):
+    """regenerate from the vault, then the full check in a fresh process (it reads the disk, not this process's memory). [] when it passes.
+    `written` is called once the regeneration has ended and before the check starts: everything the save writes is on disk at that moment."""
     import build_from_vault as B
     said = io.StringIO()
     saved = sys.argv
@@ -170,6 +217,7 @@ def regenerate_and_check():
         code = 1
     finally:
         sys.argv = saved
+    written()
     if code:
         return [l for l in said.getvalue().splitlines() if l.strip()][-6:] or ["the regeneration stopped"]
     r = subprocess.run([sys.executable, "-B", str(D.ROOT / "tools/dm/check_all.py")], cwd=str(D.ROOT), capture_output=True, text=True, encoding="utf-8", errors="replace")
@@ -183,15 +231,19 @@ def guarded(write, extra=()):
     """run a write under the snapshot: {"ok": True} when the full check passes after it, else everything is put back and the check's lines returned"""
     t0 = time.time()
     snap = snapshot(extra)
+    touched = []   # filled once, when the save has written everything; a save that stops before that is read at the rollback
+
+    def written():
+        touched.append(touched_since(snap))
     try:
         said = write() or []
-        problems = regenerate_and_check()
+        problems = regenerate_and_check(written)
     except SystemExit as e:   # the value tools refuse with a sentence
         problems = [str(e.code)]
     except Exception as e:
         problems = ["%s: %s" % (type(e).__name__, e)]
     if problems:
-        restore(snap)
+        restore(snap, touched[0] if touched else touched_since(snap))
         return {"ok": False, "errors": [{"field": field_of(p), "message": p} for p in problems], "written": False}
     return {"ok": True, "errors": [], "written": True, "said": said, "seconds": round(time.time() - t0, 1)}
 
@@ -412,6 +464,16 @@ def value_action(req, command, write):
 
 
 def handle(req):
+    if req.get("action") not in WRITERS:
+        return answer(req)
+    try:
+        with one_writer(min(float(req.get("wait", WAIT)), WAIT)):
+            return answer(req)
+    except Busy:
+        return {"ok": False, "written": False, "errors": [{"field": "", "message": "Another save is still running. Nothing was written. Try again when it has finished."}]}
+
+
+def answer(req):
     a = req.get("action")
     if a == "lists":
         return lists()

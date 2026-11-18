@@ -87,6 +87,38 @@ def main():
                "print(F.guarded(w)['ok'])" % (PROBES, EXP))
         case("a write the full check refuses is rolled back byte for byte", r.stdout.strip() == "False" and status() == base, r.stdout + r.stderr[-200:])
 
+        r = py("-c", "import sys; sys.path.insert(0, 'tools/dm'); import dmlib as D, form_api as F\n"
+               "def w():\n    (F.DRAFTS / 'begun meanwhile.md').parent.mkdir(exist_ok=True); (F.DRAFTS / 'begun meanwhile.md').write_text('a draft', encoding='utf-8')\n"
+               "    (D.NODES / 'stray.md').write_text('stray', encoding='utf-8'); raise ValueError('refused')\n"
+               "print(F.guarded(w)['ok'], (F.DRAFTS / 'begun meanwhile.md').exists(), (D.NODES / 'stray.md').exists())")
+        kept = r.stdout.split() == ["False", "True", "False"]
+        shutil.rmtree(wt / "vault/Drafts", ignore_errors=True)
+        case("a rollback keeps a draft begun while the save ran, and removes the save's own new file", kept and status() == base, r.stdout + r.stderr[-200:])
+
+        r = py("-c", "import sys, subprocess; sys.path.insert(0, 'tools/dm'); import dmlib as D, form_api as F\n"
+               "other = sorted(D.NODES.glob('CLM - *.md'))[0]; new = D.NODES / 'begun in the graph meanwhile.md'; run = subprocess.run\n"
+               "def typing(*a, **k):\n    other.write_bytes(other.read_bytes() + b'typed meanwhile'); new.write_text('plain', encoding='utf-8'); return run(*a, **k)\n"
+               "F.subprocess.run = typing\n"
+               "def w():\n    D.write_note_kind('Result', 'rolled back', {'reading': 'observation', 'counted': False, 'record': %r, 'quote': 'not in the record', 'experiment': %r})\n"
+               "ok = F.guarded(w)['ok']\n"
+               "print(ok, other.read_bytes().endswith(b'typed meanwhile'), new.exists(), (D.NODES / 'RES - rolled back.md').exists())\n"
+               "other.write_bytes(other.read_bytes()[:-len(b'typed meanwhile')]); new.unlink()" % (PROBES, EXP))
+        case("a rollback undoes the save only: text typed into another note and a note begun during the check both stay",
+             r.stdout.split() == ["False", "True", "True", "False"] and status() == base, r.stdout + r.stderr[-300:])
+
+        holder = subprocess.Popen([sys.executable, "-B", "-E", "-u", "-c", "import sys, time; sys.path.insert(0, 'tools/dm'); import form_api as F\n"
+                                   "with F.one_writer():\n    print('held'); time.sleep(120)"], cwd=wt, env=ENV, stdout=subprocess.PIPE, text=True)
+        try:
+            held = holder.stdout.readline().strip() == "held"
+            a = api(action="save", kind="Result", name="second writer", props=good, wait=1)
+            unchanged("a save that arrives while another holds the lock is refused with nothing written", base, a)
+            case("  and it says so", held and "Another save" in json.dumps(a.get("errors")), json.dumps(a))
+            b = api(action="quote", record=PROBES, quote=QUOTE)
+            case("a reading request is answered while the lock is held", b.get("ok") or b.get("found") or "error" not in b, json.dumps(b)[:150])
+        finally:
+            holder.kill()   # a writer that dies holds nothing: the next case would be refused if the lock outlived it
+            holder.wait()
+
         a = api(action="save", kind="Result", name="form test", props=good)
         note = wt / "vault/DiscourseGraph/RES - form test.md"
         rel = json.loads((wt / "vault/relations.json").read_text(encoding="utf-8"))["relations"]
