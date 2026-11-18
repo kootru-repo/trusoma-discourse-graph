@@ -12,7 +12,7 @@ addresses: ["[[QUE - Does `skin7` input carry a map？]]"]
 
 The body's own touch input holds the order of neighbours within a surface before any learning.
 
-A claim from probe readings. Each probe is a short run and gives a reading, not a proof.
+The readings come from short probe runs and are provisional. Removal probes switch a value off or merge it with another, and sensitivity probes change it by a quarter, so a reading for and a reading against may come from different tests.
 
 Opposed by: [[RES - no neighbour order within a surface in raw touch]].
 

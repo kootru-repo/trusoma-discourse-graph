@@ -18,15 +18,18 @@ def text(nodes):
         if kind == "Finding":
             for l in D.links_of(p.get("addresses")):
                 claims.setdefault(D.target_of(l, "Question"), []).append(p)
+    hidden = len(every) - len(rows)
     out = ["# Open questions", "",
-           "TruSoma is a model of the human fetal body and its developing brain at 10 to 17 weeks of gestation. Every value in it is meant to rest on a quoted source. "
-           "The %d questions below are where no usable source has been found yet; %d values wait on them." % (len(rows), sum(len(r["waiting"]) for r in rows), ), "",
-           "**You can answer one.** Open the form under a question and give a paper and the passage that holds the number. An answer that holds is entered in the graph as a Source and an Evidence note that quote your passage, and the value it sets is marked as sourced.", "",
-           "What counts as an answer:", "",
-           "- Human fetal data at 10 to 17 weeks comes first, then human preterm or newborn data, then fetal or newborn animal data. Adult data is not used, scaled or direct.",
-           "- The paper's title, first author, year, journal and DOI.",
-           "- The passage word for word, with its page, table or figure. A measurement of a different quantity is not an answer.", "",
-           "This list is generated from the project's vault.%s The questions that the model's own probes found it sensitive to come first." % (" %d more open questions are settled by the project's own measurements and are not listed." % (len(every) - len(rows)) if len(every) > len(rows) else ""), ""]
+           "TruSoma is a model of the human fetal body and its developing brain at 10 to 17 weeks of gestation. Each value in the model should rest on a quoted source. "
+           "For the %d questions below we have not found one, and %d values wait on them." % (len(rows), sum(len(r["waiting"]) for r in rows)), "",
+           "To answer a question, open the form under it and give the paper and the passage that holds the number. We then read the paper. If the passage holds, we enter it in the graph as a Source note and an Evidence note with your quote, and we mark the value as sourced.", "",
+           "An answer needs:", "",
+           "- the paper's title, first author, year, journal and DOI",
+           "- the passage word for word, with its page, table or figure",
+           "- subjects of a suitable age. Human fetal data at 10 to 17 weeks comes first, then human preterm or newborn data, then fetal or newborn animal data. We do not use adult data.", "",
+           "A measurement of a different quantity does not count as an answer.", "",
+           "This list is generated from the project's vault. Questions that the model's probes found it sensitive to come first."
+           + (" %d more open questions can only be settled by the project's own measurements and are left out." % hidden if hidden else ""), ""]
     for i, r in enumerate(rows, 1):
         url = "%s/issues/new?template=%s&title=%s" % (REPO, FORM, urllib.parse.quote("Answer: " + r["asks"], safe=""))
         out += ["## %d. %s" % (i, r["asks"]), "",
@@ -35,6 +38,6 @@ def text(nodes):
                 "- Where we would look next: %s" % r["lead"]]
         for c in sorted(claims.get(r["name"], []), key=lambda c: c["statement"]):
             pro, con = len(D.links_of(c.get("supported_by"))), len(D.links_of(c.get("opposed_by")))
-            out.append("- From the model's probes: %s (%d reading%s for, %d against; a reading, not a proof)." % (c["statement"], pro, "" if pro == 1 else "s", con))
+            out.append("- Probe readings on the claim \"%s\": %d for, %d against." % (c["statement"], pro, con))
         out += ["- [Answer this question with evidence](%s)" % url, ""]
     return NL.join(out)

@@ -117,6 +117,19 @@ def discourse_checks(nodes, errors):
                     elif t in seen:
                         errors.append("Question %s: value %s is listed twice" % (name, t))
                     seen.add(t)
+            if "method" in p or "method_record" in p:   # an Experiment's method: lines of its plan, word for word
+                mrec = p.get("method_record", "")
+                if mrec not in _FILES:
+                    f = D.ROOT / mrec
+                    _FILES[mrec] = f.read_text(encoding="utf-8") if mrec and f.is_file() else None
+                if kind != "Experiment" or not isinstance(p.get("method"), list) or not p.get("method"):
+                    errors.append("%s %s: method is a list of plan lines on an Experiment, with method_record" % (kind, name))
+                elif _FILES[mrec] is None:
+                    errors.append("Experiment %s: method_record %r does not exist" % (name, mrec))
+                else:
+                    for m in p["method"]:
+                        if not isinstance(m, str) or not m.strip() or m not in _FILES[mrec]:
+                            errors.append("Experiment %s: a method line is not found verbatim in %s" % (name, mrec))
             if kind == "Result" and p.get("reading") not in READINGS:
                 errors.append("Result %s: reading %r is not one of %s" % (name, p.get("reading"), READINGS))
             if kind == "Result" and p.get("against"):

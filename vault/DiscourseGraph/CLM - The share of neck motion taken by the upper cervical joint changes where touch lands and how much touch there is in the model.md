@@ -12,7 +12,7 @@ addresses: ["[[QUE - What share of neck motion does the upper cervical joint tak
 
 The share of neck motion taken by the upper cervical joint changes where touch lands and how much touch there is in the model.
 
-A claim from probe readings. Each probe is a short run and gives a reading, not a proof.
+The readings come from short probe runs and are provisional. Removal probes switch a value off or merge it with another, and sensitivity probes change it by a quarter, so a reading for and a reading against may come from different tests.
 
 Supported by: [[RES - removal, atlas share needed]].
 

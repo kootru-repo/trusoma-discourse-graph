@@ -194,3 +194,12 @@ Not covered: publishing a node and importing it into a second vault. It needs th
 - 18 claims were entered by tools/dm/seed_findings.py (one-time). Seven have a Result against them.
 - **Open questions for outside readers**: the public extract writes OPEN_QUESTIONS.md (tools/dm/open_questions.py) from the open-value Questions, the claims that address them and the probe readings, and adds an issue form (tools/dm/public/answer-a-question.yml). An answer that arrives as an issue is discovery only: read the paper, then enter it by the usual path (paper note, Evidence with the quote and page, the five-field check). Adult data is never an answer.
 - The demo's write test removes only the note it wrote. Before that fix it cleaned the whole notes folder and deleted uncommitted notes; commit new notes before running demo tests on an older checkout.
+
+## Added 2026-11-17 (late): method on an Experiment, more Results on the claims, questions not asked of readers
+
+- **An Experiment's method**: `method_record` (the plan file) and `method` (a list of lines of that plan, word for word: its question, runs, measures, rule, limits). The check refuses a line that is not in the plan. Seven Experiments carry one (tools/dm/seed_methods.py, tools/dm/seed_prereg_results.py). A Result reaches its method through its Experiment.
+- **Enter every result file of a probe.** The second removal file (RESULT2.md) and the two pre-registered results of 2026-11-10 (appended to their pre-registration files) had never been entered; a published claim was stale because of it. When a record gains a result section, enter its Experiment and Results in the same work block and add them to the claims they bear on.
+- **Linking a Result to a claim**: only when the row names the claim's values. A removal probe and a sensitivity probe are different tests; the claim note says so. A row the record calls low power is not set against a claim.
+- **A question not asked of outside readers** carries `outside: false` (two do: the project's own measurements settle them). OPEN_QUESTIONS.md leaves them out and says how many.
+- **Stated dependencies**: candidates are found mechanically (a value note or an Evidence note whose text names another value) and entered only when that sentence states the direction. On 2026-11-17 the scan gave 5 candidates; 4 dependencies are stated.
+- The value guard for this state: `python -B tools/dm/value_guard.py check --tag pre-optimal-2026-11-17 --added informs,informs_basis,outside,method,method_record --new companion/source_audit/WORKLIST.md`.

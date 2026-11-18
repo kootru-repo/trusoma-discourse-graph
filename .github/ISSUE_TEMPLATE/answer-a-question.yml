@@ -6,7 +6,7 @@ body:
   - type: markdown
     attributes:
       value: |
-        Thank you. The open questions are listed in OPEN_QUESTIONS.md. Human fetal data at 10 to 17 weeks comes first, then human preterm or newborn data, then fetal or newborn animal data. Adult data is not used.
+        The open questions are listed in OPEN_QUESTIONS.md. Human fetal data at 10 to 17 weeks comes first, then human preterm or newborn data, then fetal or newborn animal data. We do not use adult data.
   - type: input
     id: question
     attributes:

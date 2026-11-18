@@ -126,7 +126,7 @@ def lines_for(kind, name, p):
         out.append("Growth web test `%s` on `%s`." % (d.get("id"), d.get("node")))
     elif kind == "Finding":   # a claim that states what the probes show
         out.append(sentence(str(p.get("statement") or name)))
-        out.append("A claim from probe readings. Each probe is a short run and gives a reading, not a proof.")
+        out.append("The readings come from short probe runs and are provisional. Removal probes switch a value off or merge it with another, and sensitivity probes change it by a quarter, so a reading for and a reading against may come from different tests.")
         for label, key in (("Supported by", "supported_by"), ("Opposed by", "opposed_by"), ("Addresses", "addresses")):
             if p.get(key):
                 out.append("%s: %s." % (label, links(p[key])))
@@ -149,6 +149,9 @@ def lines_for(kind, name, p):
             out.append(sentence("Next lead: " + str(p["lead"])))
         if p.get("values"):
             out.append("Values that wait on this question (a sourced one answers its part): %s." % links(p["values"]))
+        if p.get("method"):   # the plan fixed before the run, in its own words
+            out.append("Method, from the plan `%s`:" % p.get("method_record"))
+            out.extend(quoted(m) for m in p["method"])
         if p.get("record"):
             out.append("Record file: `%s`%s." % (p["record"], ", %s" % p["date"] if p.get("date") else ""))
     elif kind == "Issue":

@@ -12,7 +12,7 @@ addresses: ["[[QUE - Does the shared population size of the brainstem nuclei mat
 
 The finite-size spike noise of the brainstem populations is not needed for the 12.5 week loop.
 
-A claim from probe readings. Each probe is a short run and gives a reading, not a proof.
+The readings come from short probe runs and are provisional. Removal probes switch a value off or merge it with another, and sensitivity probes change it by a quarter, so a reading for and a reading against may come from different tests.
 
 Supported by: [[RES - removal, population noise not needed]].
 

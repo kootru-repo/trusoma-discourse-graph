@@ -7,17 +7,17 @@ statement: "The touch readings of the model are sensitive to the muscle moment a
 record: "companion/audit_log/verification/removal_2026-11-09/RESULT.md"
 quote: "| moment_merge | 11 moment_frac | where 0.147 |"
 supported_by: ["[[RES - removal, separate moment fractions needed]]"]
-opposed_by: ["[[RES - sensitivity 2026-11-05, moment arms minor]]", "[[RES - sensitivity adult values, moment arms minor]]"]
+opposed_by: ["[[RES - sensitivity 2026-11-05, moment arms minor]]", "[[RES - sensitivity adult values, moment arms minor]]", "[[RES - removal chunk 2, single values removable]]"]
 addresses: ["[[QUE - What are the muscle moment arms of the fetal joints？ (open value, muscle moment arms)]]"]
 ---
 
 The touch readings of the model are sensitive to the muscle moment arms of the joints.
 
-A claim from probe readings. Each probe is a short run and gives a reading, not a proof.
+The readings come from short probe runs and are provisional. Removal probes switch a value off or merge it with another, and sensitivity probes change it by a quarter, so a reading for and a reading against may come from different tests.
 
 Supported by: [[RES - removal, separate moment fractions needed]].
 
-Opposed by: [[RES - sensitivity 2026-11-05, moment arms minor]], [[RES - sensitivity adult values, moment arms minor]].
+Opposed by: [[RES - sensitivity 2026-11-05, moment arms minor]], [[RES - sensitivity adult values, moment arms minor]], [[RES - removal chunk 2, single values removable]].
 
 Addresses: [[QUE - What are the muscle moment arms of the fetal joints？ (open value, muscle moment arms)]].
 

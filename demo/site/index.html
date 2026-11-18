@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <script>if (location.hash.indexOf("#ask=") === 0) location.replace("explore/" + location.hash);</script>
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<meta name="description" content="The TruSoma discourse graph: 4,475 notes and 3,464 relations that record where each value of a model of human fetal development came from: a quoted source or a recorded choice. Six uses, walked through a 3D graph of the vault.">
+<meta name="description" content="The TruSoma discourse graph: 4,490 notes and 3,509 relations that record where each value of a model of human fetal development came from: a quoted source or a recorded choice. Six uses, walked through a 3D graph of the vault.">
 <title>TruSoma discourse graph: six uses, illustrated</title>
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Ccircle cx='8' cy='8' r='6' fill='%23ffc46b'/%3E%3C/svg%3E">
 <style>
@@ -160,11 +160,11 @@
 const TYPES = [
   { id: "Question",   n: 31,   color: 0x8ec5ff, pos: [-9.5, 4.2, 0] },
   { id: "Hypothesis", n: 39,   color: 0xb79bff, pos: [-4.6, 5.0, -1] },
-  { id: "Experiment", n: 16,   color: 0xff9ecb, pos: [0.4, 5.6, 0] },
-  { id: "Result",     n: 37,   color: 0xff8a70, pos: [5.2, 4.6, -1] },
+  { id: "Experiment", n: 19,   color: 0xff9ecb, pos: [0.4, 5.6, 0] },
+  { id: "Result",     n: 47,   color: 0xff8a70, pos: [5.2, 4.6, -1] },
   { id: "Source",     n: 399,  color: 0x6ee7c8, pos: [-9.0, -1.6, 0] },
   { id: "Evidence",   n: 1130, color: 0x7cc4ff, pos: [-3.0, -0.6, 1] },
-  { id: "Claim",      n: 1395, color: 0xffc46b, pos: [3.4, -0.4, 0] },
+  { id: "Claim",      n: 1397, color: 0xffc46b, pos: [3.4, -0.4, 0] },
   { id: "Parameter",  n: 1159, color: 0xc9d2e6, pos: [9.4, -1.8, -1] },
   { id: "Issue",      n: 269,  color: 0xff6f91, pos: [1.2, -5.4, 0] },
   { id: "Conclusion", n: 0,    color: 0x66708a, pos: [9.6, 4.0, -2] },
@@ -177,13 +177,13 @@ if (window.matchMedia("(max-width: 900px) and (orientation: portrait)").matches)
 const REL_COLOR = { produces: 0x38c8f0, supports: 0x6ee7a8, opposes: 0xff6f6f, informs: 0xe6ecff, "consistent with": 0xd9c27a, motivates: 0xb79bff, addresses: 0x7fe0d0 };
 const RELS = [
   ["Source", "produces", "Evidence", 1130], ["Evidence", "supports", "Claim", 886], ["Source", "produces", "Claim", 512],
-  ["Claim", "consistent with", "Evidence", 216], ["Evidence", "consistent with", "Hypothesis", 140], ["Claim", "addresses", "Question", 120],
+  ["Claim", "consistent with", "Evidence", 216], ["Evidence", "consistent with", "Hypothesis", 140], ["Claim", "addresses", "Question", 122],
   ["Evidence", "informs", "Claim", 72], ["Issue", "informs", "Claim", 42], ["Claim", "informs", "Question", 38],
-  ["Experiment", "produces", "Result", 37], ["Parameter", "informs", "Question", 34], ["Source", "informs", "Claim", 29],
-  ["Result", "informs", "Question", 29], ["Hypothesis", "motivates", "Issue", 16], ["Hypothesis", "motivates", "Experiment", 11],
+  ["Experiment", "produces", "Result", 47], ["Parameter", "informs", "Question", 34], ["Source", "informs", "Claim", 29],
+  ["Result", "informs", "Question", 42], ["Hypothesis", "motivates", "Issue", 16], ["Hypothesis", "motivates", "Experiment", 13],
   ["Question", "motivates", "Hypothesis", 8], ["Claim", "informs", "Hypothesis", 6], ["Evidence", "informs", "Parameter", 6],
-  ["Result", "consistent with", "Hypothesis", 6], ["Result", "opposes", "Hypothesis", 5], ["Evidence", "opposes", "Claim", 4],
-  ["Issue", "informs", "Parameter", 3], ["Claim", "informs", "Parameter", 2], ["Result", "supports", "Claim", 18], ["Result", "opposes", "Claim", 10],
+  ["Result", "consistent with", "Hypothesis", 7], ["Result", "opposes", "Hypothesis", 6], ["Evidence", "opposes", "Claim", 4],
+  ["Issue", "informs", "Parameter", 3], ["Claim", "informs", "Parameter", 3], ["Result", "supports", "Claim", 27], ["Result", "opposes", "Claim", 16],
   ["Experiment", "produces", "Issue", 1],
 ];
 const ALL = TYPES.map(t => t.id);
@@ -203,9 +203,9 @@ const SECTIONS = [
     title: "Build and use a knowledge base",
     dg: { p: "Discourse nodes live in a folder of an ordinary vault, beside other notes. Structured notes make an existing pile of reading something you can query and reuse.",
           li: ["Nodes coexist with regular notes", "Convert a note to a discourse node when it matures", "Paths form around the central questions"] },
-    ts: { stats: [["4,475", "discourse notes"], ["1,729", "table rows"], ["3,464", "relations"], ["26", "files generated from it"]],
+    ts: { stats: [["4,490", "discourse notes"], ["1,729", "table rows"], ["3,509", "relations"], ["26", "files generated from it"]],
           li: ["The vault is the single authored source of the model", "Configuration and databases are generated from the notes and compared at every commit",
-               "1,395 Claims hold values, methods, joins, growth links and 18 claims the probe readings bear on. 1,159 Parameters hold settings", "Notes are written by scripts and coding agents through validated tools"],
+               "1,397 Claims hold values, methods, joins, growth links and 20 claims the probe readings bear on. 1,159 Parameters hold settings", "Notes are written by scripts and coding agents through validated tools"],
           link: ["explore/", "Search any note in the canvas"],
           fit: ["ok", "In use, as the system of record"] } },
   { id: "projects", nav: "Projects", cam: [-1.0, -3.6, 14.0], look: [-0.6, -2.6, 0], focus: ["Issue", "Hypothesis", "Claim", "Question"],
@@ -221,8 +221,8 @@ const SECTIONS = [
     title: "Track experiments from hypothesis to result",
     dg: { p: "An Experiment is the container for work on a Hypothesis. It produces Results.",
           li: ["An Experiment explores a Hypothesis", "An Experiment produces Results", "Candidate results mature into Result nodes"] },
-    ts: { stats: [["16", "Experiments"], ["37", "Results"], ["18", "Claims the results bear on"], ["31", "Questions"]],
-          li: ["A Result is entered whatever its reading", "Each Result quotes its record file, and a misquote is refused", "18 Claims the readings bear on, each with the Results for and against it"],
+    ts: { stats: [["19", "Experiments"], ["47", "Results"], ["20", "Claims the results bear on"], ["31", "Questions"]],
+          li: ["A Result is entered whatever its reading", "Each Result quotes its record file, and a misquote is refused", "20 Claims the readings bear on, each with the Results for and against it"],
           link: ["explore/#ask=positive-results", "See the results with a positive reading"],
           fit: ["ok", "In use for the probe record"] } },
   { id: "share", nav: "Share", cam: [2.6, 0.2, 16.5], look: [1.2, -0.4, 0], focus: ["Claim", "Evidence", "Source", "Result", "Hypothesis"],
@@ -238,7 +238,7 @@ const SECTIONS = [
     title: "Read and write the graph through an assistant",
     dg: { p: "This use is not in the plugin, which has no assistant server. It is added by the TruSoma repository, on the plugin's note and relation formats.",
           li: ["An MCP server over the vault files", "A written note must fit the grammar"] },
-    ts: { stats: [["11", "MCP tools"], ["92", "of 92 check cases pass"], ["6,143", "of 6,143 baseline notes kept"], ["61", "later records added"]],
+    ts: { stats: [["11", "MCP tools"], ["94", "of 94 check cases pass"], ["6,143", "of 6,143 baseline notes kept"], ["76", "later records added"]],
           li: ["10 tools read or check. 1 writes Question, Hypothesis, Experiment and Result notes", "A written note whose quote is not word for word in its record file is refused",
                "Older remarks are never edited. A later record is added beside them"],
           link: ["https://github.com/kootru-repo/trusoma-discourse-graph/tree/main/demo/apps/mcp", "The MCP server in the repository"],
@@ -246,8 +246,8 @@ const SECTIONS = [
   { id: "compare", nav: "Side by side", cam: [0, 0.4, 30], look: [0, 0, 0], focus: ALL, table: true },
 ];
 const TABLE = [
-  ["Literature synthesis", "Source, Evidence, Claim with supports and opposes", "399 Sources, 1,130 Evidence notes, 888 supports relations", "ok", "In use"],
-  ["Knowledge base", "Nodes in a vault folder beside other notes", "4,475 notes are the authored source. 26 files are generated from them", "ok", "In use"],
+  ["Literature synthesis", "Source, Evidence, Claim with supports and opposes", "399 Sources, 1,130 Evidence notes, 886 supports relations from evidence", "ok", "In use"],
+  ["Knowledge base", "Nodes in a vault folder beside other notes", "4,490 notes are the authored source. 26 files are generated from them", "ok", "In use"],
   ["Projects", "Project pages, Bases and Issues in the example vault", "269 Issues from the audit log, as notes in the graph", "part", "Partly"],
   ["Experiments", "Hypothesis, Experiment, Result", "16 Experiments, 37 Results, each quoting its record file", "ok", "In use"],
   ["Sharing", "Publish to a group, import, canvas", "4 notes published and imported in a local test. Public canvas", "part", "Tested locally"],
@@ -264,7 +264,7 @@ SECTIONS.forEach((s, i) => {
     el.className = "hero";
     el.innerHTML = `<div class="wrap"><h1>Six uses of <em>Discourse Graphs</em>, and how the <i>TruSoma</i> vault handles each</h1>
       <p class="lede">The Discourse Graphs documentation for Obsidian has four use-case guides. One covers projects and experiments, shown here as two. A sixth use is added by this repository: reading and writing through an assistant. TruSoma is a non-commercial research program on fetal development. It keeps the sourcing record of its model in one Discourse Graphs vault. Each point in a cluster is one note.</p>
-      <div class="keys"><div class="key"><b>4,475</b><span>discourse notes</span></div><div class="key"><b>3,464</b><span>relations</span></div><div class="key"><b>10</b><span>node types</span></div><div class="key"><b>497 / 569</b><span>values of the 12.5 week model sourced</span></div></div>
+      <div class="keys"><div class="key"><b>4,490</b><span>discourse notes</span></div><div class="key"><b>3,509</b><span>relations</span></div><div class="key"><b>10</b><span>node types</span></div><div class="key"><b>497 / 569</b><span>values of the 12.5 week model sourced</span></div></div>
       <div class="cta"><a class="open big" href="explore/">Open the live canvas</a><a class="ghost" href="https://github.com/kootru-repo/trusoma-discourse-graph">Repository</a></div>
       <div class="hint">Scroll to walk the graph</div></div>`;
   } else if (s.table) {
@@ -272,7 +272,7 @@ SECTIONS.forEach((s, i) => {
       <div class="card scroll"><table><thead><tr><th>Use</th><th class="c-dg">Discourse Graphs</th><th class="c-ts">TruSoma vault</th><th>State</th></tr></thead><tbody>
       ${TABLE.map(r => `<tr><td>${esc(r[0])}</td><td>${esc(r[1])}</td><td>${esc(r[2])}</td><td><span class="pill ${r[3]}">${esc(r[4])}</span></td></tr>`).join("")}
       </tbody></table></div>
-      <dl class="scope"><div><dt>Scope and limits</dt><dd>Counts are from the vault on 2026-11-17. The note and relation counts on this page are compared with the vault by a test at every commit.</dd></div><div><dt>Literature</dt><dd>Quotes are entered when a note is written. 25 of the 752 were checked again against the source. 130 quoted notes are kept but marked unusable, because their data are adult. 74 of the 569 values of the 12.5 week model are not yet sourced. The 1,159 Parameters are settings with no source.</dd></div><div><dt>Projects</dt><dd>16 of the 269 Issues link to the 43 values they are about. 19 open Questions list the 72 values that still wait for a source, and the sourcing worklist is generated from them. There are no Project pages or Bases yet.</dd></div><div><dt>Experiments</dt><dd>The 37 Results read: 5 pass, 12 signal, 15 no signal, 2 fail, 3 observation. 3 of the 37 count as tests. The others are recorded as readings. 9 of 16 Experiments name the Hypothesis they test. 20 Results are sensitivity and removal readings tied to the open question they bear on. The grammar has a Conclusion type with 0 notes. None is claimed yet.</dd></div><div><dt>Sharing</dt><dd>The publish and import test used the plugin built from the Discourse Graphs source at 1ae4c00 against the sync service run locally. The released plugin on the hosted service was not tested. The local gateway refused every full sync above about 200 notes, so subset vaults were used. The rewrite test covered 6,035 of 6,138 notes, with the plugin off. Obsidian's rewrite drops the .0 of whole numbers, and the restore step puts the committed lines back.</dd></div><div><dt>Assistants</dt><dd>Day to day, notes are written by the Python authoring tools, not through the MCP server. Of the 77 check cases, 47 are edits the check must refuse and 30 are edits it must allow.</dd></div><div><dt>This page</dt><dd>Uses 1 to 5 follow the Discourse Graphs documentation for Obsidian and the lab's example vault. Use 6 is this repository's own. The scene draws 3,381 relations. The 83 Claim to Claim relations are not drawn. The background dust and the moving points on the arcs are decoration.</dd></div></dl></div>`;
+      <dl class="scope"><div><dt>Scope and limits</dt><dd>Counts are from the vault on 2026-11-17. The note and relation counts on this page are compared with the vault by a test at every commit.</dd></div><div><dt>Literature</dt><dd>Quotes are entered when a note is written. 25 of the 752 were checked again against the source. 130 quoted notes are kept but marked unusable, because their data are adult. 74 of the 569 values of the 12.5 week model are not yet sourced. The 1,159 Parameters are settings with no source.</dd></div><div><dt>Projects</dt><dd>16 of the 269 Issues link to the 43 values they are about. 19 open Questions list the 72 values that still wait for a source, and the sourcing worklist is generated from them. There are no Project pages or Bases yet.</dd></div><div><dt>Experiments</dt><dd>The 37 Results read: 5 pass, 12 signal, 15 no signal, 2 fail, 3 observation. 3 of the 37 count as tests. The others are recorded as readings. 9 of 16 Experiments name the Hypothesis they test. 20 Results are sensitivity and removal readings tied to the open question they bear on. The grammar has a Conclusion type with 0 notes. None is claimed yet.</dd></div><div><dt>Sharing</dt><dd>The publish and import test used the plugin built from the Discourse Graphs source at 1ae4c00 against the sync service run locally. The released plugin on the hosted service was not tested. The local gateway refused every full sync above about 200 notes, so subset vaults were used. The rewrite test covered 6,035 of 6,138 notes, with the plugin off. Obsidian's rewrite drops the .0 of whole numbers, and the restore step puts the committed lines back.</dd></div><div><dt>Assistants</dt><dd>Day to day, notes are written by the Python authoring tools, not through the MCP server. Of the 94 check cases, 63 are edits the check must refuse and 31 are edits it must allow.</dd></div><div><dt>This page</dt><dd>Uses 1 to 5 follow the Discourse Graphs documentation for Obsidian and the lab's example vault. Use 6 is this repository's own. The scene draws 3,426 relations. The 83 Claim to Claim relations are not drawn. The background dust and the moving points on the arcs are decoration.</dd></div></dl></div>`;
   } else {
     el.innerHTML = `<div class="wrap"><div class="num">Use ${i} of 6</div><h2>${esc(s.title)}</h2><div class="duo">
       <div class="card dg"><div class="tag">${s.own ? "Added by this repository" : "Discourse Graphs: the use"}</div><p>${esc(s.dg.p)}</p><ul>${s.dg.li.map(x => `<li>${esc(x)}</li>`).join("")}</ul></div>

@@ -12,7 +12,7 @@ addresses: ["[[QUE - How do fetal touch afferents fire： ramp sensitivity, floo
 
 The ramp response of the fast adapting afferents carries a large part of the amount of touch input in the model.
 
-A claim from probe readings. Each probe is a short run and gives a reading, not a proof.
+The readings come from short probe runs and are provisional. Removal probes switch a value off or merge it with another, and sensitivity probes change it by a quarter, so a reading for and a reading against may come from different tests.
 
 Supported by: [[RES - removal, fast afferent ramp needed]].
 

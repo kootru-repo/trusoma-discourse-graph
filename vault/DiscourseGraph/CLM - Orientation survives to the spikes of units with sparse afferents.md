@@ -12,7 +12,7 @@ addresses: ["[[QUE - Does orientation survive to spikes with sparse afferents？
 
 Orientation survives to the spikes of units with sparse afferents.
 
-A claim from probe readings. Each probe is a short run and gives a reading, not a proof.
+The readings come from short probe runs and are provisional. Removal probes switch a value off or merge it with another, and sensitivity probes change it by a quarter, so a reading for and a reading against may come from different tests.
 
 Opposed by: [[RES - probe 2b orientation no signal]].
 

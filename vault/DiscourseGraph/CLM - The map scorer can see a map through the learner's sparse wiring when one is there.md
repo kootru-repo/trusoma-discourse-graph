@@ -12,7 +12,7 @@ addresses: ["[[QUE - Can the scorer see a map through this wiring？]]"]
 
 The map scorer can see a map through the learner's sparse wiring when one is there.
 
-A claim from probe readings. Each probe is a short run and gives a reading, not a proof.
+The readings come from short probe runs and are provisional. Removal probes switch a value off or merge it with another, and sensitivity probes change it by a quarter, so a reading for and a reading against may come from different tests.
 
 Supported by: [[RES - stage 5 scorer is not blind]].
 

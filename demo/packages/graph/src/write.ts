@@ -175,6 +175,13 @@ export const noteBody = (kind: string, props: Record<string, Json>): string => {
     lines.push(
       `Values that wait on this question (a sourced one answers its part): ${linksText(props.values)}.`,
     );
+  if (Array.isArray(props.method) && props.method.length) {
+    // the plan fixed before the run, in its own words
+    lines.push(
+      `Method, from the plan \`${pyStr(props.method_record ?? "")}\`:`,
+    );
+    for (const m of props.method) lines.push(quoted(m));
+  }
   if (truthy(props.record))
     lines.push(
       `Record file: \`${pyStr(props.record)}\`${truthy(props.date) ? `, ${pyStr(props.date)}` : ""}.`,
