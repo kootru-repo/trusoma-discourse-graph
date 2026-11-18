@@ -1,0 +1,21 @@
+{
+  "name": "@repo/forms",
+  "version": "0.2.0",
+  "private": true,
+  "description": "TruSoma entry forms: an Obsidian plugin over the vault's own Python check (tools/dm/form_api.py). Built the way the Discourse Graphs Obsidian plugin is built.",
+  "main": "dist/main.js",
+  "scripts": {
+    "build": "pnpm run check-types && tsx scripts/build.ts",
+    "check-types": "tsc --noEmit --skipLibCheck",
+    "lint": "eslint ."
+  },
+  "devDependencies": {
+    "@repo/eslint-config": "workspace:*",
+    "@types/node": "^22",
+    "esbuild": "0.17.3",
+    "eslint": "^9.39.5",
+    "obsidian": "^1.7.2",
+    "tsx": "^4.19.2",
+    "typescript": "5.5.4"
+  }
+}

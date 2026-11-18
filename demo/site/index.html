@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <script>if (location.hash.indexOf("#ask=") === 0) location.replace("explore/" + location.hash);</script>
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<meta name="description" content="The TruSoma discourse graph: 4,490 notes and 3,509 relations that record where each value of a model of human fetal development came from: a quoted source or a recorded choice. Six uses, walked through a 3D graph of the vault.">
+<meta name="description" content="The TruSoma discourse graph: 4,491 notes and 3,509 relations that record where each value of a model of human fetal development came from: a quoted source or a recorded choice. Six uses, walked through a 3D graph of the vault.">
 <title>TruSoma discourse graph: six uses, illustrated</title>
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Ccircle cx='8' cy='8' r='6' fill='%23ffc46b'/%3E%3C/svg%3E">
 <style>
@@ -158,7 +158,7 @@
 <script>
 // ---------------------------------------------------------------- data (counted from the vault working tree, 2026-11-17, commit f4a61f39)
 const TYPES = [
-  { id: "Question",   n: 31,   color: 0x8ec5ff, pos: [-9.5, 4.2, 0] },
+  { id: "Question",   n: 32,   color: 0x8ec5ff, pos: [-9.5, 4.2, 0] },
   { id: "Hypothesis", n: 39,   color: 0xb79bff, pos: [-4.6, 5.0, -1] },
   { id: "Experiment", n: 19,   color: 0xff9ecb, pos: [0.4, 5.6, 0] },
   { id: "Result",     n: 47,   color: 0xff8a70, pos: [5.2, 4.6, -1] },
@@ -203,7 +203,7 @@ const SECTIONS = [
     title: "Build and use a knowledge base",
     dg: { p: "Discourse nodes live in a folder of an ordinary vault, beside other notes. Structured notes make an existing pile of reading something you can query and reuse.",
           li: ["Nodes coexist with regular notes", "Convert a note to a discourse node when it matures", "Paths form around the central questions"] },
-    ts: { stats: [["4,490", "discourse notes"], ["1,729", "table rows"], ["3,509", "relations"], ["26", "files generated from it"]],
+    ts: { stats: [["4,491", "discourse notes"], ["1,729", "table rows"], ["3,509", "relations"], ["26", "files generated from it"]],
           li: ["The vault is the single authored source of the model", "Configuration and databases are generated from the notes and compared at every commit",
                "1,397 Claims hold values, methods, joins, growth links and 20 claims the probe readings bear on. 1,159 Parameters hold settings", "Notes are written by scripts and coding agents through validated tools"],
           link: ["explore/", "Search any note in the canvas"],
@@ -247,7 +247,7 @@ const SECTIONS = [
 ];
 const TABLE = [
   ["Literature synthesis", "Source, Evidence, Claim with supports and opposes", "399 Sources, 1,130 Evidence notes, 886 supports relations from evidence", "ok", "In use"],
-  ["Knowledge base", "Nodes in a vault folder beside other notes", "4,490 notes are the authored source. 26 files are generated from them", "ok", "In use"],
+  ["Knowledge base", "Nodes in a vault folder beside other notes", "4,491 notes are the authored source. 26 files are generated from them", "ok", "In use"],
   ["Projects", "Project pages, Bases and Issues in the example vault", "269 Issues from the audit log, as notes in the graph", "part", "Partly"],
   ["Experiments", "Hypothesis, Experiment, Result", "16 Experiments, 37 Results, each quoting its record file", "ok", "In use"],
   ["Sharing", "Publish to a group, import, canvas", "4 notes published and imported in a local test. Public canvas", "part", "Tested locally"],
@@ -264,7 +264,7 @@ SECTIONS.forEach((s, i) => {
     el.className = "hero";
     el.innerHTML = `<div class="wrap"><h1>Six uses of <em>Discourse Graphs</em>, and how the <i>TruSoma</i> vault handles each</h1>
       <p class="lede">The Discourse Graphs documentation for Obsidian has four use-case guides. One covers projects and experiments, shown here as two. A sixth use is added by this repository: reading and writing through an assistant. TruSoma is a non-commercial research program on fetal development. It keeps the sourcing record of its model in one Discourse Graphs vault. Each point in a cluster is one note.</p>
-      <div class="keys"><div class="key"><b>4,490</b><span>discourse notes</span></div><div class="key"><b>3,509</b><span>relations</span></div><div class="key"><b>10</b><span>node types</span></div><div class="key"><b>497 / 569</b><span>values of the 12.5 week model sourced</span></div></div>
+      <div class="keys"><div class="key"><b>4,491</b><span>discourse notes</span></div><div class="key"><b>3,509</b><span>relations</span></div><div class="key"><b>10</b><span>node types</span></div><div class="key"><b>497 / 569</b><span>values of the 12.5 week model sourced</span></div></div>
       <div class="cta"><a class="open big" href="explore/">Open the live canvas</a><a class="ghost" href="https://github.com/kootru-repo/trusoma-discourse-graph">Repository</a></div>
       <div class="hint">Scroll to walk the graph</div></div>`;
   } else if (s.table) {

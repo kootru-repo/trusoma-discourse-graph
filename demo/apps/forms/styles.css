@@ -47,3 +47,5 @@
 .tsf-find button { align-self: flex-start; }
 .tsf-changed th, .tsf-changed td { font-weight: 700; }
 .tsf-caution { border-left: 6px solid var(--color-orange); padding-left: 8px; font-weight: 600; color: var(--text-normal); }
+.view-action.tsf-note-action { width: auto; padding: 4px 10px; gap: 6px; border: 1px solid var(--text-muted); color: var(--text-normal); font-size: var(--font-ui-small); font-weight: 600; }
+.status-bar-item.tsf-said { color: var(--text-normal); font-weight: 600; }

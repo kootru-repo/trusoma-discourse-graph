@@ -1,4 +1,4 @@
-// Keyboard test of the entry forms plugin (tools/dm/forms_plugin) in real Obsidian, on a throw-away copy of the vault in a separate profile (set up as
+// Keyboard test of the entry forms plugin (source: demo/apps/forms, TypeScript) in real Obsidian, on a throw-away copy of the vault in a separate profile (set up as
 // obsidian_click_test.cjs describes, plus: python tools/dm/forms_plugin/install.py <copy>/vault). After the trust dialog, every step is done with the
 // keyboard alone: the command palette, Tab, typing, Enter, Ctrl+Enter. What it measured goes to <out.json>; screenshots go beside it.
 // usage: PLAYWRIGHT_CORE=<path to playwright-core> node forms_click_test.cjs <out.json> <copy root>
@@ -45,7 +45,7 @@ const shots = path.dirname(outFile);
     await page.waitForSelector(".tsf-lines button", { timeout: 15000 });
     await wait(300); await k.press("Enter"); await wait(1500);   // the first line found holds the focus
   };
-  const saved = async () => { await page.waitForSelector(".notice:has-text('Saved and checked')", { timeout: 60000 }); await wait(800); };
+  const saved = async () => { await page.waitForSelector(".tsf-modal", { state: "detached", timeout: 60000 }); await page.waitForSelector(".tsf-said:has-text('Saved and checked')", { timeout: 5000 }); await wait(800); };
   const state = () => page.evaluate(() => ({
     errors: [...document.querySelectorAll(".tsf-modal .tsf-error")].map((e) => e.textContent).filter(Boolean),
     summary: (document.querySelector(".tsf-summary") || {}).textContent || "",

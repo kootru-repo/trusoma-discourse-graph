@@ -229,12 +229,29 @@ def read_draft(rel):
     return p, first, chr(10).join(lines[1:]).strip()
 
 
+def draft_hints(path):
+    """what a draft was started from (the plugin writes it above the text when a draft is begun on a Result or a Question): {name: title}. Only a
+    starting choice for the form; the author can change it, and the check sees only what is admitted."""
+    text = path.read_text(encoding="utf-8")
+    out = {}
+    if text.startswith("---"):
+        end = text.find(chr(10) + "---", 3)
+        for line in text[3:end].splitlines() if end > 0 else []:
+            k, sep, v = line.partition(":")
+            if sep and k.strip() in ("claim_from_result", "claim_addresses"):
+                try:
+                    out[k.strip()] = str(json.loads(v.strip()))
+                except ValueError:
+                    out[k.strip()] = v.strip()
+    return out
+
+
 def drafts():
     out = []
     for p in sorted(DRAFTS.rglob("*.md")) if DRAFTS.is_dir() else []:
         rel = p.relative_to(DRAFTS).as_posix()
         _, first, rest = read_draft(rel)
-        out.append({"draft": rel, "sentence": first, "more": len(rest), "kind": "Question" if first.endswith("?") else "Finding"})
+        out.append({"draft": rel, "sentence": first, "more": len(rest), "kind": "Question" if first.endswith("?") else "Finding", "hints": draft_hints(p)})
     return out
 
 

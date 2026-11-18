@@ -1,7 +1,7 @@
 {
   "id": "trusoma-forms",
   "name": "TruSoma entry forms",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "minAppVersion": "1.4.0",
   "description": "Checked forms for Results, passages and values, and admission of drafted claims and questions. Every check runs in the vault's own Python tools.",
   "author": "Kootru Labs",
