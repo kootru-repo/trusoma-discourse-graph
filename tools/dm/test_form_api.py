@@ -95,16 +95,19 @@ def main():
         shutil.rmtree(wt / "vault/Drafts", ignore_errors=True)
         case("a rollback keeps a draft begun while the save ran, and removes the save's own new file", kept and status() == base, r.stdout + r.stderr[-200:])
 
-        r = py("-c", "import sys, subprocess; sys.path.insert(0, 'tools/dm'); import dmlib as D, form_api as F\n"
-               "other = sorted(D.NODES.glob('CLM - *.md'))[0]; new = D.NODES / 'begun in the graph meanwhile.md'; run = subprocess.run\n"
-               "def typing(*a, **k):\n    other.write_bytes(other.read_bytes() + b'typed meanwhile'); new.write_text('plain', encoding='utf-8'); return run(*a, **k)\n"
-               "F.subprocess.run = typing\n"
-               "def w():\n    D.write_note_kind('Result', 'rolled back', {'reading': 'observation', 'counted': False, 'record': %r, 'quote': 'not in the record', 'experiment': %r})\n"
-               "ok = F.guarded(w)['ok']\n"
-               "print(ok, other.read_bytes().endswith(b'typed meanwhile'), new.exists(), (D.NODES / 'RES - rolled back.md').exists())\n"
-               "other.write_bytes(other.read_bytes()[:-len(b'typed meanwhile')]); new.unlink()" % (PROBES, EXP))
-        case("a rollback undoes the save only: text typed into another note and a note begun during the check both stay",
-             r.stdout.split() == ["False", "True", "True", "False"] and status() == base, r.stdout + r.stderr[-300:])
+        shutil.copy(HERE / "test_form_rollback.py", wt / "tools/dm/test_form_rollback.py")
+        r = py("tools/dm/test_form_rollback.py", PROBES, EXP)
+        try:
+            got = json.loads(r.stdout)
+        except ValueError:
+            got = {}
+        (wt / "tools/dm/test_form_rollback.py").unlink()
+        for title in ("a rollback undoes the save only: text typed into another note and a note begun during the check both stay",
+                      "text typed into another note while the save was still writing stays too",
+                      "a note the save rewrote and its author then typed in: the save's change is taken out, the typing stays",
+                      "when the typing is in the very lines the save changed: the note is put back, the typed version is kept in a copy, and the answer says where"):
+            case(title, got.get(title) is True, json.dumps(got.get(title)) + r.stderr[-300:])
+        case("  and the worktree is as it was after those four", status() == base, status()[:200])
 
         holder = subprocess.Popen([sys.executable, "-B", "-E", "-u", "-c", "import sys, time; sys.path.insert(0, 'tools/dm'); import form_api as F\n"
                                    "with F.one_writer():\n    print('held'); time.sleep(120)"], cwd=wt, env=ENV, stdout=subprocess.PIPE, text=True)

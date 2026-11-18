@@ -175,28 +175,96 @@ def snapshot(extra=()):
     return {p: (p.read_bytes() if p.exists() else None) for p in set(paths)}
 
 
+KEPT = D.ROOT / "local" / "form_api_kept"   # outside the vault: a copy with a property block inside the vault would stop the check
+WROTE, RECORD = set(), [False]   # the paths this process wrote, removed or renamed while a save was writing
+
+
+def _norm(path):
+    return os.path.normcase(os.path.abspath(os.fsdecode(path)))
+
+
+def _audit(event, args):
+    """Python reports every file this process opens for writing, removes or renames. That is the save's own work, exactly: a file that changed
+    in the same seconds without passing here was changed by someone else (its author, in Obsidian)."""
+    if not RECORD[0]:
+        return
+    try:
+        if event == "open":
+            path, mode, flags = args
+            if not isinstance(path, int) and (any(c in (mode or "") for c in "wax+") or (isinstance(flags, int) and flags & (os.O_WRONLY | os.O_RDWR | os.O_CREAT | os.O_TRUNC | os.O_APPEND))):
+                WROTE.add(_norm(path))
+        elif event in ("os.remove", "os.truncate"):
+            WROTE.add(_norm(args[0]))
+        elif event == "os.rename":
+            WROTE.update((_norm(args[0]), _norm(args[1])))
+    except Exception:   # a path this cannot read is not a file of the vault
+        pass
+
+
+def record_writes(on):
+    if on and not WROTE and not RECORD[0]:
+        sys.addaudithook(_audit)   # once per process; a hook cannot be taken off, so the flag switches it
+    RECORD[0] = on
+
+
 def touched_since(snap):
-    """the files that differ from the snapshot now: changed, deleted, or new in the vault. Taken as soon as the save has written and regenerated,
-    before the long check, this is what the save itself did. A new file in vault/Drafts is never listed: no save writes one."""
-    out = {p for p, b in snap.items() if (p.read_bytes() if p.exists() else None) != b}
+    """{file: its bytes now, None when it is gone} for each file the save itself wrote: it differs from the snapshot (changed, deleted, or new in
+    the vault) and this process wrote it. Taken when the save has written and regenerated, before the long check. A new file in vault/Drafts is
+    never listed: no save writes one."""
+    paths = {p for p, b in snap.items() if (p.read_bytes() if p.exists() else None) != b}
     for p in D.VAULT.rglob("*"):
         if p.is_file() and p.relative_to(D.VAULT).parts[0] not in (".obsidian", ".trash", "Drafts") and p not in snap:
-            out.add(p)
-    return out
+            paths.add(p)
+    return {p: (p.read_bytes() if p.exists() else None) for p in paths if _norm(p) in WROTE}
+
+
+def merged(now, after, before):
+    """the note as its author has it now, with the save's change (before -> after) taken out again. None when the two changes meet in the same
+    lines, or git is not there. git merge-file reads three files and prints one; it touches no repository."""
+    import tempfile
+    with tempfile.TemporaryDirectory() as d:
+        names = []
+        for name, data in (("now", now), ("after", after), ("before", before)):
+            names.append(os.path.join(d, name))
+            with open(names[-1], "wb") as f:
+                f.write(data)
+        try:
+            r = subprocess.run(["git", "merge-file", "-p", *names], capture_output=True)
+        except OSError:
+            return None
+        return r.stdout if r.returncode == 0 else None
 
 
 def restore(snap, touched):
-    """undo the save and nothing else: each file the save touched is put back as it was (rewritten, or removed if it did not exist). Never git.
-    A file the save did not touch is left as it is now, so what its author typed or began in Obsidian while the check ran stays."""
-    for p in touched:
-        b = snap.get(p)
-        if b is None:
+    """undo the save and nothing else. Never git on the repository. A file the save did not write is left as it is now. A file the save wrote is put
+    back as it was (rewritten, or removed if it did not exist). If its author changed a note after the save wrote it, their change is kept:
+    merged into the note as it was when the two changes are in different lines, else the note is put back and their version is copied to
+    local/form_api_kept. Returns one sentence per copy made."""
+    record_writes(False)
+    kept = []
+    for p, after in touched.items():
+        before = snap.get(p)
+        now = p.read_bytes() if p.exists() else None
+        theirs = now is not None and now != after and p.suffix == ".md" and D.VAULT in p.parents   # changed again after the save wrote it
+        if theirs and after is None:
+            continue   # the save removed it (an admitted draft) and its author wrote it again: it is theirs as it stands
+        if theirs:
+            both = merged(now, after, before) if before is not None else None
+            if both is None:
+                KEPT.mkdir(parents=True, exist_ok=True)
+                copy = KEPT / ("%s %s" % (datetime.datetime.now().strftime("%Y-%m-%d %H%M%S"), p.name))
+                copy.write_bytes(now)
+                kept.append("You changed \"%s\" while the save ran. The note was put back as it was before the save. Your version is kept in %s." % (p.stem, copy.relative_to(D.ROOT).as_posix()))
+            else:
+                before = both
+        if before is None:
             if p.exists():
                 p.unlink()
-        elif not p.exists() or p.read_bytes() != b:
+        elif now != before:
             p.parent.mkdir(parents=True, exist_ok=True)
-            p.write_bytes(b)
+            p.write_bytes(before)
     D._CACHE.clear()
+    return kept
 
 
 def regenerate_and_check(written=lambda: None):
@@ -232,8 +300,11 @@ def guarded(write, extra=()):
     t0 = time.time()
     snap = snapshot(extra)
     touched = []   # filled once, when the save has written everything; a save that stops before that is read at the rollback
+    WROTE.clear()
+    record_writes(True)
 
     def written():
+        record_writes(False)
         touched.append(touched_since(snap))
     try:
         said = write() or []
@@ -243,8 +314,10 @@ def guarded(write, extra=()):
     except Exception as e:
         problems = ["%s: %s" % (type(e).__name__, e)]
     if problems:
-        restore(snap, touched[0] if touched else touched_since(snap))
-        return {"ok": False, "errors": [{"field": field_of(p), "message": p} for p in problems], "written": False}
+        record_writes(False)
+        kept = restore(snap, touched[0] if touched else touched_since(snap))
+        return {"ok": False, "errors": [{"field": field_of(p), "message": p} for p in problems] + [{"field": "", "message": k} for k in kept], "written": False}
+    record_writes(False)
     return {"ok": True, "errors": [], "written": True, "said": said, "seconds": round(time.time() - t0, 1)}
 
 
